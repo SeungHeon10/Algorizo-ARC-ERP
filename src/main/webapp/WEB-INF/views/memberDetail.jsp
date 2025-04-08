@@ -87,7 +87,7 @@
 								
 								
                             </table>
-                           <c:if test="${sessionScope.d_id == 10}">
+                           <c:if test="${sessionScope.d_id == 50}">
                            	 	<div class="mt-3">
                                 	<a href="${contextPath }/members/updateMember?m_id=${member.m_id}" class="btn btn-warning">수정</a>
                                 	<a href="${contextPath }/members/deleteMember?m_id=${member.m_id}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
