@@ -1,0 +1,117 @@
+@charset "UTF-8";
+.pagination{
+	display: flex;
+	justify-content: center;
+}
+.container{
+	margin: 0;
+	padding: 0;
+	min-width: 1530px;
+	min-height: 77vh;
+	background-color: white;
+	border-radius: 15px;
+	margin-bottom: 40px;
+}
+.content_list{
+	padding: 0;
+}
+.list_head{
+	display: flex;
+	justify-content: space-between;;
+}
+.table{
+	width: 100%;
+	table-layout: fixed;
+	text-align: center;
+}
+.list_td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 15px 12px !important;
+    font-size: 16px;
+}
+.page-item{
+	margin: 0 !important;
+}
+.main_title{
+	margin-bottom: 40px;
+    font-size: 28px;
+    font-weight: bold;
+}
+.content{
+	min-height: 630px;
+}
+.registerButton{
+	display: flex;
+	justify-content: flex-end;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+.modal-dialog-scrollable{
+	min-width: 800px;
+	justify-content: center;
+}
+.modal-content{
+	min-height: 500px;
+}
+.modal-header{
+	padding-bottom: 0;
+}
+.modal-title{
+	margin-bottom: 15px;
+}
+.modal-footer{
+	gap: 10px;
+}
+.btn-close{
+	margin-bottom: 8px !important;
+}
+.form_title{
+	display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+.form_meta{
+    padding: 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 65px;
+}
+.form_writer{
+	width: 350px;
+}
+.form_regdate{
+	width: 350px;
+}
+.form_product{
+	margin-top: 20px;
+}
+.total_div{
+	display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+.total_h5{
+	margin-bottom: 0;
+}
+.total_strong{
+	font-size: 20px;
+}
+.submit_button{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+    margin-top: 35px;
+}
+.btn-secondary.custom{
+	width: 125px;
+}
+.result_buttons{
+	margin-top: 35px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+}

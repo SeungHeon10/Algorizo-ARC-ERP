@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.algorizo.erp.stockmapper">
+
+	<resultMap type="co.algorizo.erp.stock.stockDTO"
+		id="stockresultmap">
+		<id column="s_id" property="s_id"></id>
+		<result column="s_quantity" property="s_quantity"></result>
+		<result column="s_status" property="s_status"></result>
+		<result column="del" property="del"></result>
+		<result column="etc" property="etc"></result>
+
+		<association property="product"
+			javaType="co.algorizo.erp.product.ProductDTO">
+			<result column="p_name" property="p_name"></result>
+			<result column="p_price" property="p_price"></result>
+			<result column="p_code" property="p_code"></result>
+		</association>
+
+		<!-- <association property="member" javaType="co.algorizo.erp.register.dto.MemberDTO"> 
+			<result column="m_name" property="m_name"></result> <result column="m_email" 
+			property="m_email"></result> <result column="m_pno" property="m_pno"></result> 
+			</association> <association property="company" javaType="co.algorizo.erp.company.CompanyDTO"> 
+			<result column="cp_manager" property="cp_manager"></result> <result column="cp_fax" 
+			property="cp_fax"></result> <result column="cp_name" property="cp_name"></result> 
+			</association> -->
+
+		<association property="inbound"
+			javaType="co.algorizo.erp.inbound.inboundDTO">
+			<result column="in_date" property="in_date"></result>
+			<result column="in_quantity" property="in_quantity"></result>
+		</association>
+
+		<association property="outbound"
+			javaType="co.algorizo.erp.outbound.outboundDTO">
+			<result column="out_date" property="out_date"></result>
+			<result column="out_quantity" property="out_quantity"></result>
+		</association>
+
+	</resultMap>
+	<!--재고 전체 조회 -->
+	<select id="list" resultMap="stockresultmap">
+		SELECT
+		s.s_id,
+		s.s_status,
+		s.del,
+		s.etc,
+		p.p_name,
+		p.p_price,
+		p.p_code,
+		<!-- m.m_name, m.m_email, m.m_pno, c.cp_manager, c.cp_fax, c.cp_name, -->
+		i.in_date AS in_date,
+		o.out_date AS out_date,
+		i.in_quantity AS in_quantity,
+		o.out_quantity AS out_quantity
+		FROM stock s
+		JOIN inbound i ON s.inbound_in_id = i.in_id
+		JOIN outbound o ON s.outbound_out_id = o.out_id
+		<!-- JOIN member m ON s.member_m_id = m.m_id -->
+		JOIN product p ON s.product_p_id = p.p_id
+		<!-- JOIN company c ON s.company_cp_id = c.cp_id -->
+		WHERE s.del = 0
+		GROUP BY p.p_name, p.p_price, p.p_code,<!-- m.m_name, m.m_email, m.m_pno, c.cp_manager, 
+			c.cp_fax, c.cp_name, -->
+		s.s_id, s.s_status, s.del, s.etc;
+	</select>
+
+
+	<!--재고 상세 정보 -->
+	<select id="detail" resultMap="stockresultmap"
+		parameterType="Integer">
+		SELECT s.*,p.p_name as p_name, p.p_price as p_price,
+		p.p_code as
+		p_code,
+		<!-- m.m_name as m_name, m.m_email as m_email, m.m_pno as m_pno, c.cp_manager 
+			as cp_manager, c.cp_fax as cp_fax, c.cp_name as cp_name, -->
+		i.in_date as in_date, i.in_quantity as in_quantity,
+		o.out_date
+		as
+		out_date, o.out_quantity as out_quantity
+		FROM stock s
+		JOIN inbound i
+		ON
+		s.inbound_in_id = i.in_id
+		JOIN outbound o ON s.outbound_out_id =
+		o.out_id
+		<!-- JOIN member m ON s.member_m_id = m.m_id -->
+		JOIN product p ON
+		s.product_p_id = p.p_id
+		<!-- JOIN company c ON s.company_cp_id = c.cp_id -->
+		where s.s_id = #{s_id};
+	</select>
+
+	<!--재고 등록 -->
+	<insert id="register"
+		parameterType="co.algorizo.erp.stock.stockDTO">
+		INSERT INTO stock(
+		product_p_id,
+		outbound_out_id,
+		inbound_in_id,
+		<!-- member_m_id, company_cp_id, -->
+		s_status,
+		del,
+		s_quantity
+		)
+		VALUES (
+		#{product_p_id},
+		#{outbound_out_id},
+		#{inbound_in_id},
+		<!-- #{member_m_id}, #{company_cp_id}, -->
+		#{s_status},
+		0,
+		#{s_quantity}
+		);
+	</insert>
+	<!--재고 수정 -->
+	<update id="update"
+		parameterType="co.algorizo.erp.stock.stockDTO">
+		update stock
+		set
+		s_status =
+		#{s_status}
+		where s_id =
+		#{s_id};
+
+	</update>
+	<!--가격 총합은 해도되고 안해도되는데 하게 되면 품목 테이블에서 키를 받아와서 조인시키고 제품가격과 수량 넣어서 하기 -->
+	<!--재고 수량도 키받아와서 재고 넣으면 됨 -->
+	<!--재고 삭제 -->
+	<update id="delete"
+		parameterType="co.algorizo.erp.stock.stockDTO">
+		update stock set del = 1
+		where s_id=#{s_id};
+	</update>
+
+	<select id="stocksummary" resultType="co.algorizo.erp.stock.StockSummaryDTO">
+	SELECT 
+		p.p_id AS p_id,
+		p.p_code AS p_code,
+		p.p_name AS p_name,
+		IFNULL(i.total_in, 0) AS total_in,
+		IFNULL(o.total_out, 0) AS total_out,
+		IFNULL(i.total_in, 0) - IFNULL(o.total_out, 0) AS s_quantity
+	FROM (
+		SELECT * FROM product WHERE del = 0
+	) p
+	LEFT JOIN (
+		SELECT product_p_id, SUM(in_quantity) AS total_in
+		FROM inbound
+		WHERE del = 0
+		GROUP BY product_p_id
+	) i ON p.p_id = i.product_p_id
+	LEFT JOIN (
+		SELECT product_p_id, SUM(out_quantity) AS total_out
+		FROM outbound
+		WHERE del = 0
+		GROUP BY product_p_id
+	) o ON p.p_id = o.product_p_id
+	GROUP BY p.p_id, p.p_code, p.p_name
+</select>
+</mapper>

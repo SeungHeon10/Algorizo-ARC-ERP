@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.algorizo.erp.contractMapper">
+	
+ <select id="getAllContracts" resultType="co.algorizo.erp.contract.ContractDTO">
+        SELECT * FROM contract where del = 0
+    </select>
+    
+    <insert id="register" parameterType="java.util.Map">
+	insert into contract(cr_regdate, cr_code, cr_name) 
+	values (now(), #{cr_code}, #{cr_name})
+	
+	</insert>
+    
+    <select id="getContractDetail" resultType="co.algorizo.erp.contract.ContractDTO">
+        SELECT * FROM contract
+        WHERE cr_code = #{cr_code}  <!-- cr_code를 기준으로 상세 정보 조회 -->
+    </select>
+
+	<update id="updateContract" parameterType="java.util.Map">
+		update contract set cr_moddate = now(), cr_state = #{cr_state}, cr_name = #{cr_name} where cr_code=#{cr_code}
+	</update>
+
+    <update id="deleteContract" parameterType="String">
+		update contract set del = 1 where cr_code = #{cr_code}
+	</update>
+    
+    <select id="getLastContractCode" resultType="String">
+        SELECT cr_code FROM contract ORDER BY cr_no DESC LIMIT 1;
+    </select>
+    
+</mapper>
