@@ -64,11 +64,11 @@
 		where o.del = 0
 	</select>
 
-	<insert id="register" parameterType="java.util.Map">
-		insert into `order`(o_regdate, o_code, o_qty, member_m_id, product_p_id, company_cp_id, stock_s_id, dept_d_id)
-		values (now(), #{o_code}, #{o_qty}, #{member_m_id},#{product_p_id},#{company_cp_id}, (SELECT s_id FROM stock WHERE product_p_id = #{product_p_id} LIMIT 1),
-		(SELECT d_id FROM dept WHERE member_m_id = #{member_m_id} LIMIT 1))
-	</insert>
+	<insert id="register" parameterType="co.algorizo.erp.order.OrderDTO">
+    INSERT INTO `order` (o_regdate, o_code, o_qty, member_m_id, product_p_id, company_cp_id, stock_s_id, dept_d_id, o_delivery)
+    VALUES (NOW(), #{o_code}, #{o_qty}, #{member_m_id}, #{product_p_id}, #{company_cp_id}, (select s_id from stock where product_p_id = #{product_p_id}), 
+    (select dept_d_id from member where m_id=#{member_m_id}), #{o_delivery});
+</insert>
 
 
 	<select id="getOrderDetail" resultMap="orderResultMap">

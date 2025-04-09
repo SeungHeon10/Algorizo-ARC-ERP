@@ -160,4 +160,11 @@
 	) o ON p.p_id = o.product_p_id
 	GROUP BY p.p_id, p.p_code, p.p_name
 </select>
+
+<select id="selectStockByProductId" parameterType="int" resultType="co.algorizo.erp.stock.stockDTO">
+    SELECT *
+    FROM stock
+    WHERE product_p_id = #{productId}
+</select>
+
 </mapper>

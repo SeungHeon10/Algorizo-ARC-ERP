@@ -31,7 +31,7 @@ public class ContractController {
 		model.addAttribute("list", list);
 		
 		
-		return "contractList";
+		return "contract/contractList";
 	}
 	
 	@GetMapping(value="contract/register")
@@ -43,7 +43,7 @@ public class ContractController {
 		 String nextContractCode = contractService.generateNextContractCode();
 	        model.addAttribute("nextContractCode", nextContractCode);
 		
-		return "contractRegister";
+		return "contract/contractRegister";
 	}
 	
 	@PostMapping(value="contract/register")
@@ -68,7 +68,7 @@ public class ContractController {
 		
 		model.addAttribute("contract", contract);
 		
-		return "contractDetail";
+		return "contract/contractDetail";
 	}
 	
 	@GetMapping(value="contract/update")
@@ -77,7 +77,7 @@ public class ContractController {
 		
 		model.addAttribute("contract", contract);
 		
-		return "contractUpdate";
+		return "contract/contractUpdate";
 	}
 	
 	@PostMapping(value="contract/update")

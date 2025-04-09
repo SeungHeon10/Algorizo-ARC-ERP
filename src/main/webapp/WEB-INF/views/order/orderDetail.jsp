@@ -6,12 +6,12 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 
 </head>
 
 <body>
-	<%@include file="include/left_column.jsp"%>
+	<%@include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -23,16 +23,14 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>발주 정보</h3>
-						<p class="text-subtitle text-muted">Give textual form controls
-							like input upgrade with custom styles, sizing, focus states, and
-							more.</p>
+						
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Input</li>
+								<li class="breadcrumb-item"><a href="${contextPath }/order/list">발주 조회</a></li>
+								<li class="breadcrumb-item active" aria-current="page">발주 상세보기</li>
 							</ol>
 						</nav>
 					</div>
@@ -41,16 +39,17 @@
 			<section class="section">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Basic Inputs</h4>
 					</div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<label>발주 코드</label> <p class="form-control-static">${order.o_code}</p>
+									<label>발주 코드</label> <input type="text" name="order.o_code"
+										class="form-control" value="${order.o_code}" readonly />
 								</div>
 								<div class="form-group">
-									<label>등록 일자</label> <p class="form-control-static">${order.o_regdate}</p>
+									<label>등록 일자</label> <input type="text" name="order.o_regdate"
+										class="form-control" value="${order.o_regdate}" readonly />
 								</div>
 								<div class="form-group">
 									<label>발주 제품</label> <input type="text" name="product.p_name"
@@ -87,16 +86,18 @@
 										class="form-control" value="${order.o_state}" readonly />
 								</div>
 								<div class="form-group">
-									<label>담당자</label> <p class="form-control-static">${order.member.m_name }</p>
+									<label>담당자</label>  <input type="text" name="order.member.m_name"
+										class="form-control" value="${order.member.m_name}" readonly />
 								</div>
 								<div class="form-group">
-									<label>담당 부서</label> <p class="form-control-static">${order.dept.team }</p>
+									<label>담당 부서</label> <input type="text" name="order.dept.team"
+										class="form-control" value="${order.dept.team}" readonly />
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-12  d-flex justify-content-end">
 							<a href="${contextPath}/order/update?o_code=${order.o_code}"
-								class="btn btn-outline-danger me-1 mb-1">수정</a> <a
+								class="btn btn-outline-warning me-1 mb-1">수정</a> <a
 								href="${contextPath}/order/delete?o_code=${order.o_code}"
 								class="btn btn-outline-danger me-1 mb-1"
 								onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a> <a
@@ -125,12 +126,12 @@ function downloadPdf() {
 </script>
 
 		<footer>
-			<%@ include file="include/footer.jsp"%>
+			<%@ include file="../include/footer.jsp"%>
 		</footer>
 	</div>
 	</div>
 	<!-- 플러그인 -->
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>

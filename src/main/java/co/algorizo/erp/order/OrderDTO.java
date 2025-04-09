@@ -1,5 +1,6 @@
 package co.algorizo.erp.order;
 
+
 import co.algorizo.erp.company.CompanyDTO;
 import co.algorizo.erp.dept.dto.DeptDTO;
 import co.algorizo.erp.product.ProductDTO;
@@ -16,7 +17,7 @@ public class OrderDTO {
 	private int o_qty;
 	private String member_m_id; 
 	private int product_p_id; 
-	private int stock_s_id; 
+	private Integer stock_s_id; 
 	private int dept_d_id; 
 	private int company_cp_id;
 	private String o_delivery;
@@ -32,8 +33,8 @@ public class OrderDTO {
 	}
 
 	public OrderDTO(int o_no, String o_regdate, String o_code, String o_state, String o_moddate, int o_qty,
-			String member_m_id, int product_p_id, int stock_s_id, int dept_d_id, int company_cp_id, String o_delivery,
-			MemberDTO member, ProductDTO product, CompanyDTO company, stockDTO stock, DeptDTO dept) {
+			String member_m_id, int product_p_id, Integer stock_s_id, int dept_d_id, int company_cp_id,
+			String o_delivery, MemberDTO member, ProductDTO product, CompanyDTO company, stockDTO stock, DeptDTO dept) {
 		super();
 		this.o_no = o_no;
 		this.o_regdate = o_regdate;
@@ -118,11 +119,11 @@ public class OrderDTO {
 		this.product_p_id = product_p_id;
 	}
 
-	public int getStock_s_id() {
+	public Integer getStock_s_id() {
 		return stock_s_id;
 	}
 
-	public void setStock_s_id(int stock_s_id) {
+	public void setStock_s_id(Integer stock_s_id) {
 		this.stock_s_id = stock_s_id;
 	}
 
@@ -199,6 +200,7 @@ public class OrderDTO {
 				+ ", company=" + company + ", stock=" + stock + ", dept=" + dept + "]";
 	}
 
+	
 	
 	
 	
