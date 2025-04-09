@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,8 +155,8 @@ String p_code = request.getParameter("p_code");
 
 														<div class="form-group">
 															<label for="email-id-vertical">판매단가</label>
-															<input type="text" class="form-control" name="p_price" value="${product.p_price }"
-																required>
+															<input type="text" name="p_price" class="form-control"
+																value="<fmt:formatNumber value='${product.p_price }' pattern='#,###'/>" />
 														</div>
 
 														<div class="form-group">

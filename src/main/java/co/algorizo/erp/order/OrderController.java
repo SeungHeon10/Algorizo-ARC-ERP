@@ -195,14 +195,19 @@ public class OrderController {
 		OrderDTO order = orderService.getOrderDetail(o_code);
 
 		model.addAttribute("order", order);
+		
+		List<CompanyDTO> companyList = companyService.companylist();
+		model.addAttribute("companyList", companyList);
 
 		return "order/orderUpdate";
 	}
 
 	@PostMapping(value = "order/update")
-	public String update(@RequestParam Map<String, Object> map) {
+	public String update(@RequestParam Map<String, Object> map, Model model) {
 
 		orderService.updateOrder(map);
+		List<CompanyDTO> companyList = companyService.companylist();
+		model.addAttribute("companyList", companyList);
 
 		return "redirect:/order/detail?o_code=" + map.get("o_code");
 	}
