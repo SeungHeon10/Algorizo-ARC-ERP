@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -36,78 +37,123 @@
 					</div>
 				</div>
 			</div>
-			<section class="section">
-				<div class="card">
-					<div class="card-header">
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<label>발주 코드</label> <input type="text" name="order.o_code"
-										class="form-control" value="${order.o_code}" readonly />
-								</div>
-								<div class="form-group">
-									<label>등록 일자</label> <input type="text" name="order.o_regdate"
-										class="form-control" value="${order.o_regdate}" readonly />
-								</div>
-								<div class="form-group">
-									<label>발주 제품</label> <input type="text" name="product.p_name"
-										class="form-control" value="${order.product.p_name}" readonly />
-								</div>
-								<div class="form-group">
-									<label>발주 수량</label> <input type="text" name="o_qty"
-										class="form-control" value="${order.o_qty}" readonly />
-								</div>
-								<div class="form-group">
-									<label>발주 단가</label> <input type="text" name="product.p_price"
-										class="form-control" value="${order.product.p_price}" readonly />
-								</div>
-								<div class="form-group">
-									<label>Total</label> <input type="text" name=""
-										class="form-control"
-										value="${order.product.p_price * order.o_qty}" readonly />
-								</div>
-								<div class="form-group">
-									<label>현재고</label> <input type="text" name="stock.s_quantity"
-										class="form-control" value="${order.stock.s_quantity}"
-										readonly />
-								</div>
-								<div class="form-group">
-									<label>납기 일자</label> <input type="text" name="order.o_delivery"
-										class="form-control" value="${order.o_delivery}" readonly />
-								</div>
-								<div class="form-group">
-									<label>발주 거래처</label> <input type="text" name="company.cp_name"
-										class="form-control" value="${order.company.cp_name}" readonly />
-								</div>
-								<div class="form-group">
-									<label>진행 상태</label> <input type="text" name="o_state"
-										class="form-control" value="${order.o_state}" readonly />
-								</div>
-								<div class="form-group">
-									<label>담당자</label>  <input type="text" name="order.member.m_name"
-										class="form-control" value="${order.member.m_name}" readonly />
-								</div>
-								<div class="form-group">
-									<label>담당 부서</label> <input type="text" name="order.dept.team"
-										class="form-control" value="${order.dept.team}" readonly />
+			<section id="multiple-column-form">
+					<div class="row match-height">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-content">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>발주 코드</label> <input type="text" name="order.o_code"
+														class="form-control" value="${order.o_code}" readonly />
+												</div>
+											</div>
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>등록 일자</label> <input type="text"
+														name="order.o_regdate" class="form-control"
+														value="${order.o_regdate}" readonly />
+												</div>
+											</div>
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>발주 제품</label> <input type="text"
+														name="product.p_name" class="form-control"
+														value="${order.product.p_name}" readonly />
+												</div>
+											</div>
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>발주 수량</label> <input type="text" name="o_qty"
+														class="form-control" value="${order.o_qty}" readonly />
+												</div>
+											</div>
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>발주 단가</label> <input type="text" name="product.p_price" class="form-control"
+														value="<fmt:formatNumber value='${order.product.p_price}' pattern='#,###'/>" readonly />
+												</div>
+											</div>
+
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>Total</label> <input type="text" name="" class="form-control"
+												value="<fmt:formatNumber value='${order.product.p_price * order.o_qty}' pattern='#,###'/>" readonly />
+												</div>
+											</div>
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>현재고</label> <input type="text"
+														name="stock.s_quantity" class="form-control"
+														value="${order.stock.s_quantity}" readonly />
+												</div>
+											</div>
+
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>납기 일자</label> <input type="text"
+														name="order.o_delivery" class="form-control"
+														value="${order.o_delivery}" readonly />
+												</div>
+											</div>
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>발주 거래처</label> <input type="text"
+														name="company.cp_name" class="form-control"
+														value="${order.company.cp_name}" readonly />
+												</div>
+											</div>
+
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>진행 상태</label> <input type="text" name="o_state"
+														class="form-control" value="${order.o_state}" readonly />
+												</div>
+											</div>
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>담당 부서</label> <input type="text"
+														name="order.dept.team" class="form-control"
+														value="${order.dept.team}" readonly />
+												</div>
+											</div>
+
+
+											<div class="col-md-6 col-12">
+												<div class="form-group">
+													<label>담당자</label> <input type="text"
+														name="order.member.m_name" class="form-control"
+														value="${order.member.m_name}" readonly />
+												</div>
+											</div>
+
+
+											<div class="col-sm-12  d-flex justify-content-end">
+												<a href="${contextPath}/order/update?o_code=${order.o_code}"
+													class="btn btn-outline-warning me-1 mb-1">수정</a> <a
+													href="${contextPath}/order/delete?o_code=${order.o_code}"
+													class="btn btn-outline-danger me-1 mb-1"
+													onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a> <a
+													href="${contextPath }/order/list"
+													class="btn btn-outline-primary me-1 mb-1">목록으로</a>
+												<button class="btn btn-outline-primary me-1 mb-1"
+													onclick="downloadPdf()">PDF 다운로드</button>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-12  d-flex justify-content-end">
-							<a href="${contextPath}/order/update?o_code=${order.o_code}"
-								class="btn btn-outline-warning me-1 mb-1">수정</a> <a
-								href="${contextPath}/order/delete?o_code=${order.o_code}"
-								class="btn btn-outline-danger me-1 mb-1"
-								onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a> <a
-								href="${contextPath }/order/list"
-								class="btn btn-outline-primary me-1 mb-1">목록으로</a>
-								<button class="btn btn-outline-primary me-1 mb-1" onclick="downloadPdf()">PDF 다운로드</button>
-						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 		</div>
 <script>
 function downloadPdf() {
