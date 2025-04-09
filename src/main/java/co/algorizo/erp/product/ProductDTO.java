@@ -21,7 +21,8 @@ public class ProductDTO {
     private int dept_d_id;
     private String dept_team; // 부서 이름 (팀명)
     private int stock_s_id;
-    
+    private String modifier_m_id;    // 수정자 ID
+    private String modifier_m_name;  // 수정자 이름
     
     private int company_cp_id;
     private String cp_name;
@@ -31,8 +32,8 @@ public class ProductDTO {
 
 	public ProductDTO(int p_id, String p_lctg, String p_mctg, String p_sctg, String p_code, String p_name, int p_price,
 			String p_content, String p_regdate, String p_moddate, int del, String member_m_id, String member_m_name,
-			DeptDTO dept, int dept_d_id, String dept_team, int stock_s_id, int company_cp_id, String cp_name,
-			String cp_ctg) {
+			DeptDTO dept, int dept_d_id, String dept_team, int stock_s_id, String modifier_m_id, String modifier_m_name,
+			int company_cp_id, String cp_name, String cp_ctg) {
 		super();
 		this.p_id = p_id;
 		this.p_lctg = p_lctg;
@@ -51,6 +52,8 @@ public class ProductDTO {
 		this.dept_d_id = dept_d_id;
 		this.dept_team = dept_team;
 		this.stock_s_id = stock_s_id;
+		this.modifier_m_id = modifier_m_id;
+		this.modifier_m_name = modifier_m_name;
 		this.company_cp_id = company_cp_id;
 		this.cp_name = cp_name;
 		this.cp_ctg = cp_ctg;
@@ -192,6 +195,22 @@ public class ProductDTO {
 		this.stock_s_id = stock_s_id;
 	}
 
+	public String getModifier_m_id() {
+		return modifier_m_id;
+	}
+
+	public void setModifier_m_id(String modifier_m_id) {
+		this.modifier_m_id = modifier_m_id;
+	}
+
+	public String getModifier_m_name() {
+		return modifier_m_name;
+	}
+
+	public void setModifier_m_name(String modifier_m_name) {
+		this.modifier_m_name = modifier_m_name;
+	}
+
 	public int getCompany_cp_id() {
 		return company_cp_id;
 	}
@@ -216,9 +235,17 @@ public class ProductDTO {
 		this.cp_ctg = cp_ctg;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "ProductDTO [p_id=" + p_id + ", p_lctg=" + p_lctg + ", p_mctg=" + p_mctg + ", p_sctg=" + p_sctg
+				+ ", p_code=" + p_code + ", p_name=" + p_name + ", p_price=" + p_price + ", p_content=" + p_content
+				+ ", p_regdate=" + p_regdate + ", p_moddate=" + p_moddate + ", del=" + del + ", member_m_id="
+				+ member_m_id + ", member_m_name=" + member_m_name + ", dept=" + dept + ", dept_d_id=" + dept_d_id
+				+ ", dept_team=" + dept_team + ", stock_s_id=" + stock_s_id + ", modifier_m_id=" + modifier_m_id
+				+ ", modifier_m_name=" + modifier_m_name + ", company_cp_id=" + company_cp_id + ", cp_name=" + cp_name
+				+ ", cp_ctg=" + cp_ctg + "]";
+	}
 
-	
 	
 	
 

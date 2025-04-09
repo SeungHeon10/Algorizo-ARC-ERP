@@ -10,4 +10,5 @@ public interface ProductService {
 	public void productupdate(ProductDTO productDTO);
 	public void productdelete(int p_id);
 	public String generateNextProductCode();
+	public void insertProductWithStock(ProductDTO productDTO) throws Exception;
 }

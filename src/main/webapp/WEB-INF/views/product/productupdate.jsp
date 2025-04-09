@@ -54,9 +54,8 @@ String p_code = request.getParameter("p_code");
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Form
-										Layout</li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
+							<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productlist">품목목록</a></li>
 								</ol>
 							</nav>
 						</div>
@@ -170,19 +169,21 @@ String p_code = request.getParameter("p_code");
 														</div>
 														
 														<div class="form-group">
-															<label for="email-id-vertical">수정자</label> 
-															<input type="text" value="${member.m_name} (${dept.team})" class="form-control" readonly>
+														    <label for="email-id-vertical">수정자</label> 
+														    <input type="text" value="${member.m_name} (${product.dept_team})" class="form-control" readonly>
+														    <input type="hidden" name="modifier_m_id" value="${member.m_id}">
+														    <input type="hidden" name="modifier_m_name" value="${member.m_name}">
 														</div>
 
 														<div class="col-12 d-flex justify-content-end">
 															<button type="submit"
-																class="btn btn-primary me-1 mb-1">수정완료</button>
+																class="btn btn-outline-warning">수정완료</button>
 															<button type="button"
 																onclick="location.href='productlist'"
-																class="btn btn-primary me-1 mb-1">목록</button>
+																class="btn btn-outline-primary">목록</button>
 															<button type="button"
 																 onclick="location.href='/erp/product/productdelete?p_id=${product.p_id}'"
-																class="btn btn-danger me-1 mb-1">삭제</button>
+																class="btn btn-outline-danger">삭제</button>
 														</div>
 													</div>
 												</div>

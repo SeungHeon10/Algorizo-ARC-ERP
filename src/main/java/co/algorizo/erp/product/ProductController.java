@@ -56,7 +56,6 @@ public class ProductController {
 		if (session.getAttribute("m_id") == null) {
             return "redirect:/"; // Redirect to login page if not logged in
         }
-		
 		// 세션에서 m_id 가져오기
 		String m_id = (String) session.getAttribute("m_id");
 		MemberDTO member = memberservice.selectMember(m_id);
@@ -67,19 +66,22 @@ public class ProductController {
 		DeptDTO dept = deptservice.selectDept(d_id);
 		model.addAttribute("dept", dept);  // 모델에 부서 정보 추가
 		
-		List<CompanyDTO> companyList = companyservice.companylist();
-		model.addAttribute("companyList", companyList);
-
+		 String nextProductCode = productservice.generateNextProductCode();
+		model.addAttribute("nextProductCode", nextProductCode);
+		
+		List<CompanyDTO> companylist = companyservice.companylist();
+		model.addAttribute("companylist", companylist);
+		
 		// 상품 등록 폼 준비
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setDept(dept);  // 부서 정보 세팅
 		model.addAttribute("product", productDTO);
 		
-		return "product/productlist";
+		return "product/productinsert";
 	}
 	
 	@RequestMapping(value = "/product/productinsert", method = RequestMethod.POST)
-	public String productinsert(HttpServletRequest request, @ModelAttribute ProductDTO productDTO, HttpSession session, Model model) {
+	public String productinsert(HttpServletRequest request, @ModelAttribute ProductDTO productDTO, HttpSession session, Model model) throws Exception{
 		if (session.getAttribute("m_id") == null) { 
 	        return "redirect:/";  // ✅ 세션 없으면 로그인 페이지로 리다이렉트
 	    }
@@ -93,10 +95,9 @@ public class ProductController {
 	    // 부서 정보 가져오기
 	    Integer d_id = (Integer) session.getAttribute("d_id");
 	    DeptDTO dept = deptservice.selectDept(d_id);
-	        productDTO.setDept(dept);
-	        productDTO.setDept_d_id(d_id);
-	        productDTO.setDept_team(dept.getTeam());
-	        logger.info("부서 정보: " + dept);
+	    productDTO.setDept(dept);
+	    productDTO.setDept_d_id(d_id);
+	    productDTO.setDept_team(dept.getTeam());
 	    
 	    Integer company_cp_id = productDTO.getCompany_cp_id();
 	    CompanyDTO company = companyservice.getcompany(productDTO.getCompany_cp_id());
@@ -104,8 +105,11 @@ public class ProductController {
 	    productDTO.setCp_name(company.getCp_name());
 	    productDTO.setCp_ctg(company.getCp_ctg());
 	    
-	    // 상품 등록
-	    productservice.productinsert(productDTO);
+	    
+		List<CompanyDTO> companylist = companyservice.companylist();
+		model.addAttribute("companylist", companylist);
+	    
+		productservice.insertProductWithStock(productDTO);
 	    
 	    return "redirect:/product/productlist";
 	}
@@ -115,6 +119,7 @@ public class ProductController {
 		if (session.getAttribute("m_id") == null) { 
 	        return "redirect:/";  // ✅ 세션 없으면 로그인 페이지로 리다이렉트
 	    }
+		
 		List<ProductDTO> productlist = productservice.productlist();
 		model.addAttribute("productlist", productlist);
 		
@@ -129,9 +134,6 @@ public class ProductController {
 		List<CompanyDTO> companylist = companyservice.companylist();
 		model.addAttribute("companylist", companylist);
 		
-
-		String nextProductCode = productservice.generateNextProductCode();
-		model.addAttribute("nextProductCode", nextProductCode);
 		return "product/productlist";
 	}
 	
@@ -154,28 +156,44 @@ public class ProductController {
 	    
 	    List<CompanyDTO> companylist = companyservice.companylist();
 		model.addAttribute("companylist", companylist);
-
 		
-		// 중복 코드 제거 (product 객체에 이미 필요한 정보가 있음)
-		// model.addAttribute("dept", product.getDept());
-
-		logger.info("팀정보 : " + dept.getTeam());
-		logger.info("상품 정보: " + product.toString());
-		 logger.info("회사 정보: " + company); 
-
 		return "product/productdetail";
 	}
 	
 	
 	@RequestMapping(value = "/product/productupdate", method = RequestMethod.GET)
-	public String productupdate(@RequestParam("p_code") String p_code, Model model) {
+	public String productupdate(@RequestParam("p_code") String p_code, HttpSession session, Model model) {
 		ProductDTO product = productservice.getProductCode(p_code);
 		model.addAttribute("product", product);
+		
+		// 세션에서 m_id 가져오기
+		String m_id = (String) session.getAttribute("m_id");
+		MemberDTO member = memberservice.selectMember(m_id);
+		model.addAttribute("member", member);  // 모델에 회원 정보 추가
+		
+		String modifier_m_id = (String) session.getAttribute("m_id");
+		product.setModifier_m_id(modifier_m_id);
+		product.setModifier_m_name(member.getM_name());
+		    
 		return "product/productupdate";
 	}
 	
 	@RequestMapping(value = "/product/productupdate", method = RequestMethod.POST)
-	public String productupdate(ProductDTO product) {
+	public String productupdate(ProductDTO product, HttpSession session, Model model) {
+		
+		// 세션에서 m_id 가져오기
+		String m_id = (String) session.getAttribute("m_id");
+		MemberDTO member = memberservice.selectMember(m_id);
+		model.addAttribute("member", member);  // 모델에 회원 정보 추가
+
+		product.setModifier_m_id(m_id);
+	    product.setModifier_m_name(member.getM_name());
+	    
+		// 부서 정보 가져오기
+		Integer d_id = (Integer) session.getAttribute("d_id");
+		DeptDTO dept = deptservice.selectDept(d_id);
+		model.addAttribute("dept", dept);  // 모델에 부서 정보 추가
+		
 	    productservice.productupdate(product);
 	    return "redirect:/product/productlist"; 
 	}
@@ -185,7 +203,5 @@ public class ProductController {
 		productservice.productdelete(p_id);
 		return "redirect:/product/productlist";
 	}
-	
-	
 
 }

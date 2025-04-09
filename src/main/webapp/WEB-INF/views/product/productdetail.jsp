@@ -109,15 +109,15 @@
 																style="width: 65%; margin-left: 20px;">
 																<div class="form-group">
 																	<label for="first-name-vertical">대분류</label>
-																	<p class="form-control">${product.p_lctg }</p>
+																	<p class="form-control" readonly >${product.p_lctg }</p>
 																</div>
 																<div class="form-group">
 																	<label for="first-name-vertical">중분류</label>
-																	<p class="form-control">${product.p_mctg }</p>
+																	<p class="form-control" readonly>${product.p_mctg }</p>
 																</div>
 																<div class="form-group">
 																	<label for="first-name-vertical">소분류</label>
-																	<p class="form-control">${product.p_sctg }</p>
+																	<p class="form-control" readonly>${product.p_sctg }</p>
 																</div>
 															</div>
 														</div>
@@ -125,62 +125,73 @@
 														<!-- 아래에 이메일, 모바일, 비밀번호 항목 배치 -->
 														<div class="form-group">
 															<label for="email-id-vertical">품목번호</label>
-															<p class="form-control">${product.p_id}</p>
+															<p class="form-control" readonly>${product.p_id}</p>
 														</div>
 														<div class="form-group">
 															<label for="email-id-vertical">품목코드</label>
-															<p class="form-control">${product.p_code}</p>
+															<p class="form-control" readonly>${product.p_code}</p>
 														</div>
 
 														<div class="form-group">
 															<label for="email-id-vertical">품목명</label>
-															<p class="form-control">${product.p_name}</p>
+															<p class="form-control" readonly>${product.p_name}</p>
 														</div>
 
 														<div class="form-group">
 															<label for="email-id-vertical">제품소개</label>
-															<p class="form-control">${product.p_content}</p>
+															<p class="form-control" readonly>${product.p_content}</p>
 														</div>
 
 														<div class="form-group">
 															<label for="email-id-vertical">판매단가</label>
-															<p class="form-control">${product.p_price}</p>
+															<p class="form-control" readonly>${product.p_price}</p>
 														</div>
 
 														<div class="form-group">
 															<label for="email-id-vertical">입고일</label>
-															<p class="form-control">${product.p_regdate}</p>
+															<p class="form-control" readonly>${product.p_regdate}</p>
 														</div>
 
 														<div class="form-group">
 															<label for="email-id-vertical">수정일</label>
-															<p class="form-control">${product.p_moddate != null && !product.p_moddate.isEmpty() ? product.p_moddate : 'N/A'}</p>
+															<p class="form-control" readonly>${product.p_moddate != null && !product.p_moddate.isEmpty() ? product.p_moddate : 'N/A'}</p>
 														</div>
 
 
 															<div class="form-group">
-															<label for="email-id-vertical">담당자</label>
-															<p class="form-control">${product.member_m_name} (${product.dept_team})</p>
+															<label for="email-id-vertical">작성자</label>
+															<p class="form-control" readonly>${product.member_m_name} (${product.dept_team})</p>
 														</div>
 														
-			<div class="col-md-4">
-			    <label>공급업체</label>
-			    <p class="form-control">
-			        ${company.cp_name} (${company.cp_ctg})  <!-- 개별 회사 정보 -->
-			    </p>
-			</div>
+														<div class="form-group">
+														    <label for="email-id-vertical">수정자</label>
+														    <p class="form-control" readonly>
+														        <c:choose>
+																    <c:when test="${not empty product.modifier_m_id and not empty product.modifier_m_name}">
+																        ${product.modifier_m_name} (${product.dept_team})
+																    </c:when>
+																    <c:otherwise>
+																        N/A
+																    </c:otherwise>
+																</c:choose>
+														    </p>
+														</div>
 
-
-
-
+														
+														<div class="form-group">
+														    <label>공급업체</label>
+														    <p class="form-control" readonly>
+														        ${company.cp_name} (${company.cp_ctg})  <!-- 개별 회사 정보 -->
+														    </p>
+														</div>
 
 														<div class="col-12 d-flex justify-content-end">
 															<button type="button"
 																onclick="location.href='productupdate?p_code=${product.p_code}'"
-																class="btn btn-primary me-1 mb-1">수정</button>
+																class="btn btn-outline-warning">수정</button>
 															<button type="button"
 																onclick="location.href='productlist'"
-																class="btn btn-danger me-1 mb-1">목록</button>
+																class="btn btn-outline-primary">목록</button>
 														</div>
 													</div>
 												</div>

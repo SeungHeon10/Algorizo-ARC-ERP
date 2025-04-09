@@ -189,8 +189,8 @@
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="/erp">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
+									<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productinsert">품목등록</a></li>
 								</ol>
 							</nav>
 						</div>
@@ -257,8 +257,7 @@
 													</td>
 													<td class="category-column" id="small-categories">
 														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="sctg" value="" checked> <span
+															<label class="radio-container"> <input type="radio" name="sctg" value="" checked> <span
 																class="radio-label">전체</span>
 															</label>
 														</div> <!-- 여기에 동적으로 소분류 옵션이 생성됩니다 -->
@@ -295,7 +294,9 @@
 									<c:forEach var="product" items="${productlist}">
 										<tr>
 											<td>${product.p_id}</td>
-											<td><a href="${contextPath}/product/productdetail?p_code=${product.p_code}" class="text-primary">${product.p_code}</a></td>
+											<td><a
+												href="${contextPath}/product/productdetail?p_code=${product.p_code}"
+												class="text-primary">${product.p_code}</a></td>
 											<td>${product.p_lctg}</td>
 											<td>${product.p_mctg}</td>
 											<td>${product.p_sctg}</td>
@@ -308,172 +309,13 @@
 								</tbody>
 							</table>
 							<div class="col-sm-12 d-flex justify-content-end">
-								<button type="button" id="openProductModal"
-									class="btn btn-primary me-1 mb-1">품목등록</button>
+								<button type="button" onclick="location.href='productinsert'" class="btn btn-outline-primary">품목등록</button>
 							</div>
 						</div>
 					</div>
 				</section>
 
-				<!-- 품목등록 모달 -->
-				<div class="modal fade" id="productInsertModal" tabindex="-1"
-					role="dialog" aria-labelledby="productInsertModalTitle"
-					aria-hidden="true">
-					<div
-						class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-						role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="productInsertModalTitle">품목등록</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<form id="productInsertForm" class="form form-horizontal"
-									action="/erp/product/productinsert" method="post">
-									<div class="form-body">
-										<div class="row">
-											<div class="col-md-4">
-												<label>대분류</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<select id="category" class="form-control" name="p_lctg"
-													required>
-													<option value="" disabled selected>선택</option>
-													<option value="자동차">자동차 부품</option>
-												</select>
-											</div>
 
-											<div class="col-md-4">
-												<label>중분류</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<select id="subcategory" class="form-control" name="p_mctg"
-													required>
-													<option value="" disabled selected>선택</option>
-													<option value="내장부품">내장부품</option>
-													<option value="외장부품">외장부품</option>
-													<option value="유닛&모듈">유닛&모듈</option>
-												</select>
-											</div>
-
-											<div class="col-md-4">
-												<label>소분류</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<select id="item" class="form-control" name="p_sctg"
-													required>
-													<option value="" disabled selected>선택</option>
-												</select>
-											</div>
-
-											<div class="col-md-4">
-												<label>발주코드</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="hidden" name="p_code"
-													value="${nextProductCode}"> <input type="text"
-													class="form-control" id="p_code" readonly="readonly"
-													value="${nextProductCode}">
-											</div>
-											<div class="col-md-4">
-												<label>품목명</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="text" class="form-control" name="p_name"
-													required>
-											</div>
-
-											<div class="col-md-4">
-												<label>제품소개</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<textarea class="form-control" name="p_content" rows="3"></textarea>
-											</div>
-
-											<div class="col-md-4">
-												<label>판매단가</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="number" class="form-control" name="p_price"
-													required>
-											</div>
-
-											<div class="col-md-4">
-												<label>작성일</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="text" class="form-control" name="p_regdate"
-													readonly>
-											</div>
-
-											<div class="col-md-4">
-												<label>수정일</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="text" class="form-control" name="p_moddate"
-													readonly>
-											</div>
-
-											<div class="col-md-4">
-												<label>담당자</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="text" class="form-control"
-													value="${member.m_name}" readonly> <input
-													type="hidden" name="member_m_id" value="${member.m_id}">
-											</div>
-
-											<div class="col-md-4">
-												<label>담당부서</label>
-											</div>
-											<div class="col-md-8 form-group">
-												<input type="text" class="form-control" value="${dept.team}"
-													readonly> <input type="hidden" name="dept_d_id"
-													value="${not empty dept.d_id ? dept.d_id : 0}">
-											</div>
-
-											<!-- test -->
-											<div class="col-md-4">
-												<label>공급업체</label>
-											</div>
-											<section class="basic-choices">
-												<div class="form-group">
-													<select class="choices form-select" name="company_cp_id"
-														required>
-														<option value="" disabled selected>선택</option>
-														<c:forEach var="company" items="${companylist}">
-															<option value="${company.cp_id}">${company.cp_name}</option>
-														</c:forEach>
-													</select>
-												</div>
-											</section>
-
-
-
-										</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-light-secondary"
-									data-bs-dismiss="modal">
-									<i class="bx bx-x d-block d-sm-none"></i> <span
-										class="d-none d-sm-block">취소</span>
-								</button>
-								<button type="button" class="btn btn-light-secondary"
-									id="resetForm">
-									<i class="bx bx-check d-block d-sm-none"></i> <span
-										class="d-none d-sm-block">초기화</span>
-								</button>
-								<button type="button" class="btn btn-primary ml-1"
-									id="submitProduct">
-									<i class="bx bx-check d-block d-sm-none"></i> <span
-										class="d-none d-sm-block">품목등록</span>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 				<script>
@@ -485,9 +327,7 @@
 				    
 				    // 소분류 옵션 데이터
 				    let smallCategoryOptions = {
-				        "내장부품": ["오디오/앰프", "시트", "계기판", "공조기", "핸들", "기타부품"],
-				        "외장부품": ["테일램프(후미등)", "헤드라이트", "사이드미러", "기타부품"],
-				        "유닛&모듈": ["ABS", "ECU", "TCU", "에어백", "카메라", "기타부품"]
+				       
 				    };
 				    
 				    // 대분류 선택 처리
