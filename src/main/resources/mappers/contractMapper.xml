@@ -4,8 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.algorizo.erp.contractMapper">
 	
+	
  <select id="getAllContracts" resultType="co.algorizo.erp.contract.ContractDTO">
-        SELECT * FROM contract where del = 0
+       SELECT 
+            c.cr_no,
+            c.cr_name,
+            c.cr_regdate,
+            c.cr_code,
+            c.cr_moddate,
+            c.cr_state,
+            c.del,
+            m.m_name AS member_name,
+            p.p_name AS product_name,
+            d.team AS dept_team,
+            cp.cp_name AS cp_name
+        FROM 
+            contract c
+        LEFT JOIN member m ON c.member_m_id = m.m_id
+        LEFT JOIN product p ON c.product_p_id = p.p_id
+        LEFT JOIN dept d ON c.dept_d_id = d.d_id
+        LEFT JOIN company cp ON c.company_cp_id = cp.cp_id
+        WHERE 
+            c.del = 0
     </select>
     
     <insert id="register" parameterType="java.util.Map">
@@ -15,7 +35,24 @@
 	</insert>
     
     <select id="getContractDetail" resultType="co.algorizo.erp.contract.ContractDTO">
-        SELECT * FROM contract
+        SELECT 
+            c.cr_no,
+            c.cr_name,
+            c.cr_regdate,
+            c.cr_code,
+            c.cr_moddate,
+            c.cr_state,
+            c.del,
+            m.m_name AS m_name,
+            p.p_name AS p_name,
+            d.team AS team,
+            cp.cp_name AS cp_name
+        FROM 
+            contract c
+        LEFT JOIN member m ON c.member_m_id = m.m_id
+        LEFT JOIN product p ON c.product_p_id = p.p_id
+        LEFT JOIN dept d ON c.dept_d_id = d.d_id
+        LEFT JOIN company cp ON c.company_cp_id = cp.cp_id
         WHERE cr_code = #{cr_code}  <!-- cr_code를 기준으로 상세 정보 조회 -->
     </select>
 

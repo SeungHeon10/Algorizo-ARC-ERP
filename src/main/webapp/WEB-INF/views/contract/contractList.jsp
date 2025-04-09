@@ -26,15 +26,13 @@
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
 							<h3>계약 조회</h3>
-							<p class="text-subtitle text-muted">For user to check they
-								list</p>
 						</div>
 						<div class="col-12 col-md-6 order-md-2 order-first">
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">계약 조회</li>
 								</ol>
 							</nav>
 						</div>
@@ -42,7 +40,6 @@
 				</div>
 				<section class="section">
 					<div class="card">
-						<div class="card-header">Simple Datatable</div>
 						<div class="card-body">
 							<table class="table table-striped" id="table1">
 								<thead>
@@ -62,7 +59,7 @@
 													${contract.cr_code} </a></td>
 											<td>${contract.cr_regdate}</td>
 											<td>${contract.cr_name}</td>
-											<td>거래처 가져오기</td>
+											<td>${contract.cp_name}</td>
 											<td>${contract.cr_moddate }</td>
 											<td><span class="badge bg-success">${contract.cr_state }</span></td>
 										</tr>
