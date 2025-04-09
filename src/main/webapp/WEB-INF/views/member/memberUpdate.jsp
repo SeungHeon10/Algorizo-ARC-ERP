@@ -7,11 +7,11 @@
 <html lang="ko">
 
 <head>
-	<%@include file="include/head.jsp" %>
+	<%@include file="../include/head.jsp" %>
 </head>
 
 <body>
-    <%@ include file="include/left_column.jsp" %>
+    <%@ include file="../include/left_column.jsp" %>
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -73,7 +73,7 @@
 											</div>
 												    
 											<div class="form-group mb-3">
-												<input type="text" class="form-control" id="sample6_address" placeholder="주소" value="${m_addr}">
+												<input type="text" class="form-control" id="sample6_address" placeholder="주소" value="${member.m_addr}">
 											</div>
 													
 											<div class="form-group mb-3">
@@ -85,7 +85,7 @@
 											</div>
 													
 											<!-- 실제 서버로 전달될 주소 값 (Hidden 필드) -->
-											<input type="hidden" name="m_addr" id="m_addr" value="${m_addr}">
+											<input type="hidden" name="m_addr" id="m_addr" value="${member.m_addr}">
 												    
 									</div>
 									
@@ -100,14 +100,13 @@
 									</div>
 									
 									<div class="mb-3">
-										<label class="form-label">부서</label>
-										<select class="form-select" name="dept_d_id">
-											<option value="10" ${member.dept_d_id == 50 ? 'selected' : '' }>인사팀</option>
-											<option value="20" ${member.dept_d_id == 51 ? 'selected' : '' }>영업팀</option>
-											<option value="30" ${member.dept_d_id == 52 ? 'selected' : '' }>개발팀</option>
-											<option value="40" ${member.dept_d_id == 53 ? 'selected' : '' }>자재팀</option>
-											<option value="50" ${member.dept_d_id == 54 ? 'selected' : '' }>품질팀</option>
-										</select>
+									    <label class="form-label">부서</label>
+									    <select class="form-select" name="dept_d_id">
+									        <c:forEach var="dept" items="${dList}">
+									        	<!-- 선택 유지 기능 -->
+									            <option value="${dept.d_id }">${dept.team }</option>
+									        </c:forEach>
+									    </select>
 									</div>
 									
 									<div class="mb-3">
@@ -132,11 +131,11 @@
             </div>
 
             <footer>
-                <%@include file="include/footer.jsp" %>
+                <%@include file="../include/footer.jsp" %>
             </footer>
         </div>
     </div>
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="../include/plugin.jsp" %>
 <!-- jQuery 먼저 로드 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -229,6 +228,21 @@
 		 console.log('최종 주소:', m_addr); // 디버깅용 로그
 		
 	});
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let postcode = document.getElementById('sample6_postcode').value || '';
+        let address = document.getElementById('sample6_address').value || '';
+        let detailAddress = document.getElementById('sample6_detailAddress').value || '';
+        let extraAddress = document.getElementById('sample6_extraAddress').value || '';
+
+        let fullAddress = '(' + postcode + ') ' + address + " " + detailAddress;
+        if (extraAddress) {
+            fullAddress += ' (' + extraAddress + ')';
+        }
+
+        document.getElementById('m_addr').value = fullAddress;
+    });
 </script>
     
 </body>

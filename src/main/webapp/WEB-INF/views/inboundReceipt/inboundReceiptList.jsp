@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
 				<div class="page-title">
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
-							<h3>사원 조회</h3>
+							<h3>입고 거래명세서 조회</h3>
 							<p class="text-subtitle text-muted">
 								</p>
 						</div>
@@ -34,7 +35,7 @@
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Members</li>
+									<li class="breadcrumb-item active" aria-current="page">Inbound Receipt List</li>
 								</ol>
 							</nav>
 						</div>
@@ -47,22 +48,24 @@
 							<table class="table table-striped" id="table1">
 								<thead>
 									<tr>
-							            <th class="text-center">사원번호</th>
-        								<th class="text-center">이름</th>
-								        <th class="text-center">이메일</th>
-								        <th class="text-center">전화번호</th>
-								        <th class="text-center">부서</th>
+							            <th class="text-center">거래명세서 번호</th>
+        								<th class="text-center">입고 번호</th>
+								        <th class="text-center">회사명</th>
+								        <th class="text-center">제품명</th>
+								        <th class="text-center">총 가격</th>
+								        <th class="text-center">등록 날짜</th>
 							            
 							        </tr>
 								</thead>
 								<tbody>
-									<c:forEach var="member" items="${memberList }">
+									<c:forEach var="ir" items="${irList }">
 							        <tr>
-							            <td>${member.m_id }</td>
-							            <td><a href="${contextPath }/members/memberDetail?m_id=${member.m_id}">${member.m_name }</a></td>
-							            <td>${member.m_email }</td>
-							            <td>${member.m_pno }</td>
-							            <td>${member.dto.team }</td>
+							            <td><a href="${contextPath }/inboundReceipt/selectOneInboundReceipt?inre_id=${ir.inre_id}">${ir.inre_id }</a></td>
+							            <td>${ir.inbound_in_id }</td>
+							            <td>${ir.cp_name }</td>
+							            <td>${ir.p_name }</td>
+							            <td><fmt:formatNumber value="${ir.inre_totalprice}" pattern="#,###" /></td>
+							            <td>${ir.inre_regdate}</td>
 							            
 							            
 							            

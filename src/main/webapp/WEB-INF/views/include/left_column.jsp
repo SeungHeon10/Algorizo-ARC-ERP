@@ -18,7 +18,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item <%= request.getRequestURI() %> ${fn:contains(pageContext.request.requestURI, '/home') ? 'active' : ''}">
+                        <li class="sidebar-item ">
 
                             <a href="${contextPath }/home" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
@@ -30,7 +30,7 @@
                     
                     <c:choose>
 	                    <c:when test="${not empty sessionScope.m_id }">
-	                    	<li class="sidebar-item ${fn:endsWith(pageContext.request.requestURI, 'logout') ? 'active' : ''}">
+	                    	<li class="sidebar-item ">
 		                            <a href="${contextPath }/logout" class='sidebar-link'>
 		                                <i class="bi bi-grid-1x2-fill"></i>
 		                                <span>로그아웃</span>
@@ -38,7 +38,7 @@
 		                    </li>
 	                    </c:when>
 						<c:otherwise>
-							<li class="sidebar-item ${fn:endsWith(pageContext.request.requestURI, 'login') ? 'active' : ''}">
+							<li class="sidebar-item ">
 		                            <a href="${contextPath }/" class='sidebar-link'>
 		                                <i class="bi bi-grid-1x2-fill"></i>
 		                                <span>로그인</span>
@@ -51,19 +51,22 @@
                     
 					
 
-                        <li class="sidebar-item has-sub ${fn:contains(pageContext.request.requestURI, 'members') || fn:contains(pageContext.request.requestURI, 'register') ? 'active' : ''}">
+                        <li class="sidebar-item has-sub ">
 
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>회원 관리</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ${fn:contains(pageContext.request.requestURI, 'members') ? 'active' : ''}">
-                                    <a href="${contextPath }/members">회원 전체조회</a>
+                                <li class="submenu-item ">
+                                    <a href="${contextPath }/members">회원 전체 조회</a>
                                 </li>
-                                <li class="submenu-item ${fn:contains(pageContext.request.requestURI, 'register') ? 'active' : '' }">
-                                    <a href="${contextPath }/register">회원 등록</a>
-                                </li>
+                                
+                                <c:if test="${sessionScope.d_id == 50 }">
+	                                <li class="submenu-item ">
+	                                    <a href="${contextPath }/register">회원 등록</a>
+	                                </li>
+                                </c:if>
                                 
                             </ul>
                         </li>
@@ -79,9 +82,13 @@
                                 <li class="submenu-item ">
                                     <a href="${contextPath }/product/productlist">품목 조회</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="${contextPath }/product/productinsert">품목 등록</a>
-                                </li>
+                                
+                                <c:if test="${sessionScope.d_id == 55 }">
+	                                <li class="submenu-item ">
+	                                    <a href="${contextPath }/product/productinsert">품목 등록</a>
+	                                </li>
+                                </c:if>
+                                
                             </ul>
                         </li>
 
@@ -92,11 +99,15 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="${contextPath }/company/companylist">공급업체</a>
+                                    <a href="${contextPath }/company/companylist">공급업체 조회</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="${contextPath }/company/companyinsert">공급업체 등록</a>
-                                </li>
+                                
+                                <c:if test="${sessionScope.d_id == 55 }">
+	                                <li class="submenu-item ">
+	                                    <a href="${contextPath }/company/companyinsert">공급업체 등록</a>
+	                                </li>
+                                </c:if>
+                                
                             </ul>
                         </li>
                         
@@ -121,9 +132,13 @@
                                 <li class="submenu-item ">
                                     <a href="${contextPath }/order/list">발주 조회</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="${contextPath }/order/register">신규 발주 등록</a>
-                                </li>
+                                
+                                <c:if test="${sessionScope.d_id == 55 }">
+	                                <li class="submenu-item ">
+	                                    <a href="${contextPath }/order/register">신규 발주 등록</a>
+	                                </li>
+                                </c:if>
+                                
                            </ul>
                         </li>
                         
@@ -136,6 +151,7 @@
                                 <li class="submenu-item ">
                                     <a href="${contextPath }/contract/list">계약 조회</a>
                                 </li>
+                                
                                 <li class="submenu-item ">
                                     <a href="${contextPath }/contract/register">신규 계약 등록</a>
                                 </li>
@@ -149,10 +165,15 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/inbound/i_list">입고 목록</a>
+		                            <a href="${contextPath }/inbound/i_list">입고 조회</a>
 		                        </li>
+		                        <c:if test="${sessionScope.d_id == 53 }">
+			                        <li class="submenu-item ">
+			                            <a href="${contextPath }/inbound/i_register">입고 등록</a>
+			                        </li>
+		                        </c:if>
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/inbound/i_register">입고 등록</a>
+		                            <a href="${contextPath }/inboundReceipt/listAllInboundReceipt">입고 거래명세서 조회</a>
 		                        </li>
 		                    </ul>
 		                </li>
@@ -164,11 +185,15 @@
 	                        </a>
 	                        <ul class="submenu ">
 	                            <li class="submenu-item ">
-	                                <a href="${contextPath }/inspection/list">검수</a>
+	                                <a href="${contextPath }/inspection/list">검수 조회</a>
 	                            </li>
-	                            <li class="submenu-item ">
-	                                <a href="${contextPath }/inspection/register">검수 등록</a>
-	                            </li>
+	                            
+	                            <c:if test="${sessionScope.d_id == 54 }">
+		                            <li class="submenu-item ">
+		                                <a href="${contextPath }/inspection/register">검수 등록</a>
+		                            </li>
+	                            </c:if>
+	                            
 	                        </ul>
 	                    </li>
 	
@@ -179,11 +204,15 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/outbound/o_list">출고 목록</a>
+		                            <a href="${contextPath }/outbound/o_list">출고 조회</a>
 		                        </li>
-		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/outbound/o_register">출고 등록</a>
-		                        </li>
+		                        
+		                        <c:if test="${sessionScope.d_id == 53 }">
+			                        <li class="submenu-item ">
+			                            <a href="${contextPath }/outbound/o_register">출고 등록</a>
+			                        </li>
+		                        </c:if>
+		                        
 		                    </ul>
 		                </li>
 		                <li class="sidebar-item  has-sub">
@@ -193,11 +222,15 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/stock/s_list">재고 목록</a>
+		                            <a href="${contextPath }/stock/s_list">재고 조회</a>
 		                        </li>
-		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/stock/s_register">재고 등록</a>
-		                        </li>
+		                        
+		                        <c:if test="${sessionScope.d_id == 53 }">
+			                        <li class="submenu-item ">
+			                            <a href="${contextPath }/stock/s_register">재고 등록</a>
+			                        </li>
+		                        </c:if>
+		                        
 		                    </ul>
 		                </li>
                     </ul>

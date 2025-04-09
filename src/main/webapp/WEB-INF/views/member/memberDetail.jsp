@@ -7,11 +7,11 @@
 <html lang="ko">
 
 <head>
-	<%@include file="include/head.jsp" %>
+	<%@include file="../include/head.jsp" %>
 </head>
 
 <body>
-    <%@ include file="include/left_column.jsp" %>
+    <%@ include file="../include/left_column.jsp" %>
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -88,9 +88,10 @@
 								
                             </table>
                            <c:if test="${sessionScope.d_id == 50}">
-                           	 	<div class="mt-3">
-                                	<a href="${contextPath }/members/updateMember?m_id=${member.m_id}" class="btn btn-warning">수정</a>
-                                	<a href="${contextPath }/members/deleteMember?m_id=${member.m_id}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                           	 	<div class="mt-3 d-flex justify-content-end">
+                                	<a href="${contextPath }/members/updateMember?m_id=${member.m_id}" class="btn btn-outline-warning me-2">수정</a>
+                                	<a href="${contextPath }/members/deleteMember?m_id=${member.m_id}" class="btn btn-outline-danger me-2" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                                	<a href="${contextPath }/members" class="btn btn-outline-primary">목록으로</a>
                             	</div>
                         	</c:if>
                             </div>
@@ -104,11 +105,11 @@
             </div>
 
             <footer>
-                <%@include file="include/footer.jsp" %>
+                <%@include file="../include/footer.jsp" %>
             </footer>
         </div>
     </div>
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="../include/plugin.jsp" %>
 <!-- jQuery 먼저 로드 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

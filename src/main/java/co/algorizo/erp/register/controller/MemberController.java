@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.algorizo.erp.dept.dto.DeptDTO;
+import co.algorizo.erp.dept.service.DeptService;
 import co.algorizo.erp.register.dto.MemberDTO;
 import co.algorizo.erp.register.service.MemberService;
 
@@ -30,6 +33,9 @@ public class MemberController {
 	
 	@Inject
 	private MemberService service;
+	
+	@Autowired
+	private DeptService deptService;
 	
 	
 	// 회원가입
@@ -97,11 +103,12 @@ public class MemberController {
 		        // 세션이 없으면 로그인 페이지로 리다이렉트
 		        return "redirect:/";
 		    }
+		 logger.info("사원 전체조회");
 		
 		List<MemberDTO> memberList = service.memberList();
 		model.addAttribute("memberList",memberList);
 		
-		return "members";
+		return "member/members";
 	}
 	
 	// 사원 detail
@@ -119,7 +126,7 @@ public class MemberController {
 		
 		
 		
-		return "memberDetail";
+		return "member/memberDetail";
 	}
 	
 	// 사원 delete
@@ -132,7 +139,7 @@ public class MemberController {
 		    }
 		
 		service.deleteMember(m_id);
-		return "redirect:/members";
+		return "redirect:/member/members";
 	}
 	
 	
@@ -140,7 +147,6 @@ public class MemberController {
 		@GetMapping(value="/members/updateMember")
 		public String updateMember(@RequestParam("m_id") String m_id, Model model, HttpSession session) {
 			logger.info("update page for m_id = " + m_id);
-			
 			 if (session.getAttribute("m_id") == null) {
 			        // 세션이 없으면 로그인 페이지로 리다이렉트
 			        return "redirect:/";
@@ -151,9 +157,12 @@ public class MemberController {
 				model.addAttribute("error", "해당 사원을 찾을 수 없습니다.");
 				return "error-404";
 			}
+			List<DeptDTO> dList = deptService.getDeptList();
+			model.addAttribute("dList", dList);
+			
 			model.addAttribute("member",member);
 			
-			return "memberUpdate";
+			return "member/memberUpdate";
 		}
 		// 사원 수정 처리
 		@PostMapping(value="/members/updateMember")
