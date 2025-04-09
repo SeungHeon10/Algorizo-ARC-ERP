@@ -15,5 +15,6 @@ public interface stockDAO {
 	int delete(int s_id) throws Exception;
 
 	List<StockSummaryDTO> summary() throws Exception;
+	
 
 }

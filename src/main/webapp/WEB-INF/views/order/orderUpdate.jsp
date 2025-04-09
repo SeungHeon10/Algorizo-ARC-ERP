@@ -6,11 +6,11 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
-	<%@include file="include/left_column.jsp"%>
+	<%@include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -21,17 +21,14 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>발주 정보</h3>
-						<p class="text-subtitle text-muted">Give textual form controls
-							like input upgrade with custom styles, sizing, focus states, and
-							more.</p>
+						<h3>발주 수정</h3>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Input</li>
+								<li class="breadcrumb-item"><a href="${contextPath}/order/detail?o_code=${order.o_code}">발주 상세보기</a></li>
+								<li class="breadcrumb-item active" aria-current="page">발주 수정</li>
 							</ol>
 						</nav>
 					</div>
@@ -41,7 +38,6 @@
 			<section class="section">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Basic Inputs</h4>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -81,8 +77,8 @@
 
 						</div>
 						<div class="buttons">
-							<button type="submit" class="btn btn-primary">저장</button>
-							<a href="${contextPath }/order/list" class="btn btn-primary">목록으로</a>
+							<button type="submit" class="btn btn-outline-primary me-1 mb-1">저장</button>
+							<a href="${contextPath }/order/list" class="btn btn-outline-primary me-1 mb-1">목록으로</a>
 						</div>
 					</div>
 				</div>
@@ -92,12 +88,12 @@
 
 
 		<footer>
-			<%@ include file="include/footer.jsp"%>
+			<%@ include file="../include/footer.jsp"%>
 		</footer>
 	</div>
 	</div>
 	<!-- 플러그인 -->
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>

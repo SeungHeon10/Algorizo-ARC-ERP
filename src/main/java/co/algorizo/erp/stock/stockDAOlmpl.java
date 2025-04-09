@@ -15,7 +15,7 @@ public class stockDAOlmpl implements stockDAO {
 	private SqlSession sqlsession;
 	private static final String namespace = "co.algorizo.erp.stockmapper";
 
-	// Àç°í ÀüÃ¼ Á¶È¸
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸
 	@Override
 	public List<stockDTO> list() throws Exception {
 		// TODO Auto-generated method stub
@@ -24,28 +24,28 @@ public class stockDAOlmpl implements stockDAO {
 		return s;
 	}
 
-	// Àç°í »ó¼¼ Á¤º¸
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<stockDTO> detail(int s_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace + ".detail", s_id);
 	}
 
-	// Àç°í µî·Ï
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@Override
 	public void register(stockDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlsession.insert(namespace + ".register", dto);
 	}
 
-	// Àç°í ¼öÁ¤
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public void update(stockDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlsession.update(namespace + ".update", dto);
 	}
 
-	// Àç°í »èÁ¦
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int delete(int s_id) throws Exception {
 		return sqlsession.delete(namespace + ".delete", s_id);
@@ -56,5 +56,6 @@ public class stockDAOlmpl implements stockDAO {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace + ".stocksummary");
 	}
+
 
 }

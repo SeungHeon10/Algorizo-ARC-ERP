@@ -26,9 +26,9 @@ public class OrderDAOImpl implements OrderDAO{
 
 
 	@Override
-	public void register(Map<String, Object> map) {
+	public void register(OrderDTO orderDTO) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(nameSpace + ".register", map);
+		sqlSession.insert(nameSpace + ".register", orderDTO);
 	}
 
 

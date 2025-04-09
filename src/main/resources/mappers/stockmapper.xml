@@ -79,6 +79,7 @@
 
 	<!-- 재고 요약 -->
 	<select id="stocksummary" resultType="co.algorizo.erp.stock.StockSummaryDTO">
+<<<<<<< HEAD
 		SELECT 
 			p.p_id AS p_id,
 			p.p_code AS p_code,
@@ -105,3 +106,37 @@
 	</select>
 
 </mapper>
+=======
+	SELECT 
+		p.p_id AS p_id,
+		p.p_code AS p_code,
+		p.p_name AS p_name,
+		IFNULL(i.total_in, 0) AS total_in,
+		IFNULL(o.total_out, 0) AS total_out,
+		IFNULL(i.total_in, 0) - IFNULL(o.total_out, 0) AS s_quantity
+	FROM (
+		SELECT * FROM product WHERE del = 0
+	) p
+	LEFT JOIN (
+		SELECT product_p_id, SUM(in_quantity) AS total_in
+		FROM inbound
+		WHERE del = 0
+		GROUP BY product_p_id
+	) i ON p.p_id = i.product_p_id
+	LEFT JOIN (
+		SELECT product_p_id, SUM(out_quantity) AS total_out
+		FROM outbound
+		WHERE del = 0
+		GROUP BY product_p_id
+	) o ON p.p_id = o.product_p_id
+	GROUP BY p.p_id, p.p_code, p.p_name
+</select>
+
+<select id="selectStockByProductId" parameterType="int" resultType="co.algorizo.erp.stock.stockDTO">
+    SELECT *
+    FROM stock
+    WHERE product_p_id = #{productId}
+</select>
+
+</mapper>
+>>>>>>> 상준

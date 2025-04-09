@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -46,7 +47,10 @@ public class OrderController {
 	ProductService productService;
 	@Inject
 	CompanyService companyService;
-
+	@Inject
+	stockService stockService;
+	
+	
     @GetMapping("order/downloadPdf")
     public void downloadPdf(@RequestParam("o_code") String oCode,
                             @RequestParam("product_name") String productName,
@@ -126,22 +130,27 @@ public class OrderController {
 		System.out.println("Order List: " + list);
 		model.addAttribute("list", list);
 
-		return "orderList";
+		return "order/orderList";
 	}
 
 	@GetMapping(value = "order/register")
-	public String register(Model model, HttpSession session) {
+	public String register(Model model, HttpSession session) throws Exception {
 		if (session.getAttribute("m_id") == null) {
 			return "redirect:/"; // ✅ 세션 없으면 로그인 페이지로 리다이렉트
 		}
 
+		
+		
+		
 		// 현재 로그인한 사용자 정보 가져오기
 		String m_id = (String) session.getAttribute("m_id");
 		MemberDTO member = memberService.selectMember(m_id); // memberService에 이 메소드 필요
-
+	
+		
 		List<OrderDTO> list = orderService.getAllOrders();
 		List<ProductDTO> productList = productService.productlist();
 		List<CompanyDTO> companyList = companyService.companylist();
+		
 		
 		model.addAttribute("list", list);
 		model.addAttribute("productList", productList);
@@ -151,33 +160,23 @@ public class OrderController {
 		String nextOrderCode = orderService.generateNextOrderCode();
 		model.addAttribute("nextOrderCode", nextOrderCode);
 		model.addAttribute("member", member);
-		return "orderRegister";
+		
+		
+		
+		return "order/orderRegister";
 	}
 
 	@PostMapping(value = "order/register")
-	public String register(@RequestParam Map<String, Object> map, HttpSession session) {
+	public String register(@ModelAttribute OrderDTO orderDTO, HttpSession session) {
 		if (session.getAttribute("m_id") == null) {
 			return "redirect:/"; // ✅ 세션 없으면 로그인 페이지로 리다이렉트
+			
 		}
+		
+		orderDTO.setMember_m_id((String) session.getAttribute("m_id"));
 
-		 // 파라미터 확인 로그 추가
-	    System.out.println("폼에서 전달된 모든 파라미터: " + map);
-	    
-	    // product.p_name이 어떻게 전달되는지 확인
-	    String productName = (String) map.get("product.p_name");
-	    System.out.println("제품 이름: " + productName);
-	    
-	    // company.cp_name이 어떻게 전달되는지 확인
-	    String companyName = (String) map.get("company.cp_name");
-	    System.out.println("회사 이름: " + companyName);
-	    
-	    map.put("product_name", productName);
-	    map.put("company_name", companyName);
-	    
-	    map.put("member_m_id", session.getAttribute("m_id"));
-
-		orderService.register(map);
-
+	 	orderService.register(orderDTO);
+	 
 		return "redirect:/order/list";
 	}
 
@@ -188,7 +187,7 @@ public class OrderController {
 
 		model.addAttribute("order", order);
 
-		return "orderDetail";
+		return "order/orderDetail";
 	}
 
 	@GetMapping(value = "order/update")
@@ -197,7 +196,7 @@ public class OrderController {
 
 		model.addAttribute("order", order);
 
-		return "orderUpdate";
+		return "order/orderUpdate";
 	}
 
 	@PostMapping(value = "order/update")

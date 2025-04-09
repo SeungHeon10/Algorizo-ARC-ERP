@@ -22,9 +22,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void register(Map<String, Object> map) {
+	public void register(OrderDTO orderDTO) {
 		// TODO Auto-generated method stub
-		orderDAO.register(map);
+		orderDAO.register(orderDTO);
 	}
 
 	@Override
