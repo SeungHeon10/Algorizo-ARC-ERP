@@ -233,11 +233,7 @@
 		                            <a href="${contextPath }/stock/stocklist">재고 조회</a>
 		                        </li>
 		                        
-		                        <c:if test="${sessionScope.d_id == 53 || sessionScope.m_id == 20250001}">
-			                        <li class="submenu-item ">
-			                            <a href="${contextPath }/stock/stockregister">재고 등록</a>
-			                        </li>
-		                        </c:if>
+		                        
 		                        
 		                    </ul>
 		                </li>
