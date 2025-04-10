@@ -7,12 +7,12 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
 	
-		<%@include file="include/left_column.jsp" %>
+		<%@include file="../include/left_column.jsp" %>
 		
 		<div id="main">
 			<header class="mb-3">
@@ -26,15 +26,14 @@
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
 							<h3>발주 조회</h3>
-							<p class="text-subtitle text-muted">For user to check they
-								list</p>
+							
 						</div>
 						<div class="col-12 col-md-6 order-md-2 order-first">
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+									<li class="breadcrumb-item"><a href="${contextPath}/home">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">발주 조회</li>
 								</ol>
 							</nav>
 						</div>
@@ -42,7 +41,7 @@
 				</div>
 				<section class="section">
 					<div class="card">
-						<div class="card-header">Simple Datatable</div>
+						<div class="card-header">
 						<div class="card-body">
 							<table class="table table-striped" id="table1">
 								<thead>
@@ -51,6 +50,7 @@
 										<th class="text-center">등록일자</th>
 										<th class="text-center">제품명</th>
 										<th class="text-center">수량</th>
+										<th class="text-center">현재고</th>
 										<th class="text-center">납기일자</th>
 										<th class="text-center">거래처</th>
 										<th class="text-center">담당자</th>
@@ -67,6 +67,7 @@
 											<td>${order.o_regdate}</td>
 											<td>${order.product.p_name}</td>
 											<td>${order.o_qty}</td>
+											<td>${order.stock.s_quantity}</td>
 											<td>${order.o_delivery}</td>
 											<td>${order.company.cp_name}</td>
 											<td>${order.member.m_name }</td>
@@ -85,7 +86,7 @@
 			</div>
 
 			 <footer>
-                <%@ include file="include/footer.jsp" %>
+                <%@ include file="../include/footer.jsp" %>
             </footer>
 		</div>
 	</div>
@@ -97,7 +98,7 @@
 		let dataTable = new simpleDatatables.DataTable(table1);
 	</script>
 	 <!-- 플러그인 -->
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="../include/plugin.jsp" %>
 </body>
 
 </html>

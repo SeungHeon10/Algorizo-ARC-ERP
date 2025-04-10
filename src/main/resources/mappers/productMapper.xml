@@ -28,6 +28,11 @@
     <result property="company_cp_id" column="company_cp_id" />
     <result property="cp_name" column="cp_name" />
     <result property="cp_ctg" column="cp_ctg" />
+    
+    <!-- ✅ 수정자 정보 매핑 추가 -->
+    <result property="modifier_m_id" column="modifier_m_id" />
+	<result property="modifier_m_name" column="modifier_m_name" />
+    
 
     <!-- ✅ 부서 정보 (기존 유지) -->
     <association property="dept" column="dept_d_id"
@@ -40,7 +45,7 @@
 
 
 	<insert id="productinsert"
-		parameterType="co.algorizo.erp.product.ProductDTO">
+		parameterType="co.algorizo.erp.product.ProductDTO" useGeneratedKeys="true" keyProperty="p_id">
 		INSERT INTO product (p_id, p_lctg, p_mctg, p_sctg,
 		p_code, p_name, p_price,
 		p_content, p_regdate, member_m_id, dept_d_id, company_cp_id)
@@ -52,29 +57,34 @@
 	</insert>
 
 	<select id="productlist" resultMap="productResultMap">
-		  SELECT p.*, 
-           d.d_id, d.team,
-           m.m_name as member_m_name,
-           c.cp_name, c.cp_ctg
-    FROM product p
-    LEFT JOIN dept d ON p.dept_d_id = d.d_id
-    LEFT JOIN member m ON p.member_m_id = m.m_id
-    LEFT JOIN company c ON p.company_cp_id = c.cp_id
-    WHERE p.del = 0
+	SELECT p.*,
+    d.d_id, d.team,
+    m.m_name as member_m_name,
+    c.cp_name, c.cp_ctg,
+    modifier.m_name as modifier_m_name
+  FROM product p
+  LEFT JOIN dept d ON p.dept_d_id = d.d_id
+  LEFT JOIN member m ON p.member_m_id = m.m_id
+  LEFT JOIN company c ON p.company_cp_id = c.cp_id
+  LEFT JOIN member modifier ON p.modifier_m_id = modifier.m_id
+  WHERE p.del = 0
 	</select>
 
 	<!-- getProductCode 쿼리 수정 - 컬럼명 명확히 지정 -->
 	<select id="getProductCode" parameterType="String"
 		resultMap="productResultMap">
-		select p.*,
+				SELECT 
+		p.*,
+		p.modifier_m_id, <!-- ✅ 이 줄 꼭 추가 -->
 		m.m_name as member_m_name,
 		d.d_id,
-		d.team
-		from product p
-		left join member m on p.member_m_id = m.m_id
-		left join
-		dept d on p.dept_d_id = d.d_id
-		where p.p_code = #{p_code}
+		d.team,
+		modifier.m_name as modifier_m_name
+	FROM product p
+	LEFT JOIN member m ON p.member_m_id = m.m_id
+	LEFT JOIN dept d ON p.dept_d_id = d.d_id
+	LEFT JOIN member modifier ON p.modifier_m_id = modifier.m_id
+	WHERE p.p_code = #{p_code}
 	</select>
 
 	<!-- 
@@ -88,9 +98,14 @@
 
 	<update id="productupdate"
 		parameterType="co.algorizo.erp.product.ProductDTO">
-		update product set p_name=#{p_name},
-		p_content=#{p_content}, p_price=#{p_price}, p_moddate= Now() where
-		p_id=#{p_id}
+		update product set
+    p_name=#{p_name},
+    p_content=#{p_content},
+    p_price=#{p_price},
+    p_moddate=Now(),
+    modifier_m_id=#{modifier_m_id},
+    modifier_m_name=#{modifier_m_name}
+  where p_id=#{p_id}
 	</update>
 
 	<update id="productdelete"

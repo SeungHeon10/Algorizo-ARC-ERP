@@ -9,5 +9,6 @@ public interface stockDAO {
 	List<stockDTO> detail(int s_id) throws Exception;
 
 	List<StockSummaryDTO> summary() throws Exception;
+	
 
 }

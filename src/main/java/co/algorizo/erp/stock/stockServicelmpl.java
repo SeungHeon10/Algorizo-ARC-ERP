@@ -21,6 +21,10 @@ public class stockServicelmpl implements stockService{
  	@Autowired
  	private ProductDAO productdao;
 
+	@Autowired
+	private MemberDAO memberdao;
+	
+	
 	@Override
 	public List<stockDTO> list() throws Exception {
 		// TODO Auto-generated method stub

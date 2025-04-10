@@ -35,6 +35,7 @@ public class CompanyController {
 		if (session.getAttribute("m_id") == null) { 
 	        return "redirect:/";  // ✅ 세션 없으면 로그인 페이지로 리다이렉트
 	    }
+
 		List<CompanyDTO> companylist = companyservice.companylist();
 		model.addAttribute("companylist", companylist);
 		return "company/companylist";
@@ -45,6 +46,7 @@ public class CompanyController {
 		if (session.getAttribute("m_id") == null) { 
 	        return "redirect:/";  // ✅ 세션 없으면 로그인 페이지로 리다이렉트
 	    }
+		
 		CompanyDTO company = companyservice.getcompany(cp_id);
 		model.addAttribute("company", company);
 		return "company/companydetail";
@@ -70,7 +72,7 @@ public class CompanyController {
 	        return "redirect:/";  // ✅ 세션 없으면 로그인 페이지로 리다이렉트
 	    }
 		
-		return "company/companylist";
+		return "company/companyinsert";
 	}
 	
 	@RequestMapping(value="/company/companyinsert", method = RequestMethod.POST)

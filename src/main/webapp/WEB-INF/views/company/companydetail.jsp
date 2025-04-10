@@ -15,9 +15,7 @@
 	</div>
 	<div id="main">
 		<header class="mb-3">
-			<a href="#" class="burger-btn d-block d-xl-none"> <i
-				class="bi bi-justify fs-3"></i>
-			</a>
+			<a href="#" class="burger-btn d-block d-xl-none"> <i class="bi bi-justify fs-3"></i></a>
 		</header>
 
 		<div class="page-heading">
@@ -25,14 +23,14 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>${company.cp_name}</h3>
-						<p class="text-subtitle text-muted">공급업체 상세 조회입니다</p>
+						<p class="text-subtitle text-muted">공급업체 상세 내역입니다</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Input</li>
+								<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/company/companylist">업체목록</a></li>
 							</ol>
 						</nav>
 					</div>
@@ -91,11 +89,8 @@
 								<p class="form-control" readonly>${company.cp_addr}</p>
 							</div>
 							<div class="col-12 d-flex justify-content-end">
-								<button type="button"
-									onclick="location.href='companyupdate?cp_id=${company.cp_id}'"
-									class="btn btn-primary me-1 mb-1">수정</button>
-								<button type="button" onclick="location.href='companylist'"
-									class="btn btn-primary me-1 mb-1">목록</button>
+								<button type="button" onclick="location.href='companyupdate?cp_id=${company.cp_id}'" class="btn btn-outline-warning">수정</button>
+								<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary">목록</button>
 							</div>
 						</div>
 					</div>

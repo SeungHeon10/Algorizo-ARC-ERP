@@ -7,12 +7,12 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
 	
-		<%@include file="include/left_column.jsp"%>
+		<%@include file="../include/left_column.jsp"%>
 		
 		<div id="main">
 			<header class="mb-3">
@@ -26,15 +26,13 @@
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
 							<h3>계약 조회</h3>
-							<p class="text-subtitle text-muted">For user to check they
-								list</p>
 						</div>
 						<div class="col-12 col-md-6 order-md-2 order-first">
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">계약 조회</li>
 								</ol>
 							</nav>
 						</div>
@@ -42,7 +40,6 @@
 				</div>
 				<section class="section">
 					<div class="card">
-						<div class="card-header">Simple Datatable</div>
 						<div class="card-body">
 							<table class="table table-striped" id="table1">
 								<thead>
@@ -51,6 +48,8 @@
 										<th class="text-center">등록일자</th>
 										<th class="text-center">계약명</th>
 										<th class="text-center">거래처</th>
+										<th class="text-center">담당자</th>
+										<th class="text-center">담당부서</th>
 										<th class="text-center">수정일자</th>
 										<th class="text-center">진행상태</th>
 									</tr>
@@ -62,7 +61,9 @@
 													${contract.cr_code} </a></td>
 											<td>${contract.cr_regdate}</td>
 											<td>${contract.cr_name}</td>
-											<td>거래처 가져오기</td>
+											<td>${contract.cp_name}</td>
+											<td>${sessionScope.m_name }</td>
+											<td>${contract.team}</td>
 											<td>${contract.cr_moddate }</td>
 											<td><span class="badge bg-success">${contract.cr_state }</span></td>
 										</tr>
@@ -77,7 +78,7 @@
 			</div>
 
 			 <footer>
-                <%@ include file="include/footer.jsp" %>
+                <%@ include file="../include/footer.jsp" %>
             </footer>
 		</div>
 	</div>
@@ -89,7 +90,7 @@
 		let dataTable = new simpleDatatables.DataTable(table1);
 	</script>
 	 <!-- 플러그인 -->
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="../include/plugin.jsp" %>
 </body>
 
 </html>

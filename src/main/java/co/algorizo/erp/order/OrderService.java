@@ -7,7 +7,7 @@ public interface OrderService {
 
 	public List<OrderDTO> getAllOrders();
 	
-	public void register(Map<String, Object> map);
+	public void register(OrderDTO orderDTO);
 	
 	public OrderDTO getOrderDetail(String o_code);
 	

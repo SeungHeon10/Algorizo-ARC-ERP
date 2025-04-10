@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.algorizo.erp.stock.stockDAO;
+import co.algorizo.erp.stock.stockDTO;
 import co.algorizo.erp.stock.stockService;
 
 @Service
@@ -17,6 +19,9 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	private stockService stockservice;
+	
+	@Autowired
+	private stockDAO stockdao;
 	
 	@Override
 	public void productinsert(ProductDTO productDTO) {
@@ -51,6 +56,22 @@ public class ProductServiceImpl implements ProductService{
         int lastNumber = Integer.parseInt(lastProductCode.substring(12));
         return String.format("PD-%s-%03d", today, lastNumber + 1);
     }
+	@Override
+	public void insertProductWithStock(ProductDTO productDTO) throws Exception {
+	    productDAO.productinsert(productDTO); // p_id 자동 생성됨
+
+	    int p_id = productDTO.getP_id();  // MyBatis에서 useGeneratedKeys=true로 설정해야 함
+
+	    stockDTO stockDTO = new stockDTO();
+	    stockDTO.setProduct_p_id(p_id);
+	    stockDTO.setS_quantity(0);
+	    stockDTO.setS_status("재고없음");
+	    stockDTO.setDel(0);
+	    stockDTO.setEtc(null);
+
+	    stockdao.register(stockDTO);
+	}
+
 
 
 }

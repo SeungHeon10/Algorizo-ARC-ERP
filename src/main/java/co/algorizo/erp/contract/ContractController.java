@@ -6,19 +6,28 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.algorizo.erp.company.CompanyDTO;
+import co.algorizo.erp.company.CompanyService;
 import co.algorizo.erp.contract.ContractDTO;
+import co.algorizo.erp.register.controller.MemberController;
 
 @Controller
 public class ContractController {
+	private static final Logger logger = LoggerFactory.getLogger(ContractController.class);
 	
 	@Inject
 	ContractService contractService;
+	@Inject
+	CompanyService companyService;
+	
 	
 	@GetMapping(value="contract/list")
 	public String list(Model model, HttpSession session) {
@@ -29,9 +38,9 @@ public class ContractController {
 		List<ContractDTO> list = contractService.getAllContracts();
 		
 		model.addAttribute("list", list);
+		logger.info("list" + list);
 		
-		
-		return "contractList";
+		return "contract/contractList";
 	}
 	
 	@GetMapping(value="contract/register")
@@ -43,7 +52,10 @@ public class ContractController {
 		 String nextContractCode = contractService.generateNextContractCode();
 	        model.addAttribute("nextContractCode", nextContractCode);
 		
-		return "contractRegister";
+	        List<CompanyDTO> companyList = companyService.companylist(); 
+	        model.addAttribute("companyList", companyList);
+	        
+		return "contract/contractRegister";
 	}
 	
 	@PostMapping(value="contract/register")
@@ -68,7 +80,7 @@ public class ContractController {
 		
 		model.addAttribute("contract", contract);
 		
-		return "contractDetail";
+		return "contract/contractDetail";
 	}
 	
 	@GetMapping(value="contract/update")
@@ -77,7 +89,7 @@ public class ContractController {
 		
 		model.addAttribute("contract", contract);
 		
-		return "contractUpdate";
+		return "contract/contractUpdate";
 	}
 	
 	@PostMapping(value="contract/update")

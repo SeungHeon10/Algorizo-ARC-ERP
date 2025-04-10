@@ -8,11 +8,11 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
-	<%@include file="include/left_column.jsp"%>
+	<%@include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -25,16 +25,13 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>계약 신규 등록</h3>
-						<p class="text-subtitle text-muted">Give textual form controls
-							like input upgrade with custom styles, sizing, focus states, and
-							more.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Input</li>
+								<li class="breadcrumb-item"><a href="${contextPath }/contract/list">계약 조회</a></li>
+								<li class="breadcrumb-item active" aria-current="page">계약 등록</li>
 							</ol>
 						</nav>
 					</div>
@@ -43,7 +40,6 @@
 			<section class="section">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Basic Inputs</h4>
 					</div>
 					<form action="${contextPath}/contract/register" method="post">
 						<div class="card-body">
@@ -53,13 +49,19 @@
 										<label for="basicInput">계약명</label> <input type="text"
 											class="form-control" id="cr_name"  name="cr_name" placeholder="계약 명 입력" required>
 									</div>
+									<!-- Basic choices start -->
+												<h7><b>계약 거래처명</b></h7>
+												<div class="form-group">
+													<select class="choices form-select" name="company_cp_id">
+														<c:forEach var="company" items="${companyList }">
+															<option value="${company.cp_id}">${company.cp_name}</option>
+														</c:forEach>
+													</select>
+												</div>
+
 									<div class="form-group">
-										<label for="basicInput">계약</label> <input type="number"
-											class="form-control" name="" id="" placeholder="가져오기" >
-									</div>
-									<div class="form-group">
-										<label for="basicInput">계약 거래처명</label> <input type="text"
-											class="form-control" id="basicInput" placeholder="계약 거래처 입력">
+										<label for="basicInput">담당자</label> <input type="text"
+											class="form-control" id="" name="" value="${sessionScope.m_name}" readonly>
 									</div>
 									<div class="form-group">
 
@@ -74,25 +76,18 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
+										<label for="disabledInput">계약 가격</label> <input type="number"
+											class="form-control" id="cr_price" name="cr_price"
+											placeholder="계약 공급가 입력" >
 									</div>
-									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
-									</div>
-									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
-									</div>
-									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
-									</div>
+									<div class="form-group mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">계약 내용</label>
+                                        <textarea class="form-control" id="cr_content" name="cr_content"
+                                            rows="7"></textarea>
+                                    </div>
+
+									<input type="hidden" name="member_m_id"
+										value="${sessionScope.m_id}">
 
 								</div>
 								<div class="col-sm-12 d-flex justify-content-end">
@@ -106,12 +101,12 @@
 		</div>
 		</form>
 		<footer>
-			<%@ include file="include/footer.jsp"%>
+			<%@ include file="../include/footer.jsp"%>
 		</footer>
 	</div>
 	</div>
 	<!-- 플러그인 -->
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>

@@ -33,6 +33,10 @@
 			javaType="co.algorizo.erp.company.CompanyDTO">
 			<id property="cp_id" column="company_cp_id" />
 			<result property="cp_name" column="cp_name" />
+			<result property="cp_addr" column="cp_addr" />
+			<result property="cp_fax" column="cp_fax" />
+			<result property="cp_ctg" column="cp_ctg" />
+			<result property="cp_manager" column="cp_manager" />
 		</association>
 
 		<association property="stock"
@@ -64,17 +68,17 @@
 		where o.del = 0
 	</select>
 
-	<insert id="register" parameterType="java.util.Map">
-		insert into `order`(o_regdate, o_code, o_qty, member_m_id, product_p_id, company_cp_id, stock_s_id, dept_d_id)
-		values (now(), #{o_code}, #{o_qty}, #{member_m_id},#{product_p_id},#{company_cp_id}, (SELECT s_id FROM stock WHERE product_p_id = #{product_p_id} LIMIT 1),
-		(SELECT d_id FROM dept WHERE member_m_id = #{member_m_id} LIMIT 1))
-	</insert>
+	<insert id="register" parameterType="co.algorizo.erp.order.OrderDTO">
+    INSERT INTO `order` (o_regdate, o_code, o_qty, member_m_id, product_p_id, company_cp_id, stock_s_id, dept_d_id, o_delivery)
+    VALUES (NOW(), #{o_code}, #{o_qty}, #{member_m_id}, #{product_p_id}, #{company_cp_id}, (select s_id from stock where product_p_id = #{product_p_id}), 
+    (select dept_d_id from member where m_id=#{member_m_id}), #{o_delivery});
+</insert>
 
 
 	<select id="getOrderDetail" resultMap="orderResultMap">
 		select
 		o.*,
-		m.m_name, p.p_name, p.p_price, cp.cp_name, s.s_quantity, d.team
+		m.m_name, p.p_name, p.p_price, cp.cp_name, cp.cp_addr, cp.cp_fax, cp.cp_ctg, cp.cp_manager, s.s_quantity, d.team
 		FROM `order` o
 		JOIN member m ON o.member_m_id = m.m_id
 		JOIN product p ON o.product_p_id = p.p_id
@@ -87,7 +91,7 @@
 
 	<update id="updateOrder" parameterType="java.util.Map">
 		update `order` set
-		o_moddate = now(), o_state = #{o_state}, o_qty = #{o_qty} where
+		o_moddate = now(), o_state = #{o_state}, o_qty = #{o_qty}  where
 		o_code=#{o_code}
 	</update>
 
