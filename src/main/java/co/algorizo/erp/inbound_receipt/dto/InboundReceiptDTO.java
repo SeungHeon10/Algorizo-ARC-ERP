@@ -7,7 +7,7 @@ import java.util.Date;
 public class InboundReceiptDTO {
 	private int inre_id;
 	private LocalDateTime inre_regdate;
-	private int inre_totalprice;
+	private long inre_totalprice;
 	
 //	조인할거
 	private int inbound_in_id;
@@ -45,7 +45,7 @@ public class InboundReceiptDTO {
 
 
 
-	public InboundReceiptDTO(int inre_id, LocalDateTime inre_regdate, int inre_totalprice, int inbound_in_id,
+	public InboundReceiptDTO(int inre_id, LocalDateTime inre_regdate, long inre_totalprice, int inbound_in_id,
 			String arc_arc_id, String p_code, String p_name, int p_price, String cp_name, String cp_ctg,
 			String cp_manager, String cp_fax, String cp_addr, String arc_name, String arc_ctg, String arc_ceo,
 			String arc_fax, String arc_addr, int in_quantity, LocalDateTime in_date) {
@@ -97,13 +97,13 @@ public class InboundReceiptDTO {
 
 
 
-	public int getInre_totalprice() {
+	public long getInre_totalprice() {
 		return inre_totalprice;
 	}
 
 
 
-	public void setInre_totalprice(int inre_totalprice) {
+	public void setInre_totalprice(long inre_totalprice) {
 		this.inre_totalprice = inre_totalprice;
 	}
 

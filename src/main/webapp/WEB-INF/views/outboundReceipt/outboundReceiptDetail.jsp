@@ -250,7 +250,7 @@ document.getElementById("downloadPdf").addEventListener("click", function() {
                 receiptId = outreIdParam;
             }
             
-            pdf.save(`receipt_${receiptId}.pdf`);
+            pdf.save(`outbound_${receiptId}.pdf`);
             
             // 18. 임시 컨테이너 제거
             document.body.removeChild(tempContainer);

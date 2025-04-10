@@ -82,7 +82,7 @@
                             </div>
                             <div class="d-flex justify-content-end mt-4">
                                 <div class="btn-group">
-                                    <button type="submit" class="btn btn-outline-primary">등록</button>
+                                    <button type="submit" class="btn btn-outline-primary me-2">등록</button>
                                     <a href="${contextPath}/outboundReceipt/listAllOutboundReceipt" class="btn btn-outline-secondary">취소</a>
                                 </div>
                             </div>

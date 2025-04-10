@@ -7,7 +7,7 @@ import java.util.Date;
 public class OutboundReceiptDTO {
 	private int outre_id;
 	private LocalDateTime outre_regdate;
-	private int outre_totalprice;
+	private long outre_totalprice;
 	
 //	조인할거
 	private int outbound_out_id;
@@ -40,7 +40,7 @@ public class OutboundReceiptDTO {
 	
 	public OutboundReceiptDTO() {}
 
-	public OutboundReceiptDTO(int outre_id, LocalDateTime outre_regdate, int outre_totalprice, int outbound_out_id,
+	public OutboundReceiptDTO(int outre_id, LocalDateTime outre_regdate, long outre_totalprice, int outbound_out_id,
 			String arc_arc_id, String p_code, String p_name, int p_price, String cp_name, String cp_ctg,
 			String cp_manager, String cp_fax, String cp_addr, String arc_name, String arc_ctg, String arc_ceo,
 			String arc_fax, String arc_addr, int out_quantity, LocalDateTime out_date) {
@@ -82,11 +82,11 @@ public class OutboundReceiptDTO {
 		this.outre_regdate = outre_regdate;
 	}
 
-	public int getOutre_totalprice() {
+	public long getOutre_totalprice() {
 		return outre_totalprice;
 	}
 
-	public void setOutre_totalprice(int outre_totalprice) {
+	public void setOutre_totalprice(long outre_totalprice) {
 		this.outre_totalprice = outre_totalprice;
 	}
 
