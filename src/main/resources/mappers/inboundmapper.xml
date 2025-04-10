@@ -102,7 +102,7 @@
 		in_status, del)
 		VALUES (#{product_p_id},
 		#{company_cp_id}, #{member_m_id}, #{in_quantity},
-		'입고대기', 0);
+		'입고 대기', 0);
 	</insert>
 
 	<!-- 입고 수정 -->

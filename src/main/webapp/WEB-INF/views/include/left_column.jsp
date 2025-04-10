@@ -62,7 +62,7 @@
                                     <a href="${contextPath }/members">회원 전체 조회</a>
                                 </li>
                                 
-                                <c:if test="${sessionScope.d_id == 50 }">
+                                <c:if test="${sessionScope.d_id == 50 || sessionScope.m_id == 20250001}">
 	                                <li class="submenu-item ">
 	                                    <a href="${contextPath }/register">회원 등록</a>
 	                                </li>
@@ -83,7 +83,7 @@
                                     <a href="${contextPath }/product/productlist">품목 조회</a>
                                 </li>
                                 
-                                <c:if test="${sessionScope.d_id == 55 }">
+                                <c:if test="${sessionScope.d_id == 55 || sessionScope.m_id == 20250001}">
 	                                <li class="submenu-item ">
 	                                    <a href="${contextPath }/product/productinsert">품목 등록</a>
 	                                </li>
@@ -102,7 +102,7 @@
                                     <a href="${contextPath }/company/companylist">공급업체 조회</a>
                                 </li>
                                 
-                                <c:if test="${sessionScope.d_id == 55 }">
+                                <c:if test="${sessionScope.d_id == 55 || sessionScope.m_id == 20250001}">
 	                                <li class="submenu-item ">
 	                                    <a href="${contextPath }/company/companyinsert">공급업체 등록</a>
 	                                </li>
@@ -120,9 +120,11 @@
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/plans/list">조달 계획 조회</a>
 		                        </li>
-		                        <li class="submenu-item ">
-                                    <a href="${contextPath }/plans/register">조달 계획 등록</a>
-                                </li>
+		                        <c:if test="${sessionScope.d_id == 55 || sessionScope.m_id == 20250001}">
+			                        <li class="submenu-item ">
+	                                    <a href="${contextPath }/plans/register">조달 계획 등록</a>
+	                                </li>
+                                </c:if>
 		                    </ul>
 	                	</li>
 	                	
@@ -136,7 +138,7 @@
                                     <a href="${contextPath }/order/list">발주 조회</a>
                                 </li>
                                 
-                                <c:if test="${sessionScope.d_id == 55 }">
+                                <c:if test="${sessionScope.d_id == 55 || sessionScope.m_id == 20250001}">
 	                                <li class="submenu-item ">
 	                                    <a href="${contextPath }/order/register">신규 발주 등록</a>
 	                                </li>
@@ -168,17 +170,16 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/inbound/i_list">입고 조회</a>
-		                            <a href="${contextPath }/inbound/inboundlist">입고 목록</a>
+		                            <a href="${contextPath }/inbound/inboundlist">입고 조회</a>
 		                        </li>
-		                        <c:if test="${sessionScope.d_id == 53 }">
+		                        <c:if test="${sessionScope.d_id == 53 || sessionScope.m_id == 20250001}">
 			                        <li class="submenu-item ">
-			                            <a href="${contextPath }/inbound/i_register">입고 등록</a>
+			                            <a href="${contextPath }/inbound/inboundregister">입고 등록</a>
 			                        </li>
 		                        </c:if>
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/inboundReceipt/listAllInboundReceipt">입고 거래명세서 조회</a>
-		                            <a href="${contextPath }/inbound/inboundregister">입고 등록</a>
+		                            
 		                        </li>
 		                    </ul>
 		                </li>
@@ -191,11 +192,8 @@
 	                            <li class="submenu-item ">
 	                                <a href="${contextPath }/inspection/list">검수 조회</a>
 	                            </li>
-	                            <li class="submenu-item ">
-	                                <a href="${contextPath }/inspection/register">검수 등록</a>
-	                            </li>
 	                            
-	                            <c:if test="${sessionScope.d_id == 54 }">
+	                            <c:if test="${sessionScope.d_id == 54 || sessionScope.m_id == 20250001}">
 		                            <li class="submenu-item ">
 		                                <a href="${contextPath }/inspection/register">검수 등록</a>
 		                            </li>
@@ -211,18 +209,17 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/outbound/o_list">출고 조회</a>
-		                            <a href="${contextPath }/outbound/outboundlist">출고 목록</a>
-		                        </li>
-		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/outbound/outboundregister">출고 등록</a>
+		                            <a href="${contextPath }/outbound/outboundlist">출고 조회</a>
 		                        </li>
 		                        
-		                        <c:if test="${sessionScope.d_id == 53 }">
+		                        <c:if test="${sessionScope.d_id == 53 || sessionScope.m_id == 20250001}">
 			                        <li class="submenu-item ">
-			                            <a href="${contextPath }/outbound/o_register">출고 등록</a>
+			                            <a href="${contextPath }/outbound/outboundregister">출고 등록</a>
 			                        </li>
 		                        </c:if>
+		                        <li class="submenu-item ">
+		                            <a href="${contextPath }/outboundReceipt/listAllOutboundReceipt">출고 거래명세서 조회</a>
+		                        </li>
 		                        
 		                    </ul>
 		                </li>
@@ -233,11 +230,10 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/stock/s_list">재고 조회</a>
-		                            <a href="${contextPath }/stock/stocklist">재고 목록</a>
+		                            <a href="${contextPath }/stock/stocklist">재고 조회</a>
 		                        </li>
 		                        
-		                        <c:if test="${sessionScope.d_id == 53 }">
+		                        <c:if test="${sessionScope.d_id == 53 || sessionScope.m_id == 20250001}">
 			                        <li class="submenu-item ">
 			                            <a href="${contextPath }/stock/s_register">재고 등록</a>
 			                        </li>

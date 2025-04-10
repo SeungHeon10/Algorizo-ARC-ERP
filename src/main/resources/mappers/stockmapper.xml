@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.algorizo.erp.stockmapper">
-
+<!--stock수정수정수정  -->
   <resultMap type="co.algorizo.erp.stock.stockDTO" id="stockresultmap">
     <id column="s_id" property="s_id" />
     <result column="s_quantity" property="s_quantity" />
@@ -138,51 +138,7 @@
       p.p_name,
       i.i_inspector;
   </select>
-
-	<resultMap type="co.algorizo.erp.stock.stockDTO" id="stockresultmap">
-		<id column="s_id" property="s_id"/>
-		<result column="s_quantity" property="s_quantity"/>
-		<result column="s_status" property="s_status"/>
-		<result column="del" property="del"/>
-		<result column="etc" property="etc"/>
-
-		<association property="product" javaType="co.algorizo.erp.product.ProductDTO">
-			<result column="p_name" property="p_name"/>
-			<result column="p_price" property="p_price"/>
-			<result column="p_code" property="p_code"/>
-		</association>
-	</resultMap>
-
-	<!-- 재고 전체 조회 -->
-	<select id="list" resultMap="stockresultmap">
-		SELECT
-			s.s_id,
-			s.s_quantity,
-			s.s_status,
-			s.del,
-			s.etc,
-			p.p_name,
-			p.p_price,
-			p.p_code
-		FROM stock s
-		JOIN product p ON s.product_p_id = p.p_id
-		WHERE s.del = 0
-	</select>
-
-	<!-- 재고 상세 정보 -->
-	<select id="detail" resultMap="stockresultmap" parameterType="Integer">
-		SELECT
-			s.*,
-			p.p_name AS p_name,
-			p.p_price AS p_price,
-			p.p_code AS p_code
-		FROM stock s
-		JOIN product p ON s.product_p_id = p.p_id
-		WHERE s.s_id = #{s_id}
-	</select>
-
-	<!-- 재고 등록 -->
-	<insert id="register" parameterType="co.algorizo.erp.stock.stockDTO">
+  <insert id="register" parameterType="co.algorizo.erp.stock.stockDTO">
 		INSERT INTO stock (
 			product_p_id,
 			s_status,
@@ -198,48 +154,4 @@
 		)
 	</insert>
 
-	<!-- 재고 수정 -->
-	<update id="update" parameterType="co.algorizo.erp.stock.stockDTO">
-		UPDATE stock
-		SET s_status = #{s_status}
-		WHERE s_id = #{s_id}
-	</update>
-
-	<!-- 재고 삭제 -->
-	<update id="delete" parameterType="co.algorizo.erp.stock.stockDTO">
-		UPDATE stock
-		SET del = 1
-		WHERE s_id = #{s_id}
-	</update>
-
-	<!-- 재고 요약 -->
-	<select id="stocksummary" resultType="co.algorizo.erp.stock.StockSummaryDTO">
-
-		SELECT 
-			p.p_id AS p_id,
-			p.p_code AS p_code,
-			p.p_name AS p_name,
-			IFNULL(i.total_in, 0) AS total_in,
-			IFNULL(o.total_out, 0) AS total_out,
-			IFNULL(i.total_in, 0) - IFNULL(o.total_out, 0) AS s_quantity
-		FROM (
-			SELECT * FROM product WHERE del = 0
-		) p
-		LEFT JOIN (
-			SELECT product_p_id, SUM(in_quantity) AS total_in
-			FROM inbound
-			WHERE del = 0
-			GROUP BY product_p_id
-		) i ON p.p_id = i.product_p_id
-		LEFT JOIN (
-			SELECT product_p_id, SUM(out_quantity) AS total_out
-			FROM outbound
-			WHERE del = 0
-			GROUP BY product_p_id
-		) o ON p.p_id = o.product_p_id
-		GROUP BY p.p_id, p.p_code, p.p_name
-	</select>
-
-
 </mapper>
-

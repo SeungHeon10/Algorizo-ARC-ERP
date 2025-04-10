@@ -120,6 +120,7 @@
 											<button type="submit" class="btn btn-outline-danger"
 												onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
 										</form>
+										<button type="button" class="btn btn-outline-primary" onclick="location.href='${contextPath}/outboundReceipt/insertOutboundReceipt?out_id=${detail.out_id }'">거래명세서 등록</button>
 									</c:forEach>
 								</div>
 							</div>
