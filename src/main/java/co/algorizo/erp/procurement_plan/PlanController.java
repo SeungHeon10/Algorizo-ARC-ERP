@@ -32,29 +32,49 @@ public class PlanController {
 	
 //	조달 계획 목록 페이지 이동
 	@GetMapping(value = "/list")
-	public ModelAndView pagesize(HttpSession session){
+	public ModelAndView listPage(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		
 		if (session.getAttribute("m_id") == null) { 
 			mav.setViewName("redirect:/");
 	        return mav;
 	    }
-		mav.setViewName("pp_list");
+		mav.setViewName("procurement_plan/procurement_planList");
 		return mav;
 	}
 	
 //	조달 계획 목록
 	@GetMapping(value = "/listData")
-	public ResponseEntity<List<PlanDTO>> list(@RequestParam int pageNum) {
+	public ResponseEntity<List<PlanDTO>> list() {
 		
 		List<PlanDTO> list = planService.list();
 		return ResponseEntity.ok(list);
 	}
 	
-//	조달 계획 상세보기
+//	조달 계획 상세보기 페이지 이동
 	@GetMapping(value = "/detail")
-	public ResponseEntity<List<PlanDetailDTO>> detail(@RequestParam int plan_id) { //@RequestParam int plan_id
-		return ResponseEntity.ok(planService.detail(plan_id));
+	public ModelAndView detailPage(@RequestParam int plan_id) { //@RequestParam int plan_id
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("plan_id", plan_id);
+		mav.setViewName("procurement_plan/procurement_planDetail");
+		return mav;
+	}
+	
+//	조달 계획 상세보기
+	@GetMapping(value = "/detailData")
+	public ResponseEntity<List<PlanDetailDTO>> detail(@RequestParam int plan_id) {
+		List<PlanDetailDTO> list = planService.detail(plan_id);
+		
+		return ResponseEntity.ok(list);
+	}
+	
+//	조달 계획 등록폼 이동
+	@GetMapping(value = "/register")
+	public ModelAndView registerForm() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("procurement_plan/procurement_planRegister");
+		return mav;
 	}
 
 //	조달 계획 등록하기
@@ -71,24 +91,38 @@ public class PlanController {
 		return ResponseEntity.ok("등록완료!");
 	}
 	
+//	조달 계획 수정폼 이동
+	@GetMapping(value = "/update")
+	public ModelAndView updateForm(@RequestParam int plan_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("plan_id", plan_id);
+		mav.setViewName("procurement_plan/procurement_planUpdate");
+		return mav;
+	}
+	
 //	조달 계획 수정하기
 	@PostMapping(value = "/update")
-	public String update(@RequestBody PlanDTO planDTO) {
+	public ResponseEntity<String> update(@RequestBody PlanDTO planDTO) {
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		planDTO.setPlan_moddate(dateFormat.format(today));
+		
 		planService.update(planDTO);
+		
 		planService.product_Delete(planDTO.getPlan_id());
+		
 		planDTO.getProducts().forEach(product -> product.setPlan_id(planDTO.getPlan_id()));
 		planDTO.getProducts().forEach(product -> planService.product_Register(product));
-		return "redirect:list";
+		return ResponseEntity.ok("수정완료!");
 	}
+	
 //	조달 계획 삭제하기
 	@PostMapping(value = "/delete")
 	public ResponseEntity<String> delete(@RequestParam int plan_id) {
 		planService.plan_Delete(plan_id);
 		return ResponseEntity.ok("삭제완료!");
 	}
+	
 //	코드 불러오기
 	@GetMapping(value = "/code")
 	@ResponseBody
