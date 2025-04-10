@@ -25,6 +25,7 @@
 		JOIN outbound o ON obr.outbound_out_id = o.out_id
 		JOIN company c ON o.company_cp_id = c.cp_id
 		JOIN product p ON o.product_p_id = p.p_id
+		ORDER BY obr.outre_id DESC
 			
 	</select>
 	<select id="selectOneOutboundReceipt" resultType="co.algorizo.erp.outbound_receipt.dto.OutboundReceiptDTO">

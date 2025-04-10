@@ -25,6 +25,7 @@
 		JOIN inbound i ON ir.inbound_in_id = i.in_id
 		JOIN company c ON i.company_cp_id = c.cp_id
 		JOIN product p ON i.product_p_id = p.p_id
+		ORDER BY ir.inre_id DESC
 			
 	</select>
 	<select id="selectOneInboundReceipt" resultType="co.algorizo.erp.inbound_receipt.dto.InboundReceiptDTO">
