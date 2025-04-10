@@ -72,6 +72,8 @@ public class ProductServiceImpl implements ProductService{
 	    stockdao.register(stockDTO);
 	}
 
+	
 
+	
 
 }
