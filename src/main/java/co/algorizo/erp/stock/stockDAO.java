@@ -3,7 +3,7 @@ package co.algorizo.erp.stock;
 import java.util.List;
 
 public interface stockDAO {
-
+//stock
 	List<stockDTO> list() throws Exception;
 
 	List<stockDTO> detail(int s_id) throws Exception;
