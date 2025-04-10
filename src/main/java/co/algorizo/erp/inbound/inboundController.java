@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.algorizo.erp.company.CompanyDTO;
 import co.algorizo.erp.company.CompanyService;
@@ -34,83 +35,74 @@ public class inboundController {
 	@Autowired
 	private CompanyService companyservice;
 
-	@GetMapping(value = "inbound/i_list")
+	@GetMapping(value = "/inbound/inboundlist")
 	public String list(Model model, HttpSession session) throws Exception {
 		if (session.getAttribute("m_id") == null) {
-			return "redirect:/"; // 
+			return "redirect:/";
 		}
 		List<inboundDTO> list = service.list();
-		System.out.println(list);
+
 		model.addAttribute("list", list);
-		return "i_list";
+		return "inbound/inboundlist";
 	}
 
-	@GetMapping(value = "inbound/i_detail")
+	@GetMapping(value = "/inbound/inbounddetail")
 	public String detail(@RequestParam("in_id") int in_id, Model model) throws Exception {
 		try {
 			List<inboundDTO> dto = service.detail(in_id);
-			model.addAttribute("dto", dto);
-			return "i_detail";
-		} catch (NumberFormatException e) {
-			return "redirect:/errorPage"; // 
-		}
 
+			model.addAttribute("dto", dto);
+			return "inbound/inbounddetail";
+		} catch (NumberFormatException e) {
+			return "redirect:/errorPage"; //
+		}
 	}
 
-	@GetMapping(value = "inbound/i_register")
+	@GetMapping(value = "/inbound/inboundregister")
 	public String registerform(HttpSession session, Model model) throws Exception {
 		if (session.getAttribute("m_id") == null || session.getAttribute("m_id") == "") {
-			return "redirect:/"; // 
+			return "redirect:/"; //
 		}
-		
+
 		List<ProductDTO> productList = productservice.productlist();
 		List<CompanyDTO> companyList = companyservice.companylist();
 		List<MemberDTO> memberList = memberservice.memberList();
-		System.out.println(productList);
-		System.out.println(companyList);
-		System.out.println(memberList);
-
 		model.addAttribute("product", productList);
 		model.addAttribute("company", companyList);
 		model.addAttribute("member", memberList);
-		return "i_register";
-
+		return "inbound/inboundregister";
 	}
 
-	@PostMapping(value = "inbound/i_register")
-	public String register(@ModelAttribute inboundDTO inbounddto, HttpSession session) throws Exception {
+	@PostMapping(value = "inbound/inboundregister")
+	public String register(@ModelAttribute inboundDTO inbounddto, HttpSession session, RedirectAttributes redirect)
+			throws Exception {
 		if (session.getAttribute("m_id") == null) {
-			return "redirect:/"; // 
+			return "redirect:/"; //
 		}
-		System.out.println(inbounddto);
-
 		service.register(inbounddto);
-		return "redirect:/inbound/i_list";
-
+		return "redirect:/inbound/inboundlist"; // 성공 시 목록 페이지로 이동
 	}
 
-	@GetMapping(value = "inbound/i_update")
+	@GetMapping(value = "/inbound/inboundupdate")
 	public String updateform(@RequestParam int in_id, Model model) throws Exception {
 		List<inboundDTO> update = service.detail(in_id);
-
 		model.addAttribute("up", update);
-		return "i_update";
+		return "inbound/inboundupdate";
 	}
 
-	@PostMapping(value = "inbound/i_update")
+	@PostMapping(value = "/inbound/inboundupdate")
 	public String update(@ModelAttribute inboundDTO inbounddto) throws Exception {
 		service.update(inbounddto);
-		return "redirect:i_detail?in_id=" + inbounddto.getIn_id();
+		return "redirect:/inbound/inbounddetail?in_id=" + inbounddto.getIn_id();
 	}
 
-	@PostMapping(value = "inbound/i_delete")
+	@PostMapping(value = "/inbound/inbounddelete")
 	public String delete(@RequestParam int in_id, Model model) throws Exception {
 		int result = service.delete(in_id);
 
 		if (result > 0) {
-			return "redirect:/inbound/i_list";
+			return "redirect:/inbound/inboundlist";
 		}
-		return "redirect:/inbound/i_list";
+		return "redirect:/inbound/inboundlist";
 	}
-
 }

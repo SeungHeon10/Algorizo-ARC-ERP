@@ -15,4 +15,6 @@ public interface inboundService {
 	void update(inboundDTO dto)throws Exception;
 	
 	int delete(int in_id) throws Exception;
+	
+	
 }

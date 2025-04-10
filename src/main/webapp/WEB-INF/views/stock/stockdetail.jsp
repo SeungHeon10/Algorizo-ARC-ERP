@@ -7,11 +7,11 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
-	<%@ include file="include/left_column.jsp"%>
+	<%@ include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -44,84 +44,57 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<strong></strong>
+								<strong>Umm</strong>
 							</div>
 							<div class="card-body">
 								<table class="table table-striped" id="table1">
 
 									<!-- detail 객체가 null일 경우 처리 -->
-									<c:if test="${empty dto}">
-										<p class="text-red-500 mt-4">입고 정보를 찾을 수 없습니다.</p>
+									<c:if test="${empty detail}">
+										<p class="text-red-500 mt-4">재고 정보를 찾을 수 없습니다.</p>
 									</c:if>
 
-									<!-- detail 객체가 null이 아닐 경우 정보 출력 -->
-									<c:if test="${not empty dto}">
-										<c:forEach var="dto" items="${dto}">
-											<tr>
-												<th>입고 번호:</th>
-												<td>${dto.in_id }</td>
-											</tr>
+									<c:if test="${not empty detail}">
+										<c:forEach var="detail" items="${detail}">
 											<tr>
 												<th>품목 명:</th>
-												<td>${dto.product.p_name }</td>
+												<td>${detail.product.p_name == null || detail.product.p_name == '' ? 'N/A' : detail.product.p_name}</td>
 											</tr>
 											<tr>
 												<th>품목 코드:</th>
-												<td>${dto.product.p_code }</td>
+												<td>${detail.product.p_code == null || detail.product.p_code == '' ? 'N/A' : detail.product.p_code}</td>
 											</tr>
 											<tr>
-												<th>입고 수량:</th>
-												<td>${dto.in_quantity}</td>
+												<th>재고 번호:</th>
+												<td>${detail.s_id == 0 ? 'N/A' : detail.s_id}</td>
 											</tr>
 											<tr>
-												<th>회사명:</th>
-												<td>${dto.company.cp_name}</td>
+												<th>입고일</th>
+												<td>${detail.in_date == null || detail.in_date == '' ? 'N/A' : detail.in_date }</td>
 											</tr>
 											<tr>
-												<th>담당자:</th>
-												<td>${dto.company.cp_manager }</td>
+												<th>출고 예정일</th>
+												<td>${detail.out_date == null || detail.out_date == '' ? 'N/A' : detail.out_date }</td>
 											</tr>
 											<tr>
-												<th>fax:</th>
-												<td>${dto.company.cp_fax }</td>
-											</tr>
-											<tr>
-												<th>입고 날짜:</th>
-												<td>${dto.in_date}</td>
-											</tr>
-											<tr>
-												<th>수정 날짜:</th>
-												<td>${dto.update_date }</td>
-											</tr>
-											<tr>
-												<th>입고 상태:</th>
-												<td>${dto.in_status }</td>
+												<th>재고 상태:</th>
+												<td>${detail.s_status == null || detail.s_status == '' ? 'N/A' : detail.s_status}</td>
 											</tr>
 											<tr>
 												<th>비고:</th>
-												<td>${dto.etc }</td>
+												<td>${detail.etc == null || detail.etc == '' ? 'N/A' : detail.etc}</td>
 											</tr>
 										</c:forEach>
 									</c:if>
+
 								</table>
 								<!-- 돌아가기 버튼 -->
-
 								<div class="button-container"
-									style="display: flex; justify-content: flex-end;">
-									<c:forEach var="dto" items="${dto}">
+									style="display: flex; justify-content: flex-end; margin-top: 20px;">
+									<c:forEach var="dto" items="${detail}">
 										<button type="button"
-											onclick="location.href='${contextPath}/inbound/i_list'"
-											class="btn btn-primary me-1 mb-1">목록</button>
-										<c:if test="${not empty dto.in_id}">
-											<button type="button"
-												onclick="location.href='i_update?in_id=${dto.in_id}'"
-												class="btn btn-primary me-1 mb-1">수정</button>
-										</c:if>
-										<form action="${contextPath}/inbound/i_delete" method="post"
-											class="inline-form">
-											<input type="hidden" name="in_id" value="${dto.in_id}">
-											<button type="submit" class="btn btn-primary me-1 mb-1">삭제</button>
-										</form>
+											onclick="location.href='${contextPath}/stock/stocklist'"
+											class="btn btn-outline-primary">목록</button>
 									</c:forEach>
 								</div>
 							</div>
@@ -133,10 +106,10 @@
 	</div>
 
 	<footer>
-		<%@include file="include/footer.jsp"%>
+		<%@include file="../include/footer.jsp"%>
 	</footer>
 
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 	<!-- jQuery 먼저 로드 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

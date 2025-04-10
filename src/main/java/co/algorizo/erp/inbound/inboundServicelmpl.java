@@ -45,7 +45,6 @@ public class inboundServicelmpl implements inboundService{
 		productdao.productlist();
 		companydao.companylist();
 		memberdao.memberList();
-		
 	}
 
 	@Override
@@ -59,5 +58,6 @@ public class inboundServicelmpl implements inboundService{
 		// TODO Auto-generated method stub
 	return inbounddao.delete(in_id);
 	}
+
 
 }

@@ -14,26 +14,16 @@
 		<result property="in_quantity" column="in_quantity" />
 		<result property="etc" column="etc" />
 		<result property="del" column="del" />
-
-		<!-- 기본문법 <resultMap type="대상DTO" id="아이디명"> 1:1로 DTO의 멤버변수를 매핑 <id column="대상 
-			컬럼명" property="DTO멤버변수명"/> <result column="대상 컬럼명" property="DTO멤버변수명"/> 
-			</resultMap> resultMap type : java의 객체자료형(DTO)의 이름을 작성 resultMap id : 본인이 
-			사용할 직관적인 이름 부여 id 태그의 column : 테이블 간의 참조키로 활용되는 컬럼명 id 태그의 property : 컬럼에 
-			해당하는 DTO의 멤버변수명 result 태그의 column : 일반 컬럼명 result 태그의 property : 컬럼에 해당하는 
-			DTO의 멤버변수명 -->
-
-		<!-- ProductDTO 매핑 MyBatis의 <association>이 작동하는 원리는 객체 내부에 포함된 다른 객체(DTO)를 
-			인식해서 자동으로 매핑한다. -->
 		<association property="product"
 			javaType="co.algorizo.erp.product.ProductDTO">
 			<id property="p_id" column="p_id" />
 			<result property="p_code" column="p_code" />
 			<result property="p_name" column="p_name" />
 			<result property="p_price" column="p_price" />
+			<result property="p_lctg" column="p_lctg"></result>
+			<result property="p_mctg" column="p_mctg"></result>
+			<result property="p_sctg" column="p_sctg"></result>
 		</association>
-
-		<!-- CompanyDTO 매핑 MyBatis의 <association>이 작동하는 원리는 객체 내부에 포함된 다른 객체(DTO)를 
-			인식해서 자동으로 매핑한다. -->
 		<association property="company"
 			javaType="co.algorizo.erp.company.CompanyDTO">
 			<id property="cp_id" column="cp_id" />
@@ -41,9 +31,6 @@
 			<result property="cp_manager" column="cp_manager" />
 			<result property="cp_fax" column="cp_fax" />
 		</association>
-
-		<!-- MemberDTO 매핑 MyBatis의 <association>이 작동하는 원리는 객체 내부에 포함된 다른 객체(DTO)를 
-			인식해서 자동으로 매핑한다. -->
 		<association property="member"
 			javaType="co.algorizo.erp.register.dto.MemberDTO">
 			<id property="m_id" column="m_id" />
@@ -53,42 +40,69 @@
 		</association>
 	</resultMap>
 
-	<!--SELECT <열 목록> FROM <첫 번째 테이블> INNER JOIN <두 번째 테이블> ON <조인 조건> [WHERE 
-		검색 조건] #INNER JOIN을 JOIN이라고만 써도 INNER JOIN으로 인식합니다. 위 설명은 조인할때의 명시적 표현식(위에 
-		처럼 쓰라는 말)이다. -->
-
 	<!-- 전체 입고 조회 -->
 	<select id="list" resultMap="inboundresultmap">
-		SELECT i.*, p.p_id, p.p_code, p.p_name, p.p_price,
-		c.cp_id, c.cp_name, c.cp_manager, c.cp_fax,
-		m.m_id, m.m_name, m.m_email, m.m_pno
-		FROM inbound i
-		JOIN product p ON i.product_p_id = p.p_id
-		JOIN company c ON i.company_cp_id = c.cp_id
-		JOIN member m ON i.member_m_id = m.m_id
-		WHERE i.del = 0;
+		SELECT
+		inb.*,
+		IFNULL(inb.etc, 'N/A') AS etc,
+		inb.in_status AS in_status,
+		p.p_id AS p_id,
+		p.p_code AS p_code,
+		p.p_name AS p_name,
+		p.p_price AS p_price,
+		c.cp_id AS cp_id,
+		c.cp_name AS cp_name,
+		c.cp_manager AS cp_manager,
+		c.cp_fax AS cp_fax,
+		m.m_id AS m_id,
+		m.m_name AS m_name,
+		m.m_email AS m_email,
+		m.m_pno AS m_phone
+		FROM inbound inb
+		JOIN product p ON inb.product_p_id = p.p_id
+		JOIN company c ON inb.company_cp_id = c.cp_id
+		JOIN member m ON inb.member_m_id = m.m_id
+		WHERE inb.del = 0;
 	</select>
 
 	<!-- 입고 상세 조회 -->
 	<select id="detail" parameterType="Int"
 		resultMap="inboundresultmap">
-		SELECT i.*, p.p_id, p.p_code, p.p_name, p.p_price,
-		c.cp_id, c.cp_name, c.cp_manager, c.cp_fax,
-		m.m_id, m.m_name, m.m_email, m.m_pno
-		FROM inbound i
-		JOIN product p ON i.product_p_id = p.p_id
-		JOIN company c ON i.company_cp_id = c.cp_id
-		JOIN member m ON i.member_m_id = m.m_id
-		WHERE i.in_id = #{in_id};
+		SELECT
+		inb.*,
+		IFNULL(inb.etc, 'N/A') AS etc,
+		inb.in_status AS in_status,
+		p.p_id AS p_id,
+		p.p_code AS p_code,
+		p.p_name AS p_name,
+		p.p_price AS p_price,
+		p.p_sctg AS p_sctg,
+		p.p_mctg AS p_mctg,
+		p.p_lctg AS p_lctg,
+		c.cp_id AS cp_id,
+		c.cp_name AS cp_name,
+		c.cp_manager AS cp_manager,
+		c.cp_fax AS cp_fax,
+		m.m_id AS m_id,
+		m.m_name AS m_name,
+		m.m_email AS m_email,
+		m.m_pno AS m_pno
+		FROM inbound inb
+		JOIN product p ON inb.product_p_id = p.p_id
+		JOIN company c ON inb.company_cp_id = c.cp_id
+		JOIN member m ON inb.member_m_id = m.m_id
+		WHERE inb.in_id = #{in_id};
 	</select>
 
 	<!-- 입고 등록 -->
 	<insert id="register"
 		parameterType="co.algorizo.erp.inbound.inboundDTO">
-		INSERT INTO inbound (product_p_id, company_cp_id, member_m_id, in_quantity,
+		INSERT INTO inbound (product_p_id, company_cp_id,
+		member_m_id, in_quantity,
 		in_status, del)
-		VALUES (#{product_p_id}, #{company_cp_id}, #{member_m_id}, #{in_quantity},
-		#{in_status}, 0);
+		VALUES (#{product_p_id},
+		#{company_cp_id}, #{member_m_id}, #{in_quantity},
+		'입고대기', 0);
 	</insert>
 
 	<!-- 입고 수정 -->
@@ -103,7 +117,8 @@
 
 	<!-- 입고 삭제 -->
 	<update id="delete" parameterType="Integer">
-		UPDATE inbound SET del = 1 WHERE in_id = #{in_id};
+		UPDATE inbound SET del = 1
+		WHERE in_id = #{in_id};
 	</update>
 
 </mapper>

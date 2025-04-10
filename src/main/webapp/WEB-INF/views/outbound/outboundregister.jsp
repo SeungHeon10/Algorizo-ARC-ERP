@@ -8,25 +8,27 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
-	<%@include file="include/left_column.jsp"%>
+	<%@include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
 				class="bi bi-justify fs-3"></i>
 			</a>
 		</header>
+
 		<div class="col-md-6 col-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">재고 등록</h4>
+					<h4 class="card-title">출고 등록</h4>
 				</div>
 				<div class="card-content">
 					<div class="card-body">
-						<form action="${pageContext.request.contextPath}/stock/s_register"
+						<form
+							action="${pageContext.request.contextPath}/outbound/outboundregister"
 							method="post" class="form form-vertical">
 							<div class="form-body">
 								<div class="row">
@@ -46,7 +48,7 @@
 											</div>
 										</div>
 									</div>
-									<!--  	<div class="col-12">
+									<div class="col-12">
 										<div class="form-group has-icon-left">
 											<label for="first-name-icon">회사 선택</label>
 											<div class="position-relative">
@@ -70,64 +72,45 @@
 													<i class="bi bi-person"></i>
 												</div>
 												<select class="form-control" id="member_m_id"
-													name="member_m_id">
-													<c:forEach var="member" items="${member }">
-														<option value="${member.m_id }">${member.m_name }</option>
-													</c:forEach>
-												</select>
-											</div>
-										</div>
-									</div> -->
-
-									<div class="col-12">
-										<div class="form-group has-icon-left">
-											<label for="inbound_in_id">입고 선택</label>
-											<div class="position-relative">
-												<div class="form-control-icon">
-													<i class="bi bi-box-arrow-in-down"></i>
-												</div>
-												<select class="form-control" name="inbound_in_id"
-													id="inbound_in_id" required>
-													<c:forEach var="inbound" items="${inbound}">
-														<option value="${inbound.in_id}">
-															${inbound.in_date} - 수량: ${inbound.in_quantity}</option>
-													</c:forEach>
-												</select>
+													name="member_m_id" disabled>
+													<option value="${sessionScope.m_id}">
+														${sessionScope.m_name}</option>
+												</select> <input type="hidden" name="member_m_id"
+													value="${sessionScope.m_id}" />
 											</div>
 										</div>
 									</div>
-
 									<div class="col-12">
 										<div class="form-group has-icon-left">
-											<label for="outbound_out_id">출고 선택</label>
-											<div class="position-relative">
-												<div class="form-control-icon">
-													<i class="bi bi-box-arrow-up"></i>
+											<label for="first-name-icon">출고 수량</label>
+											<div class="position-relative" style="width: 20%">
+												<div class="form-control-icon"
+													style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; color: #607080;">
+													<i class="bi bi-cash"></i>
 												</div>
-												<select class="form-control" name="outbound_out_id"
-													id="outbound_out_id" required>
-													<option value="" selected>N/A</option>
-													<c:forEach var="outbound" items="${outbound}">
-														<option value="${outbound.out_id}">
-															${outbound.update_date} - 수량: ${outbound.out_quantity}</option>
-													</c:forEach>
-												</select>
+
+												<input
+													style="display: block; width: 100%; padding: .375rem .75rem .375rem 3rem; /* ← 왼쪽 여백을 2rem → 3rem으로 변경 */ font-size: 1rem; font-weight: 400; line-height: 1.5; color: #607080; background-color: #fff; background-clip: padding-box; border: 1px solid #dce7f1; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; position: relative; z-index: 1;"
+													type="number" name="out_quantity" id="out_quantity"
+													required="required">
+
 											</div>
+
 										</div>
 									</div>
-
-
 									<div class="col-12">
 										<div class="form-group has-icon-left">
-											<label for="first-name-icon">재고 상태</label>
+											<label for="first-name-icon">출고 상태</label>
 											<div class="position-relative">
 												<div class="form-control-icon">
 													<i class="bi bi-grid-1x2-fill"></i>
 												</div>
-												<select class="form-control" name="s_status" id="s_status">
-													<option value="재고 충족">재고 충족</option>
-													<option value="재고 부족">재고 부족</option>
-													<option value="재고 없음">재고 없음</option>
+												<select class="form-control" name="out_status"
+													id="out_status">
+													<option value="출고 대기">출고 대기</option>
+													<option value="출고 완료">출고 완료</option>
+													<option value="출고 중">출고 중</option>
+													<option value="출고 취소">출고 취소</option>
 												</select>
 											</div>
 										</div>
@@ -136,20 +119,9 @@
 										<label for="etc" style="display: flex;">기타:</label>
 										<textarea style="resize: none;" name="etc" id="etc"></textarea>
 									</div>
-									<label for="inbound_in_id"></label> <select
-										name="inbound_in_id" id="inbound_in_id" hidden>
-										<c:forEach var="inbound" items="${inbound }">
-											<option value="${inbound.in_id}"></option>
-										</c:forEach>
-									</select> <br> <label for="outbound_out_id"></label> <select
-										name="outbound_out_id" id="outbound_out_id" hidden>
-										<c:forEach var="outbound" items="${outbound }">
-											<option value="${outbound.out_id}"></option>
-										</c:forEach>
-									</select> <br>
 									<div class="col-12 d-flex justify-content-end">
-										<button type="submit" class="btn btn-primary me-1 mb-1">등록</button>
-										<button type="reset" class="btn btn-light-secondary me-1 mb-1">취소</button>
+										<button type="submit" class="btn btn-outline-primary">등록</button>
+										<button type="reset" class="btn btn-outline-secondary">취소</button>
 									</div>
 								</div>
 							</div>
@@ -160,10 +132,10 @@
 		</div>
 	</div>
 	<footer>
-		<%@ include file="include/footer.jsp"%>
+		<%@ include file="../include/footer.jsp"%>
 	</footer>
 	<!-- 플러그인 -->
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>

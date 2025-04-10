@@ -166,6 +166,7 @@
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/inbound/i_list">입고 조회</a>
+		                            <a href="${contextPath }/inbound/inboundlist">입고 목록</a>
 		                        </li>
 		                        <c:if test="${sessionScope.d_id == 53 }">
 			                        <li class="submenu-item ">
@@ -174,10 +175,10 @@
 		                        </c:if>
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/inboundReceipt/listAllInboundReceipt">입고 거래명세서 조회</a>
+		                            <a href="${contextPath }/inbound/inboundregister">입고 등록</a>
 		                        </li>
 		                    </ul>
 		                </li>
-	                
 	                    <li class="sidebar-item  has-sub">
 	                        <a href="#" class='sidebar-link'>
 	                            <i class="bi bi-collection-fill"></i>
@@ -205,6 +206,10 @@
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/outbound/o_list">출고 조회</a>
+		                            <a href="${contextPath }/outbound/outboundlist">출고 목록</a>
+		                        </li>
+		                        <li class="submenu-item ">
+		                            <a href="${contextPath }/outbound/outboundregister">출고 등록</a>
 		                        </li>
 		                        
 		                        <c:if test="${sessionScope.d_id == 53 }">
@@ -223,6 +228,7 @@
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/stock/s_list">재고 조회</a>
+		                            <a href="${contextPath }/stock/stocklist">재고 목록</a>
 		                        </li>
 		                        
 		                        <c:if test="${sessionScope.d_id == 53 }">

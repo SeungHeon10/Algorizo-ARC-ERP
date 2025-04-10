@@ -18,16 +18,8 @@ public class stockServicelmpl implements stockService{
 	
 	@Autowired
 	private stockDAO stockdao;
-	@Autowired
-	private inboundDAO inbounddao;
-	@Autowired
-	private outboundDAO outbounddao;
-	@Autowired
-	private CompanyDAO companydao;
  	@Autowired
  	private ProductDAO productdao;
-	@Autowired
-	private MemberDAO memberdao;
 
 	@Override
 	public List<stockDTO> list() throws Exception {
@@ -36,31 +28,13 @@ public class stockServicelmpl implements stockService{
 		System.out.println(st);
 		return st;
 	}
+	
 	@Override
 	public List<stockDTO> detail(int s_id) throws Exception {
 		// TODO Auto-generated method stub
 		return stockdao.detail(s_id);
 	}
-	@Override
-	public void register(stockDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		stockdao.register(dto);
-		inbounddao.list();
-		outbounddao.list();
-		productdao.productlist();
-		memberdao.memberList();
-		companydao.companylist();
-	}
-	@Override
-	public void update(stockDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		stockdao.update(dto);
-	}
-	@Override
-	public int delete(int s_id) throws Exception {
-		// TODO Auto-generated method stub
-		return stockdao.delete(s_id);
-	}
+	
 	@Override
 	public List<StockSummaryDTO> summary() throws Exception {
 		// TODO Auto-generated method stub
