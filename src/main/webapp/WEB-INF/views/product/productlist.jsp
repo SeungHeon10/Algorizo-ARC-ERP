@@ -281,10 +281,10 @@
 									<tr>
 										<th class="text-center">품목번호</th>
 										<th class="text-center">품목코드</th>
+										<th class="text-center">품목명</th>
 										<th class="text-center">대분류</th>
 										<th class="text-center">중분류</th>
 										<th class="text-center">소분류</th>
-										<th class="text-center">품목명</th>
 										<th class="text-center">입고일</th>
 										<th class="text-center">공급업체</th>
 										<!-- <th class="text-center">상태</th> -->
@@ -297,10 +297,10 @@
 											<td><a
 												href="${contextPath}/product/productdetail?p_code=${product.p_code}"
 												class="text-primary">${product.p_code}</a></td>
+											<td>${product.p_name}</td>
 											<td>${product.p_lctg}</td>
 											<td>${product.p_mctg}</td>
 											<td>${product.p_sctg}</td>
-											<td>${product.p_name}</td>
 											<td>${product.p_regdate}</td>
 											<td>${product.cp_name}</td>
 											<!-- <td><span class="badge bg-success">Active</span></td> -->
@@ -606,6 +606,28 @@
 		let table1 = document.querySelector('#table1');
 		let dataTable = new simpleDatatables.DataTable(table1);
 	</script>
+	<script>
+function resetPageAndSelectCategory(categoryUrl) {
+    // 카테고리 URL에 페이지 파라미터 추가 또는 변경
+    if(categoryUrl.includes('?')) {
+        // 이미 쿼리 파라미터가 있는 경우
+        if(categoryUrl.includes('page=')) {
+            // 페이지 파라미터가 이미 있으면 1로 변경
+            categoryUrl = categoryUrl.replace(/page=\d+/, 'page=1');
+        } else {
+            // 페이지 파라미터가 없으면 추가
+            categoryUrl += '&page=1';
+        }
+    } else {
+        // 쿼리 파라미터가 없는 경우
+        categoryUrl += '?page=1';
+    }
+    
+    // 해당 URL로 이동
+    window.location.href = categoryUrl;
+    return false; // 기본 링크 동작 방지
+}
+</script>
 	<!-- Include Choices JavaScript -->
 	<script
 		src="${contextPath}/resources/static/dist/assets/vendors/choices.js/choices.min.js"></script>

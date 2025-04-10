@@ -174,6 +174,9 @@ public class ProductController {
 		String modifier_m_id = (String) session.getAttribute("m_id");
 		product.setModifier_m_id(modifier_m_id);
 		product.setModifier_m_name(member.getM_name());
+		
+		List<CompanyDTO> companylist = companyservice.companylist();
+		model.addAttribute("companylist", companylist);
 		    
 		return "product/productupdate";
 	}
@@ -194,8 +197,15 @@ public class ProductController {
 		DeptDTO dept = deptservice.selectDept(d_id);
 		model.addAttribute("dept", dept);  // 모델에 부서 정보 추가
 		
+		CompanyDTO company = companyservice.getcompany(product.getCompany_cp_id());
+	    product.setCp_name(company.getCp_name());
+	    product.setCp_ctg(company.getCp_ctg());
+		
+		List<CompanyDTO> companylist = companyservice.companylist();
+		model.addAttribute("companylist", companylist);
+		
 	    productservice.productupdate(product);
-	    return "redirect:/product/productlist"; 
+	    return "redirect:/product/productdetail?p_code=" + product.getP_code();
 	}
 	
 	@RequestMapping(value = "/product/productdelete", method = RequestMethod.GET)
