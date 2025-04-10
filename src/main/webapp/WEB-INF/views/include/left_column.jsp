@@ -235,7 +235,7 @@
 		                        
 		                        <c:if test="${sessionScope.d_id == 53 || sessionScope.m_id == 20250001}">
 			                        <li class="submenu-item ">
-			                            <a href="${contextPath }/stock/s_register">재고 등록</a>
+			                            <a href="${contextPath }/stock/stockregister">재고 등록</a>
 			                        </li>
 		                        </c:if>
 		                        
