@@ -28,7 +28,7 @@
 			<div class="page-title">
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
-							<h3>입고 거래명세서 상세 조회</h3>
+							<h3>출고 거래명세서 상세 조회</h3>
 							<p class="text-subtitle text-muted">
 								</p>
 						</div>
@@ -36,8 +36,8 @@
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="${contextPath }/inboundReceipt/listAllInboundReceipt">Inboud Receipt List</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Inbound Receipt Detail</li>
+									<li class="breadcrumb-item"><a href="${contextPath }/outboundReceipt/listAllOutboundReceipt">Outboud Receipt List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Outbound Receipt Detail</li>
 								</ol>
 							</nav>
 						</div>
@@ -51,9 +51,9 @@
 					</div>
 					<div class="card-body">
 					    <div style="display: flex; justify-content: space-between;">
-					        <!-- 공급받는 자 (자사) -->
+					        <!-- 공급받는 자 (거래처) -->
 					        <div style="width: 48%;">
-					            <h5>공급받는 자 (자사)</h5>
+					            <h5>공급받는 자 (거래처)</h5>
 					            <table class="table">
 					                <thead>
 					                    <tr>
@@ -66,19 +66,19 @@
 					                </thead>
 					                <tbody>
 					                    <tr>
-					                        <td>${irDTO.arc_name}</td>
-					                        <td>${irDTO.arc_addr}</td>
-					                        <td>${irDTO.arc_fax }</td>
-					                        <td>${irDTO.arc_ctg}</td>
-					                        <td>${irDTO.arc_ceo}</td>
+					                        <td>${orDTO.cp_name}</td>
+					                        <td>${orDTO.cp_addr}</td>
+					                        <td>${orDTO.cp_fax }</td>
+					                        <td>${orDTO.cp_ctg}</td>
+					                        <td>${orDTO.cp_manager}</td>
 					                    </tr>
 					                </tbody>
 					            </table>
 					        </div>
 					
-					        <!-- 공급자 (거래처) -->
+					        <!-- 공급자 (자사) -->
 					        <div style="width: 48%;">
-					            <h5>공급자 (거래처)</h5>
+					            <h5>공급자 (자사)</h5>
 					            <table class="table">
 					                <thead>
 					                    <tr>
@@ -91,11 +91,11 @@
 					                </thead>
 					                <tbody>
 					                    <tr>
-					                        <td>${irDTO.cp_name}</td>
-					                        <td>${irDTO.cp_addr}</td>
-					                        <td>${irDTO.cp_fax }</td>
-					                        <td>${irDTO.cp_ctg}</td>
-					                        <td>${irDTO.cp_manager}</td>
+					                        <td>${orDTO.arc_name}</td>
+					                        <td>${orDTO.arc_addr}</td>
+					                        <td>${orDTO.arc_fax }</td>
+					                        <td>${orDTO.arc_ctg}</td>
+					                        <td>${orDTO.arc_ceo}</td>
 					                    </tr>
 					                </tbody>
 					            </table>
@@ -112,23 +112,23 @@
 					                <th>가격</th>
 					                <th>수량</th>
 					                <th>총 금액</th>
-					                <th>입고 일자</th>
+					                <th>출고 일자</th>
 					            </tr>
 					        </thead>
 					        <tbody>
 					            <tr>
-					                <td>${irDTO.p_name}</td>
-					                <td>${irDTO.p_code}</td>
-					                <td><fmt:formatNumber value="${irDTO.p_price }" pattern="#,###"/></td>
-					                <td><fmt:formatNumber value="${irDTO.in_quantity }" pattern="#,###"/></td>
-					                <td><fmt:formatNumber value="${irDTO.inre_totalprice}" pattern="#,###" /></td>
-					                <td><fmt:formatDate value="${irDTO.inDateAsDate }" pattern="yyyy-MM-dd"/></td>
+					                <td>${orDTO.p_name}</td>
+					                <td>${orDTO.p_code}</td>
+					                <td><fmt:formatNumber value="${orDTO.p_price }" pattern="#,###"/></td>
+					                <td><fmt:formatNumber value="${orDTO.out_quantity }" pattern="#,###"/></td>
+					                <td><fmt:formatNumber value="${orDTO.outre_totalprice}" pattern="#,###" /></td>
+					                <td><fmt:formatDate value="${orDTO.outDateAsDate }" pattern="yyyy-MM-dd"/></td>
 					            </tr>
 					        </tbody>
 					    </table>
 					    <div class="col-sm-12 d-flex justify-content-end">
 					    	<button id="downloadPdf" class="btn btn-outline-primary me-2">PDF 다운로드</button>
-							<a href="${contextPath }/inboundReceipt/listAllInboundReceipt" class="btn btn-outline-primary me-2">목록으로</a>
+							<a href="${contextPath }/outboundReceipt/listAllOutboundReceipt" class="btn btn-outline-primary me-2">목록으로</a>
 						</div>
 					</div>
 				</div>
@@ -153,7 +153,7 @@ document.getElementById("downloadPdf").addEventListener("click", function() {
     
     // 2. 제목 섹션 추가
     const titleDiv = document.createElement('div');
-    titleDiv.innerHTML = '<h3 style="text-align: center; margin-bottom: 20px;">입고 거래명세서 상세</h3>';
+    titleDiv.innerHTML = '<h3 style="text-align: center; margin-bottom: 20px;">출고 거래명세서 상세</h3>';
     tempContainer.appendChild(titleDiv);
     
     // 3. 두 테이블을 감싸는 컨테이너 생성
@@ -165,7 +165,7 @@ document.getElementById("downloadPdf").addEventListener("click", function() {
     // 4. 공급받는 자 섹션 생성
     const receiverSection = document.createElement('div');
     receiverSection.style.width = '48%';
-    receiverSection.innerHTML = '<h5>공급받는 자 (자사)</h5>';
+    receiverSection.innerHTML = '<h5>공급받는 자 (거래처)</h5>';
     
     // 5. 원본 공급받는 자 테이블 복제
     const receiverTable = document.querySelector('.card-body div[style*="display: flex"] div:first-child table').cloneNode(true);
@@ -174,7 +174,7 @@ document.getElementById("downloadPdf").addEventListener("click", function() {
     // 6. 공급자 섹션 생성
     const supplierSection = document.createElement('div');
     supplierSection.style.width = '48%';
-    supplierSection.innerHTML = '<h5>공급자 (거래처)</h5>';
+    supplierSection.innerHTML = '<h5>공급자 (자사)</h5>';
     
     // 7. 원본 공급자 테이블 복제
     const supplierTable = document.querySelector('.card-body div[style*="display: flex"] div:last-child table').cloneNode(true);
@@ -245,9 +245,9 @@ document.getElementById("downloadPdf").addEventListener("click", function() {
             
             // URL에서 inre_id 파라미터 추출 시도
             const urlParams = new URLSearchParams(window.location.search);
-            const inreIdParam = urlParams.get('inre_id');
-            if (inreIdParam) {
-                receiptId = inreIdParam;
+            const outreIdParam = urlParams.get('outre_id');
+            if (outreIdParam) {
+                receiptId = outreIdParam;
             }
             
             pdf.save(`receipt_${receiptId}.pdf`);

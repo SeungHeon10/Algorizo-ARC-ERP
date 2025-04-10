@@ -122,6 +122,11 @@ public class MemberController {
 		    }
 		
 		MemberDTO member = service.memberDetail(m_id);
+		if(member == null) {
+			logger.info("존재하지 않는 회원입니다. m_id : " + m_id);
+			return "redirect:/memberError";
+		}
+		
 		model.addAttribute("member",member);
 		
 		
@@ -189,8 +194,11 @@ public class MemberController {
 			
 			
 		}
-	
-	
+//	에러페이지
+	@GetMapping(value="/memberError")
+	public String memberError() {
+		return "member/memberError";
+	}
 	
 	
 }
