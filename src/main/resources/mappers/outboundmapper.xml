@@ -3,15 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.algorizo.erp.outboundmapper">
-	<!-- 기본문법 <resultMap type="대상DTO" id="아이디명"> 1:1로 DTO의 멤버변수를 매핑 <id column="대상 
-		컬럼명" property="DTO멤버변수명"/> <result column="대상 컬럼명" property="DTO멤버변수명"/> 
-		</resultMap> resultMap type : java의 객체자료형(DTO)의 이름을 작성 resultMap id : 본인이 
-		사용할 직관적인 이름 부여 id 태그의 column : 테이블 간의 참조키로 활용되는 컬럼명 id 태그의 property : 컬럼에 
-		해당하는 DTO의 멤버변수명 result 태그의 column : 일반 컬럼명 result 태그의 property : 컬럼에 해당하는 
-		DTO의 멤버변수명 그리고 전체 조회 상세 조회에는 조인을해야한다. 여기까지가 힌트 -->
 
-	<resultMap type="co.algorizo.erp.outbound.outboundDTO"
-		id="outboundresultmap">
+	<resultMap type="co.algorizo.erp.outbound.outboundDTO" id="outboundresultmap">
 		<id column="out_id" property="out_id"></id>
 		<result property="out_date" column="out_date"></result>
 		<result property="update_date" column="update_date"></result>
@@ -20,24 +13,24 @@
 		<result property="etc" column="etc"></result>
 		<result property="del" column="del"></result>
 
-		<association property="product"
-			javaType="co.algorizo.erp.product.ProductDTO">
+		<association property="product" javaType="co.algorizo.erp.product.ProductDTO">
 			<id column="p_id" property="p_id"></id>
 			<result property="p_code" column="p_code"></result>
 			<result property="p_name" column="p_name"></result>
 			<result property="p_price" column="p_price"></result>
+			<result property="p_lctg" column="p_lctg"></result>
+			<result property="p_mctg" column="p_mctg"></result>
+			<result property="p_sctg" column="p_sctg"></result>
 		</association>
 
-		<association property="member"
-			javaType="co.algorizo.erp.register.dto.MemberDTO">
+		<association property="member" javaType="co.algorizo.erp.register.dto.MemberDTO">
 			<id column="m_id" property="m_id"></id>
 			<result property="m_name" column="m_name"></result>
 			<result property="m_email" column="m_email"></result>
 			<result property="m_pno" column="m_pno"></result>
 		</association>
 
-		<association property="company"
-			javaType="co.algorizo.erp.company.CompanyDTO">
+		<association property="company" javaType="co.algorizo.erp.company.CompanyDTO">
 			<id column="cp_id" property="cp_id"></id>
 			<result property="cp_name" column="cp_name"></result>
 			<result property="cp_manager" column="cp_manager"></result>
@@ -45,65 +38,68 @@
 		</association>
 	</resultMap>
 
-	<!--SELECT <열 목록> FROM <첫 번째 테이블> INNER JOIN <두 번째 테이블> ON <조인 조건> [WHERE 
-		검색 조건] #INNER JOIN을 JOIN이라고만 써도 INNER JOIN으로 인식합니다. 위 설명은 조인할때의 명시적 표현식(위에 
-		처럼 쓰라는 말)이다. -->
-
-
 	<!-- 출고 전체 조회 -->
 	<select id="list" resultMap="outboundresultmap">
-		select
-		o.*, p.p_code as p_code, p.p_name as p_name, p.p_price as p_price,
-		m.m_name as m_name, m.m_email as m_email, m.m_pno as m_pno,
-		c.cp_name as cp_name, c.cp_manager as cp_manager, c.cp_fax as cp_fax
-		from outbound o
-		join product p on o.product_p_id = p.p_id
-		<!--on의 조건식 ex(o.product_p_id 와 p.p_id가 같을때 join product p이 조인이 가능하다. -->
-		join member m on o.member_m_id = m.m_id
-		join company c on o.company_cp_id = c.cp_id
-		where o.del = 0;
+		SELECT
+		ob.*,
+		IFNULL(ob.etc, 'N/A') AS etc,
+		p.p_code AS p_code,
+		p.p_name AS p_name,
+		p.p_price AS p_price,
+		m.m_name AS m_name,
+		m.m_email AS m_email,
+		m.m_pno AS m_pno,
+		c.cp_name AS cp_name,
+		c.cp_manager AS cp_manager,
+		c.cp_fax AS cp_fax
+		FROM outbound ob
+		JOIN product p ON ob.product_p_id = p.p_id
+		JOIN member m ON ob.member_m_id = m.m_id
+		JOIN company c ON ob.company_cp_id = c.cp_id
+		WHERE ob.del = 0;
 	</select>
 
-	<!--출고 상세 정보 -->
-	<select id="detail" resultMap="outboundresultmap"
-		parameterType="Integer">
-		select
-		o.*, p.p_code as p_code, p.p_name as p_name, p.p_price as p_price,
-		m.m_name as m_name, m.m_email as m_email, m.m_pno as m_pno,
-		c.cp_name as cp_name, c.cp_manager as cp_manager, c.cp_fax as cp_fax
-		from outbound o
-		join product p on o.product_p_id = p.p_id
-		<!--on의 조건식 ex(o.product_p_id 와 p.p_id가 같을때 join product p이 조인이 가능하다. -->
-		join member m on o.member_m_id = m.m_id
-		join company c on o.company_cp_id = c.cp_id
-		where o.out_id = #{out_id};
+	<!-- 출고 상세 정보 -->
+	<select id="detail" resultMap="outboundresultmap" parameterType="Integer">
+		SELECT
+		ob.*,
+		IFNULL(ob.etc, 'N/A') AS etc,
+		p.p_code AS p_code,
+		p.p_name AS p_name,
+		p.p_price AS p_price,
+		p.p_sctg AS p_sctg,
+		p.p_mctg AS p_mctg,
+		p.p_lctg AS p_lctg,
+		m.m_name AS m_name,
+		m.m_email AS m_email,
+		m.m_pno AS m_pno,
+		c.cp_name AS cp_name,
+		c.cp_manager AS cp_manager,
+		c.cp_fax AS cp_fax
+		FROM outbound ob
+		JOIN product p ON ob.product_p_id = p.p_id
+		JOIN member m ON ob.member_m_id = m.m_id
+		JOIN company c ON ob.company_cp_id = c.cp_id
+		WHERE ob.out_id = #{out_id};
 	</select>
-	<!--조인은 전체 조회랑 상세정보에다가 하고 그리고 등록 수정 삭제에는 안하는데 여기서 궁금한점 왜 등록 수정 삭제에 안하는지(아직 
-		생각안해봄) 그리고 parametertype에는 왜 resultmap id를 안쓰는지 생각 -->
 
-
-	<!--출고 등록 -->
-	<insert id="register"
-		parameterType="co.algorizo.erp.outbound.outboundDTO">
-		insert into
-		outbound(member_m_id,product_p_id,company_cp_id,out_quantity,out_status,del)
-		values(#{member_m_id},#{product_p_id},#{company_cp_id},#{out_quantity},#{out_status},0);
+	<!-- 출고 등록 -->
+	<insert id="register" parameterType="co.algorizo.erp.outbound.outboundDTO">
+		INSERT INTO outbound (product_p_id, company_cp_id, member_m_id, out_quantity, out_status, del)
+		VALUES (#{product_p_id}, #{company_cp_id}, #{member_m_id}, #{out_quantity}, #{out_status}, 0);
 	</insert>
 
-	<!--출고 수정 -->
-	<update id="update"
-		parameterType="co.algorizo.erp.outbound.outboundDTO">
-		update outbound set
-		update_date=#{update_date},
-		out_status=#{out_status},
-		out_quantity=#{out_quantity}
-		where
-		out_id=#{out_id};
+	<!-- 출고 수정 -->
+	<update id="update" parameterType="co.algorizo.erp.outbound.outboundDTO">
+		UPDATE outbound SET
+		update_date = #{update_date},
+		out_status = #{out_status},
+		out_quantity = #{out_quantity}
+		WHERE out_id = #{out_id};
 	</update>
 
-	<!--출고 삭제 -->
+	<!-- 출고 삭제 -->
 	<update id="delete" parameterType="Integer">
-		update outbound set del = 1
-		where out_id = #{out_id};
+		UPDATE outbound SET del = 1 WHERE out_id = #{out_id};
 	</update>
 </mapper>

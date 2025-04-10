@@ -149,14 +149,13 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/inbound/i_list">입고 목록</a>
+		                            <a href="${contextPath }/inbound/inboundlist">입고 목록</a>
 		                        </li>
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/inbound/i_register">입고 등록</a>
+		                            <a href="${contextPath }/inbound/inboundregister">입고 등록</a>
 		                        </li>
 		                    </ul>
 		                </li>
-	                
 	                    <li class="sidebar-item  has-sub">
 	                        <a href="#" class='sidebar-link'>
 	                            <i class="bi bi-collection-fill"></i>
@@ -179,10 +178,10 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/outbound/o_list">출고 목록</a>
+		                            <a href="${contextPath }/outbound/outboundlist">출고 목록</a>
 		                        </li>
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/outbound/o_register">출고 등록</a>
+		                            <a href="${contextPath }/outbound/outboundregister">출고 등록</a>
 		                        </li>
 		                    </ul>
 		                </li>
@@ -193,10 +192,7 @@
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/stock/s_list">재고 목록</a>
-		                        </li>
-		                        <li class="submenu-item ">
-		                            <a href="${contextPath }/stock/s_register">재고 등록</a>
+		                            <a href="${contextPath }/stock/stocklist">재고 목록</a>
 		                        </li>
 		                    </ul>
 		                </li>

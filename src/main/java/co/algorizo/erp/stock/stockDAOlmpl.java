@@ -31,26 +31,7 @@ public class stockDAOlmpl implements stockDAO {
 		return sqlsession.selectList(namespace + ".detail", s_id);
 	}
 
-	// 재고 등록
-	@Override
-	public void register(stockDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		sqlsession.insert(namespace + ".register", dto);
-	}
-
-	// 재고 수정
-	@Override
-	public void update(stockDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		sqlsession.update(namespace + ".update", dto);
-	}
-
-	// 재고 삭제
-	@Override
-	public int delete(int s_id) throws Exception {
-		return sqlsession.delete(namespace + ".delete", s_id);
-	}
-
+	//재고 수량
 	@Override
 	public List<StockSummaryDTO> summary() throws Exception {
 		// TODO Auto-generated method stub

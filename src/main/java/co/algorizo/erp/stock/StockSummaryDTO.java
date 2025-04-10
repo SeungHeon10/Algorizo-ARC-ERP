@@ -7,6 +7,8 @@ public class StockSummaryDTO {
 	private int s_quantity;
 	private int p_id;
 	private String p_code;
+	private int i_defective_quantity;
+	private String i_inspector;
 
 	
 	public StockSummaryDTO(){
@@ -14,12 +16,15 @@ public class StockSummaryDTO {
 	}
 
 
-	public StockSummaryDTO(String p_name, int s_quantity, int p_id, String p_code) {
+	public StockSummaryDTO(String p_name, int s_quantity, int p_id, String p_code, int i_defective_quantity,
+			String i_inspector) {
 		super();
 		this.p_name = p_name;
 		this.s_quantity = s_quantity;
 		this.p_id = p_id;
 		this.p_code = p_code;
+		this.i_defective_quantity = i_defective_quantity;
+		this.i_inspector = i_inspector;
 	}
 
 
@@ -63,10 +68,30 @@ public class StockSummaryDTO {
 	}
 
 
+	public int getI_defective_quantity() {
+		return i_defective_quantity;
+	}
+
+
+	public void setI_defective_quantity(int i_defective_quantity) {
+		this.i_defective_quantity = i_defective_quantity;
+	}
+
+
+	public String getI_inspector() {
+		return i_inspector;
+	}
+
+
+	public void setI_inspector(String i_inspector) {
+		this.i_inspector = i_inspector;
+	}
+
+
 	@Override
 	public String toString() {
 		return "StockSummaryDTO [p_name=" + p_name + ", s_quantity=" + s_quantity + ", p_id=" + p_id + ", p_code="
-				+ p_code + "]";
+				+ p_code + ", i_defective_quantity=" + i_defective_quantity + ", i_inspector=" + i_inspector + "]";
 	}
 	
 }

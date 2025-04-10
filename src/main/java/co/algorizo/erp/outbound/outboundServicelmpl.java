@@ -10,8 +10,8 @@ import co.algorizo.erp.product.ProductDAO;
 import co.algorizo.erp.register.dao.MemberDAO;
 
 @Service
-public class outboundServicelmpl implements outboundService{
-	
+public class outboundServicelmpl implements outboundService {
+
 	@Autowired
 	private outboundDAO outbounddao;
 	@Autowired
@@ -20,12 +20,11 @@ public class outboundServicelmpl implements outboundService{
 	private ProductDAO productdao;
 	@Autowired
 	private CompanyDAO companydao;
-	
 
 	@Override
 	public List<outboundDTO> list() throws Exception {
 		// TODO Auto-generated method stub
-		return outbounddao.list() ;
+		return outbounddao.list();
 	}
 
 	@Override

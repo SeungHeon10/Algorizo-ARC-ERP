@@ -6,12 +6,12 @@
 <html lang="en">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
 	<div id="app">
-		<%@include file="include/left_column.jsp"%>
+		<%@include file="../include/left_column.jsp"%>
 	</div>
 	<div id="main">
 		<header class="mb-3">
@@ -45,7 +45,7 @@
 					</div>
 
 					<div class="card-body">
-						<form class="form form-vertical" action="o_update" method="post">
+						<form class="form form-vertical" action="outupdate" method="post">
 							<div class="row">
 								<div class="col-md-6">
 									<c:forEach var="up" items="${up }">
@@ -79,22 +79,23 @@
 												class="form-control" name="cp_fax" value="${up.company.cp_fax }"
 												readonly>
 										</div>
-										<div class="form-group">
-											<label for="basicInput">출고 수량</label> <input type="text"
-												class="form-control" name="out_quantity"
-												value="${up.out_quantity }" >
-										</div>
-										<div class="form-group">
-											<label for="basicInput">출고일</label> <input type="text"
-												class="form-control" name="out_date" value="${up.out_date }" readonly>
-										</div>
-										<div class="form-group">
-											<label for="basicInput">출고 수정일</label> <input type="date"
-												class="form-control" name="update_date"
-												value="${up.update_date }" >
-										</div>
 								</div>
 								<div class="col-md-6">
+									<div class="form-group">
+										<label for="basicInput">출고 수량</label> <input type="text"
+											class="form-control" name="out_quantity"
+											value="${up.out_quantity }">
+									</div>
+									<div class="form-group">
+										<label for="basicInput">출고일</label> <input type="text"
+											class="form-control" name="out_date" value="${up.out_date }"
+											readonly>
+									</div>
+									<div class="form-group">
+										<label for="basicInput">출고 수정일</label> <input type="date"
+											class="form-control" name="update_date"
+											value="${up.update_date }">
+									</div>
 									<div class="form-group">
 										<label for="basicInput">출고 상태</label> <select
 											name="out_status" id="out_status" class="form-control">
@@ -110,7 +111,7 @@
 									</div>
 									</c:forEach>
 									<div class="col-12 d-flex justify-content-end">
-										<button type="submit" class="btn btn-primary me-1 mb-1">수정완료</button>
+										<button type="submit" class="btn btn-outline-primary">수정완료</button>
 									</div>
 								</div>
 							</div>
@@ -122,11 +123,11 @@
 		</div>
 
 		<footer>
-			<%@include file="include/footer.jsp"%>
+			<%@include file="../include/footer.jsp"%>
 		</footer>
 	</div>
 	</div>
-	<%@include file="include/plugin.jsp"%>
+	<%@include file="../include/plugin.jsp"%>
 </body>
 
 </html>

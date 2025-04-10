@@ -6,7 +6,7 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 <style>
 .dataTable-new {
 	display: flex;
@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<%@include file="include/left_column.jsp"%>
+	<%@include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -27,7 +27,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>출고 목록</h3>
+						<h3>입고 목록</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
@@ -51,25 +51,26 @@
 						<table class="table table-striped" id="table1">
 							<thead>
 								<tr>
-									<th class="text-center">출고 ID</th>
+									<th class="text-center">입고ID</th>
 									<th class="text-center">품목 코드</th>
 									<th class="text-center">품목 이름</th>
-									<th class="text-center">출고 수량</th>
-									<th class="text-center">출고일자</th>
+									<th class="text-center">입고 수량</th>
+									<th class="text-center">입고일자</th>
 									<th class="text-center">담당자</th>
-									<th class="text-center">출고상태</th>
+									<th class="text-center">입고상태</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="in" items="${list }">
+								<c:forEach var="in" items="${list}">
 									<tr>
-										<td>${in.out_id}</td>
-										<td><a href="o_detail?out_id=${in.out_id}">${in.product.p_code }</a></td>
-										<td>${in.product.p_name }</td>
-										<td>${in.out_quantity }</td>
-										<td>${in.update_date}</td>
-										<td>${in.company.cp_manager }</td>
-										<td>${in.out_status}</td>
+										<td>${in.in_id == 0 ? 'N/A' : in.in_id}</td>
+										<td><a href="inbounddetail?in_id=${in.in_id}">
+												${in.product.p_code == null ? 'N/A' : in.product.p_code} </a></td>
+										<td>${in.product.p_name == null || in.product.p_name == '' ? 'N/A' : in.product.p_name}</td>
+										<td>${in.in_quantity == 0 ? 'N/A' : in.in_quantity}</td>
+										<td>${in.in_date == null ? 'N/A' : in.in_date}</td>
+										<td>${in.company.cp_manager == null || in.company.cp_manager == '' ? 'N/A' : in.company.cp_manager}</td>
+										<td>${in.in_status == null || in.in_status == '' ? 'N/A' : in.in_status}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -80,20 +81,19 @@
 		</div>
 
 		<footer>
-			<%@ include file="include/footer.jsp"%>
+			<%@ include file="../include/footer.jsp"%>
 		</footer>
 	</div>
 	<script
-		src="${contextPath }/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js">
-		
-	</script>
+		src="${contextPath }/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
 	<script>
 		// Simple Datatable
 		let table1 = document.querySelector('#table1');
 		let dataTable = new simpleDatatables.DataTable(table1);
 	</script>
 	<!-- 플러그인 -->
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>
+

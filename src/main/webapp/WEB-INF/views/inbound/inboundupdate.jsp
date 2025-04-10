@@ -6,12 +6,12 @@
 <html lang="en">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
 	<div id="app">
-		<%@include file="include/left_column.jsp"%>
+		<%@include file="../include/left_column.jsp"%>
 	</div>
 	<div id="main">
 		<header class="mb-3">
@@ -24,8 +24,8 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>재고 수정</h3>
-						<p class="text-subtitle text-muted">재고 수정 화면입니다</p>
+						<h3>입고 수정</h3>
+						<p class="text-subtitle text-muted">입고 수정 화면입니다</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -45,60 +45,66 @@
 					</div>
 
 					<div class="card-body">
-						<form class="form form-vertical" action="s_update" method="post">
+						<form class="form form-vertical" action="inboundupdate"
+							method="post">
 							<div class="row">
 								<div class="col-md-6">
-									<c:forEach var="up" items="${up }">
+									<c:forEach var="up" items="${up}">
 										<div class="form-group">
-											<label for="basicInput ">재고 번호</label> <input type="text"
-												class="form-control" name="s_id" value="${up.s_id }"
+											<label for="basicInput ">입고 번호</label> <input type="text"
+												class="form-control" name="in_id" value="${up.in_id }"
 												readonly>
 										</div>
 										<div class="form-group">
 											<label for="basicInput ">품목 명</label> <input type="text"
-												class="form-control" name="p_name" value="${up.product.p_name }"
-												readonly>
+												class="form-control" name="p_name"
+												value="${up.product.p_name }" readonly>
 										</div>
 										<div class="form-group">
 											<label for="basicInput ">품목 코드</label> <input type="text"
-												class="form-control" name="p_code" value="${up.product.p_code }"
-												readonly>
+												class="form-control" name="p_code"
+												value="${up.product.p_code }" readonly>
 										</div>
-										<%-- <div class="form-group">
+										<div class="form-group">
 											<label for="basicInput ">회사 명</label> <input type="text"
-												class="form-control" name="cp_name" value="${up.company.cp_name }"
-												readonly>
+												class="form-control" name="cp_name"
+												value="${up.company.cp_name }" readonly>
 										</div>
 										<div class="form-group">
 											<label for="basicInput ">담당자</label> <input type="text"
-												class="form-control" name="cp_manager" value="${up.company.cp_manager }"
-												readonly>
+												class="form-control" name="cp_manager"
+												value="${up.company.cp_manager }" readonly>
 										</div>
 										<div class="form-group">
 											<label for="basicInput ">fax</label> <input type="text"
-												class="form-control" name="cp_fax" value="${up.company.cp_fax }"
-												readonly>
-										</div> --%>
-										<div class="form-group">
-											<label for="basicInput">재고 입고일</label> <input type="text"
-												class="form-control" name="in_date" value="${up.inbound.in_date }"
-												readonly>
-										</div>
-										<div class="form-group">
-											<label for="basicInput">재고 출고일</label> <input type="text"
-												class="form-control" name="out_date" value="${up.outbound.out_date }"
-												readonly>
-												
+												class="form-control" name="cp_fax"
+												value="${up.company.cp_fax }" readonly>
 										</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="basicInput">재고 상태</label> <select name="s_status"
-											id="s_status" class="form-control">
-											<option value="재고 충족">재고 충족</option>
-											<option value="재고 부족">재고 부족</option>
-											<option value="재고 없음">재고 없음</option>
-										</select> <span class="tooltip">재고 상태를 선택하세요.</span>
+										<label for="basicInput">입고 수량</label> <input type="text"
+											class="form-control" name="in_quantity" id="in_quantity"
+											value="${up.in_quantity}">
+									</div>
+									<div class="form-group">
+										<label for="basicInput">입고일</label> <input type="text"
+											class="form-control" name="in_date" value="${up.in_date }"
+											readonly>
+									</div>
+									<div class="form-group">
+										<label for="basicInput">입고 수정일</label> <input type="date"
+											class="form-control" name="update_date"
+											value="${up.update_date }">
+									</div>
+									<div class="form-group">
+										<label for="basicInput">입고 상태</label> <select name="in_status"
+											id="in_status" class="form-control">
+											<option value="입고 대기">입고 대기</option>
+											<option value="입고 중">입고 중</option>
+											<option value="입고 취소">입고 취소</option>
+											<option value="입고 완료">입고 완료</option>
+										</select> <span class="tooltip">입고 상태를 선택하세요.</span>
 									</div>
 									<div class="form-group">
 										<label for="basicInput">비고</label> <input type="text"
@@ -106,23 +112,24 @@
 									</div>
 									</c:forEach>
 									<div class="col-12 d-flex justify-content-end">
-										<button type="submit" class="btn btn-primary me-1 mb-1">수정완료</button>
+										<button type="submit" class="btn btn-outline-primary">수정완료</button>
 									</div>
 								</div>
 							</div>
 						</form>
 					</div>
+				</div>
 			</section>
 
 
 		</div>
 
 		<footer>
-			<%@include file="include/footer.jsp"%>
+			<%@include file="../include/footer.jsp"%>
 		</footer>
 	</div>
 	</div>
-	<%@include file="include/plugin.jsp"%>
+	<%@include file="../include/plugin.jsp"%>
 </body>
 
 </html>

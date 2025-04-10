@@ -8,11 +8,11 @@
 <html lang="ko">
 
 <head>
-<%@include file="include/head.jsp"%>
+<%@include file="../include/head.jsp"%>
 </head>
 
 <body>
-	<%@include file="include/left_column.jsp"%>
+	<%@include file="../include/left_column.jsp"%>
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -23,12 +23,12 @@
 		<div class="col-md-6 col-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">출고 등록</h4>
+					<h4 class="card-title">입고 등록</h4>
 				</div>
 				<div class="card-content">
 					<div class="card-body">
 						<form
-							action="${pageContext.request.contextPath}/outbound/o_register"
+							action="${pageContext.request.contextPath}/inbound/inboundregister"
 							method="post" class="form form-vertical">
 							<div class="form-body">
 								<div class="row">
@@ -82,7 +82,7 @@
 									</div>
 									<div class="col-12">
 										<div class="form-group has-icon-left">
-											<label for="first-name-icon">출고 수량</label>
+											<label for="first-name-icon">입고 수량</label>
 											<div class="position-relative" style="width: 20%">
 												<div class="form-control-icon"
 													style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; color: #607080;">
@@ -90,27 +90,26 @@
 												</div>
 
 												<input
-													style="display: block; width: 100%; padding: .375rem .75rem .375rem 3rem; /* ← 왼쪽 여백을 2rem → 3rem으로 변경 */ font-size: 1rem; font-weight: 400; line-height: 1.5; color: #607080; background-color: #fff; background-clip: padding-box; border: 1px solid #dce7f1; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; position: relative; z-index: 1;"
-													type="number" name="out_quantity" id="out_quantity"
-													required="required">
-
+													style="display: block; width: 100%; padding: .375rem .75rem .375rem 3rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #607080; background-color: #fff; background-clip: padding-box; border: 1px solid #dce7f1; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; position: relative; z-index: 1;"
+													type="number" name="in_quantity" id="in_quantity"
+													required="required" />
 											</div>
+
 
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="form-group has-icon-left">
-											<label for="first-name-icon">출고 상태</label>
+											<label for="first-name-icon">입고 상태</label>
 											<div class="position-relative">
 												<div class="form-control-icon">
 													<i class="bi bi-grid-1x2-fill"></i>
 												</div>
-												<select class="form-control" name="out_status"
-													id="out_status">
-													<option value="출고 대기">출고 대기</option>
-													<option value="출고 완료">출고 완료</option>
-													<option value="출고 중">출고 중</option>
-													<option value="출고 취소">출고 취소</option>
+												<select class="form-control" name="in_status" id="in_status">
+													<option value="입고 대기">입고 대기</option>
+													<option value="입고 완료">입고 완료</option>
+													<option value="입고 중">입고 중</option>
+													<option value="입고 취소">입고 취소</option>
 												</select>
 											</div>
 										</div>
@@ -120,8 +119,8 @@
 										<textarea style="resize: none;" name="etc" id="etc"></textarea>
 									</div>
 									<div class="col-12 d-flex justify-content-end">
-										<button type="submit" class="btn btn-primary me-1 mb-1">등록</button>
-										<button type="reset" class="btn btn-light-secondary me-1 mb-1">취소</button>
+										<button type="submit" class="btn btn-outline-primary">등록</button>
+										<button type="reset" class="btn btn-outline-secondary">초기화</button>
 									</div>
 								</div>
 							</div>
@@ -132,10 +131,10 @@
 		</div>
 	</div>
 	<footer>
-		<%@ include file="include/footer.jsp"%>
+		<%@ include file="../include/footer.jsp"%>
 	</footer>
 	<!-- 플러그인 -->
-	<%@ include file="include/plugin.jsp"%>
+	<%@ include file="../include/plugin.jsp"%>
 </body>
 
 </html>
