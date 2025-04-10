@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.algorizo.erp.inbound.inboundDTO;
+
 @Repository
 public class InspectionDAOImpl implements InspectionDAO{
 	private static final String namespace = "co.algorizo.erp.inspectionMapper";
@@ -46,6 +48,12 @@ public class InspectionDAOImpl implements InspectionDAO{
 	public String registerCode(String prefix) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".registerCode", prefix);
+	}
+
+	@Override
+	public List<inboundDTO> inboudList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".inboudList");
 	}
 
 }

@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +28,16 @@ public class InspectionController {
 	
 //	전체조회
 	@GetMapping(value = "/list")
-	public ModelAndView list() {
+	public ModelAndView list(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+		if (session.getAttribute("m_id") == null) { 
+			mav.setViewName("redirect:/");
+	        return mav;
+	    }
 		List<InspectionDTO> list = inspectionService.list();
 		
 		mav.addObject("list", list);
-		mav.setViewName("in_list");
+		mav.setViewName("inspection/inspectionList");
 		return mav;
 	}
 //	상세보기
@@ -43,14 +48,16 @@ public class InspectionController {
 		InspectionDTO inspection = inspectionService.detail(i_id);
 		
 		mav.addObject("detail", inspection);
-		mav.setViewName("in_detail");
+		mav.setViewName("inspection/inspectionDetail");
 		return mav;
 	}
 //	등록폼 이동
 	@GetMapping(value = "/register")
-	public String registerForm() {
-		
-		return "in_register";
+	public String registerForm(HttpSession session) {
+		if (session.getAttribute("m_id") == null) { 
+	        return "redirect:/";
+	    }
+		return "inspection/inspectionRegister";
 	}
 //	등록
 	@PostMapping(value = "/register")
@@ -70,7 +77,7 @@ public class InspectionController {
 		InspectionDTO inspection = inspectionService.detail(i_id);
 		
 		mav.addObject("detail", inspection);
-		mav.setViewName("in_update");
+		mav.setViewName("inspection/inspectionUpdate");
 		return mav;
 	}
 //	수정
@@ -112,8 +119,9 @@ public class InspectionController {
 //	입고 목록 조회
 	@GetMapping(value = "/inboundList")
 	@ResponseBody
-	public List<inboundDTO> inboundList() throws Exception{
-		return inboundService.list();
+	public List<inboundDTO> inboundList() {
+		System.out.println(inspectionService.inboudList());
+		return inspectionService.inboudList();
 	}
 //	입고 상세 조회
 	@GetMapping(value = "/inboundDetail")

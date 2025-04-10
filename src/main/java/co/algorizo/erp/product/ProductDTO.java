@@ -216,10 +216,4 @@ public class ProductDTO {
 		this.cp_ctg = cp_ctg;
 	}
 
-	
-
-	
-	
-	
-
 }

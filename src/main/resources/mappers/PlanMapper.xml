@@ -57,7 +57,7 @@
 		from plan_product
 		where plan_id = #{plan_id};
 	</delete>
-<!-- 검수 코드 생성 -->
+<!-- 조달 계획 코드 생성 -->
 	<select id="registerCode" parameterType="java.lang.String" resultType="java.lang.String">
 		select plan_code
 		from procurement_plan

@@ -2,6 +2,8 @@ package co.algorizo.erp.inspection;
 
 import java.util.List;
 
+import co.algorizo.erp.inbound.inboundDTO;
+
 public interface InspectionDAO {
 //	검수 조회
 	List<InspectionDTO> list();
@@ -15,4 +17,6 @@ public interface InspectionDAO {
 	void delete(int i_id);
 //	검수 코드 생성
 	String registerCode(String prefix);
+//	입고(입고대기 상태) 조회
+	List<inboundDTO> inboudList();
 }

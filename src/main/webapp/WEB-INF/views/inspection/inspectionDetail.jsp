@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@include file="include/head.jsp" %>
+	<%@include file="../include/head.jsp" %>
 </head>
 <body>
-    <%@include file="include/left_column.jsp" %>
+    <%@include file="../include/left_column.jsp" %>
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -22,13 +22,13 @@
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>상세보기</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p>
+                            <p class="text-subtitle text-muted">Check detailed inspection results.</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                    <li class="breadcrumb-item"><a href="${contextPath }/inspection/list">InspectionList</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">InspectionDetail</li>
                                 </ol>
                             </nav>
                         </div>
@@ -45,9 +45,7 @@
 								<div class="d-flex custom">
 									<div class="form-group width">
 										<label for="in_id" class="form-label">입고 번호</label> 
-										<select id="in_id" class="form-select" disabled>
-											<option value="${detail.i_id }">${detail.inboundDTO.in_id }</option>
-										</select>
+										<input type="text" id="in_id" class="form-control" value="${detail.inboundDTO.in_id }" readonly>
 									</div>
 									<div class="form-group width">
 										<label for="in_date" class="form-label">입고일자</label> 
@@ -102,14 +100,13 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="inspection_result" class="form-label">결과</label>
-                                            <select id="inspection_result" class="form-select" disabled>
-												<option value="">${detail.i_result }</option>
-											</select>
+                                            <input type="text" id="inspection_result" class="form-control" name="i_result" 
+                                            		value="${detail.i_result }" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="inspection_quantity" class="form-label">검수수량</label>
+                                            <label for="inspection_quantity" class="form-label">정상수량</label>
                                             <input type="number" id="inspection_quantity"
                                                 class="form-control" name="i_quantity" value="${detail.i_quantity }" readonly>
                                         </div>
@@ -149,11 +146,11 @@
          </div>
 	</div>
     <footer>
-        <%@ include file="include/footer.jsp" %>
+        <%@ include file="../include/footer.jsp" %>
     </footer>
 
     <!-- 플러그인 -->
-    <%@ include file="include/plugin.jsp" %>
+    <%@ include file="../include/plugin.jsp" %>
     <script src="${contextPath }/resources/static/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="${contextPath }/resources/static/dist/assets/js/bootstrap.bundle.min.js"></script>
 

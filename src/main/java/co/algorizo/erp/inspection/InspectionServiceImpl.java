@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.algorizo.erp.inbound.inboundDTO;
+
 @Service
 public class InspectionServiceImpl implements InspectionService{
 	@Autowired
@@ -44,6 +46,12 @@ public class InspectionServiceImpl implements InspectionService{
 	public String registerCode(String prefix) {
 		// TODO Auto-generated method stub
 		return inspectionDAO.registerCode(prefix);
+	}
+
+	@Override
+	public List<inboundDTO> inboudList() {
+		// TODO Auto-generated method stub
+		return inspectionDAO.inboudList();
 	}
 
 }

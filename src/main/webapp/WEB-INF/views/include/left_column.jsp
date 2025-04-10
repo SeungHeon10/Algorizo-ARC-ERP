@@ -109,6 +109,9 @@
 		                        <li class="submenu-item ">
 		                            <a href="${contextPath }/plans/list">조달 계획 조회</a>
 		                        </li>
+		                        <li class="submenu-item ">
+                                    <a href="${contextPath }/plans/register">조달 계획 등록</a>
+                                </li>
 		                    </ul>
 	                	</li>
 	                	
@@ -164,7 +167,7 @@
 	                        </a>
 	                        <ul class="submenu ">
 	                            <li class="submenu-item ">
-	                                <a href="${contextPath }/inspection/list">검수</a>
+	                                <a href="${contextPath }/inspection/list">검수 조회</a>
 	                            </li>
 	                            <li class="submenu-item ">
 	                                <a href="${contextPath }/inspection/register">검수 등록</a>
