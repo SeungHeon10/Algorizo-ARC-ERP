@@ -12,32 +12,10 @@
 
 <body>
 	<div id="app">
-		<div id="sidebar" class="active">
-			<div class="sidebar-wrapper active">
-				<div class="sidebar-header">
-					<div class="d-flex justify-content-between">
-						<div class="logo">
-							<a href="/erp"><img
-								src="${contextPath }/resources/static/dist/assets/images/logo/logo.png"
-								alt="Logo" srcset=""></a>
-						</div>
-						<div class="toggler">
-							<a href="#" class="sidebar-hide d-xl-none d-block"><i
-								class="bi bi-x bi-middle"></i></a>
-						</div>
-					</div>
-				</div>
 				<%@include file="../include/left_column.jsp"%>
-				<button class="sidebar-toggler btn x">
-					<i data-feather="x"></i>
-				</button>
-			</div>
-		</div>
 		<div id="main">
 			<header class="mb-3">
-				<a href="#" class="burger-btn d-block d-xl-none"> <i
-					class="bi bi-justify fs-3"></i>
-				</a>
+				<a href="#" class="burger-btn d-block d-xl-none"> <i class="bi bi-justify fs-3"></i> </a>
 			</header>
 
 			<div class="page-heading">
@@ -60,16 +38,11 @@
 					</div>
 				</div>
 
-
-
 				<!-- Basic Horizontal form layout section start -->
 				<section id="basic-vertical-layouts">
 					<div class="row match-height">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title"></h4>
-								</div>
 								<div class="card-content">
 									<div class="card-body">
 										<form class="form form-vertical">
@@ -270,18 +243,10 @@
 															    </p>
 															</div>
 														</div>
-
-														
 													</div>
-
-
 														<div class="col-12 d-flex justify-content-end">
-															<button type="button"
-																onclick="location.href='productupdate?p_code=${product.p_code}'"
-																class="btn btn-outline-warning">수정</button>
-															<button type="button"
-																onclick="location.href='productlist'"
-																class="btn btn-outline-primary">목록</button>
+															<button type="button" onclick="location.href='productupdate?p_code=${product.p_code}'" class="btn btn-outline-warning">수정</button>
+															<button type="button" onclick="location.href='productlist'" class="btn btn-outline-primary">목록</button>
 														</div>
 													</div>
 												</div>

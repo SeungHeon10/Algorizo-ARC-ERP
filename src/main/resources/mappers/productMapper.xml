@@ -99,13 +99,14 @@
 	<update id="productupdate"
 		parameterType="co.algorizo.erp.product.ProductDTO">
 		update product set
-    p_name=#{p_name},
-    p_content=#{p_content},
-    p_price=#{p_price},
-    p_moddate=Now(),
-    modifier_m_id=#{modifier_m_id},
-    modifier_m_name=#{modifier_m_name}
-  where p_id=#{p_id}
+        p_name=#{p_name},
+        p_content=#{p_content},
+        p_price=#{p_price},
+        company_cp_id=#{company_cp_id},
+        p_moddate=Now(),
+        modifier_m_id=#{modifier_m_id},
+        modifier_m_name=#{modifier_m_name}
+  	  where p_id=#{p_id}
 	</update>
 
 	<update id="productdelete"
