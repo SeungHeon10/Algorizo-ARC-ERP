@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.algorizo.erp.company.CompanyDTO;
+import co.algorizo.erp.company.CompanyService;
 import co.algorizo.erp.contract.ContractDTO;
 import co.algorizo.erp.register.controller.MemberController;
 
@@ -23,7 +25,8 @@ public class ContractController {
 	
 	@Inject
 	ContractService contractService;
-	
+	@Inject
+	CompanyService companyService;
 	
 	
 	@GetMapping(value="contract/list")
@@ -49,6 +52,9 @@ public class ContractController {
 		 String nextContractCode = contractService.generateNextContractCode();
 	        model.addAttribute("nextContractCode", nextContractCode);
 		
+	        List<CompanyDTO> companyList = companyService.companylist(); 
+	        model.addAttribute("companyList", companyList);
+	        
 		return "contract/contractRegister";
 	}
 	

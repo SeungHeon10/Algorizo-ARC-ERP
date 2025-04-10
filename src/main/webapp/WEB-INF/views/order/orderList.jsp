@@ -50,6 +50,7 @@
 										<th class="text-center">등록일자</th>
 										<th class="text-center">제품명</th>
 										<th class="text-center">수량</th>
+										<th class="text-center">현재고</th>
 										<th class="text-center">납기일자</th>
 										<th class="text-center">거래처</th>
 										<th class="text-center">담당자</th>
@@ -66,6 +67,7 @@
 											<td>${order.o_regdate}</td>
 											<td>${order.product.p_name}</td>
 											<td>${order.o_qty}</td>
+											<td>${order.stock.s_quantity}</td>
 											<td>${order.o_delivery}</td>
 											<td>${order.company.cp_name}</td>
 											<td>${order.member.m_name }</td>

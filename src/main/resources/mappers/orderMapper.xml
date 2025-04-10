@@ -33,6 +33,10 @@
 			javaType="co.algorizo.erp.company.CompanyDTO">
 			<id property="cp_id" column="company_cp_id" />
 			<result property="cp_name" column="cp_name" />
+			<result property="cp_addr" column="cp_addr" />
+			<result property="cp_fax" column="cp_fax" />
+			<result property="cp_ctg" column="cp_ctg" />
+			<result property="cp_manager" column="cp_manager" />
 		</association>
 
 		<association property="stock"
@@ -74,7 +78,7 @@
 	<select id="getOrderDetail" resultMap="orderResultMap">
 		select
 		o.*,
-		m.m_name, p.p_name, p.p_price, cp.cp_name, s.s_quantity, d.team
+		m.m_name, p.p_name, p.p_price, cp.cp_name, cp.cp_addr, cp.cp_fax, cp.cp_ctg, cp.cp_manager, s.s_quantity, d.team
 		FROM `order` o
 		JOIN member m ON o.member_m_id = m.m_id
 		JOIN product p ON o.product_p_id = p.p_id
@@ -87,7 +91,7 @@
 
 	<update id="updateOrder" parameterType="java.util.Map">
 		update `order` set
-		o_moddate = now(), o_state = #{o_state}, o_qty = #{o_qty} where
+		o_moddate = now(), o_state = #{o_state}, o_qty = #{o_qty}  where
 		o_code=#{o_code}
 	</update>
 

@@ -21,20 +21,20 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>발주 수정</h3>
+						<h3>계약 정보</h3>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath}/order/detail?o_code=${order.o_code}">발주 상세보기</a></li>
-								<li class="breadcrumb-item active" aria-current="page">발주 수정</li>
+								<li class="breadcrumb-item"><a href="${contextPath }/contract/detail?cr_code=${contract.cr_code}">계약 상세</a></li>
+								<li class="breadcrumb-item active" aria-current="page">계약 수정</li>
 							</ol>
 						</nav>
 					</div>
 				</div>
 			</div>
-			<form action="${contextPath}/order/update" method="post">
+			<form action="${contextPath}/contract/update" method="post">
 			<section class="section">
 				<div class="card">
 					<div class="card-header">
@@ -43,24 +43,24 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>발주 코드</label> <input type="text" name="o_code"
-										class="form-control" value="${order.o_code}"
+									<label>계약 코드</label> <input type="text" name="cr_code"
+										class="form-control" value="${contract.cr_code}"
 										readonly="readonly" />
 								</div>
 								<div class="form-group">
-									<label>등록 일자</label> <input type="text" name="o_regdate"
-										class="form-control" value="${order.o_regdate}"
+									<label>등록 일자</label> <input type="text" name="cr_regdate"
+										class="form-control" value="${contract.cr_regdate}"
 										readonly="readonly" />
 								</div>
 								<div class="form-group">
-									<label>발주 수량</label> <input type="number" name="o_qty"
-										class="form-control" value="${order.o_qty}" />
+									<label>계약명</label> <input type="text" name="cr_name"
+										class="form-control" value="${contract.cr_name}" />
 								</div>
 
-								<div class="col-md-6 mb-4">
+								<div class="col-md-12 mb-6">
 									<h6>진행 상태</h6>
 									<fieldset class="form-group">
-										<select class="form-select" id="o_state" name="o_state">
+										<select class="form-select" id="cr_state" name="cr_state">
 											<option>진행</option>
 											<option>완료</option>
 											<option>보류</option>
@@ -68,17 +68,17 @@
 									</fieldset>
 								</div>
 								<div class="form-group">
-									<label>담당자</label> <input type="text" name="${order.member.m_name }"
-										class="form-control" value="${order.member.m_name }" readonly="readonly" />
+									<label>담당자</label> <input type="text" name=""
+										class="form-control" value="${contract.m_name }" readonly="readonly" />
 								</div>
 
 
 							</div>
 
 						</div>
-						<div class="buttons">
+						<div class="col-sm-12" style="margin-top: 50px; margin-left: 350px;">
 							<button type="submit" class="btn btn-outline-primary me-1 mb-1">저장</button>
-							<a href="${contextPath }/order/list" class="btn btn-outline-primary me-1 mb-1">목록으로</a>
+							<a href="${contextPath }/contract/list" class="btn btn-outline-primary me-1 mb-1">목록으로</a>
 						</div>
 					</div>
 				</div>

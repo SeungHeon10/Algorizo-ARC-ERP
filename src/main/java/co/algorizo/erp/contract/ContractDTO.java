@@ -12,6 +12,8 @@ public class ContractDTO {
 	private String cr_code; 
 	private String cr_moddate; 
 	private String cr_state;
+	private String cr_content;
+	private int cr_price; 
 	
 	private String member_m_id; 
 	private int product_p_id; 
@@ -20,6 +22,11 @@ public class ContractDTO {
 	
 	private String cp_name;
 	private String m_name;
+	private String team;
+	private String cp_fax;
+	private String cp_addr;
+	private String cp_ctg;
+	private String cp_manager;
 	
 	private ProductDTO product;
 	private CompanyDTO company;
@@ -30,7 +37,8 @@ public class ContractDTO {
 	}
 
 	public ContractDTO(int cr_no, String cr_name, String cr_regdate, String cr_code, String cr_moddate, String cr_state,
-			String member_m_id, int product_p_id, int dept_d_id, int company_cp_id, String cp_name, String m_name,
+			String cr_content, int cr_price, String member_m_id, int product_p_id, int dept_d_id, int company_cp_id,
+			String cp_name, String m_name, String team, String cp_fax, String cp_addr, String cp_ctg, String cp_manager,
 			ProductDTO product, CompanyDTO company, DeptDTO dept) {
 		super();
 		this.cr_no = cr_no;
@@ -39,12 +47,19 @@ public class ContractDTO {
 		this.cr_code = cr_code;
 		this.cr_moddate = cr_moddate;
 		this.cr_state = cr_state;
+		this.cr_content = cr_content;
+		this.cr_price = cr_price;
 		this.member_m_id = member_m_id;
 		this.product_p_id = product_p_id;
 		this.dept_d_id = dept_d_id;
 		this.company_cp_id = company_cp_id;
 		this.cp_name = cp_name;
 		this.m_name = m_name;
+		this.team = team;
+		this.cp_fax = cp_fax;
+		this.cp_addr = cp_addr;
+		this.cp_ctg = cp_ctg;
+		this.cp_manager = cp_manager;
 		this.product = product;
 		this.company = company;
 		this.dept = dept;
@@ -98,6 +113,22 @@ public class ContractDTO {
 		this.cr_state = cr_state;
 	}
 
+	public String getCr_content() {
+		return cr_content;
+	}
+
+	public void setCr_content(String cr_content) {
+		this.cr_content = cr_content;
+	}
+
+	public int getCr_price() {
+		return cr_price;
+	}
+
+	public void setCr_price(int cr_price) {
+		this.cr_price = cr_price;
+	}
+
 	public String getMember_m_id() {
 		return member_m_id;
 	}
@@ -146,6 +177,46 @@ public class ContractDTO {
 		this.m_name = m_name;
 	}
 
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+	public String getCp_fax() {
+		return cp_fax;
+	}
+
+	public void setCp_fax(String cp_fax) {
+		this.cp_fax = cp_fax;
+	}
+
+	public String getCp_addr() {
+		return cp_addr;
+	}
+
+	public void setCp_addr(String cp_addr) {
+		this.cp_addr = cp_addr;
+	}
+
+	public String getCp_ctg() {
+		return cp_ctg;
+	}
+
+	public void setCp_ctg(String cp_ctg) {
+		this.cp_ctg = cp_ctg;
+	}
+
+	public String getCp_manager() {
+		return cp_manager;
+	}
+
+	public void setCp_manager(String cp_manager) {
+		this.cp_manager = cp_manager;
+	}
+
 	public ProductDTO getProduct() {
 		return product;
 	}
@@ -170,7 +241,6 @@ public class ContractDTO {
 		this.dept = dept;
 	}
 
-	
-	
+			
 	
 }

@@ -49,13 +49,19 @@
 										<label for="basicInput">계약명</label> <input type="text"
 											class="form-control" id="cr_name"  name="cr_name" placeholder="계약 명 입력" required>
 									</div>
+									<!-- Basic choices start -->
+												<h7><b>계약 거래처명</b></h7>
+												<div class="form-group">
+													<select class="choices form-select" name="company_cp_id">
+														<c:forEach var="company" items="${companyList }">
+															<option value="${company.cp_id}">${company.cp_name}</option>
+														</c:forEach>
+													</select>
+												</div>
+
 									<div class="form-group">
-										<label for="basicInput">계약</label> <input type="number"
-											class="form-control" name="" id="" placeholder="가져오기" >
-									</div>
-									<div class="form-group">
-										<label for="basicInput">계약 거래처명</label> <input type="text"
-											class="form-control" id="basicInput" placeholder="계약 거래처 입력">
+										<label for="basicInput">담당자</label> <input type="text"
+											class="form-control" id="" name="" value="${sessionScope.m_name}" readonly>
 									</div>
 									<div class="form-group">
 
@@ -70,25 +76,18 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
+										<label for="disabledInput">계약 가격</label> <input type="number"
+											class="form-control" id="cr_price" name="cr_price"
+											placeholder="계약 공급가 입력" >
 									</div>
-									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
-									</div>
-									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
-									</div>
-									<div class="form-group">
-										<label for="disabledInput">담당자 가져오기</label> <input type="text"
-											class="form-control" id="disabledInput"
-											placeholder="Disabled Text" disabled>
-									</div>
+									<div class="form-group mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">계약 내용</label>
+                                        <textarea class="form-control" id="cr_content" name="cr_content"
+                                            rows="7"></textarea>
+                                    </div>
+
+									<input type="hidden" name="member_m_id"
+										value="${sessionScope.m_id}">
 
 								</div>
 								<div class="col-sm-12 d-flex justify-content-end">

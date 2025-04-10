@@ -15,13 +15,11 @@
             c.cr_state,
             c.del,
             m.m_name AS member_name,
-            p.p_name AS product_name,
-            d.team AS dept_team,
+            d.team AS team,
             cp.cp_name AS cp_name
         FROM 
             contract c
         LEFT JOIN member m ON c.member_m_id = m.m_id
-        LEFT JOIN product p ON c.product_p_id = p.p_id
         LEFT JOIN dept d ON c.dept_d_id = d.d_id
         LEFT JOIN company cp ON c.company_cp_id = cp.cp_id
         WHERE 
@@ -29,8 +27,8 @@
     </select>
     
     <insert id="register" parameterType="java.util.Map">
-	insert into contract(cr_regdate, cr_code, cr_name) 
-	values (now(), #{cr_code}, #{cr_name})
+	insert into contract(cr_regdate, cr_code, cr_name, member_m_id, company_cp_id, dept_d_id, cr_price, cr_content) 
+	values (now(), #{cr_code}, #{cr_name}, #{member_m_id}, #{company_cp_id},(select dept_d_id from member where m_id=#{member_m_id}), #{cr_price},#{cr_content})
 	
 	</insert>
     
@@ -43,14 +41,18 @@
             c.cr_moddate,
             c.cr_state,
             c.del,
+            c.cr_price,
+            c.cr_content,
             m.m_name AS m_name,
-            p.p_name AS p_name,
             d.team AS team,
-            cp.cp_name AS cp_name
+            cp.cp_name AS cp_name,
+            cp.cp_fax AS cp_fax,
+            cp.cp_ctg AS cp_ctg,
+            cp.cp_addr AS cp_addr,
+            cp.cp_manager AS cp_manager
         FROM 
             contract c
         LEFT JOIN member m ON c.member_m_id = m.m_id
-        LEFT JOIN product p ON c.product_p_id = p.p_id
         LEFT JOIN dept d ON c.dept_d_id = d.d_id
         LEFT JOIN company cp ON c.company_cp_id = cp.cp_id
         WHERE cr_code = #{cr_code}  <!-- cr_code를 기준으로 상세 정보 조회 -->

@@ -1,195 +1,175 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
 <%@include file="../include/head.jsp"%>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </head>
 
 <body>
 	<%@include file="../include/left_column.jsp"%>
+
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
 				class="bi bi-justify fs-3"></i>
 			</a>
 		</header>
+
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>발주 정보</h3>
-
+						<h3>발주 수정</h3>
+						<p class="text-subtitle text-muted"></p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a
-									href="${contextPath }/order/list">발주 조회</a></li>
+									href="${contextPath}/order/list">발주 조회</a></li>
 								<li class="breadcrumb-item active" aria-current="page">발주
-									상세보기</li>
+									수정</li>
 							</ol>
 						</nav>
 					</div>
 				</div>
 			</div>
-			<section id="multiple-column-form">
-				<div class="row match-height">
-					<div class="col-12">
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>발주 코드</label> <input type="text" name="order.o_code"
-													class="form-control" value="${order.o_code}" readonly />
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>등록 일자</label> <input type="text"
-													name="order.o_regdate" class="form-control"
-													value="${order.o_regdate}" readonly />
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>발주 제품</label> <input type="text"
-													name="product.p_name" class="form-control"
-													value="${order.product.p_name}" readonly />
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>발주 수량</label> <input type="number" name="o_qty"
-													class="form-control" value="${order.o_qty}" />
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>발주 단가</label> <input type="text" name="product.p_price" class="form-control"
-													value="<fmt:formatNumber value='${order.product.p_price}' pattern='#,###'/>" readonly />
-													
-											</div>
-										</div>
-
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>Total</label> <input type="text" name="" class="form-control"
-												value="<fmt:formatNumber value='${order.product.p_price * order.o_qty}' pattern='#,###'/>" readonly />
-											</div>
-										</div>
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>현재고</label> <input type="text"
-													name="stock.s_quantity" class="form-control"
-													value="${order.stock.s_quantity}" readonly />
-											</div>
-										</div>
-
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>납기 일자</label> <input type="text"
-													name="order.o_delivery" class="form-control"
-													value="${order.o_delivery}" readonly />
-											</div>
-										</div>
-
-										<div class="col-md-6 col-12">
-												<h6>발주 거래처</h6>
-												<div class="form-group">
-													<select class="choices form-select" name="company_cp_id">
-														<c:forEach var="company" items="${companyList }">
-															<option value="${company.cp_id}">${company.cp_name}</option>
-														</c:forEach>
-													</select>
-												</div>
-										</div>
-
-
-										<div class="col-md-6 col-12">
-												<h6>진행 상태</h6>
-												<fieldset class="form-group">
-													<select class="form-select" id="o_state" name="o_state">
-														<option>진행</option>
-														<option>완료</option>
-														<option>보류</option>
-													</select>
-												</fieldset>
-										</div>
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>담당 부서</label> <input type="text"
-													name="order.dept.team" class="form-control"
-													value="${order.dept.team}" readonly />
-											</div>
-										</div>
-
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label>담당자</label> <input type="text"
-													name="order.member.m_name" class="form-control"
-													value="${order.member.m_name}" readonly />
-											</div>
-										</div>
-
-
-										<div class="col-sm-12  d-flex justify-content-end">
-											<a href="${contextPath}/order/update?o_code=${order.o_code}"
-												class="btn btn-outline-warning me-1 mb-1">수정</a> <a
-												href="${contextPath}/order/delete?o_code=${order.o_code}"
-												class="btn btn-outline-danger me-1 mb-1"
-												onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a> <a
-												href="${contextPath }/order/list"
-												class="btn btn-outline-primary me-1 mb-1">목록으로</a>
-											<button class="btn btn-outline-primary me-1 mb-1"
-												onclick="downloadPdf()">PDF 다운로드</button>
-										</div>
-									</div>
+			<form action="${contextPath}/order/update" method="post">
+				<!-- 주요 ID 값들을 hidden 필드로 추가 -->
+				<input type="hidden" name="company.cp_id" value="${order.company.cp_id}" />
+				<input type="hidden" name="product.p_id" value="${order.product.p_id}" />
+				<input type="hidden" name="o_code" value="${order.o_code}" />
+				
+				<section class="section">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">발주 상세</h4>
+						</div>
+						<div class="card-body">
+							<div style="display: flex; justify-content: space-between;">
+								<!-- 공급받는 자 (자사) -->
+								<div style="width: 48%;">
+									<h5>공급받는 자 (자사)</h5>
+									<table class="table">
+										<thead>
+											<tr>
+												<th>회사명</th>
+												<th>주소</th>
+												<th>FAX</th>
+												<th>업태</th>
+												<th>대표자</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Algorizo</td>
+												<td>수원시 팔달구</td>
+												<td>031-213-6912</td>
+												<td>유통, 판매업</td>
+												<td>빡쌍쭌</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
+
+								<!-- 공급자 (거래처) -->
+								<div style="width: 48%;">
+									<h5>공급자 (거래처)</h5>
+									<table class="table">
+										<thead>
+											<tr>
+												<th>회사명</th>
+												<th>주소</th>
+												<th>FAX</th>
+												<th>업태</th>
+												<th>담당자</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>${order.company.cp_name}</td>
+												<td>${order.company.cp_addr}</td>
+												<td>${order.company.cp_fax}</td>
+												<td>${order.company.cp_ctg}</td>
+												<td>${order.company.cp_manager}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<!-- 상품 정보 -->
+							<h5>발주 정보</h5>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>발주 제품</th>
+										<th>발주 코드</th>
+										<th>납기 일자</th>
+										<th>가격</th>
+										<th>수량</th>
+										<th>총 금액</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>${order.product.p_name}</td>
+										<td>${order.o_code}</td>
+										<td>${order.o_delivery}</td>
+										<td><fmt:formatNumber value="${order.product.p_price}"
+												pattern="#,###" /></td>
+										<td><div class="form-group">
+												<input type="text" name="o_qty" class="form-control"
+													value="${order.o_qty}" />
+											</div></td>
+										<td><fmt:formatNumber
+												value="${order.product.p_price* order.o_qty}"
+												pattern="#,###" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="col-md-12 mb-6">
+								<h6>진행 상태</h6>
+								<fieldset class="form-group">
+									<select class="form-select" id="o_state" name="o_state"
+										style="width: 150px;">
+										<option value="진행" ${order.o_state == '진행' ? 'selected' : ''}>진행</option>
+										<option value="완료" ${order.o_state == '완료' ? 'selected' : ''}>완료</option>
+										<option value="보류" ${order.o_state == '보류' ? 'selected' : ''}>보류</option>
+									</select>
+								</fieldset>
+							</div>
+							<div class="col-sm-12 d-flex justify-content-end">
+								<button type="submit" class="btn btn-outline-primary me-1 mb-1">저장</button>
+								<a href="${contextPath}/order/list"
+									class="btn btn-outline-primary me-1 mb-1">목록으로</a>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			</form> <!-- 폼 태그 닫기 추가 -->
 		</div>
-		<script>
-			function downloadPdf() {
-				let o_code = "${order.o_code}";
-				let product_name = "${order.product.p_name}";
-				let o_qty = "${order.o_qty}";
-				let p_price = "${order.product.p_price}";
-
-				let url = "${contextPath}/order/downloadPdf?o_code="
-						+ encodeURIComponent(o_code) + "&product_name="
-						+ encodeURIComponent(product_name) + "&o_qty="
-						+ encodeURIComponent(o_qty) + "&p_price="
-						+ encodeURIComponent(p_price);
-
-				window.location.href = url;
-			}
-		</script>
-
-		<footer>
-			<%@ include file="../include/footer.jsp"%>
-		</footer>
 	</div>
-	</div>
-	<!-- 플러그인 -->
+
+	<footer>
+		<%@ include file="../include/footer.jsp"%>
+	</footer>
+
 	<%@ include file="../include/plugin.jsp"%>
 </body>
-
 </html>

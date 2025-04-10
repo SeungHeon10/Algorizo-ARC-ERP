@@ -48,6 +48,8 @@
 										<th class="text-center">등록일자</th>
 										<th class="text-center">계약명</th>
 										<th class="text-center">거래처</th>
+										<th class="text-center">담당자</th>
+										<th class="text-center">담당부서</th>
 										<th class="text-center">수정일자</th>
 										<th class="text-center">진행상태</th>
 									</tr>
@@ -60,6 +62,8 @@
 											<td>${contract.cr_regdate}</td>
 											<td>${contract.cr_name}</td>
 											<td>${contract.cp_name}</td>
+											<td>${sessionScope.m_name }</td>
+											<td>${contract.team}</td>
 											<td>${contract.cr_moddate }</td>
 											<td><span class="badge bg-success">${contract.cr_state }</span></td>
 										</tr>
