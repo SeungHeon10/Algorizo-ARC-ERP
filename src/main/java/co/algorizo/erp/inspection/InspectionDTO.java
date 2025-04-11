@@ -12,6 +12,7 @@ public class InspectionDTO {
 	private int i_defective_quantity; // 불량수량
 	private String i_result; // 검수 결과
 	private String i_inspector; // 검수자
+	private String i_moduser; // 검수 수정자
 	private String i_moddate; // 검수 수정일
 	private String i_etc; // 비고
 	
@@ -21,7 +22,7 @@ public class InspectionDTO {
 	public InspectionDTO() {}
 
 	public InspectionDTO(int i_id, int in_id, String i_code, String i_date, int i_quantity, int i_defective_quantity,
-			String i_result, String i_inspector, String i_moddate, String i_etc,
+			String i_result, String i_inspector, String i_moduser, String i_moddate, String i_etc,
 			co.algorizo.erp.inbound.inboundDTO inboundDTO, ProductDTO productDTO) {
 		super();
 		this.i_id = i_id;
@@ -32,6 +33,7 @@ public class InspectionDTO {
 		this.i_defective_quantity = i_defective_quantity;
 		this.i_result = i_result;
 		this.i_inspector = i_inspector;
+		this.i_moduser = i_moduser;
 		this.i_moddate = i_moddate;
 		this.i_etc = i_etc;
 		this.inboundDTO = inboundDTO;
@@ -102,6 +104,14 @@ public class InspectionDTO {
 		this.i_inspector = i_inspector;
 	}
 
+	public String getI_moduser() {
+		return i_moduser;
+	}
+
+	public void setI_moduser(String i_moduser) {
+		this.i_moduser = i_moduser;
+	}
+
 	public String getI_moddate() {
 		return i_moddate;
 	}
@@ -138,8 +148,9 @@ public class InspectionDTO {
 	public String toString() {
 		return "InspectionDTO [i_id=" + i_id + ", in_id=" + in_id + ", i_code=" + i_code + ", i_date=" + i_date
 				+ ", i_quantity=" + i_quantity + ", i_defective_quantity=" + i_defective_quantity + ", i_result="
-				+ i_result + ", i_inspector=" + i_inspector + ", i_moddate=" + i_moddate + ", i_etc=" + i_etc
-				+ ", inboundDTO=" + inboundDTO + ", productDTO=" + productDTO + "]";
+				+ i_result + ", i_inspector=" + i_inspector + ", i_moduser=" + i_moduser + ", i_moddate=" + i_moddate
+				+ ", i_etc=" + i_etc + ", inboundDTO=" + inboundDTO + ", productDTO=" + productDTO + "]";
 	}
+
 	
 }

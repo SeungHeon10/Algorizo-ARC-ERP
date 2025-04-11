@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% String user = (String)session.getAttribute("m_name"); %>
+<%  String user = (String)session.getAttribute("m_name"); 
+	String i_id = request.getParameter("i_id");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -45,11 +47,11 @@
 								<div class="d-flex custom">
 									<div class="form-group width">
 										<label for="in_id" class="form-label">입고 번호</label> 
-										<input type="text" id="in_id" class="form-control" value="${detail.inboundDTO.in_id }" readonly>
+										<input type="text" id="in_id" class="form-control" readonly>
 									</div>
 									<div class="form-group width">
 										<label for="in_date" class="form-label">입고일자</label> 
-										<input type="text" id="in_date" class="form-control" value="${detail.inboundDTO.in_date }" readonly>
+										<input type="text" id="in_date" class="form-control" readonly>
 									</div>
 								</div>
 								<div class="form-group">
@@ -68,75 +70,78 @@
 			                                        <th class="text-center">입고수량</th>
 			                                    </tr>
 			                                </thead>
-			                                <tbody>
-												<tr>
-													<td>${detail.productDTO.p_code }</td>
-													<td>${detail.productDTO.p_lctg }</td>
-													<td>${detail.productDTO.p_mctg }</td>
-													<td>${detail.productDTO.p_sctg }</td>
-													<td>${detail.productDTO.p_name }</td>
-													<td>${detail.inboundDTO.in_quantity }</td>
-												</tr>
+			                                <tbody id="content_list">
+
 			                                </tbody>
 			                            </table>
 									</div>
 								</div>
 								<hr>
 								<div class="row">
-									<div class="col-12">
-                                        <div class="form-group">
+									<div class="d-flex custom">
+										<div class="form-group width">
                                             <label for="inspection_code" class="form-label">검수코드</label>
                                             <input type="text" id="inspection_code" 
-                                            	class="form-control" name="i_code" value="${detail.i_code }" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
+                                            	class="form-control" name="i_code" readonly>
+	                                    </div>
+	                                    <div class="form-group width">
                                             <label for="inspection_date" class="form-label">검수일자</label>
-                                            <input type="datetime-local" id="inspection_date" 
-                                            	class="form-control" name="i_date" value="${detail.i_date }" readonly>
-                                        </div>
+                                            <input type="text" id="inspection_date" 
+                                            	class="form-control" name="i_date" readonly>
+	                                    </div>
+                                    </div>
+									<div class="d-flex custom">
+										<div class="form-group width">
+                                            <label for="inspection_moduser" class="form-label">최종 수정자</label>
+                                            <input type="text" id="inspection_moduser" 
+                                            	class="form-control" readonly>
+	                                    </div>
+	                                    <div class="form-group width">
+                                            <label for="inspection_moddate" class="form-label">최종 수정일</label>
+                                            <input type="text" id="inspection_moddate" 
+                                            	class="form-control" readonly>
+	                                    </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="inspection_result" class="form-label">결과</label>
                                             <input type="text" id="inspection_result" class="form-control" name="i_result" 
-                                            		value="${detail.i_result }" readonly>
+                                            		readonly>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="inspection_quantity" class="form-label">정상수량</label>
                                             <input type="number" id="inspection_quantity"
-                                                class="form-control" name="i_quantity" value="${detail.i_quantity }" readonly>
+                                                class="form-control" name="i_quantity" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="inspection_defective_qauntity" class="form-label">불량수량</label>
                                             <input type="number" id="inspection_defective_qauntity"
-                                                class="form-control" name="i_defective_qauntity" value="${detail.i_defective_quantity }" readonly>
+                                                class="form-control" name="i_defective_qauntity" readonly>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="inspection_inspector" class="form-label">검사자</label>
                                             <input type="text" id="inspection_inspector"
-                                                class="form-control" name="i_inspector" value="${detail.i_inspector }" readonly >
+                                                class="form-control" name="i_inspector" readonly >
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="inspection_etc" class="form-label">비고</label>
                                             <input type="text" id="inspection_etc"
-                                                class="form-control" name="i_etc" value="${detail.i_etc }" readonly>
+                                                class="form-control" name="i_etc" readonly>
                                         </div>
                                     </div>
                                 </div>
 								<div class="text-end">
-									<button class="btn btn-primary" onclick="location.href='update?i_id=${detail.i_id}'">수정</button>
-									<button class="btn btn-danger" onclick="isDelete()">삭제</button>
-									<button class="btn btn-secondary" onclick="location.href='list'">목록</button>
+									<button class="btn btn-outline-warning" onclick="location.href='update?i_id=${i_id}'">수정</button>
+									<button class="btn btn-outline-danger" onclick="isDelete()">삭제</button>
+									<button class="btn btn-outline-primary" onclick="location.href='list'">목록</button>
 								</div>
 							</div>
 						</div>
@@ -157,13 +162,85 @@
     <script src="${contextPath }/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script src="${contextPath }/resources/static/dist/assets/js/main.js"></script>
     <script>
-        function isDelete(){
-            const i_id = document.getElementById("in_id").value;
+	//삭제 confirm 
+	function isDelete(){
+	    if(confirm("정말 삭제하시겠습니까 ?")){
+	        inspection_delete();
+	    }
+	}
+	//	검수 삭제
+	async function inspection_delete() {
+	    const i_id = ${i_id};
+	    try{
+	        const response = await fetch(`http://localhost:8080/erp/inspection/delete?i_id=\${i_id}` , {
+	            method : "POST" ,
+	            headers : {"Content-Type" : "application/json"}
+	        });
+	
+	        if(!response.ok){
+	            throw new Error("데이터 처리 오류");
+	        }
+	
+	        location.href = "list";
+	    } catch(error) {
+	    	console.error("오류 발생" , error);
+	    }
+	}
+// 	검수 상세보기
+    async function fetchInspectionDetail(i_id) {
+        try{
+            const response = await fetch(`http://localhost:8080/erp/inspection/detailData?i_id=\${i_id}` , {
+                method : "GET" , 
+                headers : {"Content-Type" : "application/json"}
+            });
 
-            if(confirm("정말 삭제하시겠습니까 ?")){
-                location.href = `delete?i_id=\${i_id}`;
+            if(!response.ok){
+                throw new Error("데이터 처리중 오류 발생");
             }
+
+            const data = await response.json();
+            console.log(data);
+            const timestamp = `\${data.inboundDTO.in_date}`;
+            const date = new Date(Number(timestamp));
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            const formattedDate = `\${yyyy}-\${mm}-\${dd}`;
+            
+            document.getElementById("in_id").value = data.inboundDTO.in_id;
+            document.getElementById("in_date").value = formattedDate;
+            document.getElementById("inspection_code").value = data.i_code;
+            document.getElementById("inspection_date").value = data.i_date;
+            document.getElementById("inspection_moduser").value = data.i_moduser;
+            document.getElementById("inspection_moddate").value = data.i_moddate;
+            document.getElementById("inspection_result").value = data.i_result;
+            document.getElementById("inspection_quantity").value = data.i_quantity;
+            document.getElementById("inspection_defective_qauntity").value = data.i_defective_quantity;
+            document.getElementById("inspection_inspector").value = data.i_inspector;
+            document.getElementById("inspection_etc").value = data.i_etc;
+
+            const tbody = document.getElementById("content_list");
+            tbody.innerHTML = "";
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+            	<td>\${data.productDTO.p_code }</td>
+				<td>\${data.productDTO.p_lctg }</td>
+				<td>\${data.productDTO.p_mctg }</td>
+				<td>\${data.productDTO.p_sctg }</td>
+				<td>\${data.productDTO.p_name }</td>
+				<td>\${data.inboundDTO.in_quantity }</td>
+            `
+            tbody.appendChild(tr);
+            
+        } catch(error){
+            console.error("데이터 처리중 오류 발생" , error);
         }
+    }
+    
+    document.addEventListener("DOMContentLoaded" , async () => {
+    	const i_id = ${i_id};
+    	await fetchInspectionDetail(i_id);
+    });
     </script>
 </body>
 </html>

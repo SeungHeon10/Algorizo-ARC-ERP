@@ -51,17 +51,8 @@
                                         <th class="text-center">검수결과</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                               		<c:forEach var="inpection" items="${list }">
-                                		<tr>
-                                			<td>${inpection.i_id }</td>
-                                			<td><a href="detail?i_id=${inpection.i_id }">${inpection.i_code }</a></td>
-                                			<td>${inpection.in_id }</td>
-                                			<td>${inpection.i_date }</td>
-                                			<td>${inpection.i_inspector }</td>
-                                			<td>${inpection.i_result }</td>
-                                		</tr>
-                                	</c:forEach>
+                                <tbody id="content_list">
+
                                 </tbody>
                             </table>
                         </div>
@@ -81,8 +72,60 @@
     <script src="${contextPath }/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script src="${contextPath }/resources/static/dist/assets/js/main.js"></script>
     <script>
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
+	// 	계획 조회
+	    async function list() {
+	        try{
+	            const response = await fetch(`http://localhost:8080/erp/inspection/listData` , {
+	                method : "GET" ,
+	                headers : {"Content-Type" : "application/json"}
+	            });
+	
+	            if(!response.ok){
+	                throw new Error("데이터 처리중 오류 발생");
+	            }
+	
+	            const data = await response.json();
+	            
+	            const content_list = document.getElementById("content_list");
+	            content_list.innerHTML = "";
+	            
+	            data.forEach(inpection => {
+	                const tr_content = document.createElement("tr");
+	                tr_content.innerHTML = `
+	                	<td>\${inpection.i_id }</td>
+            			<td><a href="detail?i_id=\${inpection.i_id }">\${inpection.i_code }</a></td>
+            			<td>\${inpection.in_id }</td>
+            			<td>\${inpection.i_date }</td>
+            			<td>\${inpection.i_inspector }</td>
+            			<td><span>\${inpection.i_result }</span></td>
+	                `;
+	                
+	                const span = tr_content.querySelector("span");
+	                span.classList.add("badge");
+	                
+	                if(inpection.i_result === "합격"){
+	                	span.classList.add("bg-success");
+	                } else if(inpection.i_result === "불합격") {
+	                	span.classList.add("bg-danger");
+	                } else {
+	                	span.classList.add("bg-warning");
+	                }
+	                
+	                content_list.appendChild(tr_content);
+	            });
+	            
+		        let table1 = document.querySelector('#table1');
+		        let dataTable = new simpleDatatables.DataTable(table1);
+	    		
+	        } catch(error) {
+	            console.error("데이터 처리중 오류 발생" , error);
+	        }
+	    }
+	    
+	//	검수 조회 탭 진입 시 리스트 보여주기
+	    document.addEventListener("DOMContentLoaded" , () => {
+	        list();
+	    });
     </script>
 </body>
 </html>

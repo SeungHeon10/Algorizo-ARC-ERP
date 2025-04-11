@@ -16,7 +16,9 @@ public interface InspectionService {
 //	검수 삭제
 	void delete(int i_id);
 //	검수 코드 생성
-	String registerCode(String prefix);
+	String registerCode();
 //	입고(입고대기 상태) 조회
 	List<inboundDTO> inboudList();
+//	입고 상태 변경
+	void in_stateUpdate(int in_id , String state);
 }

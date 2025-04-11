@@ -1,6 +1,8 @@
 package co.algorizo.erp.inspection;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,14 @@ public class InspectionDAOImpl implements InspectionDAO{
 	public List<inboundDTO> inboudList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".inboudList");
+	}
+
+	@Override
+	public void in_stateUpdate(int in_id , String state) {
+		Map<String, Object> update = new HashMap<String, Object>();
+		update.put("in_id", in_id);
+		update.put("state", state);
+		sqlSession.update(namespace + ".in_stateUpdate", update);
 	}
 
 }

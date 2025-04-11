@@ -24,7 +24,7 @@
 	margin-top: 60px;
 	display: flex;
     justify-content: flex-end;
-    gap: 14px;
+    gap: 10px;
 }
 .table.table-striped{
 	margin-bottom: 0;
@@ -42,7 +42,7 @@
     gap: 10px;
 }
 .btn-primary.w100{
-	width: 120px;
+	width: 100px;
 }
 .modal-dialog-centered.mw550{
 	max-width: 550px;

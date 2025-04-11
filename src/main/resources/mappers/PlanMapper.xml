@@ -16,6 +16,8 @@
 			, pl.plan_title AS plan_title
 			, pl.plan_writer AS plan_writer
 			, pl.plan_regdate AS plan_regdate
+			, pl.plan_moduser AS plan_moduser
+			, pl.plan_moddate AS plan_moddate
 			, pp.pp_quantity AS pp_quantity
 			, pp.pp_delivery_date AS pp_delivery_date
 			, pp.pp_total_price AS pp_total_price
@@ -42,7 +44,8 @@
 		update procurement_plan 
 		set 
 			plan_title = #{plan_title} ,
-			plan_moddate = #{plan_moddate}
+			plan_moddate = #{plan_moddate} ,
+			plan_moduser = #{plan_moduser}
 		where plan_id = #{plan_id}
 	</update>
 <!-- 조달 계획 삭제 -->

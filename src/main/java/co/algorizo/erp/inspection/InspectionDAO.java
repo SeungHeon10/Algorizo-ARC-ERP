@@ -19,4 +19,6 @@ public interface InspectionDAO {
 	String registerCode(String prefix);
 //	입고(입고대기 상태) 조회
 	List<inboundDTO> inboudList();
+//	입고 상태 변경
+	void in_stateUpdate(int in_id , String state);
 }

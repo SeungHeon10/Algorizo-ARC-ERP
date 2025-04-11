@@ -12,6 +12,7 @@
 	    <result property="i_defective_quantity" column="i_defective_quantity"/>
 	    <result property="i_result" column="i_result"/>
 	    <result property="i_inspector" column="i_inspector"/>
+	    <result property="i_moduser" column="i_moduser"/>
 	    <result property="i_moddate" column="i_moddate"/>
 	    <result property="i_etc" column="i_etc"/>
 	
@@ -58,6 +59,9 @@
 			, i.i_defective_quantity AS i_defective_quantity
 			, i.i_result AS i_result
 			, i.i_inspector AS i_inspector
+			, i.i_moduser AS i_moduser
+			, i.i_moddate AS i_moddate
+			, i.i_etc AS i_etc
 			, ib.in_id AS in_id
 			, ib.in_date AS in_date
 			, ib.in_quantity AS in_quantity
@@ -74,8 +78,8 @@
 	</select>
 <!-- 검수 등록 -->
 	<insert id="register" parameterType="co.algorizo.erp.inspection.InspectionDTO">
-		insert into inspection (in_id, i_code , i_date , i_quantity , i_defective_quantity , i_result , i_inspector) 
-		values (#{in_id} , #{i_code}, #{i_date}, #{i_quantity}, #{i_defective_quantity}, #{i_result}, #{i_inspector})
+		insert into inspection (in_id, i_code , i_date , i_quantity , i_defective_quantity , i_result , i_inspector , i_etc) 
+		values (#{in_id} , #{i_code}, #{i_date}, #{i_quantity}, #{i_defective_quantity}, #{i_result}, #{i_inspector} , #{i_etc})
 	</insert>
 <!-- 검수 수정 -->
 	<update id="update" parameterType="co.algorizo.erp.inspection.InspectionDTO">
@@ -85,6 +89,7 @@
 			i_result = #{i_result} ,
 			i_quantity = #{i_quantity} ,
 			i_defective_quantity = #{i_defective_quantity} ,
+			i_moduser = #{i_moduser} ,
 			i_moddate = #{i_moddate} ,
 			i_etc = #{i_etc}
 		where i_id = #{i_id}
@@ -114,4 +119,9 @@
 		JOIN product p ON i.product_p_id = p.p_id
 		WHERE i.del = 0 AND i.in_status = "입고 대기";
 	</select>
+	<update id="in_stateUpdate" parameterType="java.util.Map">
+		update inbound
+		set in_status = #{state}
+		where in_id = #{in_id}
+	</update>
 </mapper>

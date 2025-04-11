@@ -1,15 +1,15 @@
 package co.algorizo.erp.inspection;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.algorizo.erp.inbound.inboundDTO;
 import co.algorizo.erp.inbound.inboundService;
+import co.algorizo.erp.procurement_plan.DTO.PlanDetailDTO;
 
 @Controller
 @RequestMapping(value = "/inspection")
@@ -26,31 +27,44 @@ public class InspectionController {
 	@Autowired
 	private inboundService inboundService;
 	
-//	전체조회
+//	전체조회 페이지 이동
 	@GetMapping(value = "/list")
-	public ModelAndView list(HttpSession session) {
+	public ModelAndView listPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		if (session.getAttribute("m_id") == null) { 
 			mav.setViewName("redirect:/");
 	        return mav;
 	    }
-		List<InspectionDTO> list = inspectionService.list();
 		
-		mav.addObject("list", list);
 		mav.setViewName("inspection/inspectionList");
 		return mav;
 	}
-//	상세보기
+	
+//	검수 조회 목록
+	@GetMapping(value = "/listData")
+	public ResponseEntity<List<InspectionDTO>> list() {
+		List<InspectionDTO> list = inspectionService.list();
+		
+		return ResponseEntity.ok(list);
+	}
+	
+//	상세보기 페이지 이동
 	@GetMapping(value = "/detail")
-	public ModelAndView detail(@RequestParam int i_id) {
+	public ModelAndView detailPage(@RequestParam int i_id) {
 		ModelAndView mav = new ModelAndView();
 		
-		InspectionDTO inspection = inspectionService.detail(i_id);
-		
-		mav.addObject("detail", inspection);
+		mav.addObject("i_id", i_id);
 		mav.setViewName("inspection/inspectionDetail");
 		return mav;
 	}
+	
+//	검수 상세보기
+	@GetMapping(value = "/detailData")
+	public ResponseEntity<InspectionDTO> detail(@RequestParam int i_id) {
+		InspectionDTO inspection = inspectionService.detail(i_id);
+		return ResponseEntity.ok(inspection);
+	}
+	
 //	등록폼 이동
 	@GetMapping(value = "/register")
 	public String registerForm(HttpSession session) {
@@ -59,63 +73,50 @@ public class InspectionController {
 	    }
 		return "inspection/inspectionRegister";
 	}
+	
 //	등록
 	@PostMapping(value = "/register")
-	public String register(InspectionDTO inspectionDTO) {
-		Date today = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(" HH:mm:ss");
-		inspectionDTO.setI_date(inspectionDTO.getI_date() + simpleDateFormat.format(today));
+	public ResponseEntity<String> register(@RequestBody InspectionDTO inspectionDTO) {
 		inspectionService.register(inspectionDTO);
 		
-		return "redirect:list";
+		return ResponseEntity.ok("등록완료!");
 	}
+	
 //	수정폼 이동
 	@GetMapping(value = "/update")
 	public ModelAndView updateForm(@RequestParam int i_id) {
 		ModelAndView mav = new ModelAndView();
 		
-		InspectionDTO inspection = inspectionService.detail(i_id);
-		
-		mav.addObject("detail", inspection);
+		mav.addObject("i_id", i_id);
 		mav.setViewName("inspection/inspectionUpdate");
 		return mav;
 	}
+	
 //	수정
 	@PostMapping(value = "/update")
-	public String update(InspectionDTO inspectionDTO) {
-		Date today = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		inspectionDTO.setI_moddate(simpleDateFormat.format(today));
-		
+	public ResponseEntity<String> update(@RequestBody InspectionDTO inspectionDTO) {
 		inspectionService.update(inspectionDTO);
 		
-		return "redirect:list";
+		return ResponseEntity.ok("수정완료!");
 	}
 //	삭제
-	@GetMapping(value = "/delete")
-	public String delete(@RequestParam int i_id) {
+	@PostMapping(value = "/delete")
+	public ResponseEntity<String> delete(@RequestParam int i_id) {
 		
 		inspectionService.delete(i_id);
 		
-		return "redirect:list";
+		return ResponseEntity.ok("삭제완료!");
 	}
-//	코드 불러오기
+	
+//	코드 생성
 	@GetMapping(value = "/code")
 	@ResponseBody
 	public String registerCode() {
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		String prefix = "INSP-" + dateFormat.format(today) + "-";
-		String lastcode = inspectionService.registerCode(prefix);
+		String newCode = inspectionService.registerCode();
 		
-		int index = 1;
-		if(lastcode != null) {
-			String[] parts = lastcode.split("-");
-			index = Integer.parseInt(parts[2]) + 1;
-		}
-		String resultNum = String.format("%03d", index);
-		return prefix + resultNum;
+		return newCode;
 	}
+	
 //	입고 목록 조회
 	@GetMapping(value = "/inboundList")
 	@ResponseBody
@@ -123,6 +124,7 @@ public class InspectionController {
 		System.out.println(inspectionService.inboudList());
 		return inspectionService.inboudList();
 	}
+	
 //	입고 상세 조회
 	@GetMapping(value = "/inboundDetail")
 	@ResponseBody

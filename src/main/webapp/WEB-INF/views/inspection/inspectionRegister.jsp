@@ -45,7 +45,7 @@ String user = (String) session.getAttribute("m_name");
 								<h4 class="card-title">검수 등록</h4>
 							</div>
 							<div class="card-body">
-								<form action="register" method="post">
+								<form action="register" id="inspectionRegister" method="post">
 									<div class="d-flex custom">
 										<div class="form-group width">
 											<label for="in_id" class="form-label">입고 번호</label>
@@ -138,8 +138,8 @@ String user = (String) session.getAttribute("m_name");
 		                                </div>
 	                                </div>
 									<div class="text-end">
-										<button type="submit" class="btn btn-primary">검수 등록</button>
-										<button class="btn btn-secondary" onclick="location.href='list'">취소</button>
+										<button type="submit" class="btn btn-outline-primary">검수 등록</button>
+										<button class="btn btn-outline-primary" onclick="location.href='list'">취소</button>
 									</div>
 								</form>
 							</div>
@@ -328,6 +328,7 @@ String user = (String) session.getAttribute("m_name");
             
             document.getElementById("inspection_code").value = data;
         }
+        
 //      조회 버튼 누를 시 
         document.getElementById("in_list").addEventListener("click" , async function(event) {
             event.preventDefault();
@@ -337,6 +338,47 @@ String user = (String) session.getAttribute("m_name");
             modal.show();
 
             await inboundList();
+        });
+        
+    //  검수 등록
+        document.getElementById("inspectionRegister").addEventListener("submit" , async function(event) {
+            event.preventDefault();
+            
+            const in_id = parseInt(document.getElementById("in_id").value);
+            const i_code = document.getElementById("inspection_code").value;
+            const i_date = document.getElementById("inspection_date").value;
+            const i_result = document.getElementById("inspection_result").value;
+            const i_quantity = parseInt(document.getElementById("inspection_quantity").value);
+            const i_defective_quantity = parseInt(document.getElementById("inspection_defective_quantity").value);
+            const i_inspector = document.getElementById("inspection_inspector").value;
+            const i_etc = document.getElementById("inspection_etc").value;
+
+            const inspectionData = {
+            	in_id : in_id ,
+            	i_code : i_code ,
+            	i_date : i_date ,
+            	i_result : i_result ,
+            	i_quantity : i_quantity ,
+            	i_defective_quantity : i_defective_quantity ,
+            	i_inspector : i_inspector ,
+            	i_etc : i_etc
+            }
+            
+            try{
+                const response = await fetch("http://localhost:8080/erp/inspection/register" , {
+                    method : "POST" ,
+                    headers : {"Content-Type" : "application/json"} ,
+                    body : JSON.stringify(inspectionData)
+                });
+
+                if(!response.ok){
+                    throw new Error("데이터 처리 오류");
+                }
+    			
+                location.href="list";
+            } catch(error) {
+            	console.error("오류 발생", error);
+            }
         });
 	</script>
 </body>

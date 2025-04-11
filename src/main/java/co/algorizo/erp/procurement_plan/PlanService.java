@@ -22,7 +22,7 @@ public interface PlanService {
 //	조달 계획 품목 삭제
 	void product_Delete(int plan_id);
 //	코드 가져오기
-	String registerCode(String prefix);
-//	품목 리스트 (나중에 다시 연동)
+	String registerCode();
+//	품목 리스트
 	List<PlanDetailDTO> product_list();
 }
