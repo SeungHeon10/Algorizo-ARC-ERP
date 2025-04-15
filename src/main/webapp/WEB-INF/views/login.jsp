@@ -79,18 +79,11 @@
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        <div class="form-check form-check-lg d-flex align-items-end">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                                로그인 정보 기억
-                            </label>
-                        </div>
                         <button id="loginBtn" type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5" disabled>Log in</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">계정이 없으신가요? <a href="${contextPath }/register"
                                 class="font-bold">회원가입</a></p>
-                        <p><a class="font-bold" href="auth-forgot-password.html">비밀번호를 잊으셨나요?</a></p>
                     </div>
                 </div>
             </div>
