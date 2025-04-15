@@ -195,15 +195,15 @@
                     <div class="col-12 col-lg-3">
                         <div class="card">
 					        <div class="card-body py-4 px-5">
-					            <div class="d-flex align-items-center">
-					                <div class="avatar avatar-xl">
+					            <div class="d-flex flex-column flex-sm-row align-items-center">
+					                <div class="avatar avatar-xl mb-3 mb-sm-0">
 					                    <c:set var="photo" value="${empty member.m_photo ? 'default.png' : member.m_photo}" />
 					                    <img src="${pageContext.request.contextPath}/resources/img/members/${photo}" />
 					                </div>
-					                <div class="ms-3 name">
+					                <div class="ms-sm-3 name text-center text-sm-start">
 					                    <!-- 이름과 버튼을 가로로 정렬 -->
-					                    <div class="d-flex align-items-center">
-					                        <h5 class="font-bold mb-0 me-3"><%= (m_name != null && !m_name.isEmpty()) ? m_name : "Guest" %></h5>
+					                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-sm-start">
+					                        <h5 class="font-bold mb-2 mb-sm-0 me-sm-3"><%= (m_name != null && !m_name.isEmpty()) ? m_name : "Guest" %></h5>
 					                        
 					                        <c:choose>
 					                            <c:when test="${not empty sessionScope.m_id}">
@@ -215,7 +215,7 @@
 					                        </c:choose>
 					                    </div>
 					                    <!-- 부서명은 아래에 위치 -->
-					                    <h6 class="text-muted mb-0"><%= (team != null && !team.isEmpty()) ? team : "" %></h6>
+					                    <h6 class="text-muted mt-2 mb-0"><%= (team != null && !team.isEmpty()) ? team : "" %></h6>
 					                </div>
 					            </div>
 					        </div>
