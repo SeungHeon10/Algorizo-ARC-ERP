@@ -1,5 +1,6 @@
 package co.algorizo.erp.inspection;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +73,15 @@ public class InspectionDAOImpl implements InspectionDAO{
 	public List<DefectReasonDTO> defectReasonList() {
 		
 		return sqlSession.selectList(namespace + ".defect_reason");
+	}
+
+	@Override
+	public Map<String, Object> defectReasonData(LocalDate start , LocalDate end) {
+		// TODO Auto-generated method stub
+		Map<String, Object> local = new HashMap<String, Object>();
+		local.put("start", start);
+		local.put("end", end);
+		return sqlSession.selectMap(namespace + ".chartData" , local ,"label");
 	}
 
 }

@@ -1,6 +1,8 @@
 package co.algorizo.erp.inspection;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import co.algorizo.erp.inbound.inboundDTO;
 import co.algorizo.erp.inspection.DTO.DefectReasonDTO;
@@ -25,4 +27,6 @@ public interface InspectionDAO {
 	void in_stateUpdate(int in_id , String state);
 //	불량 사유 가져오기
 	List<DefectReasonDTO> defectReasonList();
+//	불량수량 차트 데이터
+	Map<String, Object> defectReasonData(LocalDate start , LocalDate end);
 }
