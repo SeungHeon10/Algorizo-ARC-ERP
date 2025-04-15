@@ -124,11 +124,34 @@ public class HomeController {
 	
 	
 	@GetMapping("/home")
-	   public String goHOme(Model model) {
+	   public String goHOme(Model model, HttpSession session) {
 	      logger.info("홈으로");
 	      
+	      if(session.getAttribute("m_id") == null) {
+	    	  return "redirect:/";
+	      }
+	      
+	      
+	      String m_id = (String) session.getAttribute("m_id");
+	      String m_name = (String) session.getAttribute("m_name");
+	      int d_id = (Integer) session.getAttribute("d_id");
+	      String team = (String) session.getAttribute("team");
+
+	      MemberDTO memberFromDb = service.selectMember(m_id);
+	      
+	      model.addAttribute("m_id", m_id);
+	      model.addAttribute("m_name", m_name);
+	      model.addAttribute("d_id", d_id);
+	      model.addAttribute("team", team);
+	      logger.info("m_id : " + session.getAttribute("m_id"));
+		  logger.info("d_id : " + session.getAttribute("d_id"));
+		  logger.info("m_name : " + session.getAttribute("m_name"));
+		  logger.info("team : " + session.getAttribute("team"));
+	      
+		  model.addAttribute("member", memberFromDb);
+		  
 	      List<BoardDTO> boardList = boardService.listThree();
-		    model.addAttribute("boardList", boardList);
+		  model.addAttribute("boardList", boardList);
 		    
 	      return "home";
 	   }
