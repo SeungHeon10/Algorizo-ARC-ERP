@@ -17,8 +17,8 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     
-                    <h1 class="auth-title">Sign Up</h1>
-                    <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
+                    <h1 class="auth-title">회원 가입</h1>
+                    <p class="auth-subtitle mb-5">.</p>
 
                     <form action="${contextPath}/register" onsubmit="return validateForm()" method="post">
                     <!-- 이메일 -->
@@ -82,6 +82,9 @@
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
+                                <c:if test="${not empty error}">
+							        <p style="color: red; font-size: 0.9em; margin-top: 5px;">${error}</p>
+							    </c:if>
                         </div>
                         <!-- 비밀번호 -->
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -92,7 +95,7 @@
                         </div>
                         <!-- 비밀번호 확인 -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" name="confirm_password" id="m_password_confirm" placeholder="Confirm Password">
+                            <input type="password" class="form-control form-control-xl" name="confirm_password" id="m_password_confirm" placeholder="비밀번호 확인">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                                 
