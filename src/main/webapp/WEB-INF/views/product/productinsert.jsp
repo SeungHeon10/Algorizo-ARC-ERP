@@ -129,9 +129,9 @@
 											</div>
 											
 											<div class="col-sm-12 d-flex justify-content-end">
-												<button type="submit" class="btn btn-outline-primary">등록</button>
-												<button type="reset" class="btn btn-outline-danger">초기화</button>
-												<button type="submit" onclick="location.href='productlist'" class="btn btn-outline-primary">목록</button>
+												<button type="submit" class="btn btn-outline-primary me-1 mb-1">등록</button>
+												<button type="reset" class="btn btn-outline-danger me-1 mb-1">초기화</button>
+												<button type="submit" onclick="location.href='productlist'" class="btn btn-outline-primary me-1 mb-1">목록</button>
 											</div>
 
 										</div>

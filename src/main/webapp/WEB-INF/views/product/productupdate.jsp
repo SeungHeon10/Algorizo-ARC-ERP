@@ -209,9 +209,9 @@
 														</div>
 
 														<div class="col-12 d-flex justify-content-end">
-															<button type="submit" class="btn btn-outline-warning">수정완료</button>
-															<button type="button" onclick="location.href='productlist'" class="btn btn-outline-primary">목록</button>
-															<button type="button" onclick="location.href='/erp/product/productdelete?p_id=${product.p_id}'" class="btn btn-outline-danger">삭제</button>
+															<button type="submit" class="btn btn-outline-warning me-1 mb-1">수정완료</button>
+															<button type="button" onclick="location.href='productlist'" class="btn btn-outline-primary me-1 mb-1">목록</button>
+															<button type="button" onclick="location.href='/erp/product/productdelete?p_id=${product.p_id}'" class="btn btn-outline-danger me-1 mb-1">삭제</button>
 														</div>
 													</div>
 												</div>

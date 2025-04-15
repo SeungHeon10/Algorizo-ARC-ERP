@@ -37,10 +37,6 @@
 			</div>
 			<section class="section">
 				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title"></h4>
-					</div>
-
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-6">
@@ -72,7 +68,7 @@
 								</div>
 								<div class="form-group">
 									<label for="basicInput">팩스</label>
-									<p class="form-control" readonly>${company.cp_fax}</p>
+									<p class="form-control" readonly>${company.cp_fax != null && !company.cp_fax.isEmpty() ? company.cp_fax : 'N/A'}</p>
 								</div>
 								<div class="form-group">
 									<label for="basicInput">수정일</label>
@@ -88,8 +84,8 @@
 								<p class="form-control" readonly>${company.cp_addr}</p>
 							</div>
 							<div class="col-12 d-flex justify-content-end">
-								<button type="button" onclick="location.href='companyupdate?cp_id=${company.cp_id}'" class="btn btn-outline-warning">수정</button>
-								<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary">목록</button>
+								<button type="button" onclick="location.href='companyupdate?cp_id=${company.cp_id}'" class="btn btn-outline-warning me-1 mb-1">수정</button>
+								<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary me-1 mb-1">목록</button>
 							</div>
 						</div>
 					</div>

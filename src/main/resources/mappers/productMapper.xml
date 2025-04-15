@@ -67,7 +67,7 @@
   LEFT JOIN member m ON p.member_m_id = m.m_id
   LEFT JOIN company c ON p.company_cp_id = c.cp_id
   LEFT JOIN member modifier ON p.modifier_m_id = modifier.m_id
-  WHERE p.del = 0
+  WHERE p.del = 0 ORDER BY p.p_id DESC
 	</select>
 
 	<!-- getProductCode 쿼리 수정 - 컬럼명 명확히 지정 -->

@@ -174,9 +174,9 @@
 										</div>
 										<br>
 										<div class="col-12 d-flex justify-content-end">
-											<button type="submit" class="btn btn-outline-primary">업체등록</button>
-											<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary">목록</button>
-											<button type="reset" class="btn btn-outline-danger">초기화</button>
+											<button type="submit" class="btn btn-outline-primary me-1 mb-1">업체등록</button>
+											<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary me-1 mb-1">목록</button>
+											<button type="reset" class="btn btn-outline-danger me-1 mb-1">초기화</button>
 										</div>
 									</form>
 								</div>

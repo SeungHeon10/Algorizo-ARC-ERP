@@ -6,7 +6,7 @@
   <mapper namespace="co.algorizo.erp.companyMapper">
 	
 	<select id="companylist" resultType="co.algorizo.erp.company.CompanyDTO">
-		select * from company where del = 0
+		select * from company where del = 0 order by cp_id desc
 	</select>
 	
 	<select id="getcompany" parameterType="int" resultType="co.algorizo.erp.company.CompanyDTO">

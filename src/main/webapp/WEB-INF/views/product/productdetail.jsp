@@ -29,9 +29,8 @@
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Form
-										Layout</li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
+									<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productupdate?p_code=${product.p_code}">품목수정</a></li>
 								</ol>
 							</nav>
 						</div>
@@ -162,6 +161,7 @@
 																</div>
 															</div>
 														</div>
+														
 
 														<!-- 아래에 이메일, 모바일, 비밀번호 항목 배치 -->
 														<div class="row">
@@ -244,9 +244,9 @@
 															</div>
 														</div>
 													</div>
-														<div class="col-12 d-flex justify-content-end">
-															<button type="button" onclick="location.href='productupdate?p_code=${product.p_code}'" class="btn btn-outline-warning">수정</button>
-															<button type="button" onclick="location.href='productlist'" class="btn btn-outline-primary">목록</button>
+														<div class="col-sm-12 d-flex justify-content-end">
+															<button type="button" onclick="location.href='productupdate?p_code=${product.p_code}'" class="btn btn-outline-warning me-1 mb-1">수정</button>
+															<button type="button" onclick="location.href='productlist'" class="btn btn-outline-primary me-1 mb-1">목록</button>
 														</div>
 													</div>
 												</div>
