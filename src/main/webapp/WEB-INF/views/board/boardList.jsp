@@ -63,7 +63,7 @@
 											<td>${board.b_content}</td>
 											<td>${board.b_moddate}</td>
 											<td>${board.b_writer}</td>
-											<td></td>
+											<td>${board.b_team}</td>
 										</tr>
 									</c:forEach>
 									

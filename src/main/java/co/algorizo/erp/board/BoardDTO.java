@@ -10,13 +10,14 @@ public class BoardDTO {
 	private int del;
 	private String b_writer;
 	private String b_moddate;
+	private String b_team;
 	
 	public BoardDTO() {
 		
 	}
 
 	public BoardDTO(int b_id, String b_content, String b_regdate, String b_title, String b_etc, int del,
-			String b_writer, String b_moddate) {
+			String b_writer, String b_moddate, String b_team) {
 		super();
 		this.b_id = b_id;
 		this.b_content = b_content;
@@ -26,6 +27,7 @@ public class BoardDTO {
 		this.del = del;
 		this.b_writer = b_writer;
 		this.b_moddate = b_moddate;
+		this.b_team = b_team;
 	}
 
 	public int getB_id() {
@@ -92,6 +94,15 @@ public class BoardDTO {
 		this.b_moddate = b_moddate;
 	}
 
+	public String getB_team() {
+		return b_team;
+	}
+
+	public void setB_team(String b_team) {
+		this.b_team = b_team;
+	}
+
+	
 		
 	
 	

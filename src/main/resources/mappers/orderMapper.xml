@@ -65,7 +65,8 @@
 		JOIN company cp ON o.company_cp_id = cp.cp_id
 		JOIN stock s ON o.stock_s_id = s.s_id
 		JOIN dept d ON o.dept_d_id = d.d_id
-		where o.del = 0
+		where o.del = 0 
+		order by o.o_no desc
 	</select>
 
 	<insert id="register" parameterType="co.algorizo.erp.order.OrderDTO">
