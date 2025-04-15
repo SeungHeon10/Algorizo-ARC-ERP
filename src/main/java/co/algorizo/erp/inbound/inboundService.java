@@ -2,7 +2,6 @@ package co.algorizo.erp.inbound;
 
 import java.util.List;
 
-import co.algorizo.erp.product.ProductDTO;
 
 public interface inboundService {
 	
@@ -16,5 +15,7 @@ public interface inboundService {
 	
 	int delete(int in_id) throws Exception;
 	
+	void updateInboundStatus(String in_id, String in_status) throws Exception;
 	
+	void stockupdate(int s_quantity,int s_id) throws Exception;
 }

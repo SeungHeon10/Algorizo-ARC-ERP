@@ -10,7 +10,7 @@ public interface stockService {
 	
 		List<stockDTO> list() throws Exception;
 				
-		List<stockDTO> detail(int s_id) throws Exception;
+		stockDTO detail(int s_id) throws Exception;
 				
 		List<StockSummaryDTO> summary() throws Exception;
 		

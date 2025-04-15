@@ -14,4 +14,7 @@ public interface inboundDAO {
 	
 	int delete(int in_id) throws Exception;
 	
+	void updateInboundStatus(String in_id, String in_status) throws Exception;
+	
+	void stockupdate(int s_quantity,int s_id) throws Exception;
 }

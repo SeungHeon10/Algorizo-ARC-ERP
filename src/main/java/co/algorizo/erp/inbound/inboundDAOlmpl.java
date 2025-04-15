@@ -1,6 +1,8 @@
 package co.algorizo.erp.inbound;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,27 @@ public class inboundDAOlmpl implements inboundDAO{
 	public int delete(int in_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.update(namespace + ".delete",in_id);
+	}
+
+	@Override
+	public void updateInboundStatus(String in_id, String in_status) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, String> params = new HashMap<>();
+		params.put("in_id", in_id);
+		params.put("in_status", in_status);
+		
+		sqlsession.update(namespace + ".updateInboundStatus",params);
+	}
+
+	@Override
+	public void stockupdate(int s_quantity,int s_id) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("dao i_id" + s_quantity);
+		System.out.println("dao s_id" + s_id);
+		Map<String,Object> param = new HashMap<>();
+		param.put("s_quantity", s_quantity);
+		param.put("s_id", s_id);
+		sqlsession.update(namespace + ".stockupdate",param);
 	}
 
 }

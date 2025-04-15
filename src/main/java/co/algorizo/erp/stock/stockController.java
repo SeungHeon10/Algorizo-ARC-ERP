@@ -48,6 +48,7 @@ public class stockController {
 		List<stockDTO> list = stockservice.list();
 		model.addAttribute("list", list);
 		List<StockSummaryDTO> summary = stockservice.summary();
+		System.out.println("controller" + summary);
 		model.addAttribute("summary", summary);
 
 		return "stock/stocklist";
@@ -55,7 +56,7 @@ public class stockController {
 
 	@GetMapping(value = "/stock/stockdetail")
 	public String detail(@RequestParam int s_id, Model model) throws Exception {
-		List<stockDTO> dto = stockservice.detail(s_id);
+		stockDTO dto = stockservice.detail(s_id);
 		System.out.println("s_controller" + dto);
 		model.addAttribute("detail", dto);
 

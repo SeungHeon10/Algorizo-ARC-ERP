@@ -55,47 +55,49 @@
 									</c:if>
 
 									<c:if test="${not empty detail}">
-										<c:forEach var="detail" items="${detail}">
-											<tr>
-												<th>품목 명:</th>
-												<td>${detail.product.p_name == null || detail.product.p_name == '' ? 'N/A' : detail.product.p_name}</td>
-											</tr>
-											<tr>
-												<th>품목 코드:</th>
-												<td>${detail.product.p_code == null || detail.product.p_code == '' ? 'N/A' : detail.product.p_code}</td>
-											</tr>
-											<tr>
-												<th>재고 번호:</th>
-												<td>${detail.s_id == 0 ? 'N/A' : detail.s_id}</td>
-											</tr>
-											<tr>
-												<th>입고일</th>
-												<td>${detail.in_date == null || detail.in_date == '' ? 'N/A' : detail.in_date }</td>
-											</tr>
-											<tr>
-												<th>출고 예정일</th>
-												<td>${detail.out_date == null || detail.out_date == '' ? 'N/A' : detail.out_date }</td>
-											</tr>
-											<tr>
-												<th>재고 상태:</th>
-												<td>${detail.s_status == null || detail.s_status == '' ? 'N/A' : detail.s_status}</td>
-											</tr>
-											<tr>
-												<th>비고:</th>
-												<td>${detail.etc == null || detail.etc == '' ? 'N/A' : detail.etc}</td>
-											</tr>
-										</c:forEach>
+										<tr>
+											<th>품목 명:</th>
+											<td>${detail.product.p_name == null || detail.product.p_name == '' ? 'N/A' : detail.product.p_name}</td>
+										</tr>
+										<tr>
+											<th>품목 코드:</th>
+											<td>${detail.product.p_code == null || detail.product.p_code == '' ? 'N/A' : detail.product.p_code}</td>
+										</tr>
+										<tr>
+											<th>재고 번호:</th>
+											<td>${detail.s_id == 0 ? 'N/A' : detail.s_id}</td>
+										</tr>
+										<tr>
+											<th>재고 수량:</th>
+											<td>${detail.s_quantity == 0 ? 'N/A' : detail.s_quantity}</td>
+										</tr>
+										<tr>
+											<th>입고일:</th>
+											<td>${detail.in_date == null || detail.in_date == '' ? 'N/A' : detail.in_date}</td>
+										</tr>
+										<tr>
+											<th>출고 예정일:</th>
+											<td>${detail.update_date == null || detail.update_date == '' ? 'N/A' : detail.update_date}</td>
+										</tr>
+										<tr>
+											<th>재고 상태:</th>
+											<td>${detail.s_status == null || detail.s_status == '' ? 'N/A' : detail.s_status}</td>
+										</tr>
+										<tr>
+											<th>비고:</th>
+											<td>${detail.etc == null || detail.etc == '' ? 'N/A' : detail.etc}</td>
+										</tr>
 									</c:if>
+
+
 
 								</table>
 								<!-- 돌아가기 버튼 -->
 								<div class="button-container"
 									style="display: flex; justify-content: flex-end; margin-top: 20px;">
-									<c:forEach var="dto" items="${detail}">
 										<button type="button"
 											onclick="location.href='${contextPath}/stock/stocklist'"
-											class="btn btn-outline-primary">목록</button>
-									</c:forEach>
+											class="btn btn-outline-primary me-1 mb-1">목록</button>
 								</div>
 							</div>
 						</div>

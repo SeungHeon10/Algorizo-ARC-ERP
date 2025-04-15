@@ -31,8 +31,12 @@
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Input</li>
+								<c:forEach var="up" items="${up}">
+									<li class="breadcrumb-item"><a
+										href="${contextPath }/inbound/inbounddetail?in_id=${up.in_id}">Inbound Detail</a></li>
+											
+									<li class="breadcrumb-item active" aria-current="page">Update</li>
+								</c:forEach>
 							</ol>
 						</nav>
 					</div>
@@ -43,13 +47,12 @@
 					<div class="card-header">
 						<h4 class="card-title"></h4>
 					</div>
-
 					<div class="card-body">
 						<form class="form form-vertical" action="inboundupdate"
 							method="post">
 							<div class="row">
-								<div class="col-md-6">
-									<c:forEach var="up" items="${up}">
+								<c:forEach var="up" items="${up}">
+									<div class="col-md-6">
 										<div class="form-group">
 											<label for="basicInput ">입고 번호</label> <input type="text"
 												class="form-control" name="in_id" value="${up.in_id }"
@@ -80,53 +83,48 @@
 												class="form-control" name="cp_fax"
 												value="${up.company.cp_fax }" readonly>
 										</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="basicInput">입고 수량</label> <input type="text"
-											class="form-control" name="in_quantity" id="in_quantity"
-											value="${up.in_quantity}">
 									</div>
-									<div class="form-group">
-										<label for="basicInput">입고일</label> <input type="text"
-											class="form-control" name="in_date" value="${up.in_date }"
-											readonly>
-									</div>
-									<div class="form-group">
-										<label for="basicInput">입고 수정일</label> <input type="date"
-											class="form-control" name="update_date"
-											value="${up.update_date }">
-									</div>
-									<div class="form-group">
-										<label for="basicInput">입고 상태</label> <select name="in_status"
-											id="in_status" class="form-control">
-											<option value="입고 대기">입고 대기</option>
-											<option value="입고 중">입고 중</option>
-											<option value="입고 취소">입고 취소</option>
-											<option value="입고 완료">입고 완료</option>
-										</select> <span class="tooltip">입고 상태를 선택하세요.</span>
-									</div>
-									<div class="form-group">
-										<label for="basicInput">비고</label> <input type="text"
-											class="form-control" name="etc" value="${up.etc }">
-									</div>
-									</c:forEach>
-									<div class="col-12 d-flex justify-content-end">
-										<button type="submit" class="btn btn-outline-primary">수정완료</button>
-									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="basicInput">입고 수량</label> <input type="text"
+												class="form-control" name="in_quantity" id="in_quantity"
+												value="${up.in_quantity}">
+										</div>
+										<div class="form-group">
+											<label for="basicInput">입고일</label> <input type="text"
+												class="form-control" name="in_date" value="${up.in_date }"
+												readonly>
+										</div>
+										<div class="form-group">
+											<label for="basicInput">입고 수정일</label> <input type="date"
+												class="form-control" name="update_date"
+												value="${up.update_date }">
+										</div>
+										<div class="form-group">
+											<label for="basicInput">입고 상태</label> 
+											<input type="text" class="form-control" name="in_status"
+											value="${up.in_status }" disabled>
+										</div>
+										<div class="form-group">
+											<label for="basicInput">비고</label> <input type="text"
+												class="form-control" name="etc" value="${up.etc }">
+										</div>
+								</c:forEach>
+								<div class="col-12 d-flex justify-content-end">
+									<button type="submit" class="btn btn-outline-primary me-1 mb-1">수정완료</button>
+									<button type="button" class="btn btn-outline-danger me-1 mb-1"
+										onclick="location.href='${contextPath}/inbound/inboundlist'">취소</button>
 								</div>
 							</div>
-						</form>
 					</div>
+					</form>
 				</div>
-			</section>
-
-
 		</div>
-
-		<footer>
-			<%@include file="../include/footer.jsp"%>
-		</footer>
+		</section>
+	</div>
+	<footer>
+		<%@include file="../include/footer.jsp"%>
+	</footer>
 	</div>
 	</div>
 	<%@include file="../include/plugin.jsp"%>

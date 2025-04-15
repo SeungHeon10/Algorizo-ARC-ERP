@@ -24,15 +24,17 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>입고 수정</h3>
+						<h3>출고 수정</h3>
 						<p class="text-subtitle text-muted">출고 수정 화면입니다</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Input</li>
+							<c:forEach var="up" items="${up }">
+								<li class="breadcrumb-item"><a href="${contextPath }/outbound/outbounddetail?out_id=${up.out_id}">Outbound Detail</a></li>
+							</c:forEach>
+								<li class="breadcrumb-item active" aria-current="page">Update</li>
 							</ol>
 						</nav>
 					</div>
@@ -45,7 +47,7 @@
 					</div>
 
 					<div class="card-body">
-						<form class="form form-vertical" action="outupdate" method="post">
+						<form class="form form-vertical" action="outboundupdate" method="post">
 							<div class="row">
 								<div class="col-md-6">
 									<c:forEach var="up" items="${up }">
@@ -111,7 +113,13 @@
 									</div>
 									</c:forEach>
 									<div class="col-12 d-flex justify-content-end">
-										<button type="submit" class="btn btn-outline-primary">수정완료</button>
+										<button type="submit" class="btn btn-outline-primary me-1 mb-1">수정완료</button>
+										<button type="button" class="btn btn-outline-danger me-1 mb-1"
+											onclick="location.href='${contextPath}/outbound/outboundlist'">취소</button>
+											<!--"취소" 버튼의 동작이 detail 페이지로 이동하는 이유는 버튼이 submit 타입으로 설정되어 있으면,
+											 해당 버튼이 속한 <form> 태그의 action 속성 값으로 폼 데이터를 전송하려고 합니다.
+											  결과적으로 취소 버튼이 눌렸을 때도 <form>의 action="outboundupdate"가 실행되고,
+											   컨트롤러의 해당 엔드포인트로 요청이 전송됩니다. 이것이 싫으면 type을 button으로 바꾸면 된다.  -->
 									</div>
 								</div>
 							</div>

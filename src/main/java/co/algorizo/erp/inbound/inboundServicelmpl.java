@@ -3,12 +3,10 @@ package co.algorizo.erp.inbound;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import co.algorizo.erp.company.CompanyDAO;
 import co.algorizo.erp.product.ProductDAO;
-import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.register.dao.MemberDAO;
 
 @Service
@@ -59,5 +57,18 @@ public class inboundServicelmpl implements inboundService{
 	return inbounddao.delete(in_id);
 	}
 
+	@Override
+	public void updateInboundStatus(String in_id, String in_status) throws Exception {
+		// TODO Auto-generated method stub
+		inbounddao.updateInboundStatus(in_id, in_status);
+	}
+
+	@Override
+	public void stockupdate(int s_quantity,int s_id) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("i_idservice" + s_quantity);
+		System.out.println("s_idservice" + s_id);
+		inbounddao.stockupdate(s_quantity,s_id);
+	}
 
 }

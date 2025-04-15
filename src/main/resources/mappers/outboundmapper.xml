@@ -86,7 +86,7 @@
 	<!-- 출고 등록 -->
 	<insert id="register" parameterType="co.algorizo.erp.outbound.outboundDTO">
 		INSERT INTO outbound (product_p_id, company_cp_id, member_m_id, out_quantity, out_status, del)
-		VALUES (#{product_p_id}, #{company_cp_id}, #{member_m_id}, #{out_quantity}, #{out_status}, 0);
+		VALUES (#{product_p_id}, #{company_cp_id}, #{member_m_id}, #{out_quantity},'출고 대기', 0);
 	</insert>
 
 	<!-- 출고 수정 -->
@@ -102,4 +102,11 @@
 	<update id="delete" parameterType="Integer">
 		UPDATE outbound SET del = 1 WHERE out_id = #{out_id};
 	</update>
+	
+	<!--재고 > 출고 만들기  -->
+	<select id="getStockQuantity" parameterType="int" resultType="int">
+		SELECT s_quantity
+		FROM stock
+		WHERE product_p_id = #{product_p_id};
+	</select>
 </mapper>

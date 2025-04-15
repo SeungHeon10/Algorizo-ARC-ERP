@@ -53,4 +53,11 @@ public class outboundServicelmpl implements outboundService {
 		// TODO Auto-generated method stub
 		return outbounddao.delete(out_id);
 	}
+
+	@Override
+	public boolean canProceedOutbound(int product_p_id, int out_quantity) throws Exception {
+		// TODO Auto-generated method stub
+		int stockQuantity = outbounddao.getStockQuantity(product_p_id);
+		return stockQuantity >= out_quantity;
+	}
 }
