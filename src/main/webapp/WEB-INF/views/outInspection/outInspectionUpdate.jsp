@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%  String user = (String)session.getAttribute("m_name"); 
-	String i_id = request.getParameter("i_id");
+	String oi_id = request.getParameter("oi_id");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
@@ -23,13 +23,13 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>검수 수정</h3>
+                            <h3>출고 검수 수정</h3>
                             <p class="text-subtitle text-muted">Update inspection result or quantities.</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="${contextPath }/inspection/detail?i_id=${detail.i_id }">InspectionDetail</a></li>
+                                    <li class="breadcrumb-item"><a href="${contextPath }/outInspection/detail?oi_id=${oi_id }">InspectionDetail</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">InspectionUpdate</li>
                                 </ol>
                             </nav>
@@ -41,19 +41,19 @@
 					<div class="container">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">검수 수정</h4>
+								<h4 class="card-title">출고 검수 수정</h4>
 							</div>
 							<div class="card-body">
 								<form action="#" id="inspectionUpdate" method="post">
 									<div class="d-flex custom">
 										<div class="form-group width">
-											<input type="hidden" id="i_id" name="i_id" value="${i_id }">
-											<label for="in_id" class="form-label">입고 번호</label> 
-											<input type="text" id="in_id" name="in_id" class="form-control" readonly>
+											<input type="hidden" id="oi_id" name="oi_id" value="${oi_id }">
+											<label for="out_id" class="form-label">출고 번호</label> 
+											<input type="text" id="out_id" name="in_id" class="form-control" readonly>
 										</div>
 										<div class="form-group width">
-											<label for="in_date" class="form-label">입고일자</label> 
-											<input type="text" id="in_date" class="form-control" readonly>
+											<label for="out_date" class="form-label">출고일자</label> 
+											<input type="text" id="out_date" class="form-control" readonly>
 										</div>
 									</div>
 									<div class="form-group">
@@ -69,7 +69,7 @@
 				                                        <th class="text-center">중분류</th>
 				                                        <th class="text-center">소분류</th>
 				                                        <th class="text-center">품목명</th>
-				                                        <th class="text-center">입고수량</th>
+				                                        <th class="text-center">출고수량</th>
 				                                    </tr>
 				                                </thead>
 				                                <tbody id="content_list">
@@ -82,71 +82,71 @@
 									<div class="row">
 										<div class="d-flex custom">
 											<div class="form-group width">
-	                                            <label for="inspection_code" class="form-label">검수코드</label>
-	                                            <input type="text" id="inspection_code" 
+	                                            <label for="outInspection_code" class="form-label">검수코드</label>
+	                                            <input type="text" id="outInspection_code" 
 	                                            	class="form-control" name="i_code" readonly>
 		                                    </div>
 		                                    <div class="form-group width">
-	                                            <label for="inspection_date" class="form-label">검수일자</label>
-	                                            <input type="text" id="inspection_date" 
+	                                            <label for="outInspection_date" class="form-label">검수일자</label>
+	                                            <input type="text" id="outInspection_date" 
 	                                            	class="form-control" name="i_date" readonly>
 		                                    </div>
 	                                    </div>
 	                                    <div class="col-12">
 	                                        <div class="form-group">
-	                                            <label for="inspection_result" class="form-label">결과</label>
-	                                            <input type="text" id="inspection_result" 
+	                                            <label for="outInspection_result" class="form-label">결과</label>
+	                                            <input type="text" id="outInspection_result" 
 			                                            	class="form-control" name="i_result" readonly>
 	                                        </div>
 	                                    </div>
 	                                    <div class="d-flex custom">
 	                                        <div class="form-group width">
-	                                            <label for="inspection_quantity" class="form-label">정상수량</label>
-	                                            <input type="text" id="inspection_quantity"
+	                                            <label for="outInspection_quantity" class="form-label">정상수량</label>
+	                                            <input type="text" id="outInspection_quantity"
 	                                                class="form-control" name="i_quantity" readonly>
 	                                        </div>
 	                                        <div class="form-group width35">
-	                                            <label for="inspection_defective_quantity" class="form-label">불량수량</label>
-	                                            <input type="text" id="inspection_defective_quantity"
+	                                            <label for="outInspection_defective_quantity" class="form-label">불량수량</label>
+	                                            <input type="text" id="outInspection_defective_quantity"
 	                                                class="form-control" name="i_defective_quantity" required>
 	                                        </div>
 	                                        <div class="form-group width9">
-	                                            <label for="inspection_defect_rate" class="form-label">불량률(%)</label>
-	                                            <input type="text" id="inspection_defect_rate"
+	                                            <label for="outInspection_defect_rate" class="form-label">불량률(%)</label>
+	                                            <input type="text" id="outInspection_defect_rate"
 	                                                class="form-control" name="i_defect_rate" readonly>
 	                                        </div>
 	                                    </div>
 	                                    <div id="defect_reason_div" class="col-12 hide">
 	                                        <div class="form-group">
-	                                            <label for="inspection_defect_reason" class="form-label">불량 사유</label>
-	                                            <select id="inspection_defect_reason" class="form-control">
+	                                            <label for="outInspection_defect_reason" class="form-label">불량 사유</label>
+	                                            <select id="outInspection_defect_reason" class="form-control">
                                                 </select>
 	                                        </div>
 	                                    </div>
 	                                    <div id="custom_reason_div">
 	                                        <div class="form-group">
-	                                            <input type="text" id="inspection_custom_reason" class="form-control" placeholder="기타 사유를 입력해주세요 ...">
+	                                            <input type="text" id="outInspection_custom_reason" class="form-control" placeholder="기타 사유를 입력해주세요 ...">
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-12">
 	                                        <div class="form-group">
 	                                            <input type="hidden" id="moduser" value="<%=user %>">
-	                                            <label for="inspection_inspector" class="form-label">검사자</label>
-	                                            <input type="text" id="inspection_inspector"
+	                                            <label for="outInspection_inspector" class="form-label">검사자</label>
+	                                            <input type="text" id="outInspection_inspector"
 	                                                class="form-control" readonly >
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-12">
 	                                        <div class="form-group">
-	                                            <label for="inspection_etc" class="form-label">비고</label>
-	                                            <input type="text" id="inspection_etc"
+	                                            <label for="outInspection_etc" class="form-label">비고</label>
+	                                            <input type="text" id="outInspection_etc"
 	                                                class="form-control" name="i_etc" >
 	                                        </div>
 	                                    </div>
 	                                </div>
 									<div class="text-end">
 										<button type="submit" class="btn btn-outline-warning">수정</button>
-										<button type="button" class="btn btn-outline-primary" onclick="location.href='detail?i_id=${i_id}'">취소</button>
+										<button type="button" class="btn btn-outline-primary" onclick="location.href='detail?oi_id=${oi_id}'">취소</button>
 									</div>
 								</form>
 							</div>
@@ -169,9 +169,9 @@
 	<script src="${contextPath }/resources/static/dist/assets/js/main.js"></script>
 	<script>
 // 	검수 상세보기
-	    async function fetchInspectionDetail(i_id) {
+	    async function fetchInspectionDetail(oi_id) {
 	        try{
-	            const response = await fetch(`http://localhost:8080/erp/inspection/detailData?i_id=\${i_id}` , {
+	            const response = await fetch(`http://localhost:8080/erp/outInspection/detailData?oi_id=\${oi_id}` , {
 	                method : "GET" , 
 	                headers : {"Content-Type" : "application/json"}
 	            });
@@ -181,24 +181,24 @@
 	            }
 	
 	            const data = await response.json();
-	            console.log(data);
-	            const timestamp = `\${data.inboundDTO.in_date}`;
+	            
+	            const timestamp = `\${data.outboundDTO.out_date}`;
 	            const date = new Date(Number(timestamp));
 	            const yyyy = date.getFullYear();
 	            const mm = String(date.getMonth() + 1).padStart(2, '0');
 	            const dd = String(date.getDate()).padStart(2, '0');
 	            const formattedDate = `\${yyyy}-\${mm}-\${dd}`;
 	            
-	            document.getElementById("in_id").value = data.inboundDTO.in_id;
-	            document.getElementById("in_date").value = formattedDate;
-	            document.getElementById("inspection_code").value = data.i_code;
-	            document.getElementById("inspection_date").value = data.i_date;
-	            document.getElementById("inspection_result").value = data.i_result;
-	            document.getElementById("inspection_quantity").value = data.i_quantity;
-	            document.getElementById("inspection_defective_quantity").value = data.i_defective_quantity;
-	            document.getElementById("inspection_defect_rate").value = data.i_defect_rate;
-	            document.getElementById("inspection_inspector").value = data.i_inspector;
-	            document.getElementById("inspection_etc").value = data.i_etc;
+	            document.getElementById("out_id").value = data.outboundDTO.out_id;
+	            document.getElementById("out_date").value = formattedDate;
+	            document.getElementById("outInspection_code").value = data.oi_code;
+	            document.getElementById("outInspection_date").value = data.oi_date;
+	            document.getElementById("outInspection_result").value = data.oi_result;
+	            document.getElementById("outInspection_quantity").value = data.oi_quantity;
+	            document.getElementById("outInspection_defective_quantity").value = data.oi_defective_quantity;
+	            document.getElementById("outInspection_defect_rate").value = data.oi_defect_rate;
+	            document.getElementById("outInspection_inspector").value = data.oi_inspector;
+	            document.getElementById("outInspection_etc").value = data.oi_etc;
 	
 	            const tbody = document.getElementById("content_list");
 	            tbody.innerHTML = "";
@@ -209,18 +209,18 @@
 					<td>\${data.productDTO.p_mctg }</td>
 					<td>\${data.productDTO.p_sctg }</td>
 					<td>\${data.productDTO.p_name }</td>
-					<td class="in_quantity">\${data.inboundDTO.in_quantity }</td>
+					<td class="out_quantity">\${data.outboundDTO.out_quantity }</td>
 	            `
 	            tbody.appendChild(tr);
 	            
 	            if(data.defect_reason_code !== null){
 	            	document.getElementById("defect_reason_div").classList.remove("hide");
-	            	document.getElementById("inspection_defect_reason").value = data.defect_reason_code;
+	            	document.getElementById("outInspection_defect_reason").value = data.defect_reason_code;
 	            }
 	            
-	            if(data.i_custom_reason !== null){
+	            if(data.oi_custom_reason !== null){
 	            	document.getElementById("custom_reason_div").style.display = "block";
-	            	document.getElementById("inspection_custom_reason").value = data.i_custom_reason;
+	            	document.getElementById("outInspection_custom_reason").value = data.oi_custom_reason;
 	            }
 	            
 	        } catch(error){
@@ -230,7 +230,7 @@
 	    
 // 	    불량 사유 리스트 
         async function defectReasonList() {
-            const response = await fetch("http://localhost:8080/erp/inspection/defectReason" , {
+            const response = await fetch("http://localhost:8080/erp/outInspection/defectReason" , {
                 method : "GET" , 
                 headers : {"Content-Type" : "applcation/json"}
             });
@@ -241,7 +241,7 @@
 
             const data = await response.json();
 
-            const select = document.getElementById("inspection_defect_reason");
+            const select = document.getElementById("outInspection_defect_reason");
 
             select.innerHTML = '<option value="">사유 선택</option>';
 
@@ -255,20 +255,20 @@
         }
 
 //      불량 수량 입력 시
-        document.getElementById("inspection_defective_quantity").addEventListener("input" , () => {
+        document.getElementById("outInspection_defective_quantity").addEventListener("input" , () => {
             // 유효성 0 이하 x / 불량수량 입고수량 초과 x / 정상수량 자동계산 / 결과 자동 생성
-            const in_quantity = document.querySelector(".in_quantity");
-            const in_quantity_val = parseInt(in_quantity.innerHTML || 0);
-            const inspection_quantity = document.getElementById("inspection_quantity");
-            const inspection_quantity_val = parseInt(document.getElementById("inspection_quantity").value.replace(/[^\d]/g, '') || 0);
-            const inspection_defective_quantity = document.getElementById("inspection_defective_quantity");
-            const inspection_defective_quantity_val = parseInt(document.getElementById("inspection_defective_quantity").value.replace(/[^\d]/g, '') || 0);
-            const inspection_result = document.getElementById("inspection_result");
-            const inspection_defect_rate = document.getElementById("inspection_defect_rate");
+            const out_quantity = document.querySelector(".out_quantity");
+            const out_quantity_val = parseInt(out_quantity.innerHTML || 0);
+            const inspection_quantity = document.getElementById("outInspection_quantity");
+            const inspection_quantity_val = parseInt(document.getElementById("outInspection_quantity").value.replace(/[^\d]/g, '') || 0);
+            const inspection_defective_quantity = document.getElementById("outInspection_defective_quantity");
+            const inspection_defective_quantity_val = parseInt(document.getElementById("outInspection_defective_quantity").value.replace(/[^\d]/g, '') || 0);
+            const inspection_result = document.getElementById("outInspection_result");
+            const inspection_defect_rate = document.getElementById("outInspection_defect_rate");
             const defect_reason_div = document.getElementById("defect_reason_div");
-            const customReasonInput = document.getElementById("inspection_custom_reason");
+            const customReasonInput = document.getElementById("outInspection_custom_reason");
 
-            if(inspection_defective_quantity_val > in_quantity_val) {
+            if(inspection_defective_quantity_val > out_quantity_val) {
                 alert("불량 수량이 입고 수량을 초과할 수 없습니다.");
                 inspection_defective_quantity.value = "";
                 inspection_quantity.value = "";
@@ -282,15 +282,15 @@
                 return;
             }
 
-            inspection_quantity.value = in_quantity_val - inspection_defective_quantity_val;
+            inspection_quantity.value = out_quantity_val - inspection_defective_quantity_val;
             inspection_defective_quantity.value = inspection_defective_quantity_val;
             
-            inspection_defect_rate.value = (inspection_defective_quantity_val / in_quantity_val) * 100;
+            inspection_defect_rate.value = (inspection_defective_quantity_val / out_quantity_val) * 100;
             
-            if(parseInt(inspection_quantity.value || 0) + inspection_defective_quantity_val === in_quantity_val){
+            if(parseInt(inspection_quantity.value || 0) + inspection_defective_quantity_val === out_quantity_val){
 	            if(inspection_defect_rate.value > 10){
 	                inspection_result.value = "불합격";
-	            } else if(inspection_defective_quantity_val === 0){
+	            } else if(inspection_defect_rate.value == 0){
 	                inspection_result.value = "합격";
 	            } else {
 	                inspection_result.value = "부분합격";
@@ -298,7 +298,7 @@
             }
             
             
-            const select = document.getElementById("inspection_defect_reason");
+            const select = document.getElementById("outInspection_defect_reason");
             
             if(inspection_defective_quantity_val !== 0){
             	defect_reason_div.classList.remove("hide");
@@ -317,10 +317,10 @@
         });
         
 //      불량 사유 기타 선택 시 
-        document.getElementById("inspection_defect_reason").addEventListener("change", function() {
+        document.getElementById("outInspection_defect_reason").addEventListener("change", function() {
         	  const selected = this.value;
         	  const wrapper = document.getElementById("custom_reason_div");
-        	  const customReasonInput = document.getElementById("inspection_custom_reason");
+        	  const customReasonInput = document.getElementById("outInspection_custom_reason");
 
         	  if (selected === "D999") {  // 기타 선택 시
         	    wrapper.style.display = "block";
@@ -334,42 +334,42 @@
         
     //  검수 수정
         async function updateInspection() {
-    		const i_id = parseInt(document.getElementById("i_id").value);
-            const in_id = parseInt(document.getElementById("in_id").value);
-            const i_result = document.getElementById("inspection_result").value;
-            const i_quantity = parseInt(document.getElementById("inspection_quantity").value);
-            const i_defective_quantity = parseInt(document.getElementById("inspection_defective_quantity").value);
-            const i_defect_rate = document.getElementById("inspection_defect_rate").value;
-            const i_moduser = document.getElementById("moduser").value;
-            const i_etc = document.getElementById("inspection_etc").value;
+    		const oi_id = parseInt(document.getElementById("oi_id").value);
+            const out_id = parseInt(document.getElementById("out_id").value);
+            const oi_result = document.getElementById("outInspection_result").value;
+            const oi_quantity = parseInt(document.getElementById("outInspection_quantity").value);
+            const oi_defective_quantity = parseInt(document.getElementById("outInspection_defective_quantity").value);
+            const oi_defect_rate = document.getElementById("outInspection_defect_rate").value;
+            const oi_moduser = document.getElementById("moduser").value;
+            const oi_etc = document.getElementById("outInspection_etc").value;
             
-            const inspectionDTO = {
-            	i_id : i_id ,
-            	in_id : in_id ,
-            	i_result : i_result ,
-            	i_quantity : i_quantity ,
-            	i_defective_quantity : i_defective_quantity ,
-            	i_defect_rate : i_defect_rate ,
-            	i_moduser : i_moduser ,
-            	i_etc : i_etc
+            const outInspectionDTO = {
+            	oi_id : oi_id ,
+            	out_id : out_id ,
+            	oi_result : oi_result ,
+            	oi_quantity : oi_quantity ,
+            	oi_defective_quantity : oi_defective_quantity ,
+            	oi_defect_rate : oi_defect_rate ,
+            	oi_moduser : oi_moduser ,
+            	oi_etc : oi_etc
             }
             
-            const defect_reason = document.getElementById("inspection_defect_reason").value;
-            const custom_reason = document.getElementById("inspection_custom_reason").value;
+            const defect_reason = document.getElementById("outInspection_defect_reason").value;
+            const custom_reason = document.getElementById("outInspection_custom_reason").value;
             
-            if(i_defective_quantity > 0){
-            	inspectionDTO.defect_reason_code = defect_reason;
+            if(oi_defective_quantity > 0){
+            	outInspectionDTO.defect_reason_code = defect_reason;
             }
             
             if(defect_reason === "D999"){
-            	inspectionDTO.i_custom_reason = custom_reason;
+            	outInspectionDTO.oi_custom_reason = custom_reason;
             }
             
             try{
-                const response = await fetch("http://localhost:8080/erp/inspection/update" , {
+                const response = await fetch("http://localhost:8080/erp/outInspection/update" , {
                     method : "POST" ,
                     headers : {"Content-Type" : "application/json"} ,
-                    body : JSON.stringify(inspectionDTO)
+                    body : JSON.stringify(outInspectionDTO)
                 });
 
                 if(!response.ok){
@@ -386,10 +386,10 @@
         
 //      페이지 로드 시 이벤트 발생
         document.addEventListener("DOMContentLoaded" , async () => {
-        	const i_id = ${i_id};
+        	const oi_id = ${oi_id};
         	await defectReasonList();
-        	await fetchInspectionDetail(i_id);
-            document.getElementById("inspection_result").dispatchEvent(new Event("change"));
+        	await fetchInspectionDetail(oi_id);
+            document.getElementById("outInspection_result").dispatchEvent(new Event("change"));
        	});
 //      폼 서밋 시 
         document.getElementById("inspectionUpdate").addEventListener("submit" , async function(event) {

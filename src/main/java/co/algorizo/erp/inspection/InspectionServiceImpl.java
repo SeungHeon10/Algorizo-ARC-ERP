@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.algorizo.erp.inbound.inboundDAO;
 import co.algorizo.erp.inbound.inboundDTO;
+import co.algorizo.erp.inspection.DTO.DefectReasonDTO;
+import co.algorizo.erp.inspection.DTO.InspectionDTO;
 
 @Service
 public class InspectionServiceImpl implements InspectionService{
@@ -39,7 +41,7 @@ public class InspectionServiceImpl implements InspectionService{
 		inspectionDAO.register(inspectionDTO);
 //		입고 상태 변경
 		if(inspectionDTO.getI_quantity() >= 1) {
-			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 대기 확정");
+			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 확정 대기");
 		} else {
 			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 실패");
 		}
@@ -56,7 +58,7 @@ public class InspectionServiceImpl implements InspectionService{
 		inspectionDAO.update(inspectionDTO);
 //		입고 상태 변경
 		if(inspectionDTO.getI_quantity() >= 1) {
-			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 대기 확정");
+			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 확정 대기");
 		} else {
 			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 실패");
 		}
@@ -98,8 +100,14 @@ public class InspectionServiceImpl implements InspectionService{
 
 	@Override
 	public void in_stateUpdate(int in_id , String state) {
-		// TODO Auto-generated method stub
+
 		inspectionDAO.in_stateUpdate(in_id , state);
+	}
+
+	@Override
+	public List<DefectReasonDTO> defectReasonList() {
+
+		return inspectionDAO.defectReasonList();
 	}
 
 }

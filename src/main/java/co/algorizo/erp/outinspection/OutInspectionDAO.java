@@ -1,28 +1,29 @@
-package co.algorizo.erp.inspection;
+package co.algorizo.erp.outinspection;
 
 import java.util.List;
 
 import co.algorizo.erp.inbound.inboundDTO;
 import co.algorizo.erp.inspection.DTO.DefectReasonDTO;
 import co.algorizo.erp.inspection.DTO.InspectionDTO;
+import co.algorizo.erp.outbound.outboundDTO;
 
-public interface InspectionDAO {
+public interface OutInspectionDAO {
 //	검수 조회
-	List<InspectionDTO> list();
+	List<OutInspectionDTO> list();
 //	검수 상세보기
-	InspectionDTO detail(int i_id);
+	OutInspectionDTO detail(int oi_id);
 //	검수 등록
-	void register(InspectionDTO inspectionDTO);
+	void register(OutInspectionDTO outInspectionDTO);
 //	검수 수정
-	void update(InspectionDTO inspectionDTO);
+	void update(OutInspectionDTO outInspectionDTO);
 //	검수 삭제
-	void delete(int i_id);
+	void delete(int oi_id);
 //	검수 코드 생성
 	String registerCode(String prefix);
 //	입고(입고대기 상태) 조회
-	List<inboundDTO> inboudList();
+	List<outboundDTO> outboundList();
 //	입고 상태 변경
-	void in_stateUpdate(int in_id , String state);
+	void out_stateUpdate(int out_id , String state);
 //	불량 사유 가져오기
 	List<DefectReasonDTO> defectReasonList();
 }

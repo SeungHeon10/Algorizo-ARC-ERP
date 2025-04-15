@@ -1,4 +1,4 @@
-package co.algorizo.erp.inspection;
+package co.algorizo.erp.outinspection;
 
 import java.util.List;
 
@@ -19,15 +19,17 @@ import co.algorizo.erp.inbound.inboundDTO;
 import co.algorizo.erp.inbound.inboundService;
 import co.algorizo.erp.inspection.DTO.DefectReasonDTO;
 import co.algorizo.erp.inspection.DTO.InspectionDTO;
+import co.algorizo.erp.outbound.outboundDTO;
+import co.algorizo.erp.outbound.outboundService;
 import co.algorizo.erp.procurement_plan.DTO.PlanDetailDTO;
 
 @Controller
-@RequestMapping(value = "/inspection")
-public class InspectionController {
+@RequestMapping(value = "/outInspection")
+public class OutInspectionController {
 	@Autowired
-	private InspectionService inspectionService;
+	private OutInspectionService outInspectionService;
 	@Autowired
-	private inboundService inboundService;
+	private outboundService outboundService;
 	
 //	전체조회 페이지 이동
 	@GetMapping(value = "/list")
@@ -38,33 +40,33 @@ public class InspectionController {
 	        return mav;
 	    }
 		
-		mav.setViewName("inspection/inspectionList");
+		mav.setViewName("outInspection/outInspectionList");
 		return mav;
 	}
 	
 //	검수 조회 목록
 	@GetMapping(value = "/listData")
-	public ResponseEntity<List<InspectionDTO>> list() {
-		List<InspectionDTO> list = inspectionService.list();
+	public ResponseEntity<List<OutInspectionDTO>> list() {
+		List<OutInspectionDTO> list = outInspectionService.list();
 		
 		return ResponseEntity.ok(list);
 	}
 	
 //	상세보기 페이지 이동
 	@GetMapping(value = "/detail")
-	public ModelAndView detailPage(@RequestParam int i_id) {
+	public ModelAndView detailPage(@RequestParam int oi_id) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("i_id", i_id);
-		mav.setViewName("inspection/inspectionDetail");
+		mav.addObject("oi_id", oi_id);
+		mav.setViewName("outInspection/outInspectionDetail");
 		return mav;
 	}
 	
 //	검수 상세보기
 	@GetMapping(value = "/detailData")
-	public ResponseEntity<InspectionDTO> detail(@RequestParam int i_id) {
-		InspectionDTO inspection = inspectionService.detail(i_id);
-		return ResponseEntity.ok(inspection);
+	public ResponseEntity<OutInspectionDTO> detail(@RequestParam int oi_id) {
+		OutInspectionDTO outInspectionDTO = outInspectionService.detail(oi_id);
+		return ResponseEntity.ok(outInspectionDTO);
 	}
 	
 //	등록폼 이동
@@ -73,39 +75,39 @@ public class InspectionController {
 		if (session.getAttribute("m_id") == null) { 
 	        return "redirect:/";
 	    }
-		return "inspection/inspectionRegister";
+		return "outInspection/outInspectionRegister";
 	}
 	
 //	등록
 	@PostMapping(value = "/register")
-	public ResponseEntity<String> register(@RequestBody InspectionDTO inspectionDTO) {
-		inspectionService.register(inspectionDTO);
+	public ResponseEntity<String> register(@RequestBody OutInspectionDTO outInspectionDTO) {
+		outInspectionService.register(outInspectionDTO);
 		
 		return ResponseEntity.ok("등록완료!");
 	}
 	
 //	수정폼 이동
 	@GetMapping(value = "/update")
-	public ModelAndView updateForm(@RequestParam int i_id) {
+	public ModelAndView updateForm(@RequestParam int oi_id) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("i_id", i_id);
-		mav.setViewName("inspection/inspectionUpdate");
+		mav.addObject("oi_id", oi_id);
+		mav.setViewName("outInspection/outInspectionUpdate");
 		return mav;
 	}
 	
 //	수정
 	@PostMapping(value = "/update")
-	public ResponseEntity<String> update(@RequestBody InspectionDTO inspectionDTO) {
-		inspectionService.update(inspectionDTO);
+	public ResponseEntity<String> update(@RequestBody OutInspectionDTO outInspectionDTO) {
+		outInspectionService.update(outInspectionDTO);
 		
 		return ResponseEntity.ok("수정완료!");
 	}
 //	삭제
 	@PostMapping(value = "/delete")
-	public ResponseEntity<String> delete(@RequestParam int i_id) {
+	public ResponseEntity<String> delete(@RequestParam int oi_id) {
 		
-		inspectionService.delete(i_id);
+		outInspectionService.delete(oi_id);
 		
 		return ResponseEntity.ok("삭제완료!");
 	}
@@ -114,24 +116,24 @@ public class InspectionController {
 	@GetMapping(value = "/code")
 	@ResponseBody
 	public String registerCode() {
-		String newCode = inspectionService.registerCode();
+		String newCode = outInspectionService.registerCode();
 		
 		return newCode;
 	}
 	
 //	입고 목록 조회
-	@GetMapping(value = "/inboundList")
+	@GetMapping(value = "/outboundList")
 	@ResponseBody
-	public List<inboundDTO> inboundList() {
+	public List<outboundDTO> inboundList() {
 		
-		return inspectionService.inboudList();
+		return outInspectionService.outboundList();
 	}
 	
 //	입고 상세 조회
-	@GetMapping(value = "/inboundDetail")
+	@GetMapping(value = "/outboundDetail")
 	@ResponseBody
-	public List<inboundDTO> inboundDetail(@RequestParam int in_id) throws Exception{
-		return inboundService.detail(in_id);
+	public List<outboundDTO> outboundDetail(@RequestParam int out_id) throws Exception{
+		return outboundService.detail(out_id);
 	}
 	
 //	불량 사유 리스트
@@ -139,6 +141,6 @@ public class InspectionController {
 	@ResponseBody
 	public List<DefectReasonDTO> defectReasonList(){
 		
-		return inspectionService.defectReasonList();
+		return outInspectionService.defectReasonList();
 	}
 }
