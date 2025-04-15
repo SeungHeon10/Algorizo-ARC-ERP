@@ -260,12 +260,29 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4>Visitors Profile</h4>
+                                <h4>월별 불량 사유 분포</h4>
                             </div>
                             <div class="card-body">
-                                <div id="chart-visitors-profile"></div>
+                            	<select id="monthSelector" class="form-select mb-3">
+                            		<option value="2025-01">📅 2025년 1월</option>
+                            		<option value="2025-02">📅 2025년 2월</option>
+                            		<option value="2025-03">📅 2025년 3월</option>
+                            		<option value="2025-04">📅 2025년 4월</option>
+                            		<option value="2025-05">📅 2025년 5월</option>
+                            		<option value="2025-06">📅 2025년 6월</option>
+                            		<option value="2025-07">📅 2025년 7월</option>
+                            		<option value="2025-08">📅 2025년 8월</option>
+                            		<option value="2025-09">📅 2025년 9월</option>
+                            		<option value="2025-10">📅 2025년 10월</option>
+                            		<option value="2025-11">📅 2025년 11월</option>
+                            		<option value="2025-12">📅 2025년 12월</option>
+                            	</select>
+                                <canvas id="defectReasonChart" height="150"></canvas>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-12" id="calendar">
+                    
                     </div>
                 </section>
             </div>

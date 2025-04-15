@@ -1,8 +1,10 @@
 package co.algorizo.erp.inspection;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -108,6 +110,12 @@ public class InspectionServiceImpl implements InspectionService{
 	public List<DefectReasonDTO> defectReasonList() {
 
 		return inspectionDAO.defectReasonList();
+	}
+
+	@Override
+	public Map<String, Object> defectReasonData(LocalDate start , LocalDate end) {
+		// TODO Auto-generated method stub
+		return inspectionDAO.defectReasonData(start , end);
 	}
 
 }

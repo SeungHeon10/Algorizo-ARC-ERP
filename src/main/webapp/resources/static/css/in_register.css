@@ -65,3 +65,7 @@
 #custom_reason_div{
 	display: none;
 }
+#calendar {
+  min-height: 600px;  /* 또는 height: 100vh; 도 가능 */
+  background-color: white; /* 배경색 추가하면 디버깅 더 쉬움 */
+}

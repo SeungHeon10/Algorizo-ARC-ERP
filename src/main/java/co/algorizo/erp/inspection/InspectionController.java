@@ -1,6 +1,8 @@
 package co.algorizo.erp.inspection;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +21,6 @@ import co.algorizo.erp.inbound.inboundDTO;
 import co.algorizo.erp.inbound.inboundService;
 import co.algorizo.erp.inspection.DTO.DefectReasonDTO;
 import co.algorizo.erp.inspection.DTO.InspectionDTO;
-import co.algorizo.erp.procurement_plan.DTO.PlanDetailDTO;
 
 @Controller
 @RequestMapping(value = "/inspection")
@@ -140,5 +141,15 @@ public class InspectionController {
 	public List<DefectReasonDTO> defectReasonList(){
 		
 		return inspectionService.defectReasonList();
+	}
+	
+//	불량 사유 데이터
+	@GetMapping(value = "/reasonData")
+	@ResponseBody
+	public Map<String, Object> defectReasonData(@RequestParam String month){
+		LocalDate start = LocalDate.parse(month + "-01");
+	    LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
+		
+		return inspectionService.defectReasonData(start , end);
 	}
 }
