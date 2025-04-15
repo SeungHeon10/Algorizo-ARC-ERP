@@ -24,6 +24,7 @@
         LEFT JOIN company cp ON c.company_cp_id = cp.cp_id
         WHERE 
             c.del = 0
+            order by c.cr_no desc
     </select>
     
     <insert id="register" parameterType="java.util.Map">
