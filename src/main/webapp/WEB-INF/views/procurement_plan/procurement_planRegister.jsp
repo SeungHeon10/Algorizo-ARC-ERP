@@ -103,10 +103,11 @@
 	                            	<button type="button" class="btn btn-secondary" onclick="registerRow()">+ 품목 추가</button>
 	                            </div>
 	                            <hr>
-	                            <div class="form-group">
-									<label for="total" class="form-label">총합계</label> 
-									<input type="text" class="form-control" id="total"
-										readonly="readonly">
+	                            <div class="total_div">
+								    <span>총</span>
+								    <strong class="product_length" id="length">0개 품목</strong>
+								    <span class="total_span">합계 금액</span>
+								    <strong id="total">0 원</strong>
 								</div>
 								<div class="col text-end">
 								    <button type="submit" class="btn btn-outline-primary">등록</button>
@@ -218,11 +219,12 @@
 	        </td>
 	        <td><input type="text" class="form-control" name="product_price[]" value="${plan.p_price }" readonly="readonly"></td>
 	        <td><input type="date" class="form-control" name="product_delivery_date[]" value="${plan.pp_delivery_date }" required="required"></td>
-	        <td><input type="text" class="form-control" name="product_total_price[]" value="${plan.pp_total_price }" readonly="readonly"></td>
+	        <td><input type="text" class="form-control" name="product_total_price[]" value="${plan.pp_total_price }" placeholder="소계 = 수량 x 단가" readonly="readonly"></td>
 	        <td><input type="button" class="btn btn-outline-danger" onclick="removeRow(this)" value="삭제"></td>
 	    `
 	
 	    tbody.appendChild(tr);
+	    
 	}
 	
 	//품목 삭제
@@ -230,12 +232,14 @@
 	    const tbody = document.getElementById("products");
 	    const row = input.closest("tr");
 	    if(tbody.children.length === 1){
-	        row.querySelector('select[name="product_p_id[]"]').value = "";
-	        row.querySelector('input[name="product_quantity[]"]').value = "";
-	        row.querySelector('input[name="product_price[]"]').value = "";
-	        row.querySelector('input[name="product_delivery_date[]"]').value = "";
-	        row.querySelector('input[name="product_total_price[]"]').value = "";
-	        row.querySelector('input[name="product_total_price[]"]').dataset.total = "";
+	    	row.querySelector('select[name="product_p_id[]"]').value = "";
+            row.querySelector("#display_quantity").value = "";
+            row.querySelector('input[name="product_quantity[]"]').value = "";
+            row.querySelector('input[name="product_price[]"]').value = "";
+            row.querySelector('input[name="product_price[]"]').dataset.price = "";
+            row.querySelector('input[name="product_delivery_date[]"]').value = "";
+            row.querySelector('input[name="product_total_price[]"]').value = "";
+            row.querySelector('input[name="product_total_price[]"]').dataset.total = "";
 	        
 	        recalculateTotal();
 	    } else {
@@ -247,12 +251,16 @@
 	//총합계 계산
 	function recalculateTotal(){
 	    const total = document.getElementById("total");
-	
+		const length = document.getElementById("length");
 	    let total_price = 0;
+	    let total_length = 0;
 	    document.querySelectorAll('input[name="product_total_price[]"]').forEach(sub_total => {
 	        total_price += parseInt(sub_total.dataset.total || 0);
+	        total_length += 1;
 	    });
-	    total.value = total_price.toLocaleString('ko-KR') + " 원";
+	    
+	    total.innerHTML = total_price.toLocaleString('ko-KR') + " 원";
+	    length.innerHTML = total_length.toLocaleString('ko-KR') + " 개 품목"
 	}
 	//select에 품목 리스트 넣기
 	function renderProductOptions(select_id){

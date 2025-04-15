@@ -46,8 +46,8 @@ public class PlanController {
 //	조달 계획 목록
 	@GetMapping(value = "/listData")
 	public ResponseEntity<List<PlanDTO>> list() {
-		
 		List<PlanDTO> list = planService.list();
+		
 		return ResponseEntity.ok(list);
 	}
 	
@@ -55,6 +55,7 @@ public class PlanController {
 	@GetMapping(value = "/detail")
 	public ModelAndView detailPage(@RequestParam int plan_id) { //@RequestParam int plan_id
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("plan_id", plan_id);
 		mav.setViewName("procurement_plan/procurement_planDetail");
 		return mav;
@@ -70,23 +71,15 @@ public class PlanController {
 	
 //	조달 계획 등록폼 이동
 	@GetMapping(value = "/register")
-	public ModelAndView registerForm() {
-		ModelAndView mav = new ModelAndView();
+	public String registerForm() {
 		
-		mav.setViewName("procurement_plan/procurement_planRegister");
-		return mav;
+		return "procurement_plan/procurement_planRegister";
 	}
 
 //	조달 계획 등록하기
 	@PostMapping(value = "/register")
 	public ResponseEntity<String> plan_register(@RequestBody PlanDTO planDTO) {
-		Date today = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(" HH:mm:ss");
-		planDTO.setPlan_regdate(planDTO.getPlan_regdate() + simpleDateFormat.format(today));
 		planService.plan_Register(planDTO);
-		
-		planDTO.getProducts().forEach(product -> product.setPlan_id(planDTO.getPlan_id()));
-		planDTO.getProducts().forEach(product -> planService.product_Register(product));
 		
 		return ResponseEntity.ok("등록완료!");
 	}
@@ -95,6 +88,7 @@ public class PlanController {
 	@GetMapping(value = "/update")
 	public ModelAndView updateForm(@RequestParam int plan_id) {
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("plan_id", plan_id);
 		mav.setViewName("procurement_plan/procurement_planUpdate");
 		return mav;
@@ -103,16 +97,8 @@ public class PlanController {
 //	조달 계획 수정하기
 	@PostMapping(value = "/update")
 	public ResponseEntity<String> update(@RequestBody PlanDTO planDTO) {
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		planDTO.setPlan_moddate(dateFormat.format(today));
-		
 		planService.update(planDTO);
 		
-		planService.product_Delete(planDTO.getPlan_id());
-		
-		planDTO.getProducts().forEach(product -> product.setPlan_id(planDTO.getPlan_id()));
-		planDTO.getProducts().forEach(product -> planService.product_Register(product));
 		return ResponseEntity.ok("수정완료!");
 	}
 	
@@ -120,6 +106,7 @@ public class PlanController {
 	@PostMapping(value = "/delete")
 	public ResponseEntity<String> delete(@RequestParam int plan_id) {
 		planService.plan_Delete(plan_id);
+		
 		return ResponseEntity.ok("삭제완료!");
 	}
 	
@@ -127,18 +114,9 @@ public class PlanController {
 	@GetMapping(value = "/code")
 	@ResponseBody
 	public String registerCode() {
-		Date today = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		String prefix = "PL-" + dateFormat.format(today) + "-";
-		String lastcode = planService.registerCode(prefix);
+		String newCode = planService.registerCode();
 		
-		int index = 1;
-		if(lastcode != null) {
-			String[] parts = lastcode.split("-");
-			index = Integer.parseInt(parts[2]) + 1;
-		}
-		String resultNum = String.format("%03d", index);
-		return prefix + resultNum;
+		return newCode;
 	}
 	
 //	품목 리스트 가져오기

@@ -116,3 +116,29 @@
     justify-content: flex-end;
     gap: 14px;
 }
+.total_div{
+	background: #e9ecef;
+    border-left: 5px solid rgb(209 209 209 / 41%);
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    font-size: 1.30rem;
+    color: #535353;
+    display: flex;
+    justify-content: flex-end;
+    border-right: 5px solid rgb(209 209 209 / 41%);
+    align-items: center;
+}
+#total{
+	transition: all 0.3s ease-in-out;
+	margin-right: 50px;
+	min-width: 165px;
+	text-align: right;
+	color: rgb(0 0 0 / 80%);
+}
+.product_length{
+	color: rgb(0 0 0 / 80%);
+}
+.total_span{
+	margin-right: 100px;
+}

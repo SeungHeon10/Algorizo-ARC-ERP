@@ -5,7 +5,7 @@ import java.sql.Date;
 
 import co.algorizo.erp.company.CompanyDTO;
 import co.algorizo.erp.inbound.inboundDTO;
-import co.algorizo.erp.inspection.InspectionDTO;
+import co.algorizo.erp.inspection.DTO.InspectionDTO;
 import co.algorizo.erp.outbound.outboundDTO;
 import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.register.dto.MemberDTO;

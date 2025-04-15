@@ -61,6 +61,7 @@ String plan_id = request.getParameter("plan_id");
 								</div>
 								<div class="d-flex custom">
 									<div class="form-group width">
+										<input type="hidden" id="moduser" value="<%=user %>">
 										<label for="detailWriter" class="form-label">계획 작성자</label> 
 										<input type="text" class="form-control" id="detailWriter"
 											readonly="readonly">
@@ -106,14 +107,15 @@ String plan_id = request.getParameter("plan_id");
 	                            	<button type="button" class="btn btn-secondary" onclick="registerRow()">+ 품목 추가</button>
 	                            </div>
 	                            <hr>
-	                            <div class="form-group">
-									<label for="total" class="form-label">총합계</label> 
-									<input type="text" class="form-control" id="total"
-										readonly="readonly">
+                 	            <div class="total_div">
+								    <span>총</span>
+								    <strong class="product_length" id="length">0개 품목</strong>
+								    <span class="total_span">합계 금액</span>
+								    <strong id="total">0 원</strong>
 								</div>
 								<div class="col text-end">
 								    <button type="submit" class="btn btn-outline-warning">수정</button>
-								    <button type="button" class="btn btn-outline-primary" onclick="location.href='detail?plan_id=${plan_id }'">목록</button>
+								    <button type="button" class="btn btn-outline-primary" onclick="location.href='detail?plan_id=${plan_id }'">취소</button>
 							  	</div>
 						  	</form>
 						</div>
@@ -265,8 +267,10 @@ String plan_id = request.getParameter("plan_id");
         const row = input.closest("tr");
         if(tbody.children.length === 1){
             row.querySelector('select[name="product_p_id[]"]').value = "";
+            row.querySelector("#display_quantity").value = "";
             row.querySelector('input[name="product_quantity[]"]').value = "";
             row.querySelector('input[name="product_price[]"]').value = "";
+            row.querySelector('input[name="product_price[]"]').dataset.price = "";
             row.querySelector('input[name="product_delivery_date[]"]').value = "";
             row.querySelector('input[name="product_total_price[]"]').value = "";
             row.querySelector('input[name="product_total_price[]"]').dataset.total = "";
@@ -280,13 +284,17 @@ String plan_id = request.getParameter("plan_id");
     
 //  총합계 계산
     function recalculateTotal(){
-        const total = document.getElementById("total");
-
-        let total_price = 0;
-        document.querySelectorAll('input[name="product_total_price[]"]').forEach(sub_total => {
-            total_price += parseInt(sub_total.dataset.total || 0);
-        });
-        total.value = total_price.toLocaleString('ko-KR') + " 원";
+	    const total = document.getElementById("total");
+		const length = document.getElementById("length");
+	    let total_price = 0;
+	    let total_length = 0;
+	    document.querySelectorAll('input[name="product_total_price[]"]').forEach(sub_total => {
+	        total_price += parseInt(sub_total.dataset.total || 0);
+	        total_length += 1;
+	    });
+	    
+	    total.innerHTML = total_price.toLocaleString('ko-KR') + " 원";
+	    length.innerHTML = total_length.toLocaleString('ko-KR') + " 개 품목"
     }
 //  select에 품목 리스트 넣기
     function renderProductOptions(select_id){
@@ -302,7 +310,8 @@ String plan_id = request.getParameter("plan_id");
     async function updatePlan() {
         const plan_id = document.getElementById("detailTitle").dataset.id;
         const updateTitle = document.getElementById("detailTitle").value;
-
+        const moduser = document.getElementById("moduser").value;
+        
         const plan_products = [];
 
         document.querySelectorAll("#products tr").forEach(tr => {
@@ -318,6 +327,7 @@ String plan_id = request.getParameter("plan_id");
         const planDTO = {
         	plan_id : plan_id ,
             plan_title : updateTitle ,
+            plan_moduser : moduser ,
             products : plan_products
         }
         
@@ -347,11 +357,12 @@ String plan_id = request.getParameter("plan_id");
     	
         recalculateTotal();
     });
-    document.getElementById("updatePlan").addEventListener("submit" , function(event) {
+//  폼 서밋 시 
+    document.getElementById("updatePlan").addEventListener("submit" , async function(event) {
     	event.preventDefault();
     	
-    	updatePlan();
-    })
+    	await updatePlan();
+    });
 </script>
 </body>
 </html>

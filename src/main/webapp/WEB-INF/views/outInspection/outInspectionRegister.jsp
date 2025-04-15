@@ -23,7 +23,7 @@ String user = (String) session.getAttribute("m_name");
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>검수등록</h3>
+						<h3>출고 검수 등록</h3>
 						<p class="text-subtitle text-muted">Register new inspection for incoming items.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
@@ -42,21 +42,21 @@ String user = (String) session.getAttribute("m_name");
 					<div class="container">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">검수 등록</h4>
+								<h4 class="card-title">출고 검수 등록</h4>
 							</div>
 							<div class="card-body">
 								<form action="register" id="inspectionRegister" method="post">
 									<div class="d-flex custom">
 										<div class="form-group width">
-											<label for="in_id" class="form-label">입고 번호</label>
+											<label for="in_id" class="form-label">출고 번호</label>
 											<div class="listView">
-												<input type="text" id="in_id" name="in_id" class="form-control" readonly>
-												<button type="button" class="btn btn-primary w100" id="in_list">🔍 조회</button>
+												<input type="text" id="out_id" name="out_id" class="form-control" readonly>
+												<button type="button" class="btn btn-primary w100" id="out_list">🔍 조회</button>
 											</div> 
 										</div>
 										<div class="form-group width">
-											<label for="in_date" class="form-label">입고일자</label> 
-											<input type="text" id="in_date" class="form-control" readonly>
+											<label for="out_date" class="form-label">출고일자</label> 
+											<input type="text" id="out_date" class="form-control" readonly>
 										</div>
 									</div>
 									<div class="form-group">
@@ -72,7 +72,7 @@ String user = (String) session.getAttribute("m_name");
 				                                        <th class="text-center">중분류</th>
 				                                        <th class="text-center">소분류</th>
 				                                        <th class="text-center">품목명</th>
-				                                        <th class="text-center">입고수량</th>
+				                                        <th class="text-center">출고수량</th>
 				                                    </tr>
 				                                </thead>
 				                                <tbody id="product_list">
@@ -86,67 +86,67 @@ String user = (String) session.getAttribute("m_name");
 										<div class="row">
 		                                    <div class="col-12">
 		                                        <div class="form-group">
-		                                            <label for="inspection_code" class="form-label">검수코드</label>
-		                                            <input type="text" id="inspection_code" 
+		                                            <label for="outInspection_code" class="form-label">검수코드</label>
+		                                            <input type="text" id="outInspection_code" 
 		                                            	class="form-control" name="i_code" readonly>
 		                                        </div>
 		                                    </div>
 		                                    <div class="d-flex custom m0">
 			                                    <div class="form-group width">
 			                                        <div class="form-group">
-			                                            <label for="inspection_date" class="form-label">검수일자</label>
-			                                            <input type="date" id="inspection_date" 
+			                                            <label for="outInspection_date" class="form-label">검수일자</label>
+			                                            <input type="date" id="outInspection_date" 
 			                                            	class="form-control" name="i_date" readonly>
 			                                        </div>
 			                                    </div>
 			                                    <div class="form-group width">
 			                                        <div class="form-group">
-			                                            <label for="inspection_result" class="form-label">결과</label>
-			                                            <input type="text" id="inspection_result" 
+			                                            <label for="outInspection_result" class="form-label">결과</label>
+			                                            <input type="text" id="outInspection_result" 
 			                                            	class="form-control" name="i_result" readonly>
 			                                        </div>
 			                                    </div>
 		                                    </div>
 		                                    <div class="d-flex custom">
 		                                        <div class="form-group width">
-		                                            <label for="inspection_quantity" class="form-label">정상수량</label>
-		                                            <input type="text" id="inspection_quantity"
+		                                            <label for="outInspection_quantity" class="form-label">정상수량</label>
+		                                            <input type="text" id="outInspection_quantity"
 		                                                class="form-control" name="i_quantity" value="0" readonly>
 		                                        </div>
 		                                        <div class="form-group width35">
-		                                            <label for="inspection_defective_quantity" class="form-label">불량수량</label>
-		                                            <input type="text" id="inspection_defective_quantity"
+		                                            <label for="outInspection_defective_quantity" class="form-label">불량수량</label>
+		                                            <input type="text" id="outInspection_defective_quantity"
 		                                                class="form-control" name="i_defective_quantity" required>
 		                                        </div>
 		                                        <div class="form-group width9">
-		                                            <label for="inspection_defect_rate" class="form-label">불량률(%)</label>
-		                                            <input type="text" id="inspection_defect_rate"
+		                                            <label for="outInspection_defect_rate" class="form-label">불량률(%)</label>
+		                                            <input type="text" id="outInspection_defect_rate"
 		                                                class="form-control" name="i_defect_rate" readonly>
 		                                        </div>
 		                                    </div>
 		                                    <div id="defect_reason_div" class="col-12 hide">
 		                                        <div class="form-group">
-		                                            <label for="inspection_defect_reason" class="form-label">불량 사유</label>
-		                                            <select id="inspection_defect_reason" class="form-control">
+		                                            <label for="outInspection_defect_reason" class="form-label">불량 사유</label>
+		                                            <select id="outInspection_defect_reason" class="form-control">
 	                                                </select>
 		                                        </div>
 		                                    </div>
 		                                    <div id="custom_reason_div">
 		                                        <div class="form-group">
-		                                            <input type="text" id="inspection_custom_reason" class="form-control" placeholder="기타 사유를 입력해주세요 ...">
+		                                            <input type="text" id="outInspection_custom_reason" class="form-control" placeholder="기타 사유를 입력해주세요 ...">
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-12">
 		                                        <div class="form-group">
-		                                            <label for="inspection_inspector" class="form-label">검사자</label>
-		                                            <input type="text" id="inspection_inspector"
+		                                            <label for="outInspection_inspector" class="form-label">검사자</label>
+		                                            <input type="text" id="outInspection_inspector"
 		                                                class="form-control" name="i_inspector" value="<%=user %>" readonly>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-12">
 		                                        <div class="form-group">
-		                                            <label for="inspection_etc" class="form-label">비고</label>
-		                                            <input type="text" id="inspection_etc"
+		                                            <label for="outInspection_etc" class="form-label">비고</label>
+		                                            <input type="text" id="outInspection_etc"
 		                                                class="form-control" name="i_etc" >
 		                                        </div>
 		                                    </div>
@@ -175,10 +175,10 @@ String user = (String) session.getAttribute("m_name");
 		        	<table class="table table-bordered table-hover text-center align-middle">
 		            	<thead>
 							<tr>
-								<th>입고번호</th>
-					            <th>입고일자</th>
+								<th>출고번호</th>
+					            <th>출고일자</th>
 					            <th>품목명</th>
-					            <th>입고수량</th>
+					            <th>출고수량</th>
 					            <th>선택</th>
 				            </tr>
 	          			</thead>
@@ -199,10 +199,10 @@ String user = (String) session.getAttribute("m_name");
 	<!-- 플러그인 -->
 	<%@ include file="../include/plugin.jsp"%>
 	<script>
-// 		입고 목록 리스트
+// 		출고 목록 리스트
 	    async function inboundList() {
 	        try{
-	            const response = await fetch(`http://localhost:8080/erp/inspection/inboundList` , {
+	            const response = await fetch(`http://localhost:8080/erp/outInspection/outboundList` , {
 	                method : "GET" ,
 	                headers : {"Content-Type" : "application/json"}
 	            });
@@ -216,17 +216,17 @@ String user = (String) session.getAttribute("m_name");
 	            const tbody = document.getElementById("receiptList");
 	            tbody.innerHTML = "";
 	
-	            data.forEach(inbound => {
+	            data.forEach(outbound => {
 	                const tr = document.createElement("tr");
 	                tr.style.fontSize = "14px";
-	                const timestamp = `\${inbound.in_date}`;
+	                const timestamp = `\${outbound.out_date}`;
 	                const formattedDate = formatDate(new Date(Number(timestamp)));
 	                tr.innerHTML = `
-	                	<td><div class="text-ellipsis">\${inbound.in_id}</div></td>
+	                	<td><div class="text-ellipsis">\${outbound.out_id}</div></td>
 	                	<td><div class="text-ellipsis">\${formattedDate}</div></td>
-	                	<td><div class="text-ellipsis">\${inbound.product.p_name}</div></td>
-	                	<td><div class="text-ellipsis">\${inbound.in_quantity}</div></td>
-	                	<td><button type="button" class="btn btn-light" data-id="\${inbound.in_id}">선택</button</td>
+	                	<td><div class="text-ellipsis">\${outbound.product.p_name}</div></td>
+	                	<td><div class="text-ellipsis">\${outbound.out_quantity}</div></td>
+	                	<td><button type="button" class="btn btn-light" data-id="\${outbound.out_id}">선택</button</td>
 	                `
 	
 	                tbody.appendChild(tr);
@@ -234,11 +234,11 @@ String user = (String) session.getAttribute("m_name");
 	            
 	            document.querySelectorAll(".btn-light").forEach(inbound => {
 	                inbound.addEventListener("click" , () => {
-	                    document.getElementById("in_id").value = inbound.dataset.id;
+	                    document.getElementById("out_id").value = inbound.dataset.id;
 	                    const modalEl = document.getElementById('inspectionModal');
 	                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
 	                    modalInstance.hide();
-	                    document.getElementById("in_id").dispatchEvent(new Event("change"))
+	                    document.getElementById("out_id").dispatchEvent(new Event("change"))
 	                });
 	            });
 	        } catch(error) {
@@ -259,7 +259,7 @@ String user = (String) session.getAttribute("m_name");
 
             const data = await response.json();
 
-            const select = document.getElementById("inspection_defect_reason");
+            const select = document.getElementById("outInspection_defect_reason");
 
             select.innerHTML = '<option value="">사유 선택</option>';
 
@@ -272,11 +272,11 @@ String user = (String) session.getAttribute("m_name");
             });
         }
 	
-//      입고목록 선택 시 
-        document.getElementById("in_id").addEventListener("change" , async () => {
-            const in_id = document.getElementById("in_id").value;
+//      출고목록 선택 시 
+        document.getElementById("out_id").addEventListener("change" , async () => {
+            const out_id = document.getElementById("out_id").value;
             
-            const response = await fetch(`/erp/inspection/inboundDetail?in_id=\${in_id}` , {
+            const response = await fetch(`/erp/outInspection/outboundDetail?out_id=\${out_id}` , {
                 method : "GET" , 
                 headers : {"Content-Type" : "application/json"}
             });
@@ -287,22 +287,22 @@ String user = (String) session.getAttribute("m_name");
     
             const data = await response.json();
             
-            const timestamp = `\${data[0].in_date}`;
+            const timestamp = `\${data[0].out_date}`;
             const formattedDate = formatDate(new Date(Number(timestamp)));
 
-            document.getElementById("in_date").value = `\${formattedDate}`;
+            document.getElementById("out_date").value = `\${formattedDate}`;
             const tbody = document.getElementById("product_list");
             tbody.innerHTML = "";
-            data.forEach(inbound => {
+            data.forEach(outbound => {
                 const tr = document.createElement("tr");
                 
                 tr.innerHTML = `
-                    <td>\${inbound.product.p_code}</td>
-                    <td>\${inbound.product.p_lctg}</td>
-                    <td>\${inbound.product.p_mctg}</td>
-                    <td>\${inbound.product.p_sctg}</td>
-                    <td>\${inbound.product.p_name}</td>
-                    <td class="in_quantity">\${inbound.in_quantity}</td>                
+                    <td>\${outbound.product.p_code}</td>
+                    <td>\${outbound.product.p_lctg}</td>
+                    <td>\${outbound.product.p_mctg}</td>
+                    <td>\${outbound.product.p_sctg}</td>
+                    <td>\${outbound.product.p_name}</td>
+                    <td class="out_quantity">\${outbound.out_quantity}</td>                
                 `;
     
                 tbody.appendChild(tr);
@@ -312,24 +312,24 @@ String user = (String) session.getAttribute("m_name");
             await registerCode();
             
             const today = formatDate(new Date());
-            document.getElementById("inspection_date").value = today;
+            document.getElementById("outInspection_date").value = today;
         });
             
 //      불량 수량 입력 시
-        document.getElementById("inspection_defective_quantity").addEventListener("input" , () => {
+        document.getElementById("outInspection_defective_quantity").addEventListener("input" , () => {
             // 유효성 0 이하 x / 불량수량 입고수량 초과 x / 정상수량 자동계산 / 결과 자동 생성
-            const in_quantity = document.querySelector(".in_quantity");
-            const in_quantity_val = parseInt(in_quantity.innerHTML || 0);
-            const inspection_quantity = document.getElementById("inspection_quantity");
-            const inspection_quantity_val = parseInt(document.getElementById("inspection_quantity").value.replace(/[^\d]/g, '') || 0);
-            const inspection_defective_quantity = document.getElementById("inspection_defective_quantity");
-            const inspection_defective_quantity_val = parseInt(document.getElementById("inspection_defective_quantity").value.replace(/[^\d]/g, '') || 0);
-            const inspection_result = document.getElementById("inspection_result");
-            const inspection_defect_rate = document.getElementById("inspection_defect_rate");
+            const out_quantity = document.querySelector(".out_quantity");
+            const out_quantity_val = parseInt(out_quantity.innerHTML || 0);
+            const inspection_quantity = document.getElementById("outInspection_quantity");
+            const inspection_quantity_val = parseInt(document.getElementById("outInspection_quantity").value.replace(/[^\d]/g, '') || 0);
+            const inspection_defective_quantity = document.getElementById("outInspection_defective_quantity");
+            const inspection_defective_quantity_val = parseInt(document.getElementById("outInspection_defective_quantity").value.replace(/[^\d]/g, '') || 0);
+            const inspection_result = document.getElementById("outInspection_result");
+            const inspection_defect_rate = document.getElementById("outInspection_defect_rate");
             const defect_reason_div = document.getElementById("defect_reason_div");
-            const customReasonInput = document.getElementById("inspection_custom_reason");
+            const customReasonInput = document.getElementById("outInspection_custom_reason");
 
-            if(inspection_defective_quantity_val > in_quantity_val) {
+            if(inspection_defective_quantity_val > out_quantity_val) {
                 alert("불량 수량이 입고 수량을 초과할 수 없습니다.");
                 inspection_defective_quantity.value = "";
                 inspection_quantity.value = "";
@@ -343,15 +343,15 @@ String user = (String) session.getAttribute("m_name");
                 return;
             }
 
-            inspection_quantity.value = in_quantity_val - inspection_defective_quantity_val;
+            inspection_quantity.value = out_quantity_val - inspection_defective_quantity_val;
             inspection_defective_quantity.value = inspection_defective_quantity_val;
             
-            inspection_defect_rate.value = (inspection_defective_quantity_val / in_quantity_val) * 100;
+            inspection_defect_rate.value = (inspection_defective_quantity_val / out_quantity_val) * 100;
             
-            if(parseInt(inspection_quantity.value || 0) + inspection_defective_quantity_val === in_quantity_val){
+            if(parseInt(inspection_quantity.value || 0) + inspection_defective_quantity_val === out_quantity_val){
 	            if(inspection_defect_rate.value > 10){
 	                inspection_result.value = "불합격";
-	            } else if(inspection_defect_rate.value === 0){
+	            } else if(inspection_defect_rate.value == 0){
 	                inspection_result.value = "합격";
 	            } else {
 	                inspection_result.value = "부분합격";
@@ -359,7 +359,7 @@ String user = (String) session.getAttribute("m_name");
             }
             
             
-            const select = document.getElementById("inspection_defect_reason");
+            const select = document.getElementById("outInspection_defect_reason");
             
             if(inspection_defective_quantity_val !== 0){
             	defect_reason_div.classList.remove("hide");
@@ -378,7 +378,7 @@ String user = (String) session.getAttribute("m_name");
         });
 //      코드 생성
         async function registerCode(){
-            const response = await fetch("/erp/inspection/code" , {
+            const response = await fetch("/erp/outInspection/code" , {
                 method : "GET" ,
                 headers : {"Content-Type" : "application/json"}
             });
@@ -388,11 +388,11 @@ String user = (String) session.getAttribute("m_name");
             }
             const data = await response.text();
             
-            document.getElementById("inspection_code").value = data;
+            document.getElementById("outInspection_code").value = data;
         }
         
 //      조회 버튼 누를 시 
-        document.getElementById("in_list").addEventListener("click" , async function(event) {
+        document.getElementById("out_list").addEventListener("click" , async function(event) {
             event.preventDefault();
 
             const modal_div = document.getElementById("inspectionModal")
@@ -405,7 +405,6 @@ String user = (String) session.getAttribute("m_name");
     	
 //     	날짜 포맷 생성
         function formatDate(date) {
-			console.log(date);
 			const yyyy = date.getFullYear();
 			const mm = String(date.getMonth() + 1).padStart(2, '0');
 			const dd = String(date.getDate()).padStart(2, '0');
@@ -413,10 +412,10 @@ String user = (String) session.getAttribute("m_name");
         }
         
 //      불량 사유 기타 선택 시 
-        document.getElementById("inspection_defect_reason").addEventListener("change", function() {
+        document.getElementById("outInspection_defect_reason").addEventListener("change", function() {
         	  const selected = this.value;
         	  const wrapper = document.getElementById("custom_reason_div");
-        	  const customReasonInput = document.getElementById("inspection_custom_reason");
+        	  const customReasonInput = document.getElementById("outInspection_custom_reason");
 
         	  if (selected === "D999") {  // 기타 선택 시
         	    wrapper.style.display = "block";
@@ -437,44 +436,44 @@ String user = (String) session.getAttribute("m_name");
         document.getElementById("inspectionRegister").addEventListener("submit" , async function(event) {
             event.preventDefault();
             
-            const in_id = parseInt(document.getElementById("in_id").value);
-            const i_code = document.getElementById("inspection_code").value;
-            const i_date = document.getElementById("inspection_date").value;
-            const i_result = document.getElementById("inspection_result").value;
-            const i_quantity = parseInt(document.getElementById("inspection_quantity").value);
-            const i_defective_quantity = parseInt(document.getElementById("inspection_defective_quantity").value);
-            const i_defect_rate = document.getElementById("inspection_defect_rate").value;
-            const i_inspector = document.getElementById("inspection_inspector").value;
-            const i_etc = document.getElementById("inspection_etc").value;
+            const out_id = parseInt(document.getElementById("out_id").value);
+            const oi_code = document.getElementById("outInspection_code").value;
+            const oi_date = document.getElementById("outInspection_date").value;
+            const oi_result = document.getElementById("outInspection_result").value;
+            const oi_quantity = parseInt(document.getElementById("outInspection_quantity").value);
+            const oi_defective_quantity = parseInt(document.getElementById("outInspection_defective_quantity").value);
+            const oi_defect_rate = document.getElementById("outInspection_defect_rate").value;
+            const oi_inspector = document.getElementById("outInspection_inspector").value;
+            const oi_etc = document.getElementById("outInspection_etc").value;
 
-            const inspectionData = {
-            	in_id : in_id ,
-            	i_code : i_code ,
-            	i_date : i_date ,
-            	i_result : i_result ,
-            	i_quantity : i_quantity ,
-            	i_defective_quantity : i_defective_quantity ,
-            	i_defect_rate : i_defect_rate ,
-            	i_inspector : i_inspector ,
-            	i_etc : i_etc
+            const outInspectionData = {
+            	out_id : out_id ,
+            	oi_code : oi_code ,
+            	oi_date : oi_date ,
+            	oi_result : oi_result ,
+            	oi_quantity : oi_quantity ,
+            	oi_defective_quantity : oi_defective_quantity ,
+            	oi_defect_rate : oi_defect_rate ,
+            	oi_inspector : oi_inspector ,
+            	oi_etc : oi_etc
             }
             
-            const defect_reason = document.getElementById("inspection_defect_reason").value;
-            const custom_reason = document.getElementById("inspection_custom_reason").value;
+            const defect_reason = document.getElementById("outInspection_defect_reason").value;
+            const custom_reason = document.getElementById("outInspection_custom_reason").value;
             
-            if(i_defective_quantity > 0){
-            	inspectionData.defect_reason_code = defect_reason;
+            if(oi_defective_quantity > 0){
+            	outInspectionData.defect_reason_code = defect_reason;
             }
             
             if(defect_reason === "D999"){
-            	inspectionData.i_custom_reason = custom_reason;
+            	outInspectionData.oi_custom_reason = custom_reason;
             }
             
             try{
-                const response = await fetch("http://localhost:8080/erp/inspection/register" , {
+                const response = await fetch("http://localhost:8080/erp/outInspection/register" , {
                     method : "POST" ,
                     headers : {"Content-Type" : "application/json"} ,
-                    body : JSON.stringify(inspectionData)
+                    body : JSON.stringify(outInspectionData)
                 });
 
                 if(!response.ok){

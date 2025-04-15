@@ -8,6 +8,7 @@ public class PlanDetailDTO {
 	private String plan_writer;
 	private String plan_regdate;
 	private String plan_moddate;
+	private String plan_moduser;
 //	plan_product 테이블
 	private int pp_id;
 	private int p_id;
@@ -24,8 +25,8 @@ public class PlanDetailDTO {
 	}
 
 	public PlanDetailDTO(int plan_id, String plan_code, String plan_title, String plan_writer, String plan_regdate,
-			String plan_moddate, int pp_id, int p_id, int pp_quantity, String pp_delivery_date, int pp_total_price,
-			String p_name, int p_price, String p_category) {
+			String plan_moddate, String plan_moduser, int pp_id, int p_id, int pp_quantity, String pp_delivery_date,
+			int pp_total_price, String p_name, int p_price, String p_category) {
 		super();
 		this.plan_id = plan_id;
 		this.plan_code = plan_code;
@@ -33,6 +34,7 @@ public class PlanDetailDTO {
 		this.plan_writer = plan_writer;
 		this.plan_regdate = plan_regdate;
 		this.plan_moddate = plan_moddate;
+		this.plan_moduser = plan_moduser;
 		this.pp_id = pp_id;
 		this.p_id = p_id;
 		this.pp_quantity = pp_quantity;
@@ -89,6 +91,14 @@ public class PlanDetailDTO {
 
 	public void setPlan_moddate(String plan_moddate) {
 		this.plan_moddate = plan_moddate;
+	}
+
+	public String getPlan_moduser() {
+		return plan_moduser;
+	}
+
+	public void setPlan_moduser(String plan_moduser) {
+		this.plan_moduser = plan_moduser;
 	}
 
 	public int getPp_id() {
@@ -159,9 +169,9 @@ public class PlanDetailDTO {
 	public String toString() {
 		return "PlanDetailDTO [plan_id=" + plan_id + ", plan_code=" + plan_code + ", plan_title=" + plan_title
 				+ ", plan_writer=" + plan_writer + ", plan_regdate=" + plan_regdate + ", plan_moddate=" + plan_moddate
-				+ ", pp_id=" + pp_id + ", p_id=" + p_id + ", pp_quantity=" + pp_quantity + ", pp_delivery_date="
-				+ pp_delivery_date + ", pp_total_price=" + pp_total_price + ", p_name=" + p_name + ", p_price="
-				+ p_price + ", p_category=" + p_category + "]";
+				+ ", plan_moduser=" + plan_moduser + ", pp_id=" + pp_id + ", p_id=" + p_id + ", pp_quantity="
+				+ pp_quantity + ", pp_delivery_date=" + pp_delivery_date + ", pp_total_price=" + pp_total_price
+				+ ", p_name=" + p_name + ", p_price=" + p_price + ", p_category=" + p_category + "]";
 	}
-	
+
 }

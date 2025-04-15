@@ -192,6 +192,14 @@
 		                                <a href="${contextPath }/inspection/register">검수 등록</a>
 		                            </li>
 	                            </c:if>
+	                            <li class="submenu-item ">
+	                                <a href="${contextPath }/outInspection/list">출고 검수 조회</a>
+	                            </li>
+	                            <c:if test="${sessionScope.d_id == 54 || sessionScope.m_id == 20250001}">
+		                            <li class="submenu-item ">
+		                                <a href="${contextPath }/outInspection/register">출고 검수 등록</a>
+		                            </li>
+	                            </c:if>
 	                            
 	                        </ul>
 	                    </li>

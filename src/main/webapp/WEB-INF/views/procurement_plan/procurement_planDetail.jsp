@@ -72,6 +72,18 @@ String plan_id = request.getParameter("plan_id");
 										readonly="readonly">
 								</div>
 							</div>
+							<div class="d-flex custom">
+								<div class="form-group width">
+									<label for="detailModuser" class="form-label">최종 수정자</label> 
+									<input type="text" class="form-control" id="detailModuser"
+										readonly="readonly">
+								</div>
+								<div class="form-group width">
+									<label for="detailModdate" class="form-label">최종 수정일</label>
+									<input type="text" class="form-control" id="detailModdate"
+										readonly="readonly">
+								</div>
+							</div>
 							<hr>
 							<div class="form-group">
 								<label class="form-label">조달품목</label> 
@@ -101,6 +113,13 @@ String plan_id = request.getParameter("plan_id");
 		                            </table>
 								</div>
 							</div>
+							<hr>
+							<div class="total_div">
+								    <span>총</span>
+								    <strong class="product_length" id="length">0개 품목</strong>
+								    <span class="total_span">합계 금액</span>
+								    <strong id="total">0 원</strong>
+								</div>
 							<div class="col text-end">
 							    <button class="btn btn-outline-warning" onclick="location.href='update?plan_id=${plan_id}'">수정</button>
 							    <button class="btn btn-outline-danger" onclick="isDelete()">삭제</button>
@@ -149,7 +168,6 @@ String plan_id = request.getParameter("plan_id");
 	}
 // 	조달 계획 상세보기
     async function fetchPlanDetail(plan_id) {
-		console.log(plan_id);
         try{
             const response = await fetch(`http://localhost:8080/erp/plans/detailData?plan_id=\${plan_id}` , {
                 method : "GET" , 
@@ -167,11 +185,16 @@ String plan_id = request.getParameter("plan_id");
             document.getElementById("detailCode").value = data[0].plan_code;
             document.getElementById("detailWriter").value = data[0].plan_writer;
             document.getElementById("detailRegdate").value = data[0].plan_regdate;
+            document.getElementById("detailModuser").value = data[0].plan_moduser;
+            document.getElementById("detailModdate").value = data[0].plan_moddate;
 
             const tbody = document.getElementById("plan_products");
+            tbody.innerHTML = "";
+            let total = 0;
+            let p_length = 0;
             data.forEach(plan_product => {
                 const tr = document.createElement("tr");
-                const delivery_date = plan_product.pp_delivery_date?.slice(0, 10);
+                const delivery_date = plan_product.pp_delivery_date.slice(0, 10);
                 tr.innerHTML = `
                     <td class="p_name">\${plan_product.p_name}</td>
                     <td class="pp_quantity">\${plan_product.pp_quantity.toLocaleString('ko-KR')}</td>
@@ -179,8 +202,13 @@ String plan_id = request.getParameter("plan_id");
                     <td class="pp_delivery_date">\${delivery_date}</td>
                     <td class="pp_total_price">\${plan_product.pp_total_price.toLocaleString('ko-KR')}</td>
                 `
+                total += parseInt(plan_product.pp_total_price || 0);
+                p_length += 1;
                 tbody.appendChild(tr);
             });
+            
+            document.getElementById("length").innerHTML = p_length.toLocaleString('ko-KR') + " 개 품목";
+            document.getElementById("total").innerHTML = total.toLocaleString('ko-KR') + " 원";
         } catch(error){
             console.error("데이터 처리중 오류 발생" , error);
         }

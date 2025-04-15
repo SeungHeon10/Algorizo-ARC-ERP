@@ -21,7 +21,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>검수 조회</h3>
+                            <h3>출고 검수 조회</h3>
                             <p class="text-subtitle text-muted">View and manage inspection records.</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
@@ -37,7 +37,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Inspection List 
+                            OutInspection List 
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -72,10 +72,10 @@
     <script src="${contextPath }/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script src="${contextPath }/resources/static/dist/assets/js/main.js"></script>
     <script>
-	// 	계획 조회
+	// 	검수 조회
 	    async function list() {
 	        try{
-	            const response = await fetch(`http://localhost:8080/erp/inspection/listData` , {
+	            const response = await fetch(`http://localhost:8080/erp/outInspection/listData` , {
 	                method : "GET" ,
 	                headers : {"Content-Type" : "application/json"}
 	            });
@@ -89,23 +89,23 @@
 	            const content_list = document.getElementById("content_list");
 	            content_list.innerHTML = "";
 	            
-	            data.forEach(inpection => {
+	            data.forEach(outInpection => {
 	                const tr_content = document.createElement("tr");
 	                tr_content.innerHTML = `
-	                	<td>\${inpection.i_id }</td>
-            			<td><a href="detail?i_id=\${inpection.i_id }">\${inpection.i_code }</a></td>
-            			<td>\${inpection.in_id }</td>
-            			<td>\${inpection.i_date }</td>
-            			<td>\${inpection.i_inspector }</td>
-            			<td><span>\${inpection.i_result }</span></td>
+	                	<td>\${outInpection.oi_id }</td>
+            			<td><a href="detail?oi_id=\${outInpection.oi_id }">\${outInpection.oi_code }</a></td>
+            			<td>\${outInpection.out_id }</td>
+            			<td>\${outInpection.oi_date }</td>
+            			<td>\${outInpection.oi_inspector }</td>
+            			<td><span>\${outInpection.oi_result }</span></td>
 	                `;
 	                
 	                const span = tr_content.querySelector("span");
 	                span.classList.add("badge");
 	                
-	                if(inpection.i_result === "합격"){
+	                if(outInpection.oi_result === "합격"){
 	                	span.classList.add("bg-success");
-	                } else if(inpection.i_result === "불합격") {
+	                } else if(outInpection.oi_result === "불합격") {
 	                	span.classList.add("bg-danger");
 	                } else {
 	                	span.classList.add("bg-warning");
