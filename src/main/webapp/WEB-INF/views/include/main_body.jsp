@@ -162,7 +162,7 @@
 				               <div class="card">
 				                  <div class="card-header">
 				                     <h4>
-				                        <a href="${contextPath }/board/list">공지사항
+				                        <a href="${contextPath }/board/list">🔔공지사항🔔
 				                     </h4>
 				                     </a>
 				                  </div>

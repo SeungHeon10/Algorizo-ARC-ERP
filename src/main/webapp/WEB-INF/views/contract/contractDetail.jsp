@@ -36,8 +36,8 @@
                      <nav aria-label="breadcrumb"
                         class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                           <li class="breadcrumb-item"><a href="${contextPath }/contract/list">계약 조회</a></li>
-                           <li class="breadcrumb-item active" aria-current="page">계약 상세</li>
+                           <li class="breadcrumb-item"><a href="${contextPath }/contract/list">Contract List</a></li>
+                           <li class="breadcrumb-item active" aria-current="page">Contract Detail</li>
                         </ol>
                      </nav>
                   </div>

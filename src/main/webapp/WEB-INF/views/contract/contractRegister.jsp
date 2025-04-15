@@ -30,8 +30,8 @@
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/contract/list">계약 조회</a></li>
-								<li class="breadcrumb-item active" aria-current="page">계약 등록</li>
+								<li class="breadcrumb-item"><a href="${contextPath }/contract/list">Contract List</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Contract Register</li>
 							</ol>
 						</nav>
 					</div>
@@ -78,7 +78,7 @@
 									<div class="form-group">
 										<label for="disabledInput">계약 가격</label> <input type="number"
 											class="form-control" id="cr_price" name="cr_price"
-											placeholder="계약 공급가 입력" >
+											placeholder="계약 공급가 입력" min="0">
 									</div>
 									<div class="form-group mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">계약 내용</label>
