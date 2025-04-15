@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.algorizo.erp.register.dto.MemberDTO;
@@ -13,7 +14,7 @@ import co.algorizo.erp.register.dto.MemberDTO;
 public class MemberDAOimpl implements MemberDAO{
 	private static final String NAMESPACE = "co.algorizo.erp.memberMapper";
 
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 	
 	@Override

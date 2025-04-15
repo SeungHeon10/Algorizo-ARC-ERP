@@ -44,58 +44,71 @@
                     <div class="row" id="table-striped">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                            <strong></strong>
-                        </div>
-                        <div class="card-body">
-                    
-                        
-                        
-                            <table class="table table-striped" id="table1">
-								<tr>
-									<th>사원번호</th>
-									<td>${member.m_id }</td>
-								</tr>
-								<tr>
-									<th>이름</th>
-									<td>${member.m_name }</td>
-								</tr>
-								<tr>
-									<th>주소</th>
-									<td>${member.m_addr }</td>
-								</tr>
-								<tr>
-									<th>이메일</th>
-									<td>${member.m_email }</td>
-								</tr>
-								<tr>
-									<th>전화번호</th>
-									<td>${member.m_pno }</td>
-								</tr>
-								<tr>
-									<th>생년월일</th>
-									<td>${member.birth }</td>
-								</tr>
-								<tr>
-									<th>부서</th>
-									<td>${member.dto.team }</td>
-								</tr>
-								<tr>
-									<th>입사일</th>
-									<td>${member.regdate }</td>
-								</tr>
-								
-								
-                            </table>
-                           <c:if test="${sessionScope.d_id == 50}">
-                           	 	<div class="mt-3 d-flex justify-content-end">
-                                	<a href="${contextPath }/members/updateMember?m_id=${member.m_id}" class="btn btn-outline-warning me-2">수정</a>
-                                	<a href="${contextPath }/members/deleteMember?m_id=${member.m_id}" class="btn btn-outline-danger me-2" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                                	<a href="${contextPath }/members" class="btn btn-outline-primary">목록으로</a>
-                            	</div>
-                        	</c:if>
-                            </div>
-                        </div>
+							    <div class="card-header">
+							        <h4 class="card-title"><strong>사원 상세 정보</strong></h4>
+							    </div>
+							    <div class="card-body">
+							        <div class="row align-items-center">
+							            <div class="col-md-4 text-center">
+							                <img src="${contextPath }/resources/img/members/${member.m_photo}" 
+							                     alt="${member.m_photo }" 
+							                     class="img-fluid shadow mb-3" 
+							                     style="max-width: 300px;">
+							            </div>
+							
+							            <div class="col-md-8">
+							                <table class="table table-striped table-hover align-middle">
+							                    <tbody>
+							                        <tr>
+							                            <th>사원번호</th>
+							                            <td>${member.m_id }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>이름</th>
+							                            <td>${member.m_name }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>주소</th>
+							                            <td>${member.m_addr }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>이메일</th>
+							                            <td>${member.m_email }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>전화번호</th>
+							                            <td>${member.m_pno }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>생년월일</th>
+							                            <td>${member.birth }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>부서</th>
+							                            <td>${member.dto.team }</td>
+							                        </tr>
+							                        <tr>
+							                            <th>입사일</th>
+							                            <td>${member.regdate }</td>
+							                        </tr>
+							                    </tbody>
+							                </table>
+							            </div>
+							        </div>
+							
+							        <c:if test="${sessionScope.d_id == 50}">
+							            <div class="mt-4 d-flex justify-content-end">
+							                <a href="${contextPath }/members/updateMember?m_id=${member.m_id}" 
+							                   class="btn btn-outline-warning me-2">수정</a>
+							                <a href="${contextPath }/members/deleteMember?m_id=${member.m_id}" 
+							                   class="btn btn-outline-danger me-2"
+							                   onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+							                <a href="${contextPath }/members" 
+							                   class="btn btn-outline-primary">목록으로</a>
+							            </div>
+							        </c:if>
+							    </div>
+							</div>
                     </div>
                   </div>
                 </section>

@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String m_name = (String)session.getAttribute("m_name");
+	String m_id = (String)session.getAttribute("m_id");
+	String team = (String)session.getAttribute("team");
+%>
+
 <div class="page-heading">
-                <h3>Profile Statistics</h3>
+                <h3>환영합니다. <%= (m_name != null && !m_name.isEmpty()) ? m_name : "Guest" %>님!</h3>
             </div>
             <div class="page-content">
                 <section class="row">
@@ -205,18 +211,32 @@
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="card">
-                            <div class="card-body py-4 px-5">
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-xl">
-                                        <img src="${contextPath }/resources/static/dist/assets/images/faces/1.jpg" alt="Face 1">
-                                    </div>
-                                    <div class="ms-3 name">
-                                        <h5 class="font-bold">John Duck</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					        <div class="card-body py-4 px-5">
+					            <div class="d-flex align-items-center">
+					                <div class="avatar avatar-xl">
+					                    <c:set var="photo" value="${empty member.m_photo ? 'default.png' : member.m_photo}" />
+					                    <img src="${pageContext.request.contextPath}/resources/img/members/${photo}" />
+					                </div>
+					                <div class="ms-3 name">
+					                    <!-- 이름과 버튼을 가로로 정렬 -->
+					                    <div class="d-flex align-items-center">
+					                        <h5 class="font-bold mb-0 me-3"><%= (m_name != null && !m_name.isEmpty()) ? m_name : "Guest" %></h5>
+					                        
+					                        <c:choose>
+					                            <c:when test="${not empty sessionScope.m_id}">
+					                                <a href="${contextPath}/logout" class="btn btn-sm btn-outline-danger">로그아웃</a>
+					                            </c:when>
+					                            <c:otherwise>
+					                                <a href="${contextPath}/" class="btn btn-sm btn-outline-primary">로그인</a>
+					                            </c:otherwise>
+					                        </c:choose>
+					                    </div>
+					                    <!-- 부서명은 아래에 위치 -->
+					                    <h6 class="text-muted mb-0"><%= (team != null && !team.isEmpty()) ? team : "" %></h6>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
                         <div class="card">
                             <div class="card-header">
                                 <h4>Recent Messages</h4>
@@ -224,11 +244,11 @@
                             <div class="card-content pb-4">
                                 <div class="recent-message d-flex px-4 py-3">
                                     <div class="avatar avatar-lg">
-                                        <img src="${contextPath }/resources/static/dist/assets/images/faces/4.jpg">
+                                        <img src="${contextPath }/resources/img/members/${member.m_photo}">
                                     </div>
                                     <div class="name ms-4">
-                                        <h5 class="mb-1">Hank Schrader</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
+                                        <h5 class="mb-1"><%=m_name %></h5>
+                                        <h6 class="text-muted mb-0"><%=team %></h6>
                                     </div>
                                 </div>
                                 <div class="recent-message d-flex px-4 py-3">

@@ -154,7 +154,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.8.2</version>  <!-- 최신 안정 버전 사용 -->
+			<version>5.8.2</version>  
 		</dependency>
 
 	
@@ -205,7 +205,20 @@
          <version>1.18.12</version>
          <scope>provided</scope>
       </dependency>
-		
+      
+      <!-- 파일 업로드 의존성 -->
+	<dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>1.4</version> 
+    </dependency>
+
+    <!-- Apache Commons IO 의존성 추가 (FileUpload와 함께 필요한 라이브러리) -->
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.8.0</version> 
+    </dependency>
 
 
 

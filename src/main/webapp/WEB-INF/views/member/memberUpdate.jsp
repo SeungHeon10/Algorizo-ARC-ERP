@@ -43,24 +43,37 @@
             		<div class="col12">
             			<div class="card">
             				<div class="card-heading">
-            					<strong>사원 정보 수정</strong>
             				</div>
             				
+            				
+            				
             				<div class="card-body">
-								<form action="${contextPath	}/members/updateMember" method="post">
+								<form action="${contextPath	}/members/updateMember" method="post" enctype="multipart/form-data">
 									<input type="hidden" name = "m_id" value="${member.m_id }">
+									
+									<div class="mb-3">
+										<label class="form-label">현재 사진</label><br>
+										<img src="${contextPath }/resources/img/members/${member.m_photo}" style="max-width: 150px;">
+									</div>
+									
+									<div class="mb-3">
+										<label for="m_photo" class="form-label">새 사진 업로드</label>
+										<input type="file" class="form-control" id="m_photo" name="m_photo">
+									</div>
+									<input type="hidden" name="originPhoto" value="${member.m_photo }">
+									
 									
 									<div class = mb-3>
 										<label class="form-label">사원번호</label>
-										<input type="text" class="form-control" value="${member.m_id }" disabled>
+										<input type="text" class="form-control" value="${member.m_id }" readonly>
 									</div>
+									
 									
 									<div class="mb-3">
 										<label class="form-label">이름</label>
 										<input type="text" class="form-control" value="${member.m_name }" readonly>
 									</div>
 									
-									<!-- 주소(api) -->
 						            <div class="card p-4 mb-4">
 										<h5 class="mb-3">주소 정보</h5>
 											<div class="row mb-3">
@@ -212,37 +225,48 @@
 </script>
 <script>
 	document.querySelector('form').addEventListener('submit', function(e){
-		//주소 결합
-		let postcode = document.getElementById('sample6_postcode').value;
-		let address = document.getElementById('sample6_address').value;
-		let detailAddress = document.getElementById('sample6_detailAddress').value;
-		let extraAddress = document.getElementById('sample6_extraAddress').value;
-		
-		// 결합된 주소를 m_addr 필드에 설정
-		let fullAddress = '(' + postcode + ') ' + address + " " + detailAddress;
-		if(extraAddress){
-			fullAddress += '(' + extraAddress + ')';
-		}
-		
-		document.getElementById('m_addr').value = fullAddress;
-		 console.log('최종 주소:', m_addr); // 디버깅용 로그
-		
+	    let postcode = document.getElementById('sample6_postcode').value;
+	    let address = document.getElementById('sample6_address').value;
+	    let detailAddress = document.getElementById('sample6_detailAddress').value;
+	    let extraAddress = document.getElementById('sample6_extraAddress').value;
+	
+	    // 우편번호만 괄호로 감싸기
+	    let fullAddress = '';
+	    if (postcode) {
+	        fullAddress += '(' + postcode + ') ';
+	    }
+	    fullAddress += address;
+	    if (detailAddress) {
+	        fullAddress += ' ' + detailAddress;
+	    }
+	    if (extraAddress) {
+	        fullAddress += ' ' + extraAddress;
+	    }
+	
+	    document.getElementById('m_addr').value = fullAddress;
 	});
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let postcode = document.getElementById('sample6_postcode').value || '';
-        let address = document.getElementById('sample6_address').value || '';
-        let detailAddress = document.getElementById('sample6_detailAddress').value || '';
-        let extraAddress = document.getElementById('sample6_extraAddress').value || '';
-
-        let fullAddress = '(' + postcode + ') ' + address + " " + detailAddress;
-        if (extraAddress) {
-            fullAddress += ' (' + extraAddress + ')';
-        }
-
-        document.getElementById('m_addr').value = fullAddress;
-    });
+	document.addEventListener("DOMContentLoaded", function () {
+	    let postcode = document.getElementById('sample6_postcode').value || '';
+	    let address = document.getElementById('sample6_address').value || '';
+	    let detailAddress = document.getElementById('sample6_detailAddress').value || '';
+	    let extraAddress = document.getElementById('sample6_extraAddress').value || '';
+	
+	    let fullAddress = '';
+	    if (postcode) {
+	        fullAddress += '(' + postcode + ') ';
+	    }
+	    fullAddress += address;
+	    if (detailAddress) {
+	        fullAddress += ' ' + detailAddress;
+	    }
+	    if (extraAddress) {
+	        fullAddress += ' ' + extraAddress;
+	    }
+	
+	    document.getElementById('m_addr').value = fullAddress;
+	});
 </script>
     
 </body>

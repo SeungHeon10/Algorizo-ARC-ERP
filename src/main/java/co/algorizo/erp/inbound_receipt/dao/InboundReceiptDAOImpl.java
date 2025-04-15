@@ -14,7 +14,8 @@ public class InboundReceiptDAOImpl implements InboundReceiptDAO{
 
 	private static final String NAMESPACE = "co.algorizo.erp.inboundReceiptMapper";
 	
-	@Autowired SqlSession sqlSession;
+	@Autowired
+	SqlSession sqlSession;
 	
 	@Override
 	public List<InboundReceiptDTO> listAllInboundReceipt() throws Exception {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import co.algorizo.erp.register.dto.MemberDTO;
 @Service
 public class MemberServiceimpl implements MemberService{
 
-	@Inject
+	@Autowired
 	private MemberDAO dao;
 	
 	

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@Inject
+	@Autowired
 	private MemberService service;
 	
 	/**
@@ -50,7 +51,7 @@ public class HomeController {
 		return "login";
 	}
 	// 로그인 처리
-	@PostMapping(value="/")
+	@PostMapping(value="/home")
 	public String login(HttpServletRequest request,
 			@ModelAttribute MemberDTO dto,
 			Model model,
@@ -76,9 +77,14 @@ public class HomeController {
 	    session.setAttribute("m_id", memberFromDb.getM_id());
 	    session.setAttribute("m_name", memberFromDb.getM_name());
 	    session.setAttribute("d_id", memberFromDb.getDept_d_id());
+	    session.setAttribute("team", memberFromDb.getDto().getTeam());
 	    logger.info("m_id : " + session.getAttribute("m_id"));
 	    logger.info("d_id : " + session.getAttribute("d_id"));
+	    logger.info("m_name : " + session.getAttribute("m_name"));
+	    logger.info("team : " + session.getAttribute("team"));
 		
+	    model.addAttribute("member", memberFromDb);
+	    
 		return "home";
 	}
 	@RequestMapping("/members")
@@ -100,21 +106,15 @@ public class HomeController {
 		
 		return "login";
 	}
-		
 	
-	@RequestMapping(value="/error-500", method=RequestMethod.GET)
-	String error500() {
-		logger.info("error test");
-		
-		return "error-500";
-	}
-	
-	@RequestMapping("/home")
-	public String goHome() {
-		logger.info("go home");
+	@GetMapping("/home")
+	public String goHOme() {
+		logger.info("홈으로");
 		
 		return "home";
 	}
+	
+
 	
 	
 	

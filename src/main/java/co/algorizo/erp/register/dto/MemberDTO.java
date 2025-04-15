@@ -17,14 +17,14 @@ public class MemberDTO {
 	private int del;
 	private int dept_d_id;
 	private DeptDTO dto;
+	private String m_photo;
 	
 	public MemberDTO() {
 		this.role = "user";
 	}
 
 	public MemberDTO(String m_id, String m_name, String m_password, String m_addr, String m_email,
-			String role, String m_pno, String birth, Date regdate,int del, int dept_d_id, DeptDTO dto) {
-		super();
+			String role, String m_pno, String birth, Date regdate,int del, int dept_d_id, DeptDTO dto, String m_photo) {
 		this.m_id = m_id;
 		this.m_name = m_name;
 		this.m_password = m_password;
@@ -37,6 +37,7 @@ public class MemberDTO {
 		this.del = del;
 		this.dept_d_id = dept_d_id;
 		this.dto = dto;
+		this.m_photo = m_photo;
 	}
 
 	public void setDel(int del) {
@@ -134,20 +135,23 @@ public class MemberDTO {
 	public void setDept_d_id(int dept_d_id) {
 		this.dept_d_id = dept_d_id;
 	}
+	
+
+	public String getM_photo() {
+		return m_photo;
+	}
+
+	public void setM_photo(String m_photo) {
+		this.m_photo = m_photo;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberDTO [m_id=" + m_id + ", m_name=" + m_name + ", m_password=" + m_password + ", m_addr=" + m_addr
 				+ ", m_email=" + m_email + ", role=" + role + ", m_pno=" + m_pno + ", birth=" + birth + ", regdate="
-				+ regdate + ", del=" + del + ", dept_d_id=" + dept_d_id + "]";
+				+ regdate + ", del=" + del + ", dept_d_id=" + dept_d_id + ", dto=" + dto + ", m_photo=" + m_photo + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }

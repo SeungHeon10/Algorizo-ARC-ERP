@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.algorizo.erp.dept.dto.DeptDTO;
@@ -31,7 +33,7 @@ import co.algorizo.erp.register.service.MemberService;
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@Inject
+	@Autowired
 	private MemberService service;
 	
 	@Autowired
@@ -100,7 +102,6 @@ public class MemberController {
 	public String memberList(Model model, HttpSession session) {
 		
 		 if (session.getAttribute("m_id") == null) {
-		        // 세션이 없으면 로그인 페이지로 리다이렉트
 		        return "redirect:/";
 		    }
 		 logger.info("사원 전체조회");
@@ -117,7 +118,6 @@ public class MemberController {
 		logger.info("사원 상세 조회 m_id = " + m_id);
 		
 		 if (session.getAttribute("m_id") == null) {
-		        // 세션이 없으면 로그인 페이지로 리다이렉트
 		        return "redirect:/";
 		    }
 		
@@ -130,7 +130,6 @@ public class MemberController {
 		model.addAttribute("member",member);
 		
 		
-		
 		return "member/memberDetail";
 	}
 	
@@ -139,7 +138,6 @@ public class MemberController {
 	public String deleteMember(@RequestParam("m_id") String m_id, HttpSession session) {
 		logger.info("삭제, m_id = " + m_id );
 		 if (session.getAttribute("m_id") == null) {
-		        // 세션이 없으면 로그인 페이지로 리다이렉트
 		        return "redirect:/";
 		    }
 		
@@ -153,14 +151,13 @@ public class MemberController {
 		public String updateMember(@RequestParam("m_id") String m_id, Model model, HttpSession session) {
 			logger.info("update page for m_id = " + m_id);
 			 if (session.getAttribute("m_id") == null) {
-			        // 세션이 없으면 로그인 페이지로 리다이렉트
 			        return "redirect:/";
 			    }
 			
 			MemberDTO member = service.selectMember(m_id);
 			if(member == null) {
 				model.addAttribute("error", "해당 사원을 찾을 수 없습니다.");
-				return "error-404";
+				return "member/memberError";
 			}
 			List<DeptDTO> dList = deptService.getDeptList();
 			model.addAttribute("dList", dList);
@@ -171,25 +168,41 @@ public class MemberController {
 		}
 		// 사원 수정 처리
 		@PostMapping(value="/members/updateMember")
-		public String updateMember(@ModelAttribute MemberDTO member,
-				RedirectAttributes redirectAttributes, HttpSession session) {
-			logger.info("Updating member : " + member);
+		public String updateMember(MultipartHttpServletRequest request,
+				RedirectAttributes redirectAttributes, HttpSession session,
+				@RequestParam(value="m_photo",required = false) MultipartFile file,
+				@RequestParam(value="originPhoto",required = false) String originPhoto) {
 			
 			 if (session.getAttribute("m_id") == null) {
-			        // 세션이 없으면 로그인 페이지로 리다이렉트
 			        return "redirect:/";
 			    }
 			
 			try {
-				MemberDTO updatedMember = service.updateMember(member);
+				MemberDTO member = new MemberDTO();
+		        member.setM_id(request.getParameter("m_id"));
+		        member.setM_email(request.getParameter("m_email"));
+		        member.setM_pno(request.getParameter("m_pno"));
+		        member.setM_addr(request.getParameter("m_addr"));
+		        member.setDept_d_id(Integer.parseInt(request.getParameter("dept_d_id")));
+		        // 사진 업로드 처리
+		        if (!file.isEmpty()) {
+		            String filename = file.getOriginalFilename();
+		            member.setM_photo(filename);
+		        } else {
+		            member.setM_photo(originPhoto);
+		        }
+		        member.setRole("user");
+
+		        service.updateMember(member);
 				redirectAttributes.addFlashAttribute("success", "사원 정보가 수정되었습니다.");
-				return "redirect:/members/memberDetail?m_id=" + updatedMember.getM_id();
+				return "redirect:/members/memberDetail?m_id=" + member.getM_id();
 				
 			} catch(Exception e){
 				logger.error("Error!" + e.getMessage());
 				redirectAttributes.addFlashAttribute("error", "사원 정보 수정에 실패했습니다.");
-				return "redirect:/members/updateMember?m_id=" + member.getM_id();
+				return "redirect:/member/memberError";
 			}
+			
 			
 			
 			

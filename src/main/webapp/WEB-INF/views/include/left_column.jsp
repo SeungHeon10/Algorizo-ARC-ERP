@@ -22,34 +22,9 @@
 
                             <a href="${contextPath }/home" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
+                                <span>HOME</span>
                             </a>
                         </li>
-                       	
-                       	
-                    
-                    <c:choose>
-	                    <c:when test="${not empty sessionScope.m_id }">
-	                    	<li class="sidebar-item ">
-		                            <a href="${contextPath }/logout" class='sidebar-link'>
-		                                <i class="bi bi-grid-1x2-fill"></i>
-		                                <span>로그아웃</span>
-		                            </a>
-		                    </li>
-	                    </c:when>
-						<c:otherwise>
-							<li class="sidebar-item ">
-		                            <a href="${contextPath }/" class='sidebar-link'>
-		                                <i class="bi bi-grid-1x2-fill"></i>
-		                                <span>로그인</span>
-		                            </a>
-		                    </li>
-							
-						</c:otherwise>                    
-                    
-                    </c:choose>
-                    
-					
 
                         <li class="sidebar-item has-sub ">
 

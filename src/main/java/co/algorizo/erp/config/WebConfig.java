@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        logger.info("🚀 WebConfig - addInterceptors() 실행됨"); // ✅ Interceptor 등록 로그
+        logger.info("WebConfig - addInterceptors() 실행됨"); // Interceptor 등록 로그
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/members/**", "/home/**", "/stock/**", "/contract/**", "/order/**", "/product/**", "/company/**", "/plans/**", "/inbound/**", "/outbound/**") 
                 .excludePathPatterns("/", "/login", "/register");  
