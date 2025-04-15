@@ -36,8 +36,8 @@
                      <nav aria-label="breadcrumb"
                         class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                           <li class="breadcrumb-item"><a href="${contextPath }/order/list">발주 조회</a></li>
-                           <li class="breadcrumb-item active" aria-current="page">발주 상세</li>
+                           <li class="breadcrumb-item"><a href="${contextPath }/order/list">PO List</a></li>
+                           <li class="breadcrumb-item active" aria-current="page">PO Detail</li>
                         </ol>
                      </nav>
                   </div>

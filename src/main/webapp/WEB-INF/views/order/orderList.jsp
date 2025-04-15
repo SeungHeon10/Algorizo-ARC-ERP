@@ -33,7 +33,7 @@
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="${contextPath}/home">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">발주 조회</li>
+									<li class="breadcrumb-item active" aria-current="page">PO List</li>
 								</ol>
 							</nav>
 						</div>

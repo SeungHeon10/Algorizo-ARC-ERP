@@ -49,16 +49,16 @@
 
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
-                                <span>회원 관리</span>
+                                <span>사원</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="${contextPath }/members">회원 전체 조회</a>
+                                    <a href="${contextPath }/members">사원 전체 조회</a>
                                 </li>
                                 
                                 <c:if test="${sessionScope.d_id == 50 || sessionScope.m_id == 20250001}">
 	                                <li class="submenu-item ">
-	                                    <a href="${contextPath }/register">회원 등록</a>
+	                                    <a href="${contextPath }/register">사원 등록</a>
 	                                </li>
                                 </c:if>
                                 
@@ -70,7 +70,7 @@
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
-                                <span>품목관리</span>
+                                <span>품목 관리</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
@@ -88,8 +88,8 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>공급업체관리</span>
+                                <i class="bi bi-stack"></i>
+                                <span>공급 업체</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
@@ -108,7 +108,7 @@
                         <li class="sidebar-item  has-sub">
 	                    	<a href="${contextPath }/plans/list" class='sidebar-link'>
 	                        	<i class="bi bi-stack"></i>
-	                        	<span>조달 계획 관리</span>
+	                        	<span>조달 계획</span>
 		                    </a>
 		                    <ul class="submenu ">
 		                        <li class="submenu-item ">
@@ -179,7 +179,7 @@
 		                </li>
 	                    <li class="sidebar-item  has-sub">
 	                        <a href="#" class='sidebar-link'>
-	                            <i class="bi bi-collection-fill"></i>
+	                            <i class="bi bi-stack"></i>
 	                            <span>검수</span>
 	                        </a>
 	                        <ul class="submenu ">
@@ -206,7 +206,7 @@
 	
 		                <li class="sidebar-item  has-sub">
 		                    <a href="#" class='sidebar-link'>
-		                        <i class="bi bi-collection-fill"></i>
+		                        <i class="bi bi-stack"></i>
 		                        <span>출고</span>
 		                    </a>
 		                    <ul class="submenu ">

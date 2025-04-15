@@ -58,9 +58,24 @@ public class MemberController {
 	        @ModelAttribute("dto") MemberDTO dto,
 	        @RequestParam String phone1,
 	        @RequestParam String phone2,
-	        @RequestParam String phone3
+	        @RequestParam String phone3,
+	        @RequestParam("m_name") String m_name,
+	        Model model
 	) {
 	    logger.info("register");
+	    
+//	    이름 2글자 이상
+	    if(m_name.length() < 2) {
+	    	model.addAttribute("error", "이름은 2글자 이상 입력해야합니다.");
+	    	model.addAttribute("dto", dto);
+	    	return "register";
+	    }
+	    
+//	    이름 한글, 영어만 허용
+	    if(!m_name.matches("^[가-힣a-zA-Z+$")) {
+	    	model.addAttribute("error", "이름은 한글 또는 영문자만 가능합니다.");
+	    	model.addAttribute("dtod", dto);
+	    }
 
 	    // YYMMDD 형식의 birth 생성
 	    if (birthYear != null && !birthYear.isEmpty() &&

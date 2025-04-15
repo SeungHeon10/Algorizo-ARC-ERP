@@ -35,7 +35,7 @@
 		FROM member m
 		JOIN dept d ON m.dept_d_id = d.d_id
 		WHERE del = 0
-		ORDER BY m.m_id ASC;
+		ORDER BY m.regdate ASC;
 	</select>
 	
 	<!-- 단일 사원 조회 -->
