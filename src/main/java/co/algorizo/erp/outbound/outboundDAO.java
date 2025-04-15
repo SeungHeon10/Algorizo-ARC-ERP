@@ -15,4 +15,6 @@ public interface outboundDAO {
 		void update(outboundDTO dto)throws Exception;
 		
 		int delete(int out_id) throws Exception;
+		
+		int getStockQuantity(int product_p_id) throws Exception;
 }

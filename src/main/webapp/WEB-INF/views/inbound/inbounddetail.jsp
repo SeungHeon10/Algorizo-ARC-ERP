@@ -32,7 +32,7 @@
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
+								<li class="breadcrumb-item"><a href="${contextPath }/inbound/inboundlist">Inbound List</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Detail</li>
 							</ol>
 						</nav>
@@ -112,19 +112,19 @@
 									<c:forEach var="dto" items="${dto}">
 										<button type="button"
 											onclick="location.href='${contextPath}/inbound/inboundlist'"
-											class="btn btn-outline-primary">목록</button>
+											class="btn btn-outline-primary me-1 mb-1">목록</button>
 										<c:if test="${not empty dto.in_id}">
 											<button type="button"
 												onclick="location.href='inboundupdate?in_id=${dto.in_id}'"
-												class="btn btn-outline-warning">수정</button>
+												class="btn btn-outline-warning me-1 mb-1">수정</button>
 										</c:if>
 										<form action="${contextPath}/inbound/inbounddelete"
 											method="post" class="inline-form">
 											<input type="hidden" name="in_id" value="${dto.in_id}">
-											<button type="submit" class="btn btn-outline-danger me-2"
+											<button type="submit" class="btn btn-outline-danger me-1 mb-1"
 												onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
 										</form>
-										<button type="button" class="btn btn-outline-primary" onclick="location.href='${contextPath}/inboundReceipt/insertInboundReceipt?in_id=${dto.in_id }'">거래명세서 등록</button>
+										<button type="button" class="btn btn-outline-primary me-1 mb-1" onclick="location.href='${contextPath}/inboundReceipt/insertInboundReceipt?in_id=${dto.in_id }'">거래명세서 등록</button>
 									</c:forEach>
 								</div>
 							</div>

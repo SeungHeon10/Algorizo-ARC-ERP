@@ -70,14 +70,23 @@ public class outboundController {
 		model.addAttribute("product", product);
 		model.addAttribute("member", member);
 		model.addAttribute("company", company);
+		model.addAttribute("out_status", "출고 대기");
 		return "outbound/outboundregister";
 	}
 
 	@PostMapping(value = "/outbound/outboundregister")
-	public String register(@ModelAttribute outboundDTO outbounddto, HttpSession session) throws Exception {
+	public String register(@ModelAttribute outboundDTO outbounddto, HttpSession session,RedirectAttributes redirect) throws Exception {
 		if (session.getAttribute("m_id") == null) {
 			return "redirect:/"; //
 		}
+		
+		boolean canProceed = outboundservice.canProceedOutbound(outbounddto.getProduct_p_id(), outbounddto.getOut_quantity());
+		
+		if(!canProceed) {
+			redirect.addFlashAttribute("errorMessage", "재고 수량이 부족합니다 출고 수량 확인해주세요");
+			return "redirect:/outbound/outboundregister";
+		}
+		
 		outboundservice.register(outbounddto);
 		System.out.println(outbounddto);
 		return "redirect:/outbound/outboundlist";

@@ -1,12 +1,12 @@
 package co.algorizo.erp.inbound;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import co.algorizo.erp.company.CompanyDTO;
+import co.algorizo.erp.inspection.InspectionDTO;
 import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.register.dto.MemberDTO;
+import co.algorizo.erp.stock.stockDTO;
 
 public class inboundDTO {
 
@@ -20,17 +20,25 @@ public class inboundDTO {
 	private int product_p_id;
 	private int company_cp_id;
 	private String member_m_id;
+	private int i_quantity;
+	private int i_defective_quantity;
+	private int s_quantity;
+	private String i_inspector;
 	private ProductDTO product;
 	private MemberDTO member;
 	private CompanyDTO company;
+	private InspectionDTO inspection;
+	private stockDTO stock;
+	
 	
 	public inboundDTO() {
 
 	}
 
-	public inboundDTO(int in_id, Date in_date, Date update_date, String in_status, String etc, int del,
-			int in_quantity, int product_p_id, int company_cp_id, String member_m_id, ProductDTO product,
-			MemberDTO member, CompanyDTO company) {
+	public inboundDTO(int in_id, Date in_date, Date update_date, String in_status, String etc, int del, int in_quantity,
+			int product_p_id, int company_cp_id, String member_m_id, int i_quantity, int i_defective_quantity,
+			int s_quantity, String i_inspector, ProductDTO product, MemberDTO member, CompanyDTO company,
+			InspectionDTO inspection, stockDTO stock) {
 		super();
 		this.in_id = in_id;
 		this.in_date = in_date;
@@ -42,9 +50,15 @@ public class inboundDTO {
 		this.product_p_id = product_p_id;
 		this.company_cp_id = company_cp_id;
 		this.member_m_id = member_m_id;
+		this.i_quantity = i_quantity;
+		this.i_defective_quantity = i_defective_quantity;
+		this.s_quantity = s_quantity;
+		this.i_inspector = i_inspector;
 		this.product = product;
 		this.member = member;
 		this.company = company;
+		this.inspection = inspection;
+		this.stock = stock;
 	}
 
 	public int getIn_id() {
@@ -63,20 +77,20 @@ public class inboundDTO {
 		this.in_date = in_date;
 	}
 
-	public String getIn_status() {
-		return in_status;
-	}
-
-	public void setIn_status(String in_status) {
-		this.in_status = in_status;
-	}
-
 	public Date getUpdate_date() {
 		return update_date;
 	}
 
 	public void setUpdate_date(Date update_date) {
 		this.update_date = update_date;
+	}
+
+	public String getIn_status() {
+		return in_status;
+	}
+
+	public void setIn_status(String in_status) {
+		this.in_status = in_status;
 	}
 
 	public String getEtc() {
@@ -127,6 +141,38 @@ public class inboundDTO {
 		this.member_m_id = member_m_id;
 	}
 
+	public int getI_quantity() {
+		return i_quantity;
+	}
+
+	public void setI_quantity(int i_quantity) {
+		this.i_quantity = i_quantity;
+	}
+
+	public int getI_defective_quantity() {
+		return i_defective_quantity;
+	}
+
+	public void setI_defective_quantity(int i_defective_quantity) {
+		this.i_defective_quantity = i_defective_quantity;
+	}
+
+	public int getS_quantity() {
+		return s_quantity;
+	}
+
+	public void setS_quantity(int s_quantity) {
+		this.s_quantity = s_quantity;
+	}
+
+	public String getI_inspector() {
+		return i_inspector;
+	}
+
+	public void setI_inspector(String i_inspector) {
+		this.i_inspector = i_inspector;
+	}
+
 	public ProductDTO getProduct() {
 		return product;
 	}
@@ -151,12 +197,30 @@ public class inboundDTO {
 		this.company = company;
 	}
 
+	public InspectionDTO getInspection() {
+		return inspection;
+	}
+
+	public void setInspection(InspectionDTO inspection) {
+		this.inspection = inspection;
+	}
+
+	public stockDTO getStock() {
+		return stock;
+	}
+
+	public void setStock(stockDTO stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public String toString() {
 		return "inboundDTO [in_id=" + in_id + ", in_date=" + in_date + ", update_date=" + update_date + ", in_status="
 				+ in_status + ", etc=" + etc + ", del=" + del + ", in_quantity=" + in_quantity + ", product_p_id="
-				+ product_p_id + ", company_cp_id=" + company_cp_id + ", member_m_id=" + member_m_id + ", product="
-				+ product + ", member=" + member + ", company=" + company + "]";
+				+ product_p_id + ", company_cp_id=" + company_cp_id + ", member_m_id=" + member_m_id + ", i_quantity="
+				+ i_quantity + ", i_defective_quantity=" + i_defective_quantity + ", s_quantity=" + s_quantity
+				+ ", i_inspector=" + i_inspector + ", product=" + product + ", member=" + member + ", company="
+				+ company + ", inspection=" + inspection + ", stock=" + stock + "]";
 	}
-
+	
 }

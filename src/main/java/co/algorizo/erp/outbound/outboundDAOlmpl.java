@@ -44,4 +44,10 @@ public class outboundDAOlmpl implements outboundDAO {
 		return sqlsession.update(namespace + ".delete", out_id);
 	}
 
+	@Override
+	public int getStockQuantity(int product_p_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace + ".getStockQuantity",product_p_id);
+	}
+
 }

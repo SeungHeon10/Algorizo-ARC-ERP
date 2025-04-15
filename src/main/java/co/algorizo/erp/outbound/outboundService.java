@@ -13,4 +13,7 @@ public interface outboundService {
 	void update(outboundDTO dto)throws Exception;
 			
 	int delete(int out_id) throws Exception;
+	
+	boolean canProceedOutbound(int product_p_id,int out_quantity)throws Exception;
+	
 }

@@ -34,7 +34,7 @@ public class stockServicelmpl implements stockService{
 	}
 	
 	@Override
-	public List<stockDTO> detail(int s_id) throws Exception {
+	public stockDTO detail(int s_id) throws Exception {
 		// TODO Auto-generated method stub
 		return stockdao.detail(s_id);
 	}
@@ -42,7 +42,9 @@ public class stockServicelmpl implements stockService{
 	@Override
 	public List<StockSummaryDTO> summary() throws Exception {
 		// TODO Auto-generated method stub
-		return stockdao.summary();
+		List<StockSummaryDTO> s =  stockdao.summary();
+		System.out.println("dao" + s);
+		return s;
 	}
 
 }
