@@ -66,7 +66,7 @@
 					<c:if test="${error eq 'true' }">
 						<div style="color:red; margin-bottom:10px;">아이디 또는 비밀번호가 잘못되었습니다.</div>
 					</c:if>
-                    <form action="${contextPath }/" method="post" id="loginForm" onsubmit = "return validateLoginForm()">
+                    <form action="${contextPath }/home" method="post" id="loginForm" onsubmit = "return validateLoginForm()">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" id="m_id" name="m_id" class="form-control form-control-xl" placeholder="사원번호" oninput="toggleLoginButton()" onkeypress="handleKeyPress(event)">
                             <div class="form-control-icon">

@@ -55,6 +55,25 @@
 
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
+                                <span>공지사항</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="${contextPath }/board/list">공지사항 조회</a>
+                                </li>
+                                
+                                <c:if test="${sessionScope.d_id == 50 || sessionScope.m_id == 20250001}">
+	                                <li class="submenu-item ">
+	                                    <a href="${contextPath }/board/register">공지사항 등록</a>
+	                                </li>
+                                </c:if>
+                                
+                            </ul>
+                        </li>
+                        <li class="sidebar-item has-sub ">
+
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
                                 <span>회원 관리</span>
                             </a>
                             <ul class="submenu ">
