@@ -9,157 +9,147 @@
 <%@include file="../include/head.jsp"%>
 <style>
 .filter-section {
-	background: #fff;
-	border-radius: 8px;
-	padding: 16px;
-	margin-bottom: 20px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-	border: 1px solid #eaeaea;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
 }
 
 .filter-container {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .category-table-container {
-	overflow-x: auto;
+  overflow-x: auto;
 }
 
 .category-table {
-	width: 100%;
-	border-collapse: separate;
-	border-spacing: 0;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .category-table th {
-	background-color: #f8f9fa;
-	color: #495057;
-	font-weight: 600;
-	padding: 12px 15px;
-	text-align: left;
-	border-bottom: 2px solid #ddd;
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
 }
 
 .category-column {
-	vertical-align: top;
-	padding: 10px 15px;
-	border-right: 1px solid #eee;
+  vertical-align: top;
+  padding: 10px 15px;
+  border-right: 1px solid #eee;
 }
 
 .category-column:last-child {
-	border-right: none;
+  border-right: none;
 }
 
 .category-item {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .radio-container {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	font-size: 14px;
-	color: #333;
-	margin: 0;
-	padding: 5px 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  padding: 5px 0;
+  gap: 6px;
 }
 
 .radio-container input[type="radio"] {
-	margin-right: 8px;
-	cursor: pointer;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	outline: 0;
-	width: 18px;
-	height: 18px;
-	border: 2px solid #ddd;
-	border-radius: 50%;
-	position: relative;
-	transition: all 0.2s ease;
+  margin-right: 8px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
 .radio-container input[type="radio"]:checked {
-	border-color: #435ebe;
+  border-color: #435ebe;
 }
 
 .radio-container input[type="radio"]:after {
-	content: '';
-	display: block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(0);
-	background: #435ebe;
-	transition: all 0.2s ease;
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #435ebe;
+  transition: all 0.2s ease;
 }
 
 .radio-container input[type="radio"]:checked:after {
-	transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .radio-label {
-	font-weight: normal;
+  font-weight: normal;
+  display: inline-block; /* 이 부분 추가 */
+  margin-left: 5px; /* 이 부분 추가 */
+  vertical-align: middle; /* 이 부분 추가 */
 }
 
 .active-filters {
-	display: flex;
-	align-items: center;
-	padding: 12px 15px;
-	background-color: #f8f9fa;
-	border-radius: 6px;
-	gap: 10px;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  gap: 10px;
 }
 
 .filter-label {
-	font-size: 14px;
-	font-weight: 600;
-	color: #495057;
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
 }
 
 .filter-path {
-	font-size: 14px;
-	color: #435ebe;
-	font-weight: 500;
+  font-size: 14px;
+  color: #435ebe;
+  font-weight: 500;
 }
 
 #clearFilters {
-	margin-left: auto;
-	padding: 4px 8px;
-	font-size: 12px;
-	color: #6c757d;
-	border-color: #dee2e6;
+  margin-left: auto;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #6c757d;
+  border-color: #dee2e6;
 }
 
 #clearFilters:hover {
-	background-color: #f8f9fa;
-	color: #343a40;
+  background-color: #f8f9fa;
+  color: #343a40;
 }
 
 /* 반응형 조정 */
-@media ( max-width : 768px) {
-	.category-table {
-		min-width: 600px;
-	}
-}
-
-/* 모달 스타일 추가 */
-.modal-header {
-	background-color: #435ebe;
-	color: white;
-}
-
-.modal-title {
-	font-weight: 600;
-}
-
-.modal-dialog {
-	max-width: 800px;
+@media (max-width: 768px) {
+  .category-table {
+    min-width: 600px;
+  }
 }
 </style>
 </head>
@@ -182,8 +172,7 @@
 				<div class="page-title">
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
-							<h3>품목관리</h3>
-							<p class="text-subtitle text-muted">알고리조 컴퍼니 품목관리 화면</p>
+						<h3 style="padding-left: 20px;">판매 제품 LIST</h3>
 						</div>
 						<div class="col-12 col-md-6 order-md-2 order-first">
 							<nav aria-label="breadcrumb"
@@ -200,71 +189,72 @@
 				<section class="section">
 					<div class="card">
 						<div class="card-header">
-							<h4>품목 목록</h4>
 							<!-- 필터 섹션 추가 -->
 							<div class="filter-section">
 								<div class="filter-container">
 									<div class="category-table-container">
-										<table class="category-table">
-											<thead>
-												<tr>
-													<th>대분류</th>
-													<th>중분류</th>
-													<th>소분류</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="category-column">
-														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="lctg" value="" checked> <span
-																class="radio-label">전체</span>
-															</label>
-														</div>
-														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="lctg" value="자동차"> <span
-																class="radio-label">자동차</span>
-															</label>
-														</div>
-													</td>
-													<td class="category-column">
-														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="mctg" value="" checked> <span
-																class="radio-label">전체</span>
-															</label>
-														</div>
-														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="mctg" value="내장부품"> <span
-																class="radio-label">내장부품</span>
-															</label>
-														</div>
-														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="mctg" value="외장부품"> <span
-																class="radio-label">외장부품</span>
-															</label>
-														</div>
-														<div class="category-item">
-															<label class="radio-container"> <input
-																type="radio" name="mctg" value="유닛&모듈"> <span
-																class="radio-label">유닛&모듈</span>
-															</label>
-														</div>
-													</td>
-													<td class="category-column" id="small-categories">
-														<div class="category-item">
-															<label class="radio-container"> <input type="radio" name="sctg" value="" checked> <span
-																class="radio-label">전체</span>
-															</label>
-														</div> <!-- 여기에 동적으로 소분류 옵션이 생성됩니다 -->
-													</td>
-												</tr>
-											</tbody>
-										</table>
+									  <table class="category-table">
+									    <thead>
+									      <tr>
+									        <th>대분류</th>
+									        <th>중분류</th>
+									        <th>소분류</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+									      <tr>
+									        <td class="category-column">
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="lctg" value="" checked>
+									              <span class="radio-label">전체</span>
+									            </label>
+									          </div>
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="lctg" value="자동차">
+									              <span class="radio-label">자동차</span>
+									            </label>
+									          </div>
+									        </td>
+									        <td class="category-column">
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="mctg" value="" checked>
+									              <span class="radio-label">전체</span>
+									            </label>
+									          </div>
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="mctg" value="내장부품">
+									              <span class="radio-label">내장부품</span>
+									            </label>
+									          </div>
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="mctg" value="외장부품">
+									              <span class="radio-label">외장부품</span>
+									            </label>
+									          </div>
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="mctg" value="유닛&모듈">
+									              <span class="radio-label">유닛&모듈</span>
+									            </label>
+									          </div>
+									        </td>
+									        <td class="category-column" id="small-categories">
+									          <div class="category-item">
+									            <label class="radio-container">
+									              <input type="radio" name="sctg" value="" checked>
+									              <span class="radio-label">전체</span>
+									            </label>
+									          </div>
+									          <!-- 여기에 동적으로 소분류 옵션이 생성됩니다 -->
+									        </td>
+									      </tr>
+									    </tbody>
+									  </table>
 									</div>
 
 									<!-- 현재 적용된 필터 표시 -->
@@ -276,6 +266,38 @@
 							</div>
 						</div>
 						<div class="card-body">
+							<!-- 원본 테이블 -->
+							<table class="table table-striped d-none" id="originalTable">
+								<thead>
+									<tr>
+										<th class="text-center">품목번호</th>
+										<th class="text-center">품목코드</th>
+										<th class="text-center">품목명</th>
+										<th class="text-center">대분류</th>
+										<th class="text-center">중분류</th>
+										<th class="text-center">소분류</th>
+										<th class="text-center">입고일</th>
+										<th class="text-center">공급업체</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="product" items="${productlist}">
+										<tr>
+											<td>${product.p_id}</td>
+											<td><a
+												href="${contextPath}/product/productdetail?p_code=${product.p_code}" class="text-primary">${product.p_code}</a></td>
+											<td>${product.p_name}</td>
+											<td>${product.p_lctg}</td>
+											<td>${product.p_mctg}</td>
+											<td>${product.p_sctg}</td>
+											<td>${product.p_regdate}</td>
+											<td>${product.cp_name}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							
+							<!-- 필터링된 테이블 (DataTable로 사용됨) -->
 							<table class="table table-striped" id="table1">
 								<thead>
 									<tr>
@@ -287,7 +309,6 @@
 										<th class="text-center">소분류</th>
 										<th class="text-center">입고일</th>
 										<th class="text-center">공급업체</th>
-										<!-- <th class="text-center">상태</th> -->
 									</tr>
 								</thead>
 								<tbody>
@@ -303,40 +324,67 @@
 											<td>${product.p_sctg}</td>
 											<td>${product.p_regdate}</td>
 											<td>${product.cp_name}</td>
-											<!-- <td><span class="badge bg-success">Active</span></td> -->
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 							<div class="col-sm-12 d-flex justify-content-end">
-								<button type="button" onclick="location.href='productinsert'" class="btn btn-outline-primary">품목등록</button>
+								<button type="button" onclick="location.href='productinsert'" class="btn btn-outline-primary me-1 mb-1">품목등록</button>
 							</div>
 						</div>
 					</div>
 				</section>
 
-
-
 				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 				<script>
+				// 전역 변수
+				let dataTable;
+				
 				$(document).ready(function() {
 				    // 초기 변수 설정
-				    let currentLctg = "";
-				    let currentMctg = "";
-				    let currentSctg = "";
+				    let currentLctg = $("input[name='lctg']:checked").val() || "";
+				    let currentMctg = $("input[name='mctg']:checked").val() || "";
+				    let currentSctg = $("input[name='sctg']:checked").val() || "";
+				    
+				    // 원본 테이블 숨기기
+				    $("#originalTable").hide();
+				    
+				    // DataTable 초기화
+				    initDataTable();
 				    
 				    // 소분류 옵션 데이터
 				    let smallCategoryOptions = {
-				       
+				        // 향후 데이터가 필요한 경우 여기에 추가
 				    };
+				    
+				    // 페이지 로드 시 중분류가 선택되어 있으면 소분류 옵션 업데이트
+				    if (currentMctg && currentMctg !== "") {
+				        updateSmallCategoryOptions(currentMctg);
+				    }
 				    
 				    // 대분류 선택 처리
 				    $("input[name='lctg']").change(function() {
 				        currentLctg = $(this).val();
-				        // 전체를 선택한 경우 빈 문자열로 설정
+				        
+				        // 전체를 선택한 경우 중분류와 소분류도 초기화
 				        if (currentLctg === "") {
-				            currentLctg = "";
+				            currentMctg = "";
+				            currentSctg = "";
+				            
+				            // 중분류와 소분류를 '전체'로 선택
+				            $("input[name='mctg'][value='']").prop("checked", true);
+				            
+				            // 소분류 초기화 (전체만 표시)
+				            $("#small-categories").html(`
+				                <div class="category-item">
+				                    <label class="radio-container">
+				                        <input type="radio" name="sctg" value="" checked>
+				                        <span class="radio-label">전체</span>
+				                    </label>
+				                </div>
+				            `);
 				        }
+				        
 				        updateFilterPath();
 				        applyFilters();
 				    });
@@ -344,9 +392,24 @@
 				    // 중분류 선택 처리
 				    $("input[name='mctg']").change(function() {
 				        currentMctg = $(this).val();
-				        // 전체를 선택한 경우 빈 문자열로 설정
-				        if (currentMctg === "") {
-				            currentMctg = "";
+				        console.log("선택된 중분류:", currentMctg);
+				        
+				        // 중분류 선택에 따라 소분류 옵션 업데이트
+				        updateSmallCategoryOptions(currentMctg);
+				        
+				        // 소분류 선택 초기화
+				        currentSctg = "";
+				        $("input[name='sctg'][value='']").prop("checked", true);
+				        
+				        updateFilterPath();
+				        applyFilters();
+				    });
+
+				    // 소분류 옵션 업데이트 함수
+				    function updateSmallCategoryOptions(mctgValue) {
+				        // 전체를 선택한 경우 소분류도 초기화
+				        if (mctgValue === "") {
+				            currentSctg = "";
 				            // 소분류 초기화 (전체만 표시)
 				            $("#small-categories").html(`
 				                <div class="category-item">
@@ -368,8 +431,8 @@
 				            `;
 				            
 				            // 해당 중분류의 소분류 옵션들 추가
-				            if (smallCategoryOptions[currentMctg]) {
-				                smallCategoryOptions[currentMctg].forEach(function(item) {
+				            if (smallCategoryOptions[mctgValue]) {
+				                smallCategoryOptions[mctgValue].forEach(function(item) {
 				                    smallCategoriesHtml += `
 				                        <div class="category-item">
 				                            <label class="radio-container">
@@ -384,20 +447,12 @@
 				            // 소분류 영역 업데이트
 				            $("#small-categories").html(smallCategoriesHtml);
 				        }
-				        
-				        // 소분류 선택 초기화
-				        currentSctg = "";
-				        updateFilterPath();
-				        applyFilters();
-				    });
+				    }
 
 				    // 소분류 선택 처리 - 동적으로 생성된 요소에 대한 이벤트 위임
 				    $(document).on("change", "input[name='sctg']", function() {
 				        currentSctg = $(this).val();
-				        // 전체를 선택한 경우 빈 문자열로 설정
-				        if (currentSctg === "") {
-				            currentSctg = "";
-				        }
+				        console.log("선택된 소분류:", currentSctg);
 				        updateFilterPath();
 				        applyFilters();
 				    });
@@ -423,9 +478,11 @@
 				            </div>
 				        `);
 
-				        // 필터 경로 및 테이블 업데이트
+				        // 필터 경로 업데이트
 				        updateFilterPath();
-				        applyFilters();
+				        
+				        // 필터링 초기화 (모든 데이터 표시)
+				        resetFilters();
 				    });
 
 				    // 필터 경로 업데이트
@@ -449,190 +506,114 @@
 				            filterText = path.join(" > ");
 				        }
 
-				        $("#currentFilter").text(filterText);
-				    }
-
-				    // 테이블에 필터 적용
-				    function applyFilters() {
-				        $("#table1 tbody tr").each(function() {
-				            let rowLctg = $(this).find("td:nth-child(3)").text().trim();
-				            let rowMctg = $(this).find("td:nth-child(4)").text().trim();
-				            let rowSctg = $(this).find("td:nth-child(5)").text().trim();
-				            let showRow = true;
-
-				            // 대분류 필터가 설정되어 있고, 행의 대분류가 일치하지 않으면 숨김
-				            if (currentLctg && rowLctg !== currentLctg) {
-				                showRow = false;
-				            }
-
-				            // 중분류 필터가 설정되어 있고, 행의 중분류가 일치하지 않으면 숨김
-				            if (showRow && currentMctg && rowMctg !== currentMctg) {
-				                showRow = false;
-				            }
-
-				            // 소분류 필터가 설정되어 있고, 행의 소분류가 일치하지 않으면 숨김
-				            if (showRow && currentSctg && rowSctg !== currentSctg) {
-				                showRow = false;
-				            }
-
-				            $(this).toggle(showRow);
-				        });
-
-				        // 데이터테이블 재초기화
-				        if (typeof dataTable !== 'undefined') {
-				            dataTable.update();
+				        // 활성 필터 표시 (필요시 HTML에 추가)
+				        if (!$("#active-filters").length) {
+				            // 필터 표시 영역이 없으면 생성
+				            $(".filter-container").append(`
+				                <div id="active-filters" class="active-filters">
+				                    <span class="filter-label">현재 필터:</span>
+				                    <span id="currentFilter" class="filter-path">${filterText}</span>
+				                </div>
+				            `);
+				        } else {
+				            // 있으면 업데이트
+				            $("#currentFilter").text(filterText);
 				        }
 				    }
 
-				    // 페이지 로드 시 필터 초기화
-				    updateFilterPath();
-				    applyFilters();
+				    // DataTable 초기화 함수
+				    function initDataTable() {
+				        let table1 = document.querySelector('#table1');
+				        dataTable = new simpleDatatables.DataTable(table1, {
+				            perPage: 10,
+				            perPageSelect: false,
+				            searchable: true,
+				            fixedHeight: false
+				        });
+				    }
+				    
+				    // 필터 적용 함수 (테이블 재구성)
+				    function applyFilters() {
+				        try {
+				            // 기존 데이터테이블 제거
+				            if (dataTable) {
+				                dataTable.destroy();
+				            }
+				            
+				            // table1의 tbody 비우기
+				            $("#table1 tbody").empty();
+				            
+				            // 원본 테이블에서 필터에 맞는 행만 새 테이블로 복사
+				            $("#originalTable tbody tr").each(function() {
+				                let rowLctg = $(this).find("td:eq(3)").text().trim();
+				                let rowMctg = $(this).find("td:eq(4)").text().trim();
+				                let rowSctg = $(this).find("td:eq(5)").text().trim();
+				                let showRow = true;
 
-				    // 품목등록 모달 열기
-				    $("#openProductModal").click(function() {
-				        // 현재 날짜 설정 (작성일)
-				        let today = new Date();
-				        let formattedDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-				        $("input[name='p_regdate']").val(formattedDate);
+				                // 필터 조건 확인
+				                if (currentLctg && rowLctg !== currentLctg) {
+				                    showRow = false;
+				                }
+				                if (showRow && currentMctg && rowMctg !== currentMctg) {
+				                    showRow = false;
+				                }
+				                if (showRow && currentSctg && rowSctg !== currentSctg) {
+				                    showRow = false;
+				                }
 
-				        // 모달 열기
-				        $("#productInsertModal").modal('show');
-				    });
-
-				 // 중분류 변경 시 소분류 옵션 업데이트 (모달 내에서)
-				    $("#subcategory").change(function() {
-				        console.log("중분류 변경됨:", $(this).val()); // 디버깅용 로그
-				        let subcategory = $(this).val();
-				        let itemSelect = $("#item");
-				        
-				        // 기존의 모든 옵션을 명시적으로 제거 
-				        itemSelect.empty();
-				        
-				        // 초기 옵션 추가
-				        itemSelect.append('<option value="" disabled selected>선택</option>');
-				        
-				        // 중분류에 따른 소분류 옵션 추가
-				        let options = {
-				            "내장부품" : ["오디오/앰프", "시트", "계기판", "공조기", "핸들", "기타부품"],
-				            "외장부품" : ["테일램프(후미등)", "헤드라이트", "사이드미러", "기타부품"],
-				            "유닛&모듈" : ["ABS", "ECU", "TCU", "에어백", "카메라", "기타부품"]
-				        };
-				        
-				        console.log("소분류 옵션 설정:", options[subcategory]); // 디버깅용 로그
-				        
-				        if (options[subcategory]) {
-				            options[subcategory].forEach(function(item) {
-				                // 요소를 직접 생성하고 속성 설정
-				                let option = document.createElement('option');
-				                option.value = item;
-				                option.textContent = item;
-				                option.style.color = "#333"; // 색상 직접 지정
-				                itemSelect.append(option);
+				                // 조건에 맞는 행만 복사
+				                if (showRow) {
+				                    let newRow = $(this).clone();
+				                    $("#table1 tbody").append(newRow);
+				                }
 				            });
 				            
-				            console.log("소분류 옵션 수:", $("#item option").length); // 디버깅용 로그
+				            // 새로운 DataTable 초기화
+				            initDataTable();
+				            
+				        } catch (e) {
+				            console.error("필터링 오류:", e);
 				        }
-				        
-				        // 소분류 선택 가능하도록 설정
-				        itemSelect.prop('disabled', false);
-				    });
-
-				    // 소분류 변경 이벤트 추가
-				    $("#item").change(function() {
-				        console.log("소분류 선택됨:", $(this).val()); // 선택된 값 확인
-				    });
-
-				    // 폼 제출 전 모든 필드의 값을 콘솔에 출력 (디버깅용)
-				    $("#submitProduct").click(function() {
-				        console.log("대분류:", $("#category").val());
-				        console.log("중분류:", $("#subcategory").val());
-				        console.log("소분류:", $("#item").val());
-				        
-				        // 폼 유효성 검사
-				        if ($("#productInsertForm")[0].checkValidity()) {
-				            $("#productInsertForm").submit();
-				        } else {
-				            // HTML5 기본 유효성 검사 메시지 트리거
-				            $("#productInsertForm")[0].reportValidity();
+				    }
+				    
+				    // 필터 초기화 함수
+				    function resetFilters() {
+				        try {
+				            // 기존 데이터테이블 제거
+				            if (dataTable) {
+				                dataTable.destroy();
+				            }
+				            
+				            // table1의 tbody 비우기
+				            $("#table1 tbody").empty();
+				            
+				            // 원본 테이블의 모든 행을 복사
+				            $("#originalTable tbody tr").each(function() {
+				                let newRow = $(this).clone();
+				                $("#table1 tbody").append(newRow);
+				            });
+				            
+				            // 새로운 DataTable 초기화
+				            initDataTable();
+				            
+				        } catch (e) {
+				            console.error("필터 초기화 오류:", e);
 				        }
-				    });
+				    }
 
-				    // 폼 초기화 버튼
-				    $("#resetForm").click(function() {
-				        $("#productInsertForm")[0].reset();
-				        // 소분류 초기화
-				        $("#item").html('<option value="" disabled selected>선택</option>');
-				    });
-
-				    // 폼 제출
-				    $("#submitProduct").click(function() {
-				        // 폼 유효성 검사
-				        if ($("#productInsertForm")[0].checkValidity()) {
-				            $("#productInsertForm").submit();
-				        } else {
-				            // HTML5 기본 유효성 검사 메시지 트리거
-				            $("#productInsertForm")[0].reportValidity();
-				        }
-				    });
+				    // 페이지 로드 시 필터 경로 업데이트
+				    updateFilterPath();
 				});
 				</script>
 			</div>
 
 			<footer>
-				<div class="footer clearfix mb-0 text-muted">
-					<div class="float-start">
-						<p>2021 &copy; Mazer</p>
-					</div>
-					<div class="float-end">
-						<p>
-							Crafted with <span class="text-danger"><i
-								class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A.
-								Saugi</a>
-						</p>
-					</div>
-				</div>
+				<%@include file="../include/footer.jsp"%>
 			</footer>
 		</div>
 	</div>
-	<script
-		src="${contextPath}/resources/static/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script
-		src="${contextPath}/resources/static/dist/assets/js/bootstrap.bundle.min.js"></script>
-
-	<script
-		src="${contextPath}/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
-	<script>
-		// Simple Datatable
-		let table1 = document.querySelector('#table1');
-		let dataTable = new simpleDatatables.DataTable(table1);
-	</script>
-	<script>
-function resetPageAndSelectCategory(categoryUrl) {
-    // 카테고리 URL에 페이지 파라미터 추가 또는 변경
-    if(categoryUrl.includes('?')) {
-        // 이미 쿼리 파라미터가 있는 경우
-        if(categoryUrl.includes('page=')) {
-            // 페이지 파라미터가 이미 있으면 1로 변경
-            categoryUrl = categoryUrl.replace(/page=\d+/, 'page=1');
-        } else {
-            // 페이지 파라미터가 없으면 추가
-            categoryUrl += '&page=1';
-        }
-    } else {
-        // 쿼리 파라미터가 없는 경우
-        categoryUrl += '?page=1';
-    }
-    
-    // 해당 URL로 이동
-    window.location.href = categoryUrl;
-    return false; // 기본 링크 동작 방지
-}
-</script>
-	<!-- Include Choices JavaScript -->
-	<script
-		src="${contextPath}/resources/static/dist/assets/vendors/choices.js/choices.min.js"></script>
-
-	<script src="${contextPath}/resources/static/dist/assets/js/main.js"></script>
+	<script src="${contextPath}/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
+	<%@include file="../include/plugin.jsp"%>
 </body>
 
 </html>

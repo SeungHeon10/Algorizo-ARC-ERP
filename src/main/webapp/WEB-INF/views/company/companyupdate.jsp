@@ -30,8 +30,7 @@
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
-								<li class="breadcrumb-item active" aria-current="page"><a
-									href="${contextPath }/company/companylist">업체목록</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/company/companylist">업체목록</a></li>
 							</ol>
 						</nav>
 					</div>
@@ -40,9 +39,6 @@
 
 			<section class="section">
 				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title"></h4>
-					</div>
 					<div class="card-body">
 						<form class="form form-vertical" action="companyupdate" method="post">
 							<div class="row">
@@ -99,7 +95,7 @@
 								</div>
 								<div class="form-group">
 									<label for="basicInput">이메일</label> 
-									<input type="text" class="form-control" name="cp_mail" value="${company.cp_mail }" required>
+									<input type="email" class="form-control" name="cp_mail" value="${company.cp_mail }" required>
 								</div>
 								<div class="form-group">
 									<label for="cp_addr">회사주소</label>
@@ -108,11 +104,13 @@
 										<button type="button" class="btn btn-outline-secondary" onclick="execDaumPostcode()">주소검색</button>
 									</div>
 								</div>
-
+								<p>
+								
+								</p>
 								<div class="col-12 d-flex justify-content-end">
-									<button type="submit" class="btn btn-outline-warning">수정완료</button>
-									<button type="button" onclick="location.href='companydelete?cp_id=${company.cp_id}'" class="btn btn-outline-danger">삭제</button>
-									<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary">목록</button>
+									<button type="submit" class="btn btn-outline-warning me-1 mb-1">수정완료</button>
+									<button type="button" onclick="location.href='companydelete?cp_id=${company.cp_id}'" class="btn btn-outline-danger me-1 mb-1">삭제</button>
+									<button type="button" onclick="location.href='companylist'" class="btn btn-outline-primary me-1 mb-1">목록</button>
 								</div>
 							</div>
 						</div>
