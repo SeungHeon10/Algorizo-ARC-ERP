@@ -17,7 +17,7 @@
                 <div class="col-12 col-xl-15">
                     <div class="card">
                         <div class="card-header">
-                            <h4><a href="${contextPath }/board/list">공지사항</a></h4>
+                            <h4><a href="${contextPath }/board/list">🔔공지사항🔔</a></h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -68,7 +68,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </div>
-                            <h6 class="text-muted mt-2 mb-0"><%= (team != null && !team.isEmpty()) ? team : "" %></h6>
                         </div>
                     </div>
                 </div>

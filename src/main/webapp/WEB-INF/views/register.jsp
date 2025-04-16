@@ -19,6 +19,7 @@
                     
                     <h1 class="auth-title">회원 가입</h1>
                     <p class="auth-subtitle mb-5">.</p>
+                    <h1 class="auth-title">회원가입</h1>
 
                     <form action="${contextPath}/register" onsubmit="return validateForm()" method="post">
                     <!-- 이메일 -->
@@ -85,6 +86,9 @@
                                 <c:if test="${not empty error}">
 							        <p style="color: red; font-size: 0.9em; margin-top: 5px;">${error}</p>
 							    </c:if>
+                            <c:if test="${not empty error }">
+                            	<p style="color: red; font-size: 0.9em; margin-top: 5px;">${error }</p>
+                            </c:if>
                         </div>
                         <!-- 비밀번호 -->
                         <div class="form-group position-relative has-icon-left mb-4">

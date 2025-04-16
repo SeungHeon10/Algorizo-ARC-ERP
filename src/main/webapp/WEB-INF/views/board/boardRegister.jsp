@@ -55,7 +55,7 @@
 												<label>내용</label>
 											</div>
 											<div class="col-md-8 form-group">
-												<textarea class="form-control" name="b_content" rows="3"></textarea>
+												<textarea class="form-control" name="b_content" rows="3" required></textarea>
 											</div>
 											<div class="col-md-4">
 												<label>담당자</label>
