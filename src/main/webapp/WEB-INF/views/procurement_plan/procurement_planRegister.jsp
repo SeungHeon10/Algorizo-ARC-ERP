@@ -24,13 +24,12 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>조달 계획 등록</h3>
-						<p class="text-subtitle text-muted">Register a new procurement plan.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
+								<li class="breadcrumb-item"><a href="${contextPath }/plans/list">PlanList</a></li>
 								<li class="breadcrumb-item active" aria-current="page">PlanRegister</li>
 							</ol>
 						</nav>
@@ -40,9 +39,6 @@
 			<section class="section">
 				<div class="container mt-4" id="plan_detail">
 					<div class="card">
-						<div class="card-header">
-							<h4 class="card-title">조달 계획 등록</h4>
-						</div>
 						<div class="card-body">
 							<form id="registerPlan">
 								<div class="d-flex custom">

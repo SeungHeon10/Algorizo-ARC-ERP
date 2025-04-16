@@ -15,7 +15,7 @@ public class stockDAOlmpl implements stockDAO {
 	private SqlSession sqlsession;
 	private static final String namespace = "co.algorizo.erp.stockmapper";
 
-	// 占쏙옙占� 占쏙옙체 占쏙옙회
+	// 재고 전체 조회
 	@Override
 	public List<stockDTO> list() throws Exception {
 		// TODO Auto-generated method stub
@@ -24,29 +24,28 @@ public class stockDAOlmpl implements stockDAO {
 		return s;
 	}
 
-	// 占쏙옙占� 占쏙옙 占쏙옙占쏙옙
+	// 재고 상세보기 
 	@Override
 	public stockDTO detail(int s_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace + ".detail",s_id);
 	}
 
-	//占쏙옙占� 占쏙옙占쏙옙
-	// 占쏙옙占� 占쏙옙占�
+	// 재고 등록
 	@Override
 	public void register(stockDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlsession.insert(namespace + ".register", dto);
 	}
 
-	// 占쏙옙占� 占쏙옙占쏙옙
+	// 재고 수정
 	@Override
 	public void update(stockDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlsession.update(namespace + ".update", dto);
 	}
 
-	// 占쏙옙占� 占쏙옙占쏙옙
+	// 재고 삭제
 	@Override
 	public int delete(int s_id) throws Exception {
 		return sqlsession.delete(namespace + ".delete", s_id);
@@ -59,6 +58,5 @@ public class stockDAOlmpl implements stockDAO {
 		System.out.println("service"+s);
 		return s;
 	}
-
 
 }

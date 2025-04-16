@@ -6,7 +6,7 @@ import co.algorizo.erp.product.ProductDTO;
 
 public class OutInspectionDTO {
 	private int oi_id; // 검수 ID
-	private int out_id; // 입고 ID
+	private int out_id; // 출고 ID
 	private String oi_code;
 	private String oi_date; // 검수일자
 	private int oi_quantity; // 검수수량

@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
 <%@include file="../include/head.jsp"%>
@@ -19,27 +17,31 @@
 				class="bi bi-justify fs-3"></i>
 			</a>
 		</header>
-		<div class="page-title">
-			<div class="row">
-				<div class="col-12 col-md-6 order-md-1 order-last">
-					<h3>
-						<strong>입고 등록</strong>
-					</h3>
-					<nav aria-label="breadcrumb" class="breadcrumb-header">
-						<ol class="breadcrumb justify-content-end">
-							<li class="breadcrumb-item"><a href="${contextPath }/inbound/inboundlist">Inbound List</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Register</li>
-						</ol>
-					</nav>
+		<div class="page-heading">
+			<div class="page-title">
+				<div class="row">
+					<div class="col-12 col-md-6 order-md-1 order-last">
+						<h3>
+							<strong>입고 등록</strong>
+						</h3>
+					</div>
+					<div class="col-12 col-md-6 order-md-2 order-first">
+						<nav aria-label="breadcrumb"
+							class="breadcrumb-header float-start float-lg-end">
+							<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a
+										href="${contextPath }/inbound/inboundlist">Inbound list</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Update</li>
+							</ol>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-6 col-12">
-			<div class="card">
-				<div class="card-header">
-					<h4 class="card-title">algorizo</h4>
-				</div>
-				<div class="card-content">
+			<section class="section">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title"></h4>
+					</div>
 					<div class="card-body">
 						<form
 							action="${pageContext.request.contextPath}/inbound/inboundregister"
@@ -97,19 +99,32 @@
 									<div class="col-12">
 										<div class="form-group has-icon-left">
 											<label for="first-name-icon">입고 수량</label>
-											<div class="position-relative" style="width: 20%">
+											<div class="position-relative" style="width: 50%">
 												<div class="form-control-icon"
 													style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; color: #607080;">
 													<i class="bi bi-cash"></i>
 												</div>
-
 												<input
 													style="display: block; width: 100%; padding: .375rem .75rem .375rem 3rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #607080; background-color: #fff; background-clip: padding-box; border: 1px solid #dce7f1; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; position: relative; z-index: 1;"
 													type="number" name="in_quantity" id="in_quantity"
-													required="required" />
+													required="required" min="0" />
 											</div>
-
-
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group has-icon-left">
+											<label for="first-name-icon">담당자</label>
+											<div class="position-relative">
+												<div class="form-control-icon">
+													<i class="bi bi-stack"></i>
+												</div>
+												<select class="form-control" id="company_cp_id"
+													name="company_cp_id">
+													<c:forEach var="company" items="${company}">
+														<option value="${company.cp_id }">${company.cp_manager }</option>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
 									</div>
 									<div class="col-12">
@@ -123,7 +138,7 @@
 												<input
 													style="display: block; width: 100%; padding: .375rem .75rem .375rem 3rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #607080; background-color: #fff; background-clip: padding-box; border: 1px solid #dce7f1; appearance: none; border-radius: .25rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; position: relative; z-index: 1;"
 													type="text" name="in_status" id="in_status"
-													required="required" value="${in_status }" disabled/>
+													required="required" value="${in_status }" disabled />
 											</div>
 										</div>
 									</div>
@@ -136,7 +151,7 @@
 											class="btn btn-outline-primary me-1 mb-1">등록</button>
 										<button type="reset"
 											class="btn btn-outline-secondary me-1 mb-1">초기화</button>
-											<button type="submit" class="btn btn-outline-danger me-1 mb-1"
+										<button type="submit" class="btn btn-outline-danger me-1 mb-1"
 											onclick="location.href='${contextPath}/inbound/inboundlist'">취소</button>
 									</div>
 								</div>
@@ -144,14 +159,13 @@
 						</form>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	</div>
 	<footer>
-		<%@ include file="../include/footer.jsp"%>
+		<%@include file="../include/footer.jsp"%>
 	</footer>
-	<!-- 플러그인 -->
-	<%@ include file="../include/plugin.jsp"%>
+	<%@include file="../include/plugin.jsp"%>
 </body>
 
 </html>

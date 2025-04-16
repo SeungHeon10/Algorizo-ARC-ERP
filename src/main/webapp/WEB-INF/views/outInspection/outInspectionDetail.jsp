@@ -24,13 +24,12 @@
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>출고 검수 상세보기</h3>
-                            <p class="text-subtitle text-muted">Check detailed inspection results.</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="${contextPath }/inspection/list">InspectionList</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">InspectionDetail</li>
+                                    <li class="breadcrumb-item"><a href="${contextPath }/outInspection/list">OutInspectionList</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">OutInspectionDetail</li>
                                 </ol>
                             </nav>
                         </div>
@@ -40,9 +39,6 @@
 				<div class="row match-height">
 					<div class="container">
 						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">출고 검수 상세보기</h4>
-							</div>
 							<div class="card-body">
 								<div class="d-flex custom">
 									<div class="form-group width">

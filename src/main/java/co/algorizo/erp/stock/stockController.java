@@ -41,7 +41,7 @@ public class stockController {
 	private ProductService productservice;
 
 	@GetMapping(value = "/stock/stocklist")
-	public String list(Model model, HttpSession session) throws Exception {
+	public String list(Model model, HttpSession session,@ModelAttribute stockDTO stockdto) throws Exception {
 		if (session.getAttribute("m_id") == null) {
 			return "redirect:/"; //
 		}
@@ -50,7 +50,6 @@ public class stockController {
 		List<StockSummaryDTO> summary = stockservice.summary();
 		System.out.println("controller" + summary);
 		model.addAttribute("summary", summary);
-
 		return "stock/stocklist";
 	}
 

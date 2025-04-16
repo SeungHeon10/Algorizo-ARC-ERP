@@ -11,5 +11,8 @@
 	</c:if>
 
     <script src="${contextPath }/resources/static/dist/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     
     

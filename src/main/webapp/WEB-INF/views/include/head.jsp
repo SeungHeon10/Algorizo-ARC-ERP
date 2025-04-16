@@ -38,8 +38,8 @@
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/css/app.css">
     
     <!-- 조달계획 -->
-    <link rel="stylesheet" href="${contextPath }/resources/static/css/list.css">
-    <link rel="stylesheet" href="${contextPath }/resources/static/css/in_register.css">
+    <link rel="stylesheet" href="${contextPath }/resources/static/css/plan.css">
+    <link rel="stylesheet" href="${contextPath }/resources/static/css/inspection.css">
     
     <!-- order register choice -->
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/choices.js/choices.min.css" />
@@ -51,4 +51,7 @@
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/css/app.css">
+    
+    <link rel="stylesheet" href="${contextPath }/resources/static/css/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
     

@@ -26,8 +26,8 @@
 					<nav aria-label="breadcrumb"
 						class="breadcrumb-header float-start float-lg-end">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
-							<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productlist">품목목록</a></li>
+							<li class="breadcrumb-item"><a href="${contextPath }/product/productlist">Product List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Product Register</li>
 						</ol>
 					</nav>
 				</div>
@@ -100,7 +100,7 @@
 												<label>판매단가</label>
 											</div>
 											<div class="col-md-8 form-group">
-												<input type="number" class="form-control" name="p_price" required>
+												<input type="number" class="form-control" min="0" name="p_price" required>
 											</div>
 
 											<div class="col-md-4">

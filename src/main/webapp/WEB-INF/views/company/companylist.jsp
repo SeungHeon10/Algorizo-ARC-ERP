@@ -27,8 +27,8 @@
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
-									<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/company/companyinsert">업체등록</a></li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Company List</li>
 								</ol>
 							</nav>
 						</div>

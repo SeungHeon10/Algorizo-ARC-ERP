@@ -27,7 +27,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3 style="margin-left: 13px;">입고 조회</h3>
+						<h3 style="margin-left: 13px; margin-bottom: 50px;">입고 조회</h3>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -42,8 +42,8 @@
 			</div>
 			<section class="section">
 				<div class="card">
-					<div class="card-header">
-						<h3>algorizo</h3>
+				<div class="card-header">
+						<h4 class="card-title"></h4>
 					</div>
 					<div class="card-body">
 						<table class="table table-striped" id="table1">
@@ -104,9 +104,6 @@
 											        <c:set var="s_id" value="0" />
 											    </c:otherwise>
 											</c:choose>
-
-											<c:out value="${i_id}" />
-											<c:out value="${s_id}" />
 										</td>
 										<td>
 											<button type="button"
