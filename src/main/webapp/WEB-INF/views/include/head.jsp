@@ -3,6 +3,9 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARC ERP</title>
+    
+    <!-- 아이콘 -->
+    <link rel="icon" href="${contextPath }/resources/img/Logo/project.png" type="image/x-icon">
 
     <link rel="${contextPath }/resources/static/preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +16,6 @@
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/css/app.css">
-    <link rel="shortcut icon" href="${contextPath }/resources/static/dist/assets/images/favicon.svg" type="image/x-icon">
     
     <!-- Error Page -->
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/css/pages/error.css">
@@ -34,7 +36,6 @@
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/css/app.css">
-    <link rel="shortcut icon" href="${contextPath }/resources/static/dist/assets/images/favicon.svg" type="image/x-icon">
     
     <!-- 조달계획 -->
     <link rel="stylesheet" href="${contextPath }/resources/static/css/list.css">
@@ -50,5 +51,4 @@
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="${contextPath }/resources/static/dist/assets/css/app.css">
-    <link rel="shortcut icon" href="${contextPath }/resources/static/dist/assets/images/favicon.svg" type="image/x-icon">
     
