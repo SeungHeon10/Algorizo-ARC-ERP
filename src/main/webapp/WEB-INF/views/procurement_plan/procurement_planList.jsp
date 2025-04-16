@@ -24,12 +24,11 @@
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>조달 계획 조회</h3>
-                            <p class="text-subtitle text-muted">View and manage procurement plans.</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">PlanList</li>
                                 </ol>
                             </nav>
@@ -38,9 +37,6 @@
                 </div>
                 <section class="section">
                     <div class="card">
-                        <div class="card-header">
-                            Procurement Plan List
-                        </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                             	<colgroup>

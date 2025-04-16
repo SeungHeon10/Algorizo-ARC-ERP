@@ -44,6 +44,10 @@
                     </div>
                 </div>
             </div>
+                    <!-- 캘린더 -->
+	        <div class="col-12" id="calendar">
+	        
+	        </div>
         </div>
 
         <!-- 오른쪽 사이드 -->
@@ -73,7 +77,7 @@
                 </div>
             </div>
 
-            <!-- 2. 차 -->
+            <!-- 2. 차트 -->
             <div class="card mt-4">
                 <div class="card-header">
                     <h4>월별 불량 사유 분포</h4>
@@ -96,11 +100,6 @@
                     <canvas id="defectReasonChart" height="150"></canvas>
                 </div>
             </div>
-        </div>
-
-        <!-- 캘린더 -->
-        <div class="col-12" id="calendar">
-        
         </div>
     </section>
 </div>
