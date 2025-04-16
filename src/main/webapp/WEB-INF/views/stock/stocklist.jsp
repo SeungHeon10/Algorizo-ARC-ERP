@@ -28,13 +28,13 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>재고 조회</h3>
+						<h3 style="margin-left: 13px; margin-bottom: 50px;">재고 조회</h3>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
+								<li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">list</li>
 							</ol>
 						</nav>
@@ -43,9 +43,6 @@
 			</div>
 			<section class="section">
 				<div class="card">
-					<div class="card-header">
-						<h3>algorizo</h3>
-					</div>
 					<div class="card-body">
 						<table class="table table-striped" id="table1">
 							<thead>
@@ -84,6 +81,7 @@
 									<th class="text-center">상품 코드</th>
 									<th class="text-center">입고 수량</th>
 									<th class="text-center">불량 수량</th>
+									<th class="text-center">검출 수량</th>
 									<th class="text-center">재고 수량</th>
 									<th class="text-center">검사관</th>
 								</tr>
@@ -93,25 +91,41 @@
 									<tr>
 										<td>${sum.p_name == null || sum.p_name == '' ? 'N/A' : sum.p_name}</td>
 										<td>${sum.p_code == null || sum.p_code == '' ? 'N/A' : sum.p_code}</td>
-										<td><c:choose>
+										<td>
+											<c:choose>
 												<c:when
 													test="${sum.in_quantity == null || sum.in_quantity == '' || sum.in_quantity == 0}">
 										            N/A
 										        </c:when>
 												<c:otherwise>
 									            ${sum.in_quantity}
-									        </c:otherwise>
-											</c:choose></td>
-										<td><c:choose>
+									       	    </c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+										    <c:choose>
 												<c:when
 													test="${sum.i_defective_quantity == null || sum.i_defective_quantity == '' || sum.i_defective_quantity == 0}">
 										            N/A
 										        </c:when>
 												<c:otherwise>
 									            ${sum.i_defective_quantity}
+									       	    </c:otherwise>
+											</c:choose>
+										</td>
+											<td>
+											<c:choose>
+												<c:when
+													test="${sum.oi_quantity == null || sum.oi_quantity == '' || sum.oi_quantity == 0}">
+										            N/A
+										        </c:when>
+												<c:otherwise>
+									            ${sum.oi_quantity}
 									        </c:otherwise>
-											</c:choose></td>
-										<td><c:choose>
+											</c:choose>
+										</td>
+										<td>
+											<c:choose>
 												<c:when
 													test="${sum.s_quantity == null || sum.s_quantity < 0}">
 								                    N/A
@@ -120,7 +134,7 @@
 								                    ${sum.s_quantity}
 								                </c:otherwise>
 											</c:choose></td>
-											<td>${sum.i_inspector}</td>
+										<td>${sum.i_inspector}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

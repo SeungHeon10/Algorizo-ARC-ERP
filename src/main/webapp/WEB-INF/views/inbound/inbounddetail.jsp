@@ -23,7 +23,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>
+						<h3 style="margin-left: 13px; margin-bottom: 50px;">
 							<strong>상세 정보</strong>
 						</h3>
 						<p class="text-subtitle text-muted"></p>
@@ -32,7 +32,8 @@
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/inbound/inboundlist">Inbound List</a></li>
+								<li class="breadcrumb-item"><a
+									href="${contextPath }/inbound/inboundlist">Inbound List</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Detail</li>
 							</ol>
 						</nav>
@@ -43,20 +44,16 @@
 				<div class="row" id="table-striped">
 					<div class="col-12">
 						<div class="card">
-							<div class="card-header">
-								<strong></strong>
-							</div>
 							<div class="card-body">
 								<table class="table table-striped" id="table1">
+									<c:forEach var="dto" items="${dto }">
+										<!-- detail 객체가 null일 경우 처리 -->
+										<c:if test="${empty dto}">
+											<p class="text-red-500 mt-4">입고 정보를 찾을 수 없습니다.</p>
+										</c:if>
 
-									<!-- detail 객체가 null일 경우 처리 -->
-									<c:if test="${empty dto}">
-										<p class="text-red-500 mt-4">입고 정보를 찾을 수 없습니다.</p>
-									</c:if>
-
-									<!-- detail 객체가 null이 아닐 경우 정보 출력 -->
-									<c:if test="${not empty dto}">
-										<c:forEach var="dto" items="${dto}">
+										<!-- detail 객체가 null이 아닐 경우 정보 출력 -->
+										<c:if test="${not empty dto}">
 											<tr>
 												<th>입고 번호:</th>
 												<td>${dto.in_id == 0 ? 'N/A' : dto.in_id}</td>
@@ -101,32 +98,32 @@
 												<th>비고:</th>
 												<td>${dto.etc == null || dto.etc == '' ? 'N/A' : dto.etc}</td>
 											</tr>
-										</c:forEach>
-									</c:if>
-
+										</c:if>
+									</c:forEach>
 								</table>
 								<!-- 돌아가기 버튼 -->
-
-								<div class="button-container"
-									style="display: flex; justify-content: flex-end; margin-top: 20px;">
-									<c:forEach var="dto" items="${dto}">
+								<c:forEach var="dto" items="${dto }">
+									<div class="button-container"
+										style="display: flex; justify-content: flex-end; margin-top: 20px;">
 										<button type="button"
 											onclick="location.href='${contextPath}/inbound/inboundlist'"
 											class="btn btn-outline-primary me-1 mb-1">목록</button>
-										<c:if test="${not empty dto.in_id}">
-											<button type="button"
-												onclick="location.href='inboundupdate?in_id=${dto.in_id}'"
-												class="btn btn-outline-warning me-1 mb-1">수정</button>
-										</c:if>
+										<button type="button"
+											onclick="location.href='inboundupdate?in_id=${dto.in_id}'"
+											class="btn btn-outline-warning me-1 mb-1">수정</button>
 										<form action="${contextPath}/inbound/inbounddelete"
 											method="post" class="inline-form">
 											<input type="hidden" name="in_id" value="${dto.in_id}">
-											<button type="submit" class="btn btn-outline-danger me-1 mb-1"
+											<button type="submit"
+												class="btn btn-outline-danger me-1 mb-1"
 												onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
 										</form>
-										<button type="button" class="btn btn-outline-primary me-1 mb-1" onclick="location.href='${contextPath}/inboundReceipt/insertInboundReceipt?in_id=${dto.in_id }'">거래명세서 등록</button>
-									</c:forEach>
-								</div>
+										<button type="button"
+											class="btn btn-outline-primary me-1 mb-1"
+											onclick="location.href='${contextPath}/inboundReceipt/insertInboundReceipt?in_id=${dto.in_id }'">거래명세서
+											등록</button>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

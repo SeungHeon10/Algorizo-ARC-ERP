@@ -22,8 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.algorizo.erp.company.CompanyDTO;
 import co.algorizo.erp.company.CompanyService;
-import co.algorizo.erp.inspection.InspectionDTO;
 import co.algorizo.erp.inspection.InspectionService;
+import co.algorizo.erp.inspection.DTO.InspectionDTO;
 import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.product.ProductService;
 import co.algorizo.erp.register.dto.MemberDTO;
@@ -82,7 +82,7 @@ public class inboundController {
 		model.addAttribute("product", productList);
 		model.addAttribute("company", companyList);
 		model.addAttribute("member", memberList);
-		model.addAttribute("in_status", "ÀÔ°í ´ë±â");
+		model.addAttribute("in_status", "ì…ê³  ëŒ€ê¸°");
 		return "inbound/inboundregister";
 	}
 
@@ -93,7 +93,7 @@ public class inboundController {
 			return "redirect:/"; //
 		}
 		service.register(inbounddto);
-		return "redirect:/inbound/inboundlist"; // ¼º°ø ½Ã ¸ñ·Ï ÆäÀÌÁö·Î ÀÌµ¿
+		return "redirect:/inbound/inboundlist"; // ì„±ê³µ ì‹œ ëª©ë¡ í˜ì´ì§€ë¡œ ì´ë™
 	}
 
 	@GetMapping(value = "/inbound/inboundupdate")
@@ -122,61 +122,62 @@ public class inboundController {
 	@PostMapping(value = "/inbound/confirm")
 	@ResponseBody
 	public ResponseEntity<?> confirmInbound(@RequestBody Map<String, Object> payload) {
-		logger.debug("Request payload: {}", payload); // ¿äÃ» È®ÀÎ
-		System.out.println("Request payload: " + payload); // ÄÜ¼Ö¿¡ Ãâ·Â
+		logger.debug("Request payload: {}", payload); // ìš”ì²­ í™•ì¸
+		System.out.println("Request payload: " + payload); // ì½˜ì†”ì— ì¶œë ¥
 
 		try {
-			// in_id °ªÀÌ Á¦´ë·Î Àü´ŞµÇ¾ú´ÂÁö È®ÀÎ
+			// in_id ê°’ì´ ì œëŒ€ë¡œ ì „ë‹¬ë˜ì—ˆëŠ”ì§€ í™•ì¸
 			if (!payload.containsKey("in_id") || payload.get("in_id") == null
 					|| String.valueOf(payload.get("in_id")).trim().isEmpty()) {
-				System.out.println("ÀÔ°í ID°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù."); // À¯È¿ÇÏÁö ¾ÊÀº in_id Ãâ·Â
-				return ResponseEntity.badRequest().body("ÀÔ°í ID°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("ì…ê³  IDê°€ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."); // ìœ íš¨í•˜ì§€ ì•Šì€ in_id ì¶œë ¥
+				return ResponseEntity.badRequest().body("ì…ê³  IDê°€ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			}
 
 			String in_id = String.valueOf(payload.get("in_id"));
 			String i_id = String.valueOf(payload.get("i_id"));
 			String s_id = String.valueOf(payload.get("s_id"));
-			logger.debug("Parsed in_id: {}", in_id); // in_id È®ÀÎ
-			logger.debug("Parsed i_id: {}", i_id); // in_id È®ÀÎ
-			System.out.println("Parsed in_id: " + in_id); // ÄÜ¼Ö¿¡ Ãâ·Â
-			System.out.println("Parsed i_id: " + i_id); // ÄÜ¼Ö¿¡ Ãâ·Â
-			System.out.println("Parsed s_id: " + s_id); // ÄÜ¼Ö¿¡ Ãâ·Â
 
-			// in_id°¡ ¼ıÀÚÀÏ °æ¿ì¿¡¸¸ Ã³¸®
+
+			// in_idê°€ ìˆ«ìì¼ ê²½ìš°ì—ë§Œ ì²˜ë¦¬
 			try {
-				Integer.parseInt(in_id); // ¹®ÀÚ¿­À» Á¤¼ö·Î º¯È¯ÇÒ ¼ö ÀÖ´ÂÁö Ã¼Å©
-				System.out.println("in_id°¡ Á¤¼ö·Î º¯È¯µÊ: " + in_id); // Á¤¼ö·Î º¯È¯µÈ in_id Ãâ·Â
+				Integer.parseInt(in_id); // ë¬¸ìì—´ì„ ì •ìˆ˜ë¡œ ë³€í™˜í•  ìˆ˜ ìˆëŠ”ì§€ ì²´í¬
+				System.out.println("in_idê°€ ì •ìˆ˜ë¡œ ë³€í™˜ë¨: " + in_id); // ì •ìˆ˜ë¡œ ë³€í™˜ëœ in_id ì¶œë ¥
 			} catch (NumberFormatException e) {
-				System.out.println("À¯È¿ÇÏÁö ¾ÊÀº ÀÔ°í IDÀÔ´Ï´Ù."); // À¯È¿ÇÏÁö ¾ÊÀº ID Ãâ·Â
-				return ResponseEntity.badRequest().body("À¯È¿ÇÏÁö ¾ÊÀº ÀÔ°í IDÀÔ´Ï´Ù.");
+				System.out.println("ìœ íš¨í•˜ì§€ ì•Šì€ ì…ê³  IDì…ë‹ˆë‹¤."); // ìœ íš¨í•˜ì§€ ì•Šì€ ID ì¶œë ¥
+				return ResponseEntity.badRequest().body("ìœ íš¨í•˜ì§€ ì•Šì€ ì…ê³  IDì…ë‹ˆë‹¤.");
 			}
+			//Integerë¡œ í˜•ë³€í™˜
 			Integer inspectionId = Integer.valueOf(i_id);
 			Integer stockid = Integer.valueOf(s_id);
-			 if (inspectionId == 0) { // i_id°¡ 0ÀÏ °æ¿ì ¹Ù·Î È®Á¤ Ã³¸®
-		            System.out.println("i_id°¡ 0ÀÌ¹Ç·Î ¹Ù·Î È®Á¤ Ã³¸®");
-		            service.updateInboundStatus(in_id, "ÀÔ°í ¿Ï·á");
-		            System.out.println("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ®: ÀÔ°í ¿Ï·á, in_id = " + in_id);
+			System.out.println("stockid"+stockid);
+			
+			 if (inspectionId == 0) { // i_idê°€ 0ì¼ ê²½ìš° ë°”ë¡œ í™•ì • ì²˜ë¦¬
+		            System.out.println("i_idê°€ 0ì´ë¯€ë¡œ ë°”ë¡œ í™•ì • ì²˜ë¦¬");
+		            service.updateInboundStatus(in_id, "ì…ê³  ì™„ë£Œ");
+		            System.out.println("ì…ê³  ìƒíƒœ ì—…ë°ì´íŠ¸: ì…ê³  ì™„ë£Œ, in_id = " + in_id);
 		            return ResponseEntity.ok().build();
 		    }
+			 
 			stockDTO stock = stockservice.detail(stockid);
 			System.out.println("stockdetail" + stock); 
 			InspectionDTO inspection = inspectionservice.detail(inspectionId);
 			System.out.println("inspectiondetail" + inspection );
 			
 			stock.setS_quantity(stock.getS_quantity() + inspection.getI_quantity());
-			// ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ® È£Ãâ
-			service.updateInboundStatus(in_id, "ÀÔ°í ¿Ï·á");
-			//Àç°í ¾÷µ¥ÀÌÆ®ÇÏ´Â ·ÎÁ÷ÀÌ ÀÖ¾î¾ßÇÔ service¶û daoÇÏ³ª ´õ ¸¸µé¾î¼­ ÀÔ°í ¿Ï·á°¡ µÇ¸é Àç°í·®¿¡ Ãß°¡µÇ°Ô ¸¸µé±â
+			// ì…ê³  ìƒíƒœ ì—…ë°ì´íŠ¸ í˜¸ì¶œ
+			service.updateInboundStatus(in_id, "ì…ê³  ì™„ë£Œ");
 			service.stockupdate(stock.getS_quantity(),stockid);
-			System.out.println("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ®: ÀÔ°í ¿Ï·á, in_id = " + in_id); // »óÅÂ ¾÷µ¥ÀÌÆ® Ãâ·Â
-			System.out.println("Àç°í ¼ö·® ¾÷µ¥ÀÌÆ®: Àç°í Ãß°¡ ¿Ï·á, i_id = " + i_id); // »óÅÂ ¾÷µ¥ÀÌÆ® Ãâ·Â
-			System.out.println("Àç°í ¼ö·® ¾÷µ¥ÀÌÆ®: Àç°í Ãß°¡ ¿Ï·á, s_id = " + s_id); // »óÅÂ ¾÷µ¥ÀÌÆ® Ãâ·Â
+			
+			System.out.println("ì…ê³  ìƒíƒœ ì—…ë°ì´íŠ¸: ì…ê³  ì™„ë£Œ, in_id = " + in_id); // ìƒíƒœ ì—…ë°ì´íŠ¸ ì¶œë ¥
+			System.out.println("ì¬ê³  ìˆ˜ëŸ‰ ì—…ë°ì´íŠ¸: ì¬ê³  ì¶”ê°€ ì™„ë£Œ, i_id = " + i_id); // ìƒíƒœ ì—…ë°ì´íŠ¸ ì¶œë ¥
+			System.out.println("ì¬ê³  ìˆ˜ëŸ‰ ì—…ë°ì´íŠ¸: ì¬ê³  ì¶”ê°€ ì™„ë£Œ, s_id = " + s_id); // ìƒíƒœ ì—…ë°ì´íŠ¸ ì¶œë ¥
 			//
 			return ResponseEntity.ok().build();
+			
 		} catch (Exception e) {
-			logger.error("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ® Áß ¿À·ù ¹ß»ı: {}", e.getMessage());
-			System.out.println("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ® Áß ¿À·ù ¹ß»ı: " + e.getMessage()); // ¿À·ù ¸Ş½ÃÁö Ãâ·Â
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("»óÅÂ ¾÷µ¥ÀÌÆ® ½ÇÆĞ");
+			logger.error("ì…ê³  ìƒíƒœ ì—…ë°ì´íŠ¸ ì¤‘ ì˜¤ë¥˜ ë°œìƒ: {}", e.getMessage());
+			System.out.println("ì…ê³  ìƒíƒœ ì—…ë°ì´íŠ¸ ì¤‘ ì˜¤ë¥˜ ë°œìƒ: " + e.getMessage()); // ì˜¤ë¥˜ ë©”ì‹œì§€ ì¶œë ¥
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ìƒíƒœ ì—…ë°ì´íŠ¸ ì‹¤íŒ¨");
 		}
 	}
 

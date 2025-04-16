@@ -3,8 +3,10 @@ package co.algorizo.erp.outbound;
 import java.sql.Date;
 
 import co.algorizo.erp.company.CompanyDTO;
+import co.algorizo.erp.outinspection.OutInspectionDTO;
 import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.register.dto.MemberDTO;
+import co.algorizo.erp.stock.stockDTO;
 
 public class outboundDTO {
 
@@ -18,19 +20,25 @@ public class outboundDTO {
 	private int product_p_id;
 	private int company_cp_id;
 	private String member_m_id;
+	private int oi_quantity;
+	private int oi_defective_quantity;
+	private int s_quantity;
+	
+	
 	private MemberDTO member;
 	private CompanyDTO company;
 	private ProductDTO product;
+	private stockDTO stock;
+	private OutInspectionDTO outinspection;
 
 	public outboundDTO() {
 
 	}
-	
-	
-	
+
 	public outboundDTO(int out_id, Date out_date, Date update_date, String out_status, int out_quantity, String etc,
-			int del, int product_p_id, int company_cp_id, String member_m_id, MemberDTO member, CompanyDTO company,
-			ProductDTO product) {
+			int del, int product_p_id, int company_cp_id, String member_m_id, int oi_quantity,
+			int oi_defective_quantity, int s_quantity, MemberDTO member, CompanyDTO company, ProductDTO product,
+			stockDTO stock, OutInspectionDTO outinspection) {
 		super();
 		this.out_id = out_id;
 		this.out_date = out_date;
@@ -42,12 +50,15 @@ public class outboundDTO {
 		this.product_p_id = product_p_id;
 		this.company_cp_id = company_cp_id;
 		this.member_m_id = member_m_id;
+		this.oi_quantity = oi_quantity;
+		this.oi_defective_quantity = oi_defective_quantity;
+		this.s_quantity = s_quantity;
 		this.member = member;
 		this.company = company;
 		this.product = product;
+		this.stock = stock;
+		this.outinspection = outinspection;
 	}
-
-
 
 	public int getOut_id() {
 		return out_id;
@@ -129,6 +140,30 @@ public class outboundDTO {
 		this.member_m_id = member_m_id;
 	}
 
+	public int getOi_quantity() {
+		return oi_quantity;
+	}
+
+	public void setOi_quantity(int oi_quantity) {
+		this.oi_quantity = oi_quantity;
+	}
+
+	public int getOi_defective_quantity() {
+		return oi_defective_quantity;
+	}
+
+	public void setOi_defective_quantity(int oi_defective_quantity) {
+		this.oi_defective_quantity = oi_defective_quantity;
+	}
+
+	public int getS_quantity() {
+		return s_quantity;
+	}
+
+	public void setS_quantity(int s_quantity) {
+		this.s_quantity = s_quantity;
+	}
+
 	public MemberDTO getMember() {
 		return member;
 	}
@@ -153,12 +188,30 @@ public class outboundDTO {
 		this.product = product;
 	}
 
+	public stockDTO getStock() {
+		return stock;
+	}
+
+	public void setStock(stockDTO stock) {
+		this.stock = stock;
+	}
+
+	public OutInspectionDTO getOutinspection() {
+		return outinspection;
+	}
+
+	public void setOutinspection(OutInspectionDTO outinspection) {
+		this.outinspection = outinspection;
+	}
+
 	@Override
 	public String toString() {
 		return "outboundDTO [out_id=" + out_id + ", out_date=" + out_date + ", update_date=" + update_date
 				+ ", out_status=" + out_status + ", out_quantity=" + out_quantity + ", etc=" + etc + ", del=" + del
 				+ ", product_p_id=" + product_p_id + ", company_cp_id=" + company_cp_id + ", member_m_id=" + member_m_id
-				+ ", member=" + member + ", company=" + company + ", product=" + product + "]";
+				+ ", oi_quantity=" + oi_quantity + ", oi_defective_quantity=" + oi_defective_quantity + ", s_quantity="
+				+ s_quantity + ", member=" + member + ", company=" + company + ", product=" + product + ", stock="
+				+ stock + ", outinspection=" + outinspection + "]";
 	}
-
+	
 }
