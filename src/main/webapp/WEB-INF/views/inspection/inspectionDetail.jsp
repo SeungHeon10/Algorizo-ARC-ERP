@@ -23,8 +23,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>상세보기</h3>
-                            <p class="text-subtitle text-muted">Check detailed inspection results.</p>
+                            <h3>검수 상세보기</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -40,9 +39,6 @@
 				<div class="row match-height">
 					<div class="container">
 						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">검수 상세보기</h4>
-							</div>
 							<div class="card-body">
 								<div class="d-flex custom">
 									<div class="form-group width">

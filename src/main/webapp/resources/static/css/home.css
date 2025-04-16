@@ -1,0 +1,12 @@
+@charset "UTF-8";
+#calendar {
+  min-height: 600px;
+  background-color: white; 
+  padding: 7px;
+}
+.fc-toolbar.fc-toolbar-ltr{
+	margin-top: 10px;
+}
+.fc-daygrid-event .fc-event-time {
+  display: none !important;
+}

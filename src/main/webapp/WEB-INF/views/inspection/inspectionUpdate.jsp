@@ -23,13 +23,12 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>검수 수정</h3>
-                            <p class="text-subtitle text-muted">Update inspection result or quantities.</p>
+                        	<h3>검수 수정</h3>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="${contextPath }/inspection/detail?i_id=${detail.i_id }">InspectionDetail</a></li>
+                                    <li class="breadcrumb-item"><a href="${contextPath }/inspection/list">InspectionList</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">InspectionUpdate</li>
                                 </ol>
                             </nav>
@@ -40,9 +39,6 @@
 				<div class="row match-height">
 					<div class="container">
 						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">검수 수정</h4>
-							</div>
 							<div class="card-body">
 								<form action="#" id="inspectionUpdate" method="post">
 									<div class="d-flex custom">
@@ -290,7 +286,7 @@
             if(parseInt(inspection_quantity.value || 0) + inspection_defective_quantity_val === in_quantity_val){
 	            if(inspection_defect_rate.value > 10){
 	                inspection_result.value = "불합격";
-	            } else if(inspection_defective_quantity_val === 0){
+	            } else if(inspection_defect_rate.value == 0){
 	                inspection_result.value = "합격";
 	            } else {
 	                inspection_result.value = "부분합격";
