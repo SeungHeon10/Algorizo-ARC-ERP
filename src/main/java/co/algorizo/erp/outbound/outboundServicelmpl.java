@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.algorizo.erp.company.CompanyDAO;
+import co.algorizo.erp.inbound.inboundDAO;
 import co.algorizo.erp.product.ProductDAO;
 import co.algorizo.erp.register.dao.MemberDAO;
 
@@ -55,9 +56,23 @@ public class outboundServicelmpl implements outboundService {
 	}
 
 	@Override
-	public boolean canProceedOutbound(int product_p_id, int out_quantity) throws Exception {
+	public void updateOutboundStatus(String out_id, String out_status) throws Exception {
 		// TODO Auto-generated method stub
-		int stockQuantity = outbounddao.getStockQuantity(product_p_id);
-		return stockQuantity >= out_quantity;
+		outbounddao.updateOutboundStatus(out_id, out_status);
+	}
+
+	@Override
+	public void stockupdate(int s_quantity,int s_id) throws Exception {
+		// TODO Auto-generated method stub
+		outbounddao.stockupdate(s_quantity,s_id);
+	}
+
+	@Override
+	public boolean exceed(int product_p_id,int out_quantity) throws Exception {
+		System.out.println("servicelmpl exceed"+product_p_id);
+		// TODO Auto-generated method stub
+		int exceeds = outbounddao.exceed(product_p_id);
+		System.out.println("현재 재고 수량" + exceeds);
+		return exceeds >= out_quantity;
 	}
 }

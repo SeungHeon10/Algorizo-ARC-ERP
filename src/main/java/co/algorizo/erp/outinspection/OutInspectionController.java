@@ -31,7 +31,6 @@ public class OutInspectionController {
 	@Autowired
 	private outboundService outboundService;
 	
-//	전체조회 페이지 이동
 	@GetMapping(value = "/list")
 	public ModelAndView listPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -44,7 +43,6 @@ public class OutInspectionController {
 		return mav;
 	}
 	
-//	검수 조회 목록
 	@GetMapping(value = "/listData")
 	public ResponseEntity<List<OutInspectionDTO>> list() {
 		List<OutInspectionDTO> list = outInspectionService.list();
@@ -52,7 +50,6 @@ public class OutInspectionController {
 		return ResponseEntity.ok(list);
 	}
 	
-//	상세보기 페이지 이동
 	@GetMapping(value = "/detail")
 	public ModelAndView detailPage(@RequestParam int oi_id) {
 		ModelAndView mav = new ModelAndView();
@@ -62,14 +59,12 @@ public class OutInspectionController {
 		return mav;
 	}
 	
-//	검수 상세보기
 	@GetMapping(value = "/detailData")
 	public ResponseEntity<OutInspectionDTO> detail(@RequestParam int oi_id) {
 		OutInspectionDTO outInspectionDTO = outInspectionService.detail(oi_id);
 		return ResponseEntity.ok(outInspectionDTO);
 	}
 	
-//	등록폼 이동
 	@GetMapping(value = "/register")
 	public String registerForm(HttpSession session) {
 		if (session.getAttribute("m_id") == null) { 
@@ -78,15 +73,13 @@ public class OutInspectionController {
 		return "outInspection/outInspectionRegister";
 	}
 	
-//	등록
 	@PostMapping(value = "/register")
 	public ResponseEntity<String> register(@RequestBody OutInspectionDTO outInspectionDTO) {
 		outInspectionService.register(outInspectionDTO);
 		
-		return ResponseEntity.ok("등록완료!");
+		return ResponseEntity.ok("�벑濡앹셿猷�!");
 	}
 	
-//	수정폼 이동
 	@GetMapping(value = "/update")
 	public ModelAndView updateForm(@RequestParam int oi_id) {
 		ModelAndView mav = new ModelAndView();
@@ -96,23 +89,20 @@ public class OutInspectionController {
 		return mav;
 	}
 	
-//	수정
 	@PostMapping(value = "/update")
 	public ResponseEntity<String> update(@RequestBody OutInspectionDTO outInspectionDTO) {
 		outInspectionService.update(outInspectionDTO);
 		
-		return ResponseEntity.ok("수정완료!");
+		return ResponseEntity.ok("�닔�젙�셿猷�!");
 	}
-//	삭제
 	@PostMapping(value = "/delete")
 	public ResponseEntity<String> delete(@RequestParam int oi_id) {
 		
 		outInspectionService.delete(oi_id);
 		
-		return ResponseEntity.ok("삭제완료!");
+		return ResponseEntity.ok("�궘�젣�셿猷�!");
 	}
 	
-//	코드 생성
 	@GetMapping(value = "/code")
 	@ResponseBody
 	public String registerCode() {
@@ -121,7 +111,6 @@ public class OutInspectionController {
 		return newCode;
 	}
 	
-//	입고 목록 조회
 	@GetMapping(value = "/outboundList")
 	@ResponseBody
 	public List<outboundDTO> inboundList() {
@@ -129,14 +118,12 @@ public class OutInspectionController {
 		return outInspectionService.outboundList();
 	}
 	
-//	입고 상세 조회
 	@GetMapping(value = "/outboundDetail")
 	@ResponseBody
 	public List<outboundDTO> outboundDetail(@RequestParam int out_id) throws Exception{
 		return outboundService.detail(out_id);
 	}
 	
-//	불량 사유 리스트
 	@GetMapping(value = "/defectReason")
 	@ResponseBody
 	public List<DefectReasonDTO> defectReasonList(){

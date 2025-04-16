@@ -23,7 +23,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>
+						<h3 style="margin-left: 13px; margin-bottom: 50px;">
 							<strong>상세 정보</strong>
 						</h3>
 						<p class="text-subtitle text-muted"></p>
@@ -32,7 +32,7 @@
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="${contextPath }/home">Dashboard</a></li>
+								<li class="breadcrumb-item"><a href="${contextPath }/stock/stocklist">Stock list</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Detail</li>
 							</ol>
 						</nav>
@@ -43,9 +43,6 @@
 				<div class="row" id="table-striped">
 					<div class="col-12">
 						<div class="card">
-							<div class="card-header">
-								<strong>Umm</strong>
-							</div>
 							<div class="card-body">
 								<table class="table table-striped" id="table1">
 
@@ -88,9 +85,6 @@
 											<td>${detail.etc == null || detail.etc == '' ? 'N/A' : detail.etc}</td>
 										</tr>
 									</c:if>
-
-
-
 								</table>
 								<!-- 돌아가기 버튼 -->
 								<div class="button-container"
