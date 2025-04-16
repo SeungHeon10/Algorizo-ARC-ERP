@@ -72,6 +72,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </div>
+                            <h6 class="text-muted mt-2 mb-0"><%= (team != null && !team.isEmpty()) ? team : "" %></h6>
                         </div>
                     </div>
                 </div>
