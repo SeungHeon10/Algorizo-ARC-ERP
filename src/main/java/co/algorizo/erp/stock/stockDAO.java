@@ -16,4 +16,5 @@ public interface stockDAO {
 
 	List<StockSummaryDTO> summary() throws Exception;
 	
+	void updateStockStatus(stockDTO stockdto) throws Exception; 
 }

@@ -14,4 +14,6 @@ public interface stockService {
 				
 		List<StockSummaryDTO> summary() throws Exception;
 		
+		void updateStockStatus(stockDTO stockdto) throws Exception; 
+		
 }

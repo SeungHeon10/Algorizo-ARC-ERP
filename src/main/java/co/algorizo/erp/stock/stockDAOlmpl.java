@@ -59,4 +59,10 @@ public class stockDAOlmpl implements stockDAO {
 		return s;
 	}
 
+	@Override
+	public void updateStockStatus(stockDTO stockdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlsession.update(namespace + ".updateStockStatus",stockdto);
+	}
+
 }

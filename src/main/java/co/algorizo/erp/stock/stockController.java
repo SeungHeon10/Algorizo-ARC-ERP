@@ -1,5 +1,6 @@
 package co.algorizo.erp.stock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,10 +47,23 @@ public class stockController {
 			return "redirect:/"; //
 		}
 		List<stockDTO> list = stockservice.list();
-		model.addAttribute("list", list);
 		List<StockSummaryDTO> summary = stockservice.summary();
-		System.out.println("controller" + summary);
+		for (stockDTO dto : list) {
+		    if (dto.getProduct_p_id() == stockdto.getProduct_p_id()) { // 특정 조건
+		        if (dto.getS_quantity() > 50) {
+		            dto.setS_status("재고 충족"); // 수량이 50개 초과인 경우
+		        } else if (dto.getS_quantity() > 0) {
+		            dto.setS_status("재고 부족"); // 수량이 1개 이상 50개 이하인 경우
+		        } else if (dto.getS_quantity() == 0) {
+		            dto.setS_status("재고 없음"); // 수량이 0인 경우
+		        }
+		        stockservice.updateStockStatus(dto); // 상태 변경을 데이터베이스에 반영
+		    }
+		}
+
+		model.addAttribute("list", list);
 		model.addAttribute("summary", summary);
+		
 		return "stock/stocklist";
 	}
 

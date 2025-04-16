@@ -68,7 +68,24 @@
 											</c:choose></td>
 										<td>${in.product.p_name == null || in.product.p_name == '' ? 'N/A' : in.product.p_name}</td>
 										<td>${in.s_quantity == null || in.s_quantity == 0 ? 'N/A' : in.s_quantity}</td>
-										<td>${in.s_status == null || in.s_status == '' ? 'N/A' : in.s_status}</td>
+										<c:set var="s_status"
+											value="${in.s_status == null || in.s_status == '' ? 'N/A' : in.s_status}" />
+										<td>
+											<c:choose>
+												<c:when test="${s_status == '재고 충족'}">
+													<span class="badge bg-success">재고 충족</span>
+												</c:when>
+												<c:when test="${s_status == '재고 부족'}">
+													<span class="badge bg-warning">재고 부족</span>
+												</c:when>
+												<c:when test="${s_status == '재고 없음'}">
+													<span class="badge bg-danger">재고 없음</span>
+												</c:when>
+												<c:otherwise>
+													<span class="badge bg-secondary">상태 미정</span>
+												</c:otherwise>
+											</c:choose> 
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -47,4 +47,10 @@ public class stockServicelmpl implements stockService{
 		return s;
 	}
 
+	@Override
+	public void updateStockStatus(stockDTO stockdto) throws Exception {
+		// TODO Auto-generated method stub
+		stockdao.updateStockStatus(stockdto);
+	}
+
 }

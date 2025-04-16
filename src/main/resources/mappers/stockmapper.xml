@@ -136,6 +136,12 @@ GROUP BY
 
 </select>
 
+<update id="updateStockStatus" parameterType="co.algorizo.erp.stock.stockDTO">
+    UPDATE stock
+    SET s_status = #{s_status}
+    WHERE product_p_id = #{product_p_id};
+</update>
+
   <insert id="register" parameterType="co.algorizo.erp.stock.stockDTO">
 		INSERT INTO stock (
 			product_p_id,
