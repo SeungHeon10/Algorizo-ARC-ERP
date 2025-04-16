@@ -71,7 +71,6 @@
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>품목</span>
-                                <span>품목 관리</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
