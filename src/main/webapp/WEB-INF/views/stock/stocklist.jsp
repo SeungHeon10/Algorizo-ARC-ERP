@@ -9,6 +9,7 @@
 <head>
 <%@include file="../include/head.jsp"%>
 <style>
+
 .dataTable-new {
 	display: flex;
 	align-items: center;

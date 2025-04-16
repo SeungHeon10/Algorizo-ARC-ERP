@@ -27,7 +27,6 @@ public class stockServicelmpl implements stockService{
 	
 	@Override
 	public List<stockDTO> list() throws Exception {
-		// TODO Auto-generated method stub
 		List<stockDTO> st = stockdao.list();
 		System.out.println(st);
 		return st;

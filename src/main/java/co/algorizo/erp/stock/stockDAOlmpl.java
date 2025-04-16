@@ -18,7 +18,6 @@ public class stockDAOlmpl implements stockDAO {
 	// 재고 전체 조회
 	@Override
 	public List<stockDTO> list() throws Exception {
-		// TODO Auto-generated method stub
 		List<stockDTO> s = sqlsession.selectList(namespace + ".list");
 		System.out.println(s);
 		return s;
