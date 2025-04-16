@@ -28,8 +28,8 @@
 						<div class="col-12 col-md-6 order-md-2 order-first">
 							<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
-									<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productlist">품목목록</a></li>
+									<li class="breadcrumb-item"><a href="${contextPath }/product/productlist">Product List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Product Update</li>
 								</ol>
 							</nav>
 						</div>
@@ -153,7 +153,7 @@
 															<div class="col-md-6 col-12">
 																<div class="form-group">
 																	<label for="email-id-vertical">판매단가</label> 
-																	<input type="text" name="p_price" class="form-control" value="${product.p_price }" required />
+																	<input type="number" name="p_price" class="form-control" value="${product.p_price }" min="0" required />
 																</div>
 															</div>
 

@@ -172,14 +172,14 @@
 				<div class="page-title">
 					<div class="row">
 						<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3 style="padding-left: 20px;">판매 제품 LIST</h3>
+						<h3 style="padding-left: 20px;">판매 제품 목록</h3>
 						</div>
 						<div class="col-12 col-md-6 order-md-2 order-first">
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
-									<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productinsert">품목등록</a></li>
+									<li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Product List</li>
 								</ol>
 							</nav>
 						</div>

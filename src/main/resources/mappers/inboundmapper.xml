@@ -34,7 +34,7 @@
             <result property="m_email" column="m_email" />
             <result property="m_pno" column="m_pno" />
         </association>
-        <association property="inspection" javaType="co.algorizo.erp.inspection.InspectionDTO">
+        <association property="inspection" javaType="co.algorizo.erp.inspection.DTO.InspectionDTO">
             <id property="i_id" column="i_id" />
             <result property="i_quantity" column="i_quantity" />
             <result property="i_defective_quantity" column="i_defective_quantity" />

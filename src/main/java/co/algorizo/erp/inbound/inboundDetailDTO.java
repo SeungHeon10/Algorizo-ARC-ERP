@@ -1,7 +1,6 @@
 package co.algorizo.erp.inbound;
 
 import co.algorizo.erp.company.CompanyDTO;
-import co.algorizo.erp.inspection.InspectionDTO;
 import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.stock.stockDTO;
 
@@ -14,7 +13,7 @@ public class inboundDetailDTO {
     private int i_quantity;
     private int i_defective_quantity;
     private int in_quantity;
-    private int in_id;  // Ãß°¡µÈ ÇÊµå
+    private int in_id;  // ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Êµï¿½
 
     public inboundDetailDTO(){
         

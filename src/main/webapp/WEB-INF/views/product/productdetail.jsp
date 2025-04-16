@@ -29,8 +29,8 @@
 							<nav aria-label="breadcrumb"
 								class="breadcrumb-header float-start float-lg-end">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="${contextPath }/home">메인화면</a></li>
-									<li class="breadcrumb-item active" aria-current="page"><a href="${contextPath }/product/productupdate?p_code=${product.p_code}">품목수정</a></li>
+									<li class="breadcrumb-item"><a href="${contextPath }/product/productlist">Product List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Product Delete</li>
 								</ol>
 							</nav>
 						</div>

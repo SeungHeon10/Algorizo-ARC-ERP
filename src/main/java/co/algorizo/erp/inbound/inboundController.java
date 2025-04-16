@@ -22,8 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.algorizo.erp.company.CompanyDTO;
 import co.algorizo.erp.company.CompanyService;
-import co.algorizo.erp.inspection.InspectionDTO;
 import co.algorizo.erp.inspection.InspectionService;
+import co.algorizo.erp.inspection.DTO.InspectionDTO;
 import co.algorizo.erp.product.ProductDTO;
 import co.algorizo.erp.product.ProductService;
 import co.algorizo.erp.register.dto.MemberDTO;
@@ -82,7 +82,7 @@ public class inboundController {
 		model.addAttribute("product", productList);
 		model.addAttribute("company", companyList);
 		model.addAttribute("member", memberList);
-		model.addAttribute("in_status", "ÀÔ°í ´ë±â");
+		model.addAttribute("in_status", "ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½");
 		return "inbound/inboundregister";
 	}
 
@@ -93,7 +93,7 @@ public class inboundController {
 			return "redirect:/"; //
 		}
 		service.register(inbounddto);
-		return "redirect:/inbound/inboundlist"; // ¼º°ø ½Ã ¸ñ·Ï ÆäÀÌÁö·Î ÀÌµ¿
+		return "redirect:/inbound/inboundlist"; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	}
 
 	@GetMapping(value = "/inbound/inboundupdate")
@@ -122,40 +122,40 @@ public class inboundController {
 	@PostMapping(value = "/inbound/confirm")
 	@ResponseBody
 	public ResponseEntity<?> confirmInbound(@RequestBody Map<String, Object> payload) {
-		logger.debug("Request payload: {}", payload); // ¿äÃ» È®ÀÎ
-		System.out.println("Request payload: " + payload); // ÄÜ¼Ö¿¡ Ãâ·Â
+		logger.debug("Request payload: {}", payload); // ï¿½ï¿½Ã» È®ï¿½ï¿½
+		System.out.println("Request payload: " + payload); // ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½
 
 		try {
-			// in_id °ªÀÌ Á¦´ë·Î Àü´ÞµÇ¾ú´ÂÁö È®ÀÎ
+			// in_id ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÞµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			if (!payload.containsKey("in_id") || payload.get("in_id") == null
 					|| String.valueOf(payload.get("in_id")).trim().isEmpty()) {
-				System.out.println("ÀÔ°í ID°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù."); // À¯È¿ÇÏÁö ¾ÊÀº in_id Ãâ·Â
-				return ResponseEntity.badRequest().body("ÀÔ°í ID°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("ï¿½Ô°ï¿½ IDï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½."); // ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ in_id ï¿½ï¿½ï¿½
+				return ResponseEntity.badRequest().body("ï¿½Ô°ï¿½ IDï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 			}
 
 			String in_id = String.valueOf(payload.get("in_id"));
 			String i_id = String.valueOf(payload.get("i_id"));
 			String s_id = String.valueOf(payload.get("s_id"));
-			logger.debug("Parsed in_id: {}", in_id); // in_id È®ÀÎ
-			logger.debug("Parsed i_id: {}", i_id); // in_id È®ÀÎ
-			System.out.println("Parsed in_id: " + in_id); // ÄÜ¼Ö¿¡ Ãâ·Â
-			System.out.println("Parsed i_id: " + i_id); // ÄÜ¼Ö¿¡ Ãâ·Â
-			System.out.println("Parsed s_id: " + s_id); // ÄÜ¼Ö¿¡ Ãâ·Â
+			logger.debug("Parsed in_id: {}", in_id); // in_id È®ï¿½ï¿½
+			logger.debug("Parsed i_id: {}", i_id); // in_id È®ï¿½ï¿½
+			System.out.println("Parsed in_id: " + in_id); // ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½
+			System.out.println("Parsed i_id: " + i_id); // ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½
+			System.out.println("Parsed s_id: " + s_id); // ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½
 
-			// in_id°¡ ¼ýÀÚÀÏ °æ¿ì¿¡¸¸ Ã³¸®
+			// in_idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Ã³ï¿½ï¿½
 			try {
-				Integer.parseInt(in_id); // ¹®ÀÚ¿­À» Á¤¼ö·Î º¯È¯ÇÒ ¼ö ÀÖ´ÂÁö Ã¼Å©
-				System.out.println("in_id°¡ Á¤¼ö·Î º¯È¯µÊ: " + in_id); // Á¤¼ö·Î º¯È¯µÈ in_id Ãâ·Â
+				Integer.parseInt(in_id); // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©
+				System.out.println("in_idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½: " + in_id); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ in_id ï¿½ï¿½ï¿½
 			} catch (NumberFormatException e) {
-				System.out.println("À¯È¿ÇÏÁö ¾ÊÀº ÀÔ°í IDÀÔ´Ï´Ù."); // À¯È¿ÇÏÁö ¾ÊÀº ID Ãâ·Â
-				return ResponseEntity.badRequest().body("À¯È¿ÇÏÁö ¾ÊÀº ÀÔ°í IDÀÔ´Ï´Ù.");
+				System.out.println("ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô°ï¿½ IDï¿½Ô´Ï´ï¿½."); // ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ID ï¿½ï¿½ï¿½
+				return ResponseEntity.badRequest().body("ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô°ï¿½ IDï¿½Ô´Ï´ï¿½.");
 			}
 			Integer inspectionId = Integer.valueOf(i_id);
 			Integer stockid = Integer.valueOf(s_id);
-			 if (inspectionId == 0) { // i_id°¡ 0ÀÏ °æ¿ì ¹Ù·Î È®Á¤ Ã³¸®
-		            System.out.println("i_id°¡ 0ÀÌ¹Ç·Î ¹Ù·Î È®Á¤ Ã³¸®");
-		            service.updateInboundStatus(in_id, "ÀÔ°í ¿Ï·á");
-		            System.out.println("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ®: ÀÔ°í ¿Ï·á, in_id = " + in_id);
+			 if (inspectionId == 0) { // i_idï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ È®ï¿½ï¿½ Ã³ï¿½ï¿½
+		            System.out.println("i_idï¿½ï¿½ 0ï¿½Ì¹Ç·ï¿½ ï¿½Ù·ï¿½ È®ï¿½ï¿½ Ã³ï¿½ï¿½");
+		            service.updateInboundStatus(in_id, "ï¿½Ô°ï¿½ ï¿½Ï·ï¿½");
+		            System.out.println("ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®: ï¿½Ô°ï¿½ ï¿½Ï·ï¿½, in_id = " + in_id);
 		            return ResponseEntity.ok().build();
 		    }
 			stockDTO stock = stockservice.detail(stockid);
@@ -164,19 +164,19 @@ public class inboundController {
 			System.out.println("inspectiondetail" + inspection );
 			
 			stock.setS_quantity(stock.getS_quantity() + inspection.getI_quantity());
-			// ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ® È£Ãâ
-			service.updateInboundStatus(in_id, "ÀÔ°í ¿Ï·á");
-			//Àç°í ¾÷µ¥ÀÌÆ®ÇÏ´Â ·ÎÁ÷ÀÌ ÀÖ¾î¾ßÇÔ service¶û daoÇÏ³ª ´õ ¸¸µé¾î¼­ ÀÔ°í ¿Ï·á°¡ µÇ¸é Àç°í·®¿¡ Ãß°¡µÇ°Ô ¸¸µé±â
+			// ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È£ï¿½ï¿½
+			service.updateInboundStatus(in_id, "ï¿½Ô°ï¿½ ï¿½Ï·ï¿½");
+			//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ serviceï¿½ï¿½ daoï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ô°ï¿½ ï¿½Ï·á°¡ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 			service.stockupdate(stock.getS_quantity(),stockid);
-			System.out.println("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ®: ÀÔ°í ¿Ï·á, in_id = " + in_id); // »óÅÂ ¾÷µ¥ÀÌÆ® Ãâ·Â
-			System.out.println("Àç°í ¼ö·® ¾÷µ¥ÀÌÆ®: Àç°í Ãß°¡ ¿Ï·á, i_id = " + i_id); // »óÅÂ ¾÷µ¥ÀÌÆ® Ãâ·Â
-			System.out.println("Àç°í ¼ö·® ¾÷µ¥ÀÌÆ®: Àç°í Ãß°¡ ¿Ï·á, s_id = " + s_id); // »óÅÂ ¾÷µ¥ÀÌÆ® Ãâ·Â
+			System.out.println("ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®: ï¿½Ô°ï¿½ ï¿½Ï·ï¿½, in_id = " + in_id); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®: ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Ï·ï¿½, i_id = " + i_id); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®: ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Ï·ï¿½, s_id = " + s_id); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
 			//
 			return ResponseEntity.ok().build();
 		} catch (Exception e) {
-			logger.error("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ® Áß ¿À·ù ¹ß»ý: {}", e.getMessage());
-			System.out.println("ÀÔ°í »óÅÂ ¾÷µ¥ÀÌÆ® Áß ¿À·ù ¹ß»ý: " + e.getMessage()); // ¿À·ù ¸Þ½ÃÁö Ãâ·Â
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("»óÅÂ ¾÷µ¥ÀÌÆ® ½ÇÆÐ");
+			logger.error("ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½: {}", e.getMessage());
+			System.out.println("ï¿½Ô°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½: " + e.getMessage()); // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
