@@ -146,7 +146,6 @@ String plan_id = request.getParameter("plan_id");
 	        }
 	
 	        const data = await response.json();
-	        console.log(data);
 	        document.getElementById("detailTitle").value = data[0].plan_title;
 	        document.getElementById("detailTitle").dataset.id = data[0].plan_id;
 	        document.getElementById("detailCode").value = data[0].plan_code;
@@ -286,6 +285,10 @@ String plan_id = request.getParameter("plan_id");
 	    let total_length = 0;
 	    document.querySelectorAll('input[name="product_total_price[]"]').forEach(sub_total => {
 	        total_price += parseInt(sub_total.dataset.total || 0);
+	        if(total_price == 0){
+	        	return;
+	        }
+	        
 	        total_length += 1;
 	    });
 	    

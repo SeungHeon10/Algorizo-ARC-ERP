@@ -252,6 +252,10 @@
 	    let total_length = 0;
 	    document.querySelectorAll('input[name="product_total_price[]"]').forEach(sub_total => {
 	        total_price += parseInt(sub_total.dataset.total || 0);
+	        if(total_price == 0){
+	        	return;
+	        }
+	        
 	        total_length += 1;
 	    });
 	    

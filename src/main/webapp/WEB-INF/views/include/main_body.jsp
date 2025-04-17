@@ -81,7 +81,7 @@
             <!-- 2. 차트 -->
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4>월별 불량 사유 분포</h4>
+                    <h4>월별 입고 불량 사유 분포</h4>
                 </div>
                 <div class="card-body">
                     <select id="monthSelector" class="form-select mb-3">
