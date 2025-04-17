@@ -10,3 +10,6 @@
 .fc-daygrid-event .fc-event-time {
   display: none !important;
 }
+.fc-event {
+    cursor: pointer !important;
+}
