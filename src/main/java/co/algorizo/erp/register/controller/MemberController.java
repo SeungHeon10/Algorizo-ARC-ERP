@@ -158,7 +158,7 @@ public class MemberController {
 		    }
 		
 		service.deleteMember(m_id);
-		return "redirect:/member/members";
+		return "redirect:/members";
 	}
 	
 	

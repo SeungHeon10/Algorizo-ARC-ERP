@@ -128,8 +128,8 @@
 									</div>
 									
 									<div class="text-center">
-										<button type="submit" class="btn btn-primary">수정 완료</button>
-										<a href="${contextPath }/members/memberDetail?m_id=${member.m_id}" class="btn btn-secondary">취소</a>
+										<button type="submit" class="btn btn-outline-primary">수정 완료</button>
+										<a href="${contextPath }/members/memberDetail?m_id=${member.m_id}" class="btn btn-outline-secondary">취소</a>
 									</div>
 									
 								</form>            				

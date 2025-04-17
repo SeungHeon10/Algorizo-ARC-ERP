@@ -17,9 +17,9 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     
-                    <h1 class="auth-title">회원 가입</h1>
-                    <p class="auth-subtitle mb-5">.</p>
                     <h1 class="auth-title">회원가입</h1>
+                    <br>
+                    <br>
 
                     <form action="${contextPath}/register" onsubmit="return validateForm()" method="post">
                     <!-- 이메일 -->
@@ -233,9 +233,12 @@
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
-                <div id="auth-right">
-
-                </div>
+                <div id="auth-right" class="d-flex justify-content-center align-items-center" style="height: 100%;">
+				    <div class="mb-4">
+				        <img src="${contextPath}/resources/img/Logo/arclogo_white.png" 
+				             style="width: 700px; border-radius: 20px; display: block; margin: 0 auto;">
+				    </div>
+				</div>
             </div>
         </div>
 
