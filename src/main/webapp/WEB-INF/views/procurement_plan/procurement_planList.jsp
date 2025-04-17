@@ -75,7 +75,7 @@
     <script src="${contextPath }/resources/static/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script src="${contextPath }/resources/static/dist/assets/js/main.js"></script>
     <script>
-//     	계획 조회
+		// 계획 조회
 	    async function list() {
 	        try{
 	            const response = await fetch(`http://localhost:8080/erp/plans/listData` , {

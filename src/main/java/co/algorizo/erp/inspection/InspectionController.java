@@ -30,7 +30,7 @@ public class InspectionController {
 	@Autowired
 	private inboundService inboundService;
 	
-//	�쟾泥댁“�쉶 �럹�씠吏� �씠�룞
+//	검수 조회 페이지 이동
 	@GetMapping(value = "/list")
 	public ModelAndView listPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -43,7 +43,7 @@ public class InspectionController {
 		return mav;
 	}
 	
-//	寃��닔 議고쉶 紐⑸줉
+//	검수 조회
 	@GetMapping(value = "/listData")
 	public ResponseEntity<List<InspectionDTO>> list() {
 		List<InspectionDTO> list = inspectionService.list();
@@ -51,7 +51,7 @@ public class InspectionController {
 		return ResponseEntity.ok(list);
 	}
 	
-//	�긽�꽭蹂닿린 �럹�씠吏� �씠�룞
+//	검수 상세보기 페이지 이동
 	@GetMapping(value = "/detail")
 	public ModelAndView detailPage(@RequestParam int i_id) {
 		ModelAndView mav = new ModelAndView();
@@ -61,14 +61,14 @@ public class InspectionController {
 		return mav;
 	}
 	
-//	寃��닔 �긽�꽭蹂닿린
+//	검수 상세보기
 	@GetMapping(value = "/detailData")
 	public ResponseEntity<InspectionDTO> detail(@RequestParam int i_id) {
 		InspectionDTO inspection = inspectionService.detail(i_id);
 		return ResponseEntity.ok(inspection);
 	}
 	
-//	�벑濡앺뤌 �씠�룞
+//	검수 등록 폼 이동
 	@GetMapping(value = "/register")
 	public String registerForm(HttpSession session) {
 		if (session.getAttribute("m_id") == null) { 
@@ -77,15 +77,15 @@ public class InspectionController {
 		return "inspection/inspectionRegister";
 	}
 	
-//	�벑濡�
+//	검수 등록
 	@PostMapping(value = "/register")
 	public ResponseEntity<String> register(@RequestBody InspectionDTO inspectionDTO) {
 		inspectionService.register(inspectionDTO);
 		
-		return ResponseEntity.ok("�벑濡앹셿猷�!");
+		return ResponseEntity.ok("등록완료!");
 	}
 	
-//	�닔�젙�뤌 �씠�룞
+//	검수 수정 폼 이동
 	@GetMapping(value = "/update")
 	public ModelAndView updateForm(@RequestParam int i_id) {
 		ModelAndView mav = new ModelAndView();
@@ -95,23 +95,23 @@ public class InspectionController {
 		return mav;
 	}
 	
-//	�닔�젙
+//	검수 수정
 	@PostMapping(value = "/update")
 	public ResponseEntity<String> update(@RequestBody InspectionDTO inspectionDTO) {
 		inspectionService.update(inspectionDTO);
 		
-		return ResponseEntity.ok("�닔�젙�셿猷�!");
+		return ResponseEntity.ok("수정완료!");
 	}
-//	�궘�젣
+//	검수 삭제
 	@PostMapping(value = "/delete")
 	public ResponseEntity<String> delete(@RequestParam int i_id) {
 		
 		inspectionService.delete(i_id);
 		
-		return ResponseEntity.ok("�궘�젣�셿猷�!");
+		return ResponseEntity.ok("삭제완료!");
 	}
 	
-//	肄붾뱶 �깮�꽦
+//	코드 불러오기
 	@GetMapping(value = "/code")
 	@ResponseBody
 	public String registerCode() {
@@ -120,7 +120,7 @@ public class InspectionController {
 		return newCode;
 	}
 	
-//	�엯怨� 紐⑸줉 議고쉶
+//	입고 리스트 불러오기
 	@GetMapping(value = "/inboundList")
 	@ResponseBody
 	public List<inboundDTO> inboundList() {
@@ -128,14 +128,14 @@ public class InspectionController {
 		return inspectionService.inboudList();
 	}
 	
-//	�엯怨� �긽�꽭 議고쉶
+//	입고 상세보기
 	@GetMapping(value = "/inboundDetail")
 	@ResponseBody
 	public List<inboundDTO> inboundDetail(@RequestParam int in_id) throws Exception{
 		return inboundService.detail(in_id);
 	}
 	
-//	遺덈웾 �궗�쑀 由ъ뒪�듃
+//	불량 사유 리스트
 	@GetMapping(value = "/defectReason")
 	@ResponseBody
 	public List<DefectReasonDTO> defectReasonList(){
@@ -143,7 +143,7 @@ public class InspectionController {
 		return inspectionService.defectReasonList();
 	}
 	
-//	遺덈웾 �궗�쑀 �뜲�씠�꽣
+//	월별 입고 불량 사유
 	@GetMapping(value = "/reasonData")
 	@ResponseBody
 	public Map<String, Object> defectReasonData(@RequestParam String month){

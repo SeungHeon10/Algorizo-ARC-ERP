@@ -205,7 +205,6 @@
 	    tr.innerHTML = `
 	        <td>
 	        	<select class="form-select" name="product_p_id[]" required="required">
-		            <option value="">품목을 선택하세요</option>
 		            \${renderProductOptions("")}    
 		        </select>
 	        </td>
