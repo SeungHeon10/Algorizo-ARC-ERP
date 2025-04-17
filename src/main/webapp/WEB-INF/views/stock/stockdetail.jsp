@@ -33,7 +33,7 @@
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="${contextPath }/stock/stocklist">Stock list</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Detail</li>
+								<li class="breadcrumb-item active" aria-current="page">Stock Detail</li>
 							</ol>
 						</nav>
 					</div>

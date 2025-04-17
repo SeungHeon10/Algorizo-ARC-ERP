@@ -37,7 +37,7 @@ public class inboundController {
 	private static final Logger logger = LoggerFactory.getLogger(inboundController.class);
 
 	@Autowired
-	private inboundService service;
+	private inboundService inboundservice;
 	@Autowired
 	private MemberService memberservice;
 	@Autowired
@@ -49,21 +49,23 @@ public class inboundController {
 	@Autowired
 	private InspectionService inspectionservice;
 
+	//입고 전체 조회
 	@GetMapping(value = "/inbound/inboundlist")
 	public String list(Model model, HttpSession session) throws Exception {
 		if (session.getAttribute("m_id") == null) {
 			return "redirect:/";
 		}
-		List<inboundDTO> list = service.list();
+		List<inboundDTO> list = inboundservice.list();
 		System.out.println(list);
 		model.addAttribute("list", list);
 		return "inbound/inboundlist";
 	}
 
+	//입고 상세정보
 	@GetMapping(value = "/inbound/inbounddetail")
 	public String detail(@RequestParam("in_id") int in_id, Model model) throws Exception {
 		try {
-			List<inboundDTO> dto = service.detail(in_id);
+			List<inboundDTO> dto = inboundservice.detail(in_id);
 			model.addAttribute("dto", dto);
 			return "inbound/inbounddetail";
 		} catch (NumberFormatException e) {
@@ -71,6 +73,7 @@ public class inboundController {
 		}
 	}
 
+	//입고 등록폼
 	@GetMapping(value = "/inbound/inboundregister")
 	public String registerform(HttpSession session, Model model) throws Exception {
 		if (session.getAttribute("m_id") == null || session.getAttribute("m_id").equals("")) {
@@ -86,32 +89,36 @@ public class inboundController {
 		return "inbound/inboundregister";
 	}
 
+	//입고 등록
 	@PostMapping(value = "/inbound/inboundregister")
 	public String register(@ModelAttribute inboundDTO inbounddto, HttpSession session, RedirectAttributes redirect)
 			throws Exception {
 		if (session.getAttribute("m_id") == null) {
 			return "redirect:/"; //
 		}
-		service.register(inbounddto);
+		inboundservice.register(inbounddto);
 		return "redirect:/inbound/inboundlist"; // 성공 시 목록 페이지로 이동
 	}
 
+	//입고 수정폼
 	@GetMapping(value = "/inbound/inboundupdate")
 	public String updateform(@RequestParam int in_id, Model model) throws Exception {
-		List<inboundDTO> update = service.detail(in_id);
+		List<inboundDTO> update = inboundservice.detail(in_id);
 		model.addAttribute("up", update);
 		return "inbound/inboundupdate";
 	}
 
+	//입고 수정
 	@PostMapping(value = "/inbound/inboundupdate")
 	public String update(@ModelAttribute inboundDTO inbounddto) throws Exception {
-		service.update(inbounddto);
+		inboundservice.update(inbounddto);
 		return "redirect:/inbound/inbounddetail?in_id=" + inbounddto.getIn_id();
 	}
 
+	//입고 삭제
 	@PostMapping(value = "/inbound/inbounddelete")
 	public String delete(@RequestParam int in_id, Model model) throws Exception {
-		int result = service.delete(in_id);
+		int result = inboundservice.delete(in_id);
 
 		if (result > 0) {
 			return "redirect:/inbound/inboundlist";
@@ -119,6 +126,7 @@ public class inboundController {
 		return "redirect:/inbound/inboundlist";
 	}
 
+	//입고 확정 및 재고수량 증가
 	@PostMapping(value = "/inbound/confirm")
 	@ResponseBody
 	public ResponseEntity<?> confirmInbound(@RequestBody Map<String, Object> payload) {
@@ -153,7 +161,7 @@ public class inboundController {
 			
 			 if (inspectionId == 0) { // i_id가 0일 경우 바로 확정 처리
 		            System.out.println("i_id가 0이므로 바로 확정 처리");
-		            service.updateInboundStatus(in_id, "입고 완료");
+		            inboundservice.updateInboundStatus(in_id, "입고 완료");
 		            System.out.println("입고 상태 업데이트: 입고 완료, in_id = " + in_id);
 		            return ResponseEntity.ok().build();
 		    }
@@ -165,8 +173,8 @@ public class inboundController {
 			
 			stock.setS_quantity(stock.getS_quantity() + inspection.getI_quantity());
 			// 입고 상태 업데이트 호출
-			service.updateInboundStatus(in_id, "입고 완료");
-			service.stockupdate(stock.getS_quantity(),stockid);
+			inboundservice.updateInboundStatus(in_id, "입고 완료");
+			inboundservice.stockupdate(stock.getS_quantity(),stockid);
 			
 			System.out.println("입고 상태 업데이트: 입고 완료, in_id = " + in_id); // 상태 업데이트 출력
 			System.out.println("재고 수량 업데이트: 재고 추가 완료, i_id = " + i_id); // 상태 업데이트 출력

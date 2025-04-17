@@ -8,12 +8,16 @@ import co.algorizo.erp.stock.stockDTO;
 
 public interface stockService {
 	
-	List<stockDTO> list() throws Exception;
-				
-	stockDTO detail(int s_id) throws Exception;
-				
-	List<StockSummaryDTO> summary() throws Exception;
+		//재고 전체 조회
+		List<stockDTO> list() throws Exception;
+
+		//재고 상세보기
+		stockDTO detail(int s_id) throws Exception;
 		
-	void updateStockStatus(stockDTO stockdto) throws Exception; 
+		//입/출/재고 수량
+		List<StockSummaryDTO> summary() throws Exception;
 		
+		//재고 상태 수정
+		void updateStockStatus(stockDTO stockdto) throws Exception; 
+
 }

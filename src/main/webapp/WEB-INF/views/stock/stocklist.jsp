@@ -36,7 +36,7 @@
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="${contextPath }/home">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">list</li>
+								<li class="breadcrumb-item active" aria-current="page">Stock List</li>
 							</ol>
 						</nav>
 					</div>

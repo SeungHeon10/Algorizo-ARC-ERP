@@ -24,7 +24,7 @@ public class stockServicelmpl implements stockService{
 	@Autowired
 	private MemberDAO memberdao;
 	
-	
+	//재고 전체 조회
 	@Override
 	public List<stockDTO> list() throws Exception {
 		List<stockDTO> st = stockdao.list();
@@ -32,12 +32,14 @@ public class stockServicelmpl implements stockService{
 		return st;
 	}
 	
+	//재고 상세보기
 	@Override
 	public stockDTO detail(int s_id) throws Exception {
 		// TODO Auto-generated method stub
 		return stockdao.detail(s_id);
 	}
 	
+	//입,출,재고 수량 view
 	@Override
 	public List<StockSummaryDTO> summary() throws Exception {
 		// TODO Auto-generated method stub
@@ -46,6 +48,7 @@ public class stockServicelmpl implements stockService{
 		return s;
 	}
 
+	//재고 상태 수정
 	@Override
 	public void updateStockStatus(stockDTO stockdto) throws Exception {
 		// TODO Auto-generated method stub

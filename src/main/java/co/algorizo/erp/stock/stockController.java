@@ -41,6 +41,7 @@ public class stockController {
 	@Autowired
 	private ProductService productservice;
 
+	//재고 전체 조회
 	@GetMapping(value = "/stock/stocklist")
 	public String list(Model model, HttpSession session,@ModelAttribute stockDTO stockdto) throws Exception {
 		if (session.getAttribute("m_id") == null) {
@@ -67,6 +68,7 @@ public class stockController {
 		return "stock/stocklist";
 	}
 
+	//재고 상세보기
 	@GetMapping(value = "/stock/stockdetail")
 	public String detail(@RequestParam int s_id, Model model) throws Exception {
 		stockDTO dto = stockservice.detail(s_id);
