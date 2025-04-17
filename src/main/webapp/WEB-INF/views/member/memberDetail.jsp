@@ -45,7 +45,6 @@
                         <div class="col-12">
                             <div class="card">
 							    <div class="card-header">
-							        <h4 class="card-title"><strong>사원 상세 정보</strong></h4>
 							    </div>
 							    <div class="card-body">
 							        <div class="row align-items-center">
