@@ -77,7 +77,7 @@ public class OutInspectionController {
 	public ResponseEntity<String> register(@RequestBody OutInspectionDTO outInspectionDTO) {
 		outInspectionService.register(outInspectionDTO);
 		
-		return ResponseEntity.ok("�벑濡앹셿猷�!");
+		return ResponseEntity.ok("등록완료!");
 	}
 	
 	@GetMapping(value = "/update")
@@ -93,14 +93,14 @@ public class OutInspectionController {
 	public ResponseEntity<String> update(@RequestBody OutInspectionDTO outInspectionDTO) {
 		outInspectionService.update(outInspectionDTO);
 		
-		return ResponseEntity.ok("�닔�젙�셿猷�!");
+		return ResponseEntity.ok("수정완료!");
 	}
 	@PostMapping(value = "/delete")
 	public ResponseEntity<String> delete(@RequestParam int oi_id) {
 		
 		outInspectionService.delete(oi_id);
 		
-		return ResponseEntity.ok("�궘�젣�셿猷�!");
+		return ResponseEntity.ok("삭제완료!");
 	}
 	
 	@GetMapping(value = "/code")
