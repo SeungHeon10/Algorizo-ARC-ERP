@@ -49,6 +49,7 @@ public class inboundController {
 	@Autowired
 	private InspectionService inspectionservice;
 
+	
 	//입고 전체 조회
 	@GetMapping(value = "/inbound/inboundlist")
 	public String list(Model model, HttpSession session) throws Exception {

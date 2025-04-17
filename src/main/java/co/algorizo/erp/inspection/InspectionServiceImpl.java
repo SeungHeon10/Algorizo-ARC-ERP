@@ -81,7 +81,7 @@ public class InspectionServiceImpl implements InspectionService{
 	public String registerCode() {
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		String prefix = "INSP-" + dateFormat.format(today) + "-";
+		String prefix = "INSP-" + dateFormat.format(today) + "-" ;
 		
 		String lastcode = inspectionDAO.registerCode(prefix);
 		
