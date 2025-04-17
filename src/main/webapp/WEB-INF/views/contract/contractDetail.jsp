@@ -57,7 +57,7 @@
                            <table class="table">
                                <thead>
                                    <tr>
-                                       <th>회사명</th>
+                                  <th>회사명</th>
                                        <th>주소</th>
                                        <th>FAX</th>
                                        <th>업태</th>
@@ -66,11 +66,11 @@
                                </thead>
                                <tbody>
                                    <tr>
-                                       <td>Algorizo</td>
+                                        <td>Algorizo</td>
                                        <td>수원시 팔달구</td>
                                        <td>031-213-6912</td>
                                        <td>유통, 판매업</td>
-                                       <td>빡쌍쭌</td>
+                                       <td>오의준</td>
                                    </tr>
                                </tbody>
                            </table>
