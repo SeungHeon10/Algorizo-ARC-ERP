@@ -186,7 +186,7 @@
 															<div class="col-md-6 col-12">
 																<div class="form-group">
 																	<label for="email-id-vertical">제품소개</label>
-																	<p class="form-control" readonly>${product.p_content}</p>
+																	<p class="form-control" readonly>${product.p_content != null && !product.p_content.isEmpty() ? product.p_content : 'N/A'}</p>
 																</div>
 															</div>
 

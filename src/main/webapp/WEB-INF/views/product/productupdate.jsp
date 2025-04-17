@@ -145,7 +145,7 @@
 															<div class="col-md-6 col-12">
 																<div class="form-group">
 																	<label for="email-id-vertical">제품소개</label> 
-																	<input type="text" class="form-control" name="p_content" value="${product.p_content }" required>
+																	<input type="text" class="form-control" name="p_content" value="${product.p_content }">
 																</div>
 															</div>
 
