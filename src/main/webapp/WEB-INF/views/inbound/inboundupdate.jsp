@@ -33,9 +33,8 @@
 							<ol class="breadcrumb">
 								<c:forEach var="up" items="${up}">
 									<li class="breadcrumb-item"><a
-										href="${contextPath }/inbound/inbounddetail?in_id=${up.in_id}">Inbound Detail</a></li>
-											
-									<li class="breadcrumb-item active" aria-current="page">Update</li>
+										href="${contextPath }/inbound/inboundlist">Inbound List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Inbound Update</li>
 								</c:forEach>
 							</ol>
 						</nav>

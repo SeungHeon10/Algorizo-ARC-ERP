@@ -16,41 +16,42 @@ public class outboundDAOlmpl implements outboundDAO {
 	@Autowired
 	private SqlSession sqlsession;
 
+	//출고 전체 조회
 	@Override
 	public List<outboundDTO> list() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace + ".list");
 	}
 
+	//출고 상세보기
 	@Override
 	public List<outboundDTO> detail(int out_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace + ".detail", out_id);
 	}
 
+	//출고 등록
 	@Override
 	public void register(outboundDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlsession.insert(namespace + ".register", dto);
 	}
 
+	//출고 수정
 	@Override
 	public void update(outboundDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlsession.update(namespace + ".update", dto);
 	}
 
+	//출고 삭제
 	@Override
 	public int delete(int out_id) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.update(namespace + ".delete", out_id);
 	}
 
-	/*
-	 * @Override public int getStockQuantity(int product_p_id) throws Exception { //
-	 * TODO Auto-generated method stub return sqlsession.selectOne(namespace +
-	 * ".getStockQuantity", product_p_id); }
-	 */
+	//출고 상태 수정
 	@Override
 	public void updateOutboundStatus(String out_id, String out_status) throws Exception {
 		// TODO Auto-generated method stub
@@ -62,6 +63,7 @@ public class outboundDAOlmpl implements outboundDAO {
 
 	}
 
+	//재고수량 수정
 	@Override
 	public void stockupdate(int s_quantity,int s_id) throws Exception {
 		// TODO Auto-generated method stub
@@ -73,6 +75,7 @@ public class outboundDAOlmpl implements outboundDAO {
 		sqlsession.update(namespace + ".stockupdate",param);
 	}
 
+	//재/출고수량 비교
 	@Override
 	public int exceed(int product_p_id) throws Exception {
 		// TODO Auto-generated method stub

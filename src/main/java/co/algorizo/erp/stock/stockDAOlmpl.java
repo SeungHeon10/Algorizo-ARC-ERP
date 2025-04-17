@@ -50,6 +50,7 @@ public class stockDAOlmpl implements stockDAO {
 		return sqlsession.delete(namespace + ".delete", s_id);
 	}
 
+	//입,출,재고 수량 view
 	@Override
 	public List<StockSummaryDTO> summary() throws Exception {
 		// TODO Auto-generated method stub
@@ -57,7 +58,7 @@ public class stockDAOlmpl implements stockDAO {
 		System.out.println("service"+s);
 		return s;
 	}
-
+	//재고 상태 수정
 	@Override
 	public void updateStockStatus(stockDTO stockdto) throws Exception {
 		// TODO Auto-generated method stub

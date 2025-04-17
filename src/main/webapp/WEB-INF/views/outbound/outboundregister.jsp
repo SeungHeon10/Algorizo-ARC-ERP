@@ -36,8 +36,8 @@
 							class="breadcrumb-header float-start float-lg-end">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a
-									href="${contextPath }/outbound/outboundlist">Outbound list</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Update</li>
+									href="${contextPath }/outbound/outboundlist">Outbound List</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Outbound Register</li>
 							</ol>
 						</nav>
 					</div>

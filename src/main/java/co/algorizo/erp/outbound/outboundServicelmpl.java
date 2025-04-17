@@ -22,18 +22,21 @@ public class outboundServicelmpl implements outboundService {
 	@Autowired
 	private CompanyDAO companydao;
 
+	//출고 전체 조회
 	@Override
 	public List<outboundDTO> list() throws Exception {
 		// TODO Auto-generated method stub
 		return outbounddao.list();
 	}
 
+	//출고 상세보기
 	@Override
 	public List<outboundDTO> detail(int out_id) throws Exception {
 		// TODO Auto-generated method stub
 		return outbounddao.detail(out_id);
 	}
 
+	//출고 등록
 	@Override
 	public void register(outboundDTO dto) throws Exception {
 		// TODO Auto-generated method stub
@@ -43,30 +46,35 @@ public class outboundServicelmpl implements outboundService {
 		companydao.companylist();
 	}
 
+	//출고 수정
 	@Override
 	public void update(outboundDTO dto) throws Exception {
 		// TODO Auto-generated method stub
 		outbounddao.update(dto);
 	}
 
+	//출고 삭제
 	@Override
 	public int delete(int out_id) throws Exception {
 		// TODO Auto-generated method stub
 		return outbounddao.delete(out_id);
 	}
 
+	//출고 상태 수정
 	@Override
 	public void updateOutboundStatus(String out_id, String out_status) throws Exception {
 		// TODO Auto-generated method stub
 		outbounddao.updateOutboundStatus(out_id, out_status);
 	}
 
+	//재고수량 수정
 	@Override
 	public void stockupdate(int s_quantity,int s_id) throws Exception {
 		// TODO Auto-generated method stub
 		outbounddao.stockupdate(s_quantity,s_id);
 	}
 
+	//재/출고수량 비교
 	@Override
 	public boolean exceed(int product_p_id,int out_quantity) throws Exception {
 		System.out.println("servicelmpl exceed"+product_p_id);

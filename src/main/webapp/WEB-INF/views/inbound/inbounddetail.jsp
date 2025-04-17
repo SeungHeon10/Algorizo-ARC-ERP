@@ -34,7 +34,7 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a
 									href="${contextPath }/inbound/inboundlist">Inbound List</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Detail</li>
+								<li class="breadcrumb-item active" aria-current="page">Inbound Detail</li>
 							</ol>
 						</nav>
 					</div>
