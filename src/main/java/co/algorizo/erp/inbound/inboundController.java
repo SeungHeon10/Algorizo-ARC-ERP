@@ -111,6 +111,9 @@ public class inboundController {
 	//입고 수정
 	@PostMapping(value = "/inbound/inboundupdate")
 	public String update(@ModelAttribute inboundDTO inbounddto) throws Exception {
+		if (inbounddto.getIn_status() == null || inbounddto.getIn_status().isEmpty()) {
+	        inbounddto.setIn_status("입고 대기"); // 기본값 설정
+	    }
 		inboundservice.update(inbounddto);
 		return "redirect:/inbound/inbounddetail?in_id=" + inbounddto.getIn_id();
 	}
@@ -176,10 +179,6 @@ public class inboundController {
 			inboundservice.updateInboundStatus(in_id, "입고 완료");
 			inboundservice.stockupdate(stock.getS_quantity(),stockid);
 			
-			System.out.println("입고 상태 업데이트: 입고 완료, in_id = " + in_id); // 상태 업데이트 출력
-			System.out.println("재고 수량 업데이트: 재고 추가 완료, i_id = " + i_id); // 상태 업데이트 출력
-			System.out.println("재고 수량 업데이트: 재고 추가 완료, s_id = " + s_id); // 상태 업데이트 출력
-			//
 			return ResponseEntity.ok().build();
 			
 		} catch (Exception e) {

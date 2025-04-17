@@ -42,7 +42,7 @@ public class InspectionServiceImpl implements InspectionService{
 //		검수 등록
 		inspectionDAO.register(inspectionDTO);
 //		입고 상태 변경
-		if(inspectionDTO.getI_quantity() >= 1) {
+		if(inspectionDTO.getI_defective_quantity() <= 10) {
 			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 확정 대기");
 		} else {
 			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 실패");
@@ -59,7 +59,7 @@ public class InspectionServiceImpl implements InspectionService{
 //		검수 수정
 		inspectionDAO.update(inspectionDTO);
 //		입고 상태 변경
-		if(inspectionDTO.getI_quantity() >= 1) {
+		if(inspectionDTO.getI_defective_quantity() <= 10) {
 			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 확정 대기");
 		} else {
 			inspectionDAO.in_stateUpdate(inspectionDTO.getIn_id() , "입고 실패");

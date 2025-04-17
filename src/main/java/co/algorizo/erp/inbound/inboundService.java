@@ -25,4 +25,5 @@ public interface inboundService {
 	
 	//재고수량 수정
 	void stockupdate(int s_quantity,int s_id) throws Exception;
+	
 }

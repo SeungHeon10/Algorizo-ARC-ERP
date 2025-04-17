@@ -42,8 +42,7 @@
 			javaType="co.algorizo.erp.inspection.DTO.InspectionDTO">
 			<id property="i_id" column="i_id" />
 			<result property="i_quantity" column="i_quantity" />
-			<result property="i_defective_quantity"
-				column="i_defective_quantity" />
+			<result property="i_defective_quantity" column="i_defective_quantity" />
 			<result property="i_inspector" column="i_inspector" />
 		</association>
 		<association property="stock"
