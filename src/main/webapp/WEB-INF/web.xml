@@ -30,6 +30,17 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 이미지 서블릿 -->
+	<servlet>
+	    <servlet-name>imageServlet</servlet-name>
+	    <servlet-class>com.example.ImageServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>imageServlet</servlet-name>
+	    <url-pattern>/member/image</url-pattern>
+	</servlet-mapping>
+	
 	<!-- UTF-8 Encoding -->
 	<filter>
 		<filter-name>encoding-filter</filter-name>

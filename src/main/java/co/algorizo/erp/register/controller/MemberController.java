@@ -1,7 +1,9 @@
 package co.algorizo.erp.register.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -200,14 +202,28 @@ public class MemberController {
 		        member.setM_pno(request.getParameter("m_pno"));
 		        member.setM_addr(request.getParameter("m_addr"));
 		        member.setDept_d_id(Integer.parseInt(request.getParameter("dept_d_id")));
+		        member.setRole("user");
+		        
+		        // 사진 저장 경로
+		        String uploadDir = session.getServletContext().getRealPath("/resources/img/members");
+		        File saveDir = new File(uploadDir);
+		        if(!saveDir.exists()) {
+		        	saveDir.mkdirs();
+		        }
+		        
+		        
 		        // 사진 업로드 처리
-		        if (!file.isEmpty()) {
+		        if (file != null && !file.isEmpty()) {
 		            String filename = file.getOriginalFilename();
-		            member.setM_photo(filename);
+		            String uuid = UUID.randomUUID().toString();
+		            String saveName = uuid + "_" + filename;
+		            File dest = new File(uploadDir, saveName);
+		            file.transferTo(dest);
+		            
+		            member.setM_photo(saveName);
 		        } else {
 		            member.setM_photo(originPhoto);
 		        }
-		        member.setRole("user");
 
 		        service.updateMember(member);
 				redirectAttributes.addFlashAttribute("success", "사원 정보가 수정되었습니다.");
