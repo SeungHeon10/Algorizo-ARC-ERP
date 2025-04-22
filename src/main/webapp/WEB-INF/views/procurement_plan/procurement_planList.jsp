@@ -78,7 +78,7 @@
 		// 계획 조회
 	    async function list() {
 	        try{
-	            const response = await fetch(`http://localhost:8080/erp/plans/listData` , {
+	            const response = await fetch(`/erp/plans/listData` , {
 	                method : "GET" ,
 	                headers : {"Content-Type" : "application/json"}
 	            });

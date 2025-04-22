@@ -132,7 +132,7 @@
 	//	품목 리스트
 	async function fetchProductList() {
 	    try{
-	        const response = await fetch("http://localhost:8080/erp/plans/product_list" , {
+	        const response = await fetch("/erp/plans/product_list" , {
 	            method : "GET" , 
 	            headers : {"Content-Type" : "application/json"}
 	        });
@@ -297,7 +297,7 @@
         	products : products
         }
         try{
-            const response = await fetch("http://localhost:8080/erp/plans/register" , {
+            const response = await fetch("/erp/plans/register" , {
                 method : "POST" ,
                 headers : {"Content-Type" : "application/json"} ,
                 body : JSON.stringify(planData)

@@ -167,7 +167,7 @@
 // 	검수 상세보기
 	    async function fetchInspectionDetail(oi_id) {
 	        try{
-	            const response = await fetch(`http://localhost:8080/erp/outInspection/detailData?oi_id=\${oi_id}` , {
+	            const response = await fetch(`/erp/outInspection/detailData?oi_id=\${oi_id}` , {
 	                method : "GET" , 
 	                headers : {"Content-Type" : "application/json"}
 	            });
@@ -226,7 +226,7 @@
 	    
 // 	    불량 사유 리스트 
         async function defectReasonList() {
-            const response = await fetch("http://localhost:8080/erp/outInspection/defectReason" , {
+            const response = await fetch("/erp/outInspection/defectReason" , {
                 method : "GET" , 
                 headers : {"Content-Type" : "applcation/json"}
             });
@@ -362,7 +362,7 @@
             }
             
             try{
-                const response = await fetch("http://localhost:8080/erp/outInspection/update" , {
+                const response = await fetch("/erp/outInspection/update" , {
                     method : "POST" ,
                     headers : {"Content-Type" : "application/json"} ,
                     body : JSON.stringify(outInspectionDTO)

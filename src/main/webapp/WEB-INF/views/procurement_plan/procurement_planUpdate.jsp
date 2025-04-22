@@ -136,7 +136,7 @@ String plan_id = request.getParameter("plan_id");
 //	조달 계획 상세보기
 	async function fetchPlanDetail(plan_id) {
 	    try{
-	        const response = await fetch(`http://localhost:8080/erp/plans/detailData?plan_id=\${plan_id}` , {
+	        const response = await fetch(`/erp/plans/detailData?plan_id=\${plan_id}` , {
 	            method : "GET" , 
 	            headers : {"Content-Type" : "application/json"}
 	        });
@@ -181,7 +181,7 @@ String plan_id = request.getParameter("plan_id");
 // 	품목 리스트
 	async function fetchProductList() {
         try{
-            const response = await fetch("http://localhost:8080/erp/plans/product_list" , {
+            const response = await fetch("/erp/plans/product_list" , {
                 method : "GET" , 
                 headers : {"Content-Type" : "application/json"}
             });
@@ -331,7 +331,7 @@ String plan_id = request.getParameter("plan_id");
         }
         
         try{
-            const response = await fetch("http://localhost:8080/erp/plans/update" , {
+            const response = await fetch("/erp/plans/update" , {
                 method : "POST" ,
                 headers : {"Content-Type" : "application/json"} ,
                 body : JSON.stringify(planDTO)

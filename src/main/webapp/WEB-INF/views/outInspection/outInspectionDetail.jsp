@@ -182,7 +182,7 @@
 	async function inspection_delete() {
 	    const oi_id = ${oi_id};
 	    try{
-	        const response = await fetch(`http://localhost:8080/erp/outInspection/delete?oi_id=\${oi_id}` , {
+	        const response = await fetch(`/erp/outInspection/delete?oi_id=\${oi_id}` , {
 	            method : "POST" ,
 	            headers : {"Content-Type" : "application/json"}
 	        });
@@ -199,7 +199,7 @@
 // 	검수 상세보기
     async function fetchInspectionDetail(oi_id) {
         try{
-            const response = await fetch(`http://localhost:8080/erp/outInspection/detailData?oi_id=\${oi_id}` , {
+            const response = await fetch(`/erp/outInspection/detailData?oi_id=\${oi_id}` , {
                 method : "GET" , 
                 headers : {"Content-Type" : "application/json"}
             });

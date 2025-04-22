@@ -148,7 +148,7 @@ String plan_id = request.getParameter("plan_id");
 	async function plan_delete() {
 	    const plan_id = document.getElementById("detailTitle").dataset.id;
 	    try{
-	        const response = await fetch(`http://localhost:8080/erp/plans/delete?plan_id=\${plan_id}` , {
+	        const response = await fetch(`/erp/plans/delete?plan_id=\${plan_id}` , {
 	            method : "POST" ,
 	            headers : {"Content-Type" : "application/json"}
 	        });
@@ -165,7 +165,7 @@ String plan_id = request.getParameter("plan_id");
 // 	조달 계획 상세보기
     async function fetchPlanDetail(plan_id) {
         try{
-            const response = await fetch(`http://localhost:8080/erp/plans/detailData?plan_id=\${plan_id}` , {
+            const response = await fetch(`/erp/plans/detailData?plan_id=\${plan_id}` , {
                 method : "GET" , 
                 headers : {"Content-Type" : "application/json"}
             });

@@ -198,7 +198,7 @@ String user = (String) session.getAttribute("m_name");
 // 		출고 목록 리스트
 	    async function inboundList() {
 	        try{
-	            const response = await fetch(`http://localhost:8080/erp/outInspection/outboundList` , {
+	            const response = await fetch(`/erp/outInspection/outboundList` , {
 	                method : "GET" ,
 	                headers : {"Content-Type" : "application/json"}
 	            });
@@ -244,7 +244,7 @@ String user = (String) session.getAttribute("m_name");
 	    
 // 	    불량 사유 리스트 
         async function defectReasonList() {
-            const response = await fetch("http://localhost:8080/erp/inspection/defectReason" , {
+            const response = await fetch("/erp/inspection/defectReason" , {
                 method : "GET" , 
                 headers : {"Content-Type" : "applcation/json"}
             });
@@ -466,7 +466,7 @@ String user = (String) session.getAttribute("m_name");
             }
             
             try{
-                const response = await fetch("http://localhost:8080/erp/outInspection/register" , {
+                const response = await fetch("/erp/outInspection/register" , {
                     method : "POST" ,
                     headers : {"Content-Type" : "application/json"} ,
                     body : JSON.stringify(outInspectionData)
