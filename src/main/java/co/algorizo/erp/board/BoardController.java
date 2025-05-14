@@ -83,5 +83,6 @@ public class BoardController {
 		boardService.update(board);
 		return "redirect:/board/list";
 	}
-	
+
+
 }
