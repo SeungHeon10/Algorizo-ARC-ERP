@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
@@ -11,12 +11,12 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	 Root Context: defines shared resources visible to all other web components
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://my-erp-db.cc5e0km8c1th.us-east-1.rds.amazonaws.com:3306/algorizo"></property>
-		<property name="username" value="admin"></property>
-		<property name="password" value="Rlaehgud112"></property>
+		<property name="url" value="jdbc:mysql://localhost/algorizo?severtTimezone=UTC"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="12345"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -29,7 +29,7 @@
 	</bean>
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <property name="maxUploadSize" value="10485760" /> <!-- 최대 업로드 크기 (10MB) -->
+	    <property name="maxUploadSize" value="10485760" />
 	</bean>
 		
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -37,4 +37,4 @@
 	    </bean>
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <tx:annotation-driven transaction-manager="transactionManager" />	
-</beans>
+</beans> -->

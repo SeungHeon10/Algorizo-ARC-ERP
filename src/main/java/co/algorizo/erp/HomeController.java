@@ -85,10 +85,7 @@ public class HomeController {
 	    session.setAttribute("m_name", memberFromDb.getM_name());
 	    session.setAttribute("d_id", memberFromDb.getDept_d_id());
 	    session.setAttribute("team", memberFromDb.getDto().getTeam());
-	    logger.info("m_id : " + session.getAttribute("m_id"));
-	    logger.info("d_id : " + session.getAttribute("d_id"));
-	    logger.info("m_name : " + session.getAttribute("m_name"));
-	    logger.info("team : " + session.getAttribute("team"));
+
 		
 	    model.addAttribute("member", memberFromDb);
 	    
@@ -155,8 +152,9 @@ public class HomeController {
 		    
 	      return "home";
 	   }
-	
-	
+
+
+
 
 	
 	

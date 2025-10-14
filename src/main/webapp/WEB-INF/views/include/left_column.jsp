@@ -239,6 +239,21 @@
 		                        
 		                    </ul>
 		                </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>메신저</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="${contextPath }/chat/rooms">채팅방 조회</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a href="${contextPath }/chat/newChat">신규 채팅</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

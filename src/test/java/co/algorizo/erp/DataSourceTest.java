@@ -23,7 +23,7 @@ public class DataSourceTest {
 		try {
 			Connection conn = dataSource.getConnection();
 			System.out.println(conn);
-			System.out.println("연결성공");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
