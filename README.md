@@ -22,7 +22,7 @@ ARC ERP는 기업의 다양한 업무 프로세스를 효율적으로 관리할 
 
 ## 🌐 시스템 구조 (System Architecture)
 
-![시스템 구조](https://github.com/user-attachments/assets/c59e192f-6441-4cbf-bb1b-85ddc0889eeb)
+![시스템 구조](https://github.com/user-attachments/assets/955afdd3-91ab-4bcd-b5f4-0a9df90c3579)
 
 ---
 
@@ -78,49 +78,50 @@ ARC ERP는 기업의 다양한 업무 프로세스를 효율적으로 관리할 
 
 ### 로그인 및 회원가입
 
-![로그인 및 회원가입](https://github.com/user-attachments/assets/7351d8eb-09c0-481d-9bd1-a218da6a9693)
+![로그인 및 회원가입](https://github.com/user-attachments/assets/44776cca-e462-41f3-9ccf-f613069cfeb8)
 
 ### 사원 관리
 
-![게시글 목록](https://github.com/user-attachments/assets/f73d7ab1-ed59-4452-be35-aae0099719da)
+![사원 관리](https://github.com/user-attachments/assets/6775f109-1652-4741-a0fd-470c575a9697)
 
 ### 품목 관리
 
-![게시글 작성](https://github.com/user-attachments/assets/c3bdaa86-5f04-44de-ad8d-5cc91447081c)
+![품목 관리](https://github.com/user-attachments/assets/375c7fd5-6387-479f-b283-d4456a1cc0cd)
 
 ### 공급업체 관리
 
-![게시글 상세1](https://github.com/user-attachments/assets/a67816d0-3a9b-47dc-b10a-a439abd46485)
-![게시글 상세2](https://github.com/user-attachments/assets/e15d540e-d6c6-4ea9-9c87-80efd8e9db9c)
+![공급업체 관리](https://github.com/user-attachments/assets/6d6eadad-c61e-4268-b693-781ea847a12e)
 
 ### 조달계획 관리
 
-![게시글 수정](https://github.com/user-attachments/assets/d89c826e-3202-442b-bf00-ffe019e62f72)
+![조달계획 관리1](https://github.com/user-attachments/assets/78a8cdaf-cfc3-4148-a531-6ad6f9a300ad)
+![조달계획 관리2](https://github.com/user-attachments/assets/2c1aebd2-ce37-428d-9926-890e69fcac08)
 
-### 계약 및 발주
+### 계약 관리
 
-![회원정보](https://github.com/user-attachments/assets/aefdc776-f660-46b7-b9e7-d4bad39b4a2c)
+![계약 관리](https://github.com/user-attachments/assets/e1a6d715-11f0-49a0-8c83-f138921b0d6a)
+
+### 발주 관리
+
+![발주 관리](https://github.com/user-attachments/assets/0284376e-0cc8-4213-8e13-8842349381c8)
 
 ### 입/출고 관리
 
-![회원정보](https://github.com/user-attachments/assets/aefdc776-f660-46b7-b9e7-d4bad39b4a2c)
+![입출고 관리1](https://github.com/user-attachments/assets/661bba89-2b32-42a5-ae17-eb2cef492dbc)
+![입출고 관리2](https://github.com/user-attachments/assets/623fe989-94e3-4323-9820-d2a091f91b05)
 
 ### 입/출고 검수
 
-![회원정보](https://github.com/user-attachments/assets/aefdc776-f660-46b7-b9e7-d4bad39b4a2c)
+![입출고 검수1](https://github.com/user-attachments/assets/a41ec534-9483-4169-af29-45bea37e24b0)
+![입출고 검수2](https://github.com/user-attachments/assets/0aa0bb05-7769-4528-9c0f-1d1b3eaeccb5)
 
 ### 입/출고 거래명세서
 
-![회원정보](https://github.com/user-attachments/assets/aefdc776-f660-46b7-b9e7-d4bad39b4a2c)
+![입출고 거래명세서](https://github.com/user-attachments/assets/08abff60-a079-4359-8cd8-0d1a47667ff8)
 
 ---
 
 ## 🧭 향후 개선 방향 (Future Improvements)
-
-- JWT를 일관성있게 적용할 수 있도록 React/Vue기반의 프론트엔드 SPA 리팩토링
-- Docker 기반 컨테이너 배포 환경 구축
-- 백엔드/프론트엔드 코드 구조 개선을 통한 유지보수성 향상 일관성 확보
-- 다양한 예외 상황에 대한 처리 로직 보강으로 안정성 강화
 
 ---
 
