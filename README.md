@@ -31,24 +31,45 @@ ARC ERP는 기업의 다양한 업무 프로세스를 효율적으로 관리할 
 ```plaintext
 📦 src  
 ┣ 📂 main  
-┃ ┣ 📂 java/com/board/notice  
-┃ ┃ ┣ 📂 aop              # 공통 로깅 관리 (LoggingAspect) 
-┃ ┃ ┣ 📂 config           # Spring / JPA / Security / AWS 설정  
-┃ ┃ ┣ 📂 controller       # 페이지 및 REST API 컨트롤러  
-┃ ┃ ┣ 📂 dto              # Request / Response DTO  
-┃ ┃ ┣ 📂 entity           # JPA 엔티티 클래스  
-┃ ┃ ┣ 📂 enums            # Enum 타입 (Role)
-┃ ┃ ┣ 📂 exception        # 전역 예외 처리  
-┃ ┃ ┣ 📂 repository       # JPA Repository 인터페이스  
-┃ ┃ ┣ 📂 security  
-┃ ┃ ┃ ┣ 📂 jwt           # JWT 토큰 관리 (JwtUtil, JwtAuthFilter)  
-┃ ┃ ┃ ┗ 📂 oauth2        # OAuth2 로그인
-┃ ┃ ┗ 📂 service          # 비즈니스 로직 (Service & Impl)  
+┃ ┣ 📂 java/co/algorizo/erp  
+┃ ┃ ┣ 📜 HomeController.java  
+┃ ┃ ┣ 📜 ImageServlet.java  
+┃ ┃ ┣ 📂 board             # 공지사항 관리
+┃ ┃ ┣ 📂 calendar          # 캘린 기능  
+┃ ┃ ┣ 📂 chat              # 실시간 채팅 기능
+┃ ┃ ┣ 📂 company           # 공급업체 관리  
+┃ ┃ ┣ 📂 config            # Spring 설정
+┃ ┃ ┣ 📂 contract          # 계약 관리 
+┃ ┃ ┣ 📂 dept              # 부서 관리
+┃ ┃ ┣ 📂 inbound           # 입고 관리  
+┃ ┃ ┣ 📂 inbound_receipt   # 입고 거래명세서 관리 
+┃ ┃ ┣ 📂 inspection        # 입고 검수 관리
+┃ ┃ ┣ 📂 interceptor       # 로그인 인터셉터  
+┃ ┃ ┣ 📂 order             # 발주 관리  
+┃ ┃ ┣ 📂 outbound          # 출고 관리  
+┃ ┃ ┣ 📂 outbound_receipt  # 출고 거래명세서 관리 
+┃ ┃ ┣ 📂 outinspection     # 출고 검수 관리  
+┃ ┃ ┣ 📂 procurement_plan  # 조달계획 관리 
+┃ ┃ ┣ 📂 product           # 품목 관리  
+┃ ┃ ┣ 📂 register          # 회원가입 및 계정 관리  
+┃ ┃ ┗ 📂 stock             # 재고 관리 
 ┃ ┣ 📂 resources  
-┃ ┃ ┣ 📂 static           # JS / CSS / HTML 
-┃ ┃ ┣ 📂 templates        # Thymeleaf 템플릿 (auth, board, user 등)  
-┃ ┃ ┗ 📜 application.yml  # 환경 설정 파일  
-┗ 📂 test                 # 단위 테스트 코드
+┃ ┃ ┣ 📂 mappers           # MyBatis 매퍼 XML  
+┃ ┃ ┣ 📜 application.properties  
+┃ ┃ ┣ 📜 log4j.xml  
+┃ ┃ ┗ 📜 mybatis-config.xml  
+┃ ┗ 📂 webapp  
+┃    ┣ 📂 resources        # 정적 리소스 (img, css, js 등)  
+┃    ┣ 📂 WEB-INF  
+┃    ┃ ┣ 📂 spring         # Spring XML 설정  
+┃    ┃ ┣ 📂 views          # JSP 뷰 (board, chat, order, etc.)  
+┃    ┃ ┗ 📜 web.xml        # 서블릿 설정  
+┗ 📂 test  
+ ┣ 📂 java/co/algorizo/erp  
+ ┃ ┣ 📜 DataSourceTest.java  
+ ┃ ┗ 📜 MybatisTest.java  
+ ┗ 📂 resources  
+   ┗ 📜 log4j.xml
 ```
 
 ---
