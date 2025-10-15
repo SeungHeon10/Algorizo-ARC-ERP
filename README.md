@@ -1,5 +1,5 @@
 
-# Algorizo ARC ERP 팀 프로젝트
+# Algorizo 팀 프로젝트 - ARC ERP
 
 # 주요 기능
 - 공지사항
