@@ -16,7 +16,7 @@
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://my-erp-db.cc5e0km8c1th.us-east-1.rds.amazonaws.com:3306/algorizo"></property>
 		<property name="username" value="admin"></property>
-		<property name="password" value="Rlaehgud112"></property>
+		<property name="password" value="rlaehgud112"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
